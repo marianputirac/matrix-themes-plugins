@@ -1,0 +1,11 @@
+.stgselect2-selection__placeholder {
+    color: black ! important;
+}
+
+.term-slug-wrap, .term-description-wrap {
+    display: none;
+}
+
+.stgselect2-container {
+    float: right;
+}

@@ -1,0 +1,4 @@
+[21-Sep-2022 14:35:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function find() on bool in /home/matrixlifetimesh/public_html/wp-content/themes/storefront-child/csvs/createcsv.php:96
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/themes/storefront-child/csvs/createcsv.php on line 96

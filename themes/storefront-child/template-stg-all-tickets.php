@@ -1,0 +1,201 @@
+<?php
+
+/**
+ * The template for displaying full width pages.
+ *
+ * Template Name: my-tyckets template
+ *
+ */
+
+use StgHelpdesk\Helpers;
+use StgHelpdesk\Ticket;
+
+?>
+<?php get_header(); ?>
+
+    <div id="stg-all-tickets-block blablabla">
+        <h2><?php _e('My tickets', STG_HELPDESK_TEXT_DOMAIN_NAME); ?></h2>
+
+        <?php
+
+        global $paged, $post;
+        $myAccountId = get_option('woocommerce_myaccount_page_id');
+
+        $stghTickets = get_query_var('my_tickets');
+        if (!empty($stghTickets)) {
+            $tmp = explode('/', $stghTickets);
+            if (isset($tmp[1]) && is_numeric($tmp[1])) {
+                $paged = (int)$tmp[1];
+                set_query_var('paged', (int)$tmp[1]);
+            }
+        }
+
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $ppp = 20;
+
+        $user_tickets = Ticket\Stg_Helpdesk_Ticket::userTickets($ppp, $paged);
+
+
+        $user_id = get_current_user_id();
+        $user = get_userdata($user_id);
+        // get user company_parent id from meta
+        $deler_id = get_user_meta($user_id, 'company_parent', true);
+        // initiate users_orders array with logged user id
+        $users_orders = array($user_id);
+        if (!empty($deler_id)) {
+            // if dealer if is not empty and current user have employe role and not dealer_employe add dealer orders
+            if (in_array('employe', $user->roles) || in_array('senior_salesman', $user->roles)) {
+                $users_orders[] = $deler_id;
+            }
+        }
+        $tickets_status = array('stgh_new', 'stgh_answered', 'stgh_notanswered');
+        foreach ($users_orders as $user_id) {
+            foreach ($tickets_status as $status) {
+                $args = array(
+                    //'author' => isset($current_user->ID) ? $current_user->ID : '',
+                    '_author_or_stgh_contact' => $user_id,
+                    'post_type' => STG_HELPDESK_POST_TYPE,
+                    'post_status' => $status,
+                    'order' => 'DESC',
+                    'orderby' => 'date',
+                    'posts_per_page' => 20,
+                    'no_found_rows' => false,
+                    'cache_results' => false,
+                    'paged' => $paged,
+                    'update_post_term_cache' => false,
+                    'update_post_meta_cache' => false,
+                    'meta_query' => array(
+                        array(
+                            'key' => '_stgh_contact',
+                            'value' => $user_id
+                        )
+                    )
+                );
+                $user_tickets = new WP_Query($args);
+
+
+                if ($user_tickets->have_posts()):
+                    $columns = Helpers\Stg_Helper_Template::getTicketsListColumns();
+                    ?>
+                    <div class="stgh stgh-ticket-list">
+                        <?php
+                        if ($status == 'stgh_notanswered') {
+                            if ($user_tickets->max_num_pages > 1) {
+
+                                echo '<nav class="prev-next-posts">';
+                                echo '<div class="prev-posts-link stgh-div-block-m10 stgh-div-block-float">';
+                                echo get_next_posts_link(__('Older tickets', STG_HELPDESK_TEXT_DOMAIN_NAME), $user_tickets->max_num_pages);
+                                echo '</div>';
+                                echo '<div class="next-posts-link stgh-div-block-m10 stgh-div-block-float">';
+                                echo get_previous_posts_link(__('Newer tickets', STG_HELPDESK_TEXT_DOMAIN_NAME));
+                                echo '</div>';
+                                echo '</nav>';
+                            }
+                        }
+                        ?>
+                        <?php if (defined('STG_HELPDESK_WC_SUPPORT_TEXT_DOMAIN_NAME') && $myAccountId == $post->ID): ?>
+                            <span class="order">
+                <a href="#" class="woocommerce-button button stg_order_get_help_NOORDER">
+                    <?php
+                    _e('Open Ticket', STG_HELPDESK_WC_SUPPORT_TEXT_DOMAIN_NAME)
+                    ?>
+                </a>
+            </span>
+                        <?php endif; ?>
+
+                        <table id="stgh_ticketlist" class="stgh-table stgh-table-hover">
+                            <thead>
+                            <tr>
+                                <?php foreach ($columns as $column_id => $column) {
+                                    echo "<th id='stg-ticket-$column_id'>" . $column['title'] . "</th>";
+                                } ?>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            while ($user_tickets->have_posts()):
+
+                                $user_tickets->the_post();
+
+                                echo '<tr';
+                                echo ' class=\'' . get_post_status(get_the_ID()) . '_color_row\'';
+                                echo '>';
+
+                                foreach ($columns as $column_id => $column) {
+
+                                    echo '<td';
+
+                                    if ('date' === $column_id) {
+                                        echo ' data-order="' . strtotime(get_the_time()) . '"';
+                                    }
+                                    if ('status' === $column_id) {
+                                        echo ' class="' . get_post_status(get_the_ID()) . '_color"';
+                                    }
+                                    echo '>';
+
+                                    /* Display the content for this column */
+                                    Helpers\Stg_Helper_Template::getTicketsListColumnContent($column_id, $column);
+
+                                    echo '</td>';
+
+                                }
+
+                                echo '</tr>';
+
+                            endwhile;
+
+                            //wp_reset_query();
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <?php
+                    if ($status == 'stgh_notanswered') {
+                        if ($user_tickets->max_num_pages > 1) {
+
+                            echo '<nav class="prev-next-posts">';
+                            echo '<div class="prev-posts-link stgh-div-block-m10 stgh-div-block-float">';
+                            echo get_next_posts_link(__('Older tickets', STG_HELPDESK_TEXT_DOMAIN_NAME), $user_tickets->max_num_pages);
+                            echo '</div>';
+                            echo '<div class="next-posts-link stgh-div-block-m10 stgh-div-block-float">';
+                            echo get_previous_posts_link(__('Newer tickets', STG_HELPDESK_TEXT_DOMAIN_NAME));
+                            echo '</div>';
+                            echo '</nav>';
+                        }
+                    }
+                    ?>
+                <?php
+                else:
+                    ?>
+                    <?php
+                    if ($status != 'stgh_answered') {
+                        echo getNotificationMarkup('info', __('Not found', STG_HELPDESK_TEXT_DOMAIN_NAME));
+                    }
+                    ?>
+
+                    <?php if (defined('STG_HELPDESK_WC_SUPPORT_TEXT_DOMAIN_NAME') && $myAccountId == $post->ID): ?>
+                    <span class="order">
+                <a href="#" class="woocommerce-button button stg_order_get_help_NOORDER">
+                    <?php
+                    _e('Open Ticket', STG_HELPDESK_WC_SUPPORT_TEXT_DOMAIN_NAME)
+                    ?>
+        </a>
+        </span>
+                <?php endif; ?>
+                <?php endif;
+
+                $url = stgh_get_submit_page_url();
+                if (!empty($url)) :
+                    ?>
+                    <a href="<?php echo esc_url($url); ?>"><?php _e('Open new ticket', STG_HELPDESK_TEXT_DOMAIN_NAME); ?></a>
+                <?php endif;
+
+                wp_reset_postdata();
+            }
+        }
+        ?>
+
+    </div>
+
+<?php
+get_footer();

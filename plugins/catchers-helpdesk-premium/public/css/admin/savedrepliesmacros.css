@@ -1,0 +1,16 @@
+.stgselect2-selection__placeholder {
+    color: black ! important;
+}
+
+.term-slug-wrap {
+    display: none;
+}
+
+.stgselect2-container {
+    float: right;
+}
+
+#wp-stgh_savedreply_description-wrap > .stgselect2 {
+    float: left;
+    width: 220px !important;
+}

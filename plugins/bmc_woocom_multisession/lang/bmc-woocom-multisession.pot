@@ -1,0 +1,277 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-17 18:37+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: bmc_woocom_multisession.php:269
+#, php-format
+msgid " Expect this feature to be removed from version %1$s or later."
+msgstr ""
+
+#: bmc_woocom_multisession.php:1896 bmc_woocom_multisession.php:2139
+#: class-bmc-woocom-multisession-widget.php:191
+msgid "New Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:1898
+#, php-format
+msgid ""
+"Are you sure you want to delete cart, %cart-name? Any associated addresses "
+"will be lost. This cannot be undone."
+msgstr ""
+
+#: bmc_woocom_multisession.php:1900
+#, php-format
+msgid "Save or load carts to or from %s with a CaSe SeNsItIvE key phrase."
+msgstr ""
+
+#: bmc_woocom_multisession.php:1902
+#, php-format
+msgid ""
+"Carts for key phrase \"%session-name\" exist. Do you wish to load these "
+"carts?"
+msgstr ""
+
+#: bmc_woocom_multisession.php:1904
+#, php-format
+msgid ""
+"This will NOT delete your carts. Carts saved on key phrase \"%session-name\" "
+"will remain available to load again for up to one year. Do you wish to "
+"proceed?"
+msgstr ""
+
+#: bmc_woocom_multisession.php:1978
+msgid "Carts"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2024
+#: class-bmc-woocom-multisession-widget.php:104
+msgid "Select Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2034
+#: class-bmc-woocom-multisession-widget.php:117
+msgid "Edit Name"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2047
+#: class-bmc-woocom-multisession-widget.php:126
+msgid "Shopping Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2053
+#: class-bmc-woocom-multisession-widget.php:125
+msgid "Switch to Shopping Cart mode. Shopping carts are emptied upon checkout."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2061
+#: class-bmc-woocom-multisession-widget.php:135
+msgid "Storage Bin"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2067
+#: class-bmc-woocom-multisession-widget.php:134
+msgid "Switch to Storage Bin mode. Storage bins retain items after checkout."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2077
+#: class-bmc-woocom-multisession-widget.php:147
+msgid "Clone Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2083
+#: class-bmc-woocom-multisession-widget.php:146
+msgid "Create a new cart with the items and addresses of this cart."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2096
+#: class-bmc-woocom-multisession-widget.php:160
+msgid "Copy Items"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2102
+#: class-bmc-woocom-multisession-widget.php:159
+msgid "Copy items from this cart to your current cart."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2110
+#: class-bmc-woocom-multisession-widget.php:168
+msgid "Delete Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2158
+#: class-bmc-woocom-multisession-widget.php:217
+msgid "Carts Saved"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2158
+#: class-bmc-woocom-multisession-widget.php:217
+msgid "Save / Load Carts"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2162
+#: class-bmc-woocom-multisession-widget.php:214
+#, php-format
+msgid "Carts saved to %s."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2162
+#: class-bmc-woocom-multisession-widget.php:214
+#, php-format
+msgid "Save or load carts to or from %s with a key phrase."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2175
+#: class-bmc-woocom-multisession-widget.php:229
+msgid "Unsave Carts"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2179
+#: class-bmc-woocom-multisession-widget.php:226
+#, php-format
+msgid "Stop saving carts to %s?"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2387
+msgid "Item Name"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2388
+msgid "Qty"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2435
+msgid "Move To Cart"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2607
+msgid "Multiple Carts Per User Options"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2609
+#, php-format
+msgid ""
+"Settings for the <a id=\"%s\" href=\"%s\">Multiple Carts Per User</a> plugin."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2620
+msgid "Carts Menu"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2621
+msgid "Adds Carts menu to the Admin Toolbar."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2629
+msgid "Customer Toolbar"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2630
+msgid ""
+"Displays the Admin Toolbar for Customers with Carts menu and link to "
+"WooCommerce account page."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2638
+msgid "Current Cart On Top"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2639
+msgid ""
+"Display the current cart at the top of the Carts menu or widget and order "
+"carts below it by last used."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2648
+msgid "Maximum Carts"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2649
+msgid "Set to zero (0) to limit only by the maximum carts session data size."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2650
+msgid "Sets the maximum number of carts users are limited to."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2658
+msgid "Link Carts per User"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2659
+msgid ""
+"Automatically link carts sessions to user accounts rather than optionally by "
+"key phrase. Customers will use the same carts as other customers logged into "
+"the same user account."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2667
+msgid "Account Features per User"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2668
+msgid ""
+"Display account features (orders, downloads) by user rather than by cart. "
+"Customers will see the same orders and downloads as other customers logged "
+"into the same user account."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2676
+msgid "Customer Account Access"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2677
+msgid "Allow customers to update the user account they're logged into."
+msgstr ""
+
+#: bmc_woocom_multisession.php:2685
+msgid "Delete Data On Uninstall"
+msgstr ""
+
+#: bmc_woocom_multisession.php:2686
+msgid "Remove all settings and carts data when uninstalling the plugin."
+msgstr ""
+
+#. name ...
+#: class-bmc-woocom-multisession-widget.php:17
+msgid "WooCommerce Multiple Carts"
+msgstr ""
+
+#: class-bmc-woocom-multisession-widget.php:22
+msgid "Manage and switch between multiple shopping carts."
+msgstr ""
+
+#. Name of the plugin
+msgid "WooCommerce Multiple Carts Per User"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Modifies WooCommerce's one user account to one shopping cart paradigm to "
+"provide for different people logging into the same user account to have "
+"multiple shopping carts, shipping & billing addresses and order histories "
+"separate from each other."
+msgstr ""
+
+#. URI of the plugin
+msgid "http://codecanyon.net/item/woocommerce-multiple-carts-per-user/14274432"
+msgstr ""
+
+#. Author of the plugin
+msgid "Burning Moth Creations"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.burningmoth.com/"
+msgstr ""

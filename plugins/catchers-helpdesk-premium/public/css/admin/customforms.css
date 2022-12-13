@@ -1,0 +1,21 @@
+.stgselect2-selection__placeholder {
+    color: black ! important;
+}
+
+.term-slug-wrap, .term-description-wrap {
+    display: none;
+}
+
+.stgselect2-container {
+    float: right;
+}
+
+#wp-stgh_customforms_description-editor-tools > .stgselect2 {
+    float: left;
+    width: 220px !important;
+}
+
+#wp-stgh_customforms_description-wrap > .stgselect2 {
+    float: left;
+    width: 220px !important;
+}

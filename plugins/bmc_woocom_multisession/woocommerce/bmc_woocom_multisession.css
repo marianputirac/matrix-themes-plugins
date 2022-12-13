@@ -1,0 +1,401 @@
+/**
+ * @package BurningMoth \ WooCommerce \ Multisession
+ * @since 1.3
+ */
+
+/**
+ * Cart items loading animation.
+ */
+@keyframes cart-items-loading {
+	from { transform: rotate(360deg); }
+	to { transform: rotate(0deg); }
+}
+
+.bmc-woocom-multisession-widget .cart-items-loading,
+#wp-admin-bar-carts .cart-items-loading {
+	text-align: center;
+}
+
+.bmc-woocom-multisession-widget .cart-items-loading,
+#wp-admin-bar-carts .cart-items-loading:before {
+
+	font: 400 17px/1 dashicons;
+	content: "\f531";
+	display: inline-block;
+
+	animation-name: cart-items-loading;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+}
+
+/**
+ * Cart items.
+ */
+.bmc-woocom-multisession-widget .cart-items table,
+#wp-admin-bar-carts .cart-items table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0.2em;
+	table-layout: auto;
+	margin: 0;
+}
+
+.bmc-woocom-multisession-widget .cart-items table *,
+#wp-admin-bar-carts .cart-items table * {
+	line-height: 1.2;
+	font-size: x-small;
+	height: auto;
+	padding: 0;
+	white-space: normal;
+	vertical-align: top;
+}
+
+.bmc-woocom-multisession-widget .cart-items table * {
+	font-size: small; /* font should be slightly larger */
+}
+
+#wp-admin-bar-carts .cart-items table th {
+	font-size: xx-small;
+}
+
+.bmc-woocom-multisession-widget .cart-items table th {
+	font-size: x-small; /* font should be slightly larger */
+}
+
+.bmc-woocom-multisession-widget .cart-items table td:nth-child(2),
+#wp-admin-bar-carts .cart-items table td:nth-child(2) {
+	text-align: center;
+}
+.bmc-woocom-multisession-widget .cart-items table td:nth-child(2):before,
+#wp-admin-bar-carts .cart-items table td:nth-child(2):before {
+	font-family: dashicons;
+	content: "\f335";
+}
+
+
+.bmc-woocom-multisession-widget .cart-items table th:nth-child(2),
+.bmc-woocom-multisession-widget .cart-items table td:nth-child(3),
+#wp-admin-bar-carts .cart-items table th:nth-child(2),
+#wp-admin-bar-carts .cart-items table td:nth-child(3) {
+	text-align: right;
+}
+
+body.rtl .bmc-woocom-multisession-widget .cart-items table th:nth-child(2),
+body.rtl .bmc-woocom-multisession-widget .cart-items table td:nth-child(3),
+body.rtl #wp-admin-bar-carts .cart-items table th:nth-child(2),
+body.rtl #wp-admin-bar-carts .cart-items table td:nth-child(3) {
+	text-align: left;
+}
+
+
+
+
+/**
+ * General links styles.
+ */
+.bmc-woocom-multisession-widget a,
+.bmc-woocom-multisession-widget a:before,
+#wp-admin-bar-carts a,
+#wp-admin-bar-carts a:before {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.bmc-woocom-multisession-widget li > a,
+#wpadminbar #wp-admin-bar-carts .ab-item {
+	height: auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+
+/**
+ * Switch :before and :after back to their proper places so that the icons stay on the left side.
+ */
+#wp-admin-bar-carts.menupop .menupop > a.ab-item:before,
+#wp-admin-bar-carts.menupop .menupop > a.ab-item:after,
+#wp-admin-bar-carts a.ab-item:before {
+	font: 400 17px/1 dashicons;
+	text-decoration: inherit;
+	color: inherit !important;
+	top: auto;
+	right: auto;
+	position: relative;
+	padding: 4px 0;
+	margin-right: 6px;
+	background-image: none !important;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#wp-admin-bar-carts.menupop .menupop > a.ab-item:after {
+	top: 1px;
+	right: 4px;
+	position: absolute;
+	content: "\f139";
+}
+
+body.rtl #wp-admin-bar-carts.menupop .menupop > a.ab-item:after {
+	right: auto;
+	left: 4px;
+	content: "\f141";
+}
+
+
+
+/**
+ * Icons.
+ */
+
+/** woocom account link */
+#wpadminbar #wp-admin-bar-woocom-account > .ab-item:before {
+	content: "\f312";
+	top: 2px;
+}
+
+/** woocom carts menu */
+#wpadminbar #wp-admin-bar-carts > .ab-item:before {
+	content: "\f174";
+	top: 2px;
+}
+
+/** New Cart */
+.bmc-woocom-multisession-widget .cart-new > a:before,
+#wp-admin-bar-cart-new > .ab-item:before {
+	content: "\f502" !important;
+}
+
+/** Select Cart */
+.bmc-woocom-multisession-widget .cart-select > a:not(.cart-expand):before,
+#wp-admin-bar-carts .cart-select > .ab-item:before {
+	content: "\f174" !important;
+}
+
+/** Current Cart */
+.bmc-woocom-multisession-widget .cart-current > a:not(.cart-expand):before,
+#wp-admin-bar-carts .cart-current > .ab-item:before {
+	padding-left: 6px !important;
+	text-shadow: -6px 0px 0px rgba(127, 127, 127, 0.25), -3px 0px 0px rgba(127, 127, 127, 0.5);
+}
+
+body.rtl .bmc-woocom-multisession-widget .cart-current > a:not(.cart-expand):before,
+body.rtl #wp-admin-bar-carts .cart-current > .ab-item:before {
+	padding-left: 0px !important;
+	padding-right: 6px !important;
+	text-shadow: 3px 0px 0px rgba(127, 127, 127, 0.5), 6px 0px 0px rgba(127, 127, 127, 0.25);
+}
+
+/** Edit Cart Name */
+.bmc-woocom-multisession-widget .cart-edit > a:before,
+#wp-admin-bar-carts .cart-edit > .ab-item:before {
+	content: "\f464" !important;
+}
+
+/** Copy Items from cart */
+.bmc-woocom-multisession-widget .cart-copy > a:before,
+#wp-admin-bar-carts .cart-copy > .ab-item:before {
+	content: "\f105" !important;
+}
+
+/** Delete cart */
+.bmc-woocom-multisession-widget .cart-delete > a:before,
+#wp-admin-bar-carts .cart-delete > .ab-item:before {
+	content: "\f182" !important;
+}
+
+/** Sync cart */
+.bmc-woocom-multisession-widget .cart-sync > a:not(.cart-expand):before,
+#wp-admin-bar-cart-sync > .ab-item:before {
+	content: "\f176" !important;
+}
+
+.bmc-woocom-multisession-widget .cart-syncd > a:not(.cart-expand):before,
+#wp-admin-bar-cart-syncd > .ab-item:before {
+	content: "\f103" !important;
+}
+
+/** Unsync cart */
+.bmc-woocom-multisession-widget .cart-unsync > a:before,
+#wp-admin-bar-cart-unsync > .ab-item:before {
+	content: "\f225" !important;
+}
+
+/** Clone cart */
+.bmc-woocom-multisession-widget .cart-clone > a:before,
+#wp-admin-bar-carts .cart-clone > .ab-item:before {
+	content: "\f310" !important;
+}
+
+
+/** Mode: Shopping Cart */
+.bmc-woocom-multisession-widget .cart-mode-cart > a:not(.cart-expand):before,
+#wp-admin-bar-carts .cart-mode-cart > .ab-item:before {
+	content: "\f174" !important;
+}
+
+/** Mode: Storage Bin  */
+.bmc-woocom-multisession-widget .cart-mode-bin > a:not(.cart-expand):before,
+#wp-admin-bar-carts .cart-mode-bin > .ab-item:before {
+	content: "\f178" !important;
+}
+
+/* Selectively display option for opposite mode. */
+.cart-mode-bin .cart-mode-bin,
+.cart-mode-cart .cart-mode-cart {
+	display: none;
+}
+
+
+
+/**
+ * Show icons in small screen mode.
+ * Rules adapted from /wp-includes/css/admin-bar.min.css
+ */
+@media screen and (max-width:782px) {
+
+	#wpadminbar #wp-admin-bar-carts {
+		position: static;
+	}
+
+	#wpadminbar li#wp-admin-bar-carts,
+	#wpadminbar li#wp-admin-bar-woocom-account {
+		display: block;
+	}
+
+	#wpadminbar #wp-admin-bar-carts > .ab-item:before,
+	#wpadminbar #wp-admin-bar-woocom-account > .ab-item:before {
+		display: block;
+		text-indent: 0;
+		font: 400 32px/1 dashicons;
+		speak: none;
+		top: 7px;
+		width: 52px;
+		text-align: center;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	#wpadminbar #wp-admin-bar-carts > .ab-item,
+	#wpadminbar #wp-admin-bar-woocom-account > .ab-item {
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: clip;
+		width: 52px;
+		padding: 0;
+		color: #999;
+		position: relative;
+	}
+
+	#wpadminbar #wp-admin-bar-carts.menupop .menupop > a.ab-item:before,
+	#wpadminbar #wp-admin-bar-carts.menupop .menupop > a.ab-item:after,
+	#wpadminbar #wp-admin-bar-carts a.ab-item:before {
+		font-size: 20px;
+	}
+
+	#wpadminbar #wp-admin-bar-carts.menupop .menupop > a.ab-item:after {
+		line-height: 1.6;
+	}
+
+	#wpadminbar #wp-admin-bar-carts a.ab-item:before {
+		padding: 0em 0.1em;
+	}
+
+	#wpadminbar #wp-admin-bar-cart-new > .ab-item:before {
+		top: 0.15em;
+	}
+
+}
+
+
+/**
+ * Widget specific styles.
+ */
+.bmc-woocom-multisession-widget ul,
+.bmc-woocom-multisession-widget li,
+.bmc-woocom-multisession-widget a {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: block;
+	line-height: 1.6;
+}
+
+.bmc-woocom-multisession-widget a:before {
+	font-family: dashicons;
+	padding-right: 0.2em;
+	vertical-align: top;
+}
+
+body.rtl .bmc-woocom-multisession-widget a:before {
+	padding-right: 0;
+	margin-left: 0.2em;
+	float: right;
+}
+
+
+.bmc-woocom-multisession-widget ul,
+.bmc-woocom-multisession-widget li {
+	clear: both;
+}
+
+.bmc-woocom-multisession-widget nav > ul > li {
+	margin: 0.4em 0;
+	transition: background-color 0.2s;
+	padding: 0.2em;
+	border-radius: 0.2em;
+}
+
+.bmc-woocom-multisession-widget .expanded {
+	background-color: rgba(127,127,127, 0.2);
+}
+
+.bmc-woocom-multisession-widget li ul {
+	display: none;
+	background-color: rgba(127,127,127, 0.25);
+	padding: 0.2em;
+	border-radius: 0.2em;
+}
+
+.bmc-woocom-multisession-widget .cart-expand {
+	font-size: smaller;
+	margin: 0.2em;
+	padding: 0;
+	width: 1.6em;
+	background-color: rgba(127,127,127, 0.25);
+	border-radius: 50%;
+	text-align: right;
+	float: right;
+	transition: all 0.2s;
+}
+
+body.rtl .bmc-woocom-multisession-widget .cart-expand {
+	float: left;
+	text-align: left;
+}
+
+.bmc-woocom-multisession-widget .cart-expand:before {
+	content: "\f345";
+}
+
+body.rtl .bmc-woocom-multisession-widget .cart-expand:before {
+	float: none;
+	content: "\f341";
+}
+
+.bmc-woocom-multisession-widget .expanded .cart-expand {
+	-ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+body.rtl .bmc-woocom-multisession-widget .expanded .cart-expand {
+	-ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}

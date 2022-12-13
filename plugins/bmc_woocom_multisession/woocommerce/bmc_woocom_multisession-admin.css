@@ -1,0 +1,9 @@
+/**
+ * Admin and Customize styles.
+ * @since 1.4
+ */
+
+#available-widgets [class*="bmc-woocom-multisession"] .widget-title::before {
+	content: "\f174";
+	top: -4px;
+}

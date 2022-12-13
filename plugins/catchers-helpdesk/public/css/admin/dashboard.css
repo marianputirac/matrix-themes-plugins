@@ -1,0 +1,37 @@
+.stgh_new_color {
+    background: #0073AA;
+}
+
+.stgh_closed_color {
+    background: #D54E21;
+}
+
+.stgh_answered_color {
+    background: #26BD43;
+}
+
+.stgh_pending_color {
+    background: #9f6714;
+}
+
+.stgh_notanswered_color {
+    background: #E8BA2A;
+    white-space: nowrap;
+}
+
+.trash_color {
+    background: #000000;
+}
+
+.stgh_colored_status {
+    margin-right: 5px;
+    padding: 2px 5px 2px 5px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-shadow: none;
+    font-weight: bold;
+    line-height: 0;
+    display: inline;
+    color: #fff;
+    text-transform: uppercase;
+}
