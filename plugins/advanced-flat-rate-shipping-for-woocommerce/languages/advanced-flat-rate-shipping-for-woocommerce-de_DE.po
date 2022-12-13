@@ -1,0 +1,932 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-09-18 13:19+0530\n"
+"PO-Revision-Date: 2017-09-18 13:19+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-advanced-flat-rate-shipping-for-woocommerce-admin.php:103
+msgid "DotStore Plugins"
+msgstr "DotStore Plugins"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:54
+#: admin/partials/afrsm-pro-list-page.php:95
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:58
+#: admin/list-tables/class-wc-shipping-zones-table.php:215
+#: admin/partials/afrsm-pro-list-page.php:96
+msgid "Delete"
+msgstr "Löschen"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:83
+msgid "Everywhere"
+msgstr "Überall"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:100
+#, php-format
+msgid "and %s others"
+msgstr "und %s weitere"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:121
+#, php-format
+msgid "Within %s:"
+msgstr "Innerhalb von %s:"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:133
+msgid "Countries"
+msgstr "Länder"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:135
+msgid "Countries and states"
+msgstr "Länder und Bundesländer"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:137
+#: admin/partials/form-add-shipping-zone.php:104
+#: admin/partials/form-edit-shipping-zone.php:105
+msgid "Postcodes"
+msgstr "Postleitzahlen"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:176
+#: admin/partials/form-add-shipping-zone.php:47
+#: admin/partials/form-add-shipping-zone.php:79
+#: admin/partials/form-edit-shipping-zone.php:54
+#: admin/partials/form-edit-shipping-zone.php:81
+msgid "None"
+msgstr "Keins"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:200
+msgid "Zone ID"
+msgstr "Zonen-ID"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:201
+msgid "Zone name"
+msgstr "Zonenname"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:202
+msgid "Zone type"
+msgstr "Zonentyp"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:203
+#: admin/partials/afrsm-pro-list-page.php:92
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:212
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:213
+#: admin/partials/form-edit-shipping-zone.php:32
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:244
+msgid "Shipping zones deleted"
+msgstr "Versandzonen gelöscht"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:251
+msgid "Shipping zones enabled"
+msgstr "Versandzonen aktiviert"
+
+#: admin/list-tables/class-wc-shipping-zones-table.php:258
+msgid "Shipping zones disabled"
+msgstr "Versandzonen deaktiviert"
+
+#: admin/partials/afrsm-forceall-shipping-method.php:22
+msgid "Advanced Flat Rate Shipping (Force All Shipping Methods)"
+msgstr "Advanced Flat Rate Versand (Force Alle Versandmethoden)"
+
+#: admin/partials/afrsm-forceall-shipping-method.php:23
+msgid ""
+"You can configure this special shipping option from Advanced Flat Rate "
+"Shipping Method settings."
+msgstr ""
+"Sie können diese spezielle Versandoption aus den Einstellungen für die "
+"erweiterte Flatrate-Versandmethode konfigurieren."
+
+#: admin/partials/afrsm-init-shipping-methods.php:28
+msgid "Advanced Flat Rate Shipping"
+msgstr "Advanced Flat Rate Versand"
+
+#: admin/partials/afrsm-pro-add-new-page.php:51
+#: admin/partials/form-edit-shipping-zone.php:120
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+#: admin/partials/afrsm-pro-add-new-page.php:55
+#: admin/partials/afrsm-pro-add-new-page.php:63
+#: admin/partials/afrsm-pro-add-new-page.php:275
+#: admin/partials/afrsm-pro-add-new-page.php:284
+#: admin/partials/afrsm-pro-add-new-page.php:373
+msgid "Equal to ( = )"
+msgstr "Gleich (=)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:56
+#: admin/partials/afrsm-pro-add-new-page.php:276
+msgid "Less or Equal to ( <= )"
+msgstr "Weniger oder gleich (<=)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:57
+#: admin/partials/afrsm-pro-add-new-page.php:277
+msgid "Less than ( < )"
+msgstr "Weniger als (<)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:58
+#: admin/partials/afrsm-pro-add-new-page.php:278
+msgid "Greater or Equal to ( >= )"
+msgstr "Größer oder gleich (> =)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:59
+#: admin/partials/afrsm-pro-add-new-page.php:279
+msgid "Greater than ( > )"
+msgstr "Größer als (>)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:60
+#: admin/partials/afrsm-pro-add-new-page.php:64
+#: admin/partials/afrsm-pro-add-new-page.php:280
+#: admin/partials/afrsm-pro-add-new-page.php:285
+#: admin/partials/afrsm-pro-add-new-page.php:374
+msgid "Not Equal to ( != )"
+msgstr "Nicht gleich (! =)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:72
+msgid "Shipping Method Configuration"
+msgstr "Versandmethode Konfiguration"
+
+#: admin/partials/afrsm-pro-add-new-page.php:80
+#: admin/partials/afrsm-pro-list-page.php:40
+msgid "Status"
+msgstr "Status"
+
+#: admin/partials/afrsm-pro-add-new-page.php:88
+msgid ""
+"Enable this shipping method (This method will be visible to customers only "
+"if it is enabled)."
+msgstr ""
+"Aktivieren Sie diese Versandmethode (Diese Methode wird für Kunden nur "
+"sichtbar, wenn sie aktiviert ist)."
+
+#: admin/partials/afrsm-pro-add-new-page.php:93
+#: admin/partials/afrsm-pro-list-page.php:38
+msgid "Shipping Method Name"
+msgstr "Versandmethode Name"
+
+#: admin/partials/afrsm-pro-add-new-page.php:96
+msgid "Enter product fees title"
+msgstr "Geben Sie den Titel der Produktgebühren ein"
+
+#: admin/partials/afrsm-pro-add-new-page.php:98
+msgid ""
+"This name will be visible to the customer at the time of checkout. This "
+"should convey the purpose of the charges you are applying to the order. For "
+"example \"Ground Shipping\", \"Express Shipping Flat Rate\", \"Christmas "
+"Next Day Shipping\" etc"
+msgstr ""
+"Dieser Name ist für den Kunden zum Zeitpunkt der Kasse sichtbar. Dies sollte "
+"den Zweck der Gebühren, die Sie auf den Auftrag anwenden, vermitteln. Zum "
+"Beispiel \"Ground Shipping\", \"Express Versand Flat Rate\", \"Christmas "
+"Next Day Versand\" etc"
+
+#: admin/partials/afrsm-pro-add-new-page.php:103
+msgid "Shipping Charge"
+msgstr "Versandkosten"
+
+#: admin/partials/afrsm-pro-add-new-page.php:109
+msgid ""
+"When customer select this shipping method the amount will be added to the "
+"cart subtotal. You can enter fixed amount or make it dynamic using below "
+"parameters:<br>[qty] -> total number of items in cart,<br>[cost] -> cost of "
+"items,<br>[fee percent=10 min_fee=20] -> Percentage based fee.<br><br>Below "
+"are some examples: <br>i. 10.00  -> To add flat 10.00 shipping charge<br>ii. "
+"10.00 * [qty] -> To charge 10.00 per quantity in the cart. It will be 50.00 "
+"if the cart has 5 quantity.<br>iii. [fee percent=10 min_fee=20] -> This "
+"means charge 10 percent of cart subtotal, minimum 20 charge will be "
+"applicable."
+msgstr ""
+"Wenn der Kunde diese Versandart wählt, wird der Betrag in die Wagen-"
+"Zwischensumme aufgenommen. Sie können festen Betrag eingeben oder dynamisch "
+"unter folgenden Parametern machen:<br>[Menge] -> Gesamtzahl der Artikel im "
+"Warenkorb,<br>[Kosten] -> Kosten für Artikel,<br>[Gebühr Prozent=10 "
+"min_fee=20] -> Prozentsatzgebühr.<br><br>Im Folgenden finden Sie einige "
+"Beispiele: <br>i. 10.00  -> So fügen Sie flache 10.00 Versandkosten "
+"hinzu<br>ii. 10.00 * [Menge] -> 10,00 € pro Stück in den Warenkorb legen. Es "
+"wird 50.00 sein, wenn der Wagen 5 Stück hat.<br>iii. [Gebühr Prozent=10 "
+"min_fee=20] -> Das bedeutet Ladung 10 Prozent der Wagen Zwischensumme, Es "
+"werden mindestens 20 Gebühren erhoben."
+
+#: admin/partials/afrsm-pro-add-new-page.php:123
+msgid "Tooltip Description"
+msgstr "Tooltip Beschreibung"
+
+#: admin/partials/afrsm-pro-add-new-page.php:126
+msgid "Enter tooltip short description"
+msgstr "Geben Sie Tooltip Kurzbeschreibung ein"
+
+#: admin/partials/afrsm-pro-add-new-page.php:131
+msgid "Is Amount Taxable?"
+msgstr "Ist steuerpflichtig?"
+
+#: admin/partials/afrsm-pro-add-new-page.php:135
+msgid "No"
+msgstr "Nein"
+
+#: admin/partials/afrsm-pro-add-new-page.php:136
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/partials/afrsm-pro-add-new-page.php:142
+msgid "Estimated Delivery Time"
+msgstr "Voraussichtliche Lieferzeit"
+
+#: admin/partials/afrsm-pro-add-new-page.php:145
+msgid "e.g. (2-5 days)"
+msgstr "z.B. (2-5 Tage)"
+
+#: admin/partials/afrsm-pro-add-new-page.php:148
+msgid ""
+"With this feature, you can specify approximately days or time to deliver the "
+"order to the customers. It will increase your conversion ratio."
+msgstr ""
+"Mit dieser Funktion können Sie ungefähr Tage oder Zeit angeben, um die "
+"Bestellung an die Kunden zu liefern. Es wird Ihr Umwandlungsverhältnis "
+"erhöhen."
+
+#: admin/partials/afrsm-pro-add-new-page.php:154
+msgid "Start Date"
+msgstr "Anfangsdatum"
+
+#: admin/partials/afrsm-pro-add-new-page.php:157
+msgid "Select start date"
+msgstr "Startdatum auswählen"
+
+#: admin/partials/afrsm-pro-add-new-page.php:159
+msgid ""
+"Select start date on which date shipping method will enable on the website."
+msgstr ""
+"Wählen Sie das Startdatum, auf welchem Datum die Versandart auf der Website "
+"aktiviert ist."
+
+#: admin/partials/afrsm-pro-add-new-page.php:164
+msgid "End Date"
+msgstr "Enddatum"
+
+#: admin/partials/afrsm-pro-add-new-page.php:167
+msgid "Select end date"
+msgstr "Enddatum auswählen"
+
+#: admin/partials/afrsm-pro-add-new-page.php:169
+msgid ""
+"Select end date on which date shipping method will disable on the website."
+msgstr ""
+"Wählen Sie das Enddatum aus, auf welchem Datum die Versandart auf der "
+"Website deaktiviert wird."
+
+#: admin/partials/afrsm-pro-add-new-page.php:180
+msgid "Additional Shipping Charges Based on Shipping Class"
+msgstr "Zusätzliche Versandkosten nach Versandklasse"
+
+#: admin/partials/afrsm-pro-add-new-page.php:187
+#, php-format
+msgid ""
+"These costs can optionally be added based on the %sproduct shipping class%s."
+msgstr ""
+"Diese Kosten können wahlweise auf der Grundlage der %sProduktversandklasse%s "
+"hinzugefügt werden."
+
+#: admin/partials/afrsm-pro-add-new-page.php:196
+#, php-format
+msgid "\"%s\" shipping class cost"
+msgstr "\"%s\" Versandkosten"
+
+#: admin/partials/afrsm-pro-add-new-page.php:205
+msgid "Calculation type"
+msgstr "Berechnungsart"
+
+#: admin/partials/afrsm-pro-add-new-page.php:209
+msgid "Per class: Charge shipping for each shipping class individually"
+msgstr "Pro Klasse: Charge Versand für jede Versandklasse einzeln"
+
+#: admin/partials/afrsm-pro-add-new-page.php:210
+msgid "Per order: Charge shipping for the most expensive shipping class"
+msgstr "Pro Auftrag: Gebühr Verschiffen für die teuerste Verschiffenklasse"
+
+#: admin/partials/afrsm-pro-add-new-page.php:220
+msgid "Shipping Method Rules"
+msgstr "Versandverfahren Regeln"
+
+#: admin/partials/afrsm-pro-add-new-page.php:222
+msgid "+ Add Rule"
+msgstr "+ Regel hinzufügen"
+
+#: admin/partials/afrsm-pro-add-new-page.php:239
+#: admin/partials/afrsm-pro-add-new-page.php:342
+msgid "Location Specific"
+msgstr "Standortspezifisch"
+
+#: admin/partials/afrsm-pro-add-new-page.php:240
+#: admin/partials/afrsm-pro-add-new-page.php:343
+msgid "Country"
+msgstr "Land"
+
+#: admin/partials/afrsm-pro-add-new-page.php:241
+#: admin/partials/afrsm-pro-add-new-page.php:344
+msgid "State"
+msgstr "Bundesland"
+
+#: admin/partials/afrsm-pro-add-new-page.php:242
+#: admin/partials/afrsm-pro-add-new-page.php:345
+msgid "Postcode"
+msgstr "Postleitzahl"
+
+#: admin/partials/afrsm-pro-add-new-page.php:243
+#: admin/partials/afrsm-pro-add-new-page.php:346
+#: admin/partials/afrsm-pro-shipping-zone-page.php:97
+msgid "Zone"
+msgstr "Zone"
+
+#: admin/partials/afrsm-pro-add-new-page.php:245
+#: admin/partials/afrsm-pro-add-new-page.php:348
+msgid "Product Specific"
+msgstr "Produktspezifisch"
+
+#: admin/partials/afrsm-pro-add-new-page.php:246
+#: admin/partials/afrsm-pro-add-new-page.php:349
+msgid "Cart contains product"
+msgstr "Warenkorb enthält Produkt"
+
+#: admin/partials/afrsm-pro-add-new-page.php:247
+#: admin/partials/afrsm-pro-add-new-page.php:350
+msgid "Cart contains category's product"
+msgstr "Warenkorb enthält Produkt der Kategorie"
+
+#: admin/partials/afrsm-pro-add-new-page.php:248
+#: admin/partials/afrsm-pro-add-new-page.php:351
+msgid "Cart contains tag's product"
+msgstr "Warenkorb enthält das Produkt des Tags"
+
+#: admin/partials/afrsm-pro-add-new-page.php:249
+#: admin/partials/afrsm-pro-add-new-page.php:352
+msgid "Cart contains SKU's product"
+msgstr "Warenkorb enthält das Produkt der SKU"
+
+#: admin/partials/afrsm-pro-add-new-page.php:251
+#: admin/partials/afrsm-pro-add-new-page.php:354
+msgid "User Specific"
+msgstr "Benutzerspezifisch"
+
+#: admin/partials/afrsm-pro-add-new-page.php:252
+#: admin/partials/afrsm-pro-add-new-page.php:355
+msgid "User"
+msgstr "Benutzer"
+
+#: admin/partials/afrsm-pro-add-new-page.php:253
+#: admin/partials/afrsm-pro-add-new-page.php:356
+msgid "User Role"
+msgstr "Benutzer-Rolle"
+
+#: admin/partials/afrsm-pro-add-new-page.php:255
+#: admin/partials/afrsm-pro-add-new-page.php:358
+msgid "Cart Specific"
+msgstr "Wagenspezifisch"
+
+#: admin/partials/afrsm-pro-add-new-page.php:263
+#: admin/partials/afrsm-pro-add-new-page.php:363
+msgid "Cart Subtotal (Before Discount) "
+msgstr "Warenkorb Zwischensumme (vor Rabatt) "
+
+#: admin/partials/afrsm-pro-add-new-page.php:264
+#: admin/partials/afrsm-pro-add-new-page.php:364
+msgid "Cart Subtotal (After Discount) "
+msgstr "Warenkorb Zwischensumme (nach Rabatt) "
+
+#: admin/partials/afrsm-pro-add-new-page.php:265
+#: admin/partials/afrsm-pro-add-new-page.php:365
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: admin/partials/afrsm-pro-add-new-page.php:266
+msgid "Weight "
+msgstr "Gewicht "
+
+#: admin/partials/afrsm-pro-add-new-page.php:267
+#: admin/partials/afrsm-pro-add-new-page.php:367
+msgid "Coupon"
+msgstr "Coupon"
+
+#: admin/partials/afrsm-pro-add-new-page.php:268
+#: admin/partials/afrsm-pro-add-new-page.php:368
+msgid "Shipping Class"
+msgstr "Versandklasse"
+
+#: admin/partials/afrsm-pro-add-new-page.php:366
+msgid "Weight"
+msgstr "Gewicht"
+
+#: admin/partials/afrsm-pro-get-started-page.php:18
+msgid ""
+"Subscribe for the latest plugin update and get notified when we update our "
+"plugin and launch new products for free!"
+msgstr ""
+"Abonnieren Sie die neuesten Plugin-Update und erhalten Sie benachrichtigt, "
+"wenn wir unser Plugin aktualisieren und neue Produkte kostenlos starten!"
+
+#: admin/partials/afrsm-pro-get-started-page.php:26
+msgid "Thanks For Installing Advanced Flat Rate Shipping For WooCommerce"
+msgstr ""
+"Vielen Dank für die Installation von Advanced Flat Rate Versand für "
+"WooCommerce"
+
+#: admin/partials/afrsm-pro-get-started-page.php:31
+#: admin/partials/header/plugin-header.php:62
+msgid "Getting Started"
+msgstr "Anfangen"
+
+#: admin/partials/afrsm-pro-get-started-page.php:32
+msgid "Create/manage multiple shipping rules as per your needs."
+msgstr ""
+"Erstellen / verwalten Sie mehrere Versandregeln nach Ihren Bedürfnissen."
+
+#: admin/partials/afrsm-pro-get-started-page.php:34
+msgid "Step 1:"
+msgstr "Schritt 1:"
+
+#: admin/partials/afrsm-pro-get-started-page.php:34
+msgid "Setup Shipping Method Configuration with Shipping Method Rules"
+msgstr "Setup Versandmethode Konfiguration mit Versandmethoden Regeln"
+
+#: admin/partials/afrsm-pro-get-started-page.php:40
+msgid "Step 2:"
+msgstr "Schritt 2:"
+
+#: admin/partials/afrsm-pro-get-started-page.php:40
+msgid "You can see list of all shipping methods."
+msgstr "Sie können die Liste aller Versandmethoden sehen."
+
+#: admin/partials/afrsm-pro-get-started-page.php:46
+msgid "Step 3:"
+msgstr "Schritt 3:"
+
+#: admin/partials/afrsm-pro-get-started-page.php:46
+msgid "Enable shipping method on the cart/checkout page if rule is satisfied"
+msgstr ""
+"Aktivieren Sie die Versandart auf der Warenkorb / Kasse Seite, wenn die "
+"Regel erfüllt ist"
+
+#: admin/partials/afrsm-pro-get-started-page.php:51
+msgid "Important Note: "
+msgstr "Wichtige Notiz: "
+
+#: admin/partials/afrsm-pro-get-started-page.php:51
+msgid "This plugin is only compatible with WooCommerce version 2.4.0 and more"
+msgstr ""
+"Dieses Plugin ist nur mit WooCommerce Version 2.4.0 und mehr kompatibel"
+
+#: admin/partials/afrsm-pro-information-page.php:13
+#: admin/partials/header/plugin-header.php:63
+msgid "Quick info"
+msgstr "Schnelle Info"
+
+#: admin/partials/afrsm-pro-information-page.php:17
+msgid "Product Type"
+msgstr "Produktart"
+
+#: admin/partials/afrsm-pro-information-page.php:18
+msgid "WooCommerce Plugin"
+msgstr "WooCommerce Plugin"
+
+#: admin/partials/afrsm-pro-information-page.php:21
+msgid "Product Name"
+msgstr "Produktname"
+
+#: admin/partials/afrsm-pro-information-page.php:25
+msgid "Installed Version"
+msgstr "Installierte Version"
+
+#: admin/partials/afrsm-pro-information-page.php:26
+#: admin/partials/header/plugin-header.php:14
+msgid "Premium Version"
+msgstr "Premium Version"
+
+#: admin/partials/afrsm-pro-information-page.php:29
+msgid "License & Terms of use"
+msgstr "Lizenz und Nutzungsbedingungen"
+
+#: admin/partials/afrsm-pro-information-page.php:30
+msgid "Click here"
+msgstr "Klick hier"
+
+#: admin/partials/afrsm-pro-information-page.php:30
+msgid " to view license and terms of use."
+msgstr " die Lizenz und die Nutzungsbedingungen nutzen."
+
+#: admin/partials/afrsm-pro-information-page.php:33
+msgid "Help & Support"
+msgstr "Hilfe Unterstützung"
+
+#: admin/partials/afrsm-pro-information-page.php:36
+msgid "Quick Start"
+msgstr "Schnellstart"
+
+#: admin/partials/afrsm-pro-information-page.php:37
+msgid "Guide Documentation"
+msgstr "Leitfaden Dokumentation"
+
+#: admin/partials/afrsm-pro-information-page.php:38
+msgid "Support Forum"
+msgstr "Hilfeforum"
+
+#: admin/partials/afrsm-pro-information-page.php:43
+msgid "Localization"
+msgstr "Lokalisierung"
+
+#: admin/partials/afrsm-pro-information-page.php:44
+msgid "English, German"
+msgstr "Englisch, Deutsch"
+
+#: admin/partials/afrsm-pro-list-page.php:28
+msgid "Shipping Methods"
+msgstr "Versandarten"
+
+#: admin/partials/afrsm-pro-list-page.php:29
+#: admin/partials/header/plugin-header.php:51
+msgid "Add New Shipping Method"
+msgstr "Neue Versandmethode hinzufügen"
+
+#: admin/partials/afrsm-pro-list-page.php:30
+msgid "Delete (Selected)"
+msgstr "Löschen (Ausgewählt)"
+
+#: admin/partials/afrsm-pro-list-page.php:31
+msgid "Save Order"
+msgstr "Bestellung speichern"
+
+#: admin/partials/afrsm-pro-list-page.php:39
+msgid "Amount"
+msgstr "Menge"
+
+#: admin/partials/afrsm-pro-list-page.php:41
+msgid "Actions"
+msgstr "Aktionen"
+
+#: admin/partials/afrsm-pro-list-page.php:92
+msgid "Disabled"
+msgstr "Behindert"
+
+#: admin/partials/afrsm-pro-list-page.php:96
+msgid "Are you sure you want to delete this shipping method?"
+msgstr "Sind Sie sicher, dass Sie diese Versandart löschen möchten?"
+
+#: admin/partials/afrsm-pro-list-page.php:106
+msgid "Master Settings"
+msgstr "Master-Einstellungen"
+
+#: admin/partials/afrsm-pro-list-page.php:115
+msgid "What to do when multiple shipping methods are available"
+msgstr "Was tun, wenn mehrere Versandmethoden zur Verfügung stehen"
+
+#: admin/partials/afrsm-pro-list-page.php:118
+msgid "Allow customer to choose"
+msgstr "Erlauben Sie dem Kunden zu wählen"
+
+#: admin/partials/afrsm-pro-list-page.php:119
+msgid "Apply Highest"
+msgstr "Höchste anwenden"
+
+#: admin/partials/afrsm-pro-list-page.php:120
+msgid "Apply Smallest"
+msgstr "Am wenigsten anwenden"
+
+#: admin/partials/afrsm-pro-list-page.php:121
+msgid "Force all shipping methods"
+msgstr "Force alle Versandmethoden"
+
+#: admin/partials/afrsm-pro-list-page.php:126
+msgid "Shipping Display Mode"
+msgstr "Versandanzeigemodus"
+
+#: admin/partials/afrsm-pro-list-page.php:129
+msgid "Display shipping methods with radio buttons"
+msgstr "Display-Versandmethoden mit Optionsfeldern"
+
+#: admin/partials/afrsm-pro-list-page.php:130
+msgid "Display shipping methods in a dropdown"
+msgstr "Anzeigen von Versandmethoden in einem Dropdown-Menü"
+
+#: admin/partials/afrsm-pro-list-page.php:136
+msgid "Save Master Settings"
+msgstr "Mastereinstellungen speichern"
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:64
+msgid "Could not save zone. Please try again."
+msgstr "Die Zone konnte nicht gespeichert werden. Bitte versuche es erneut."
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:94
+msgid "Zone name is required"
+msgstr "Zonenname ist erforderlich"
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:103
+msgid " Zone type is required"
+msgstr " Zonentyp ist erforderlich"
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:125
+msgid "You must choose at least 1 country to add a zone."
+msgstr ""
+"Zonentyp ist erforderlich. Sie müssen mindestens 1 Land wählen, um eine Zone "
+"hinzuzufügen."
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:135
+msgid "You must choose at least 1 postcode to add postcode zone."
+msgstr ""
+"Sie müssen mindestens 1 Postleitzahl auswählen, um Postleitzahlzonen "
+"hinzuzufügen."
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:228
+msgid "Error saving zone."
+msgstr "Fehler beim Speichern der Zone."
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:235
+#, php-format
+msgid "Shipping zone saved. <a href=\"%s\">Back to zones.</a>"
+msgstr "Versandzone gespeichert. <a href=\"%s\">Zurück zu Zonen.</a>"
+
+#: admin/partials/afrsm-pro-shipping-zone-page.php:238
+msgid "Shipping zone saved."
+msgstr "Versandzone gespeichert."
+
+#: admin/partials/form-add-shipping-zone.php:13
+#: admin/partials/form-edit-shipping-zone.php:14
+msgid "Go to Shipping Zone"
+msgstr "Gehen Sie in Versandzone"
+
+#: admin/partials/form-add-shipping-zone.php:16
+#: admin/partials/header/plugin-header.php:56
+#: admin/partials/html-zone-list.php:13
+msgid "Add Shipping Zone"
+msgstr "Fügen Sie Versandzone hinzu"
+
+#: admin/partials/form-add-shipping-zone.php:23
+#: admin/partials/form-edit-shipping-zone.php:24
+msgid "Name"
+msgstr "Name"
+
+#: admin/partials/form-add-shipping-zone.php:30
+#: admin/partials/form-add-shipping-zone.php:34
+#: admin/partials/form-edit-shipping-zone.php:39
+#: admin/partials/form-edit-shipping-zone.php:42
+msgid "Zone Type"
+msgstr "Zonentyp"
+
+#: admin/partials/form-add-shipping-zone.php:39
+#: admin/partials/form-edit-shipping-zone.php:44
+msgid "This shipping zone is based on one or more countries"
+msgstr "Diese Versandzone basiert auf einem oder mehreren Ländern"
+
+#: admin/partials/form-add-shipping-zone.php:40
+#: admin/partials/form-add-shipping-zone.php:90
+#: admin/partials/form-edit-shipping-zone.php:45
+#: admin/partials/form-edit-shipping-zone.php:91
+msgid "Choose countries&hellip;"
+msgstr "Länder wählen&hellip;"
+
+#: admin/partials/form-add-shipping-zone.php:47
+#: admin/partials/form-add-shipping-zone.php:78
+#: admin/partials/form-edit-shipping-zone.php:53
+#: admin/partials/form-edit-shipping-zone.php:80
+msgid "All"
+msgstr "Alle"
+
+#: admin/partials/form-add-shipping-zone.php:49
+#: admin/partials/form-edit-shipping-zone.php:55
+msgid "Africa Country"
+msgstr "Afrika Land"
+
+#: admin/partials/form-add-shipping-zone.php:50
+#: admin/partials/form-edit-shipping-zone.php:56
+msgid "Antarctica Country"
+msgstr "Antarktis Land"
+
+#: admin/partials/form-add-shipping-zone.php:51
+#: admin/partials/form-edit-shipping-zone.php:57
+msgid "Asia Country"
+msgstr "Asien Land"
+
+#: admin/partials/form-add-shipping-zone.php:52
+#: admin/partials/form-add-shipping-zone.php:82
+#: admin/partials/form-edit-shipping-zone.php:58
+#: admin/partials/form-edit-shipping-zone.php:84
+msgid "EU States"
+msgstr "EU-Staaten"
+
+#: admin/partials/form-add-shipping-zone.php:53
+#: admin/partials/form-edit-shipping-zone.php:59
+msgid "North America"
+msgstr "Nordamerika"
+
+#: admin/partials/form-add-shipping-zone.php:54
+#: admin/partials/form-edit-shipping-zone.php:60
+msgid "Oceania"
+msgstr "Ozeanien"
+
+#: admin/partials/form-add-shipping-zone.php:55
+#: admin/partials/form-edit-shipping-zone.php:61
+msgid "South America"
+msgstr "Südamerika"
+
+#: admin/partials/form-add-shipping-zone.php:61
+msgid "This shipping zone is based on one of more states and counties"
+msgstr "Diese Versandzone basiert auf einem von mehr Staaten und Landkreisen"
+
+#: admin/partials/form-add-shipping-zone.php:64
+#: admin/partials/form-edit-shipping-zone.php:66
+msgid "Choose states/counties&hellip;"
+msgstr "Wählen Sie Staaten / Landkreise&hellip;"
+
+#: admin/partials/form-add-shipping-zone.php:80
+#: admin/partials/form-edit-shipping-zone.php:82
+msgid "Africa States"
+msgstr "Afrika-Staaten"
+
+#: admin/partials/form-add-shipping-zone.php:81
+#: admin/partials/form-edit-shipping-zone.php:83
+msgid "Asia States"
+msgstr "Asien-Staaten"
+
+#: admin/partials/form-add-shipping-zone.php:83
+#: admin/partials/form-edit-shipping-zone.php:85
+msgid "US States"
+msgstr "US-Staaten"
+
+#: admin/partials/form-add-shipping-zone.php:84
+#: admin/partials/form-edit-shipping-zone.php:86
+msgid "Oceania States"
+msgstr "Ozeanien"
+
+#: admin/partials/form-add-shipping-zone.php:89
+#: admin/partials/form-edit-shipping-zone.php:90
+msgid "This shipping zone is based on one of more postcodes/zips"
+msgstr ""
+"Diese Versandzone basiert auf einer von mehreren Postleitzahlen / "
+"Reißverschlüssen"
+
+#: admin/partials/form-add-shipping-zone.php:116
+msgid "Add shipping zone"
+msgstr "Fügen Sie Versandzone hinzu"
+
+#: admin/partials/form-edit-shipping-zone.php:17
+msgid "Edit Shipping Zone"
+msgstr "Bearbeiten Versandzone"
+
+#: admin/partials/form-edit-shipping-zone.php:27
+msgid "Enter a name which describes this zone"
+msgstr "Geben Sie einen Namen ein, der diese Zone beschreibt"
+
+#: admin/partials/form-edit-shipping-zone.php:35
+msgid "Enable this zone"
+msgstr "Aktiviere diese Zone"
+
+#: admin/partials/form-edit-shipping-zone.php:65
+msgid "This shipping zone is based on one of more states/counties"
+msgstr ""
+"Diese Schifffahrtszone basiert auf einem von mehreren Staaten / Landkreisen"
+
+#: admin/partials/header/plugin-header.php:48
+msgid "Manage Shipping Methods"
+msgstr "Versandmethoden verwalten"
+
+#: admin/partials/header/plugin-header.php:54
+msgid "Manage Shipping Zones"
+msgstr "Versandzonen verwalten"
+
+#: admin/partials/header/plugin-header.php:60
+msgid "About Plugin"
+msgstr "Über Plugin"
+
+#: admin/partials/header/plugin-header.php:67
+msgid "Dotstore"
+msgstr "Dotstore"
+
+#: admin/partials/header/plugin-header.php:69
+msgid "WooCommerce Plugins"
+msgstr "WooCommerce-Plugins"
+
+#: admin/partials/header/plugin-header.php:70
+msgid "Wordpress Plugins"
+msgstr "WordPress Plugins"
+
+#: admin/partials/header/plugin-header.php:71
+msgid "Free Plugins"
+msgstr "Kostenlose Plugins"
+
+#: admin/partials/header/plugin-header.php:72
+msgid "Free Themes"
+msgstr "Freie Themen"
+
+#: admin/partials/header/plugin-header.php:73
+msgid "Contact Support"
+msgstr "Kontaktieren Sie Support"
+
+#: admin/partials/header/plugin-sidebar.php:18
+msgid "Important link"
+msgstr "Wichtiger Link"
+
+#: admin/partials/header/plugin-sidebar.php:23
+msgid "Plugin documentation"
+msgstr "Plugin-Dokumentation"
+
+#: admin/partials/header/plugin-sidebar.php:27
+msgid "Support platform"
+msgstr "Unterstützungsplattform"
+
+#: admin/partials/header/plugin-sidebar.php:31
+msgid "Suggest A Feature"
+msgstr "Schlagen Sie eine Eigenschaft vor"
+
+#: admin/partials/header/plugin-sidebar.php:35
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+#: admin/partials/header/plugin-sidebar.php:42
+msgid "OUR POPULAR PLUGINS"
+msgstr "UNSERE POPULÄRE PLUGINS"
+
+#: admin/partials/header/plugin-sidebar.php:47
+msgid "Advanced Flat Rate Shipping Method"
+msgstr "Advanced Flat Rate Versand Methode"
+
+#: admin/partials/header/plugin-sidebar.php:51
+msgid "WooCommerce Conditional Product Fees"
+msgstr "WooCommerce bedingte Produktgebühren"
+
+#: admin/partials/header/plugin-sidebar.php:55
+msgid "Advance Menu Manager"
+msgstr "Advance Menu Manager"
+
+#: admin/partials/header/plugin-sidebar.php:59
+msgid "Woo Enhanced Ecommerce Analytics Integration"
+msgstr "Woo Enhanced Ecommerce Analytics Integration"
+
+#: admin/partials/header/plugin-sidebar.php:63
+msgid "Advanced Product Size Charts"
+msgstr "Erweiterte Produktgrößen-Charts"
+
+#: admin/partials/header/plugin-sidebar.php:67
+msgid "WooCommerce Blocker – Prevent Fake Orders"
+msgstr "WooCommerce Blocker - Vermeiden Sie Fälschungen"
+
+#: admin/partials/header/plugin-sidebar.php:72
+#: admin/partials/header/plugin-sidebar.php:93
+msgid "VIEW ALL"
+msgstr "ALLE ANZEIGEN"
+
+#: admin/partials/header/plugin-sidebar.php:77
+msgid "OUR POPULAR THEMES"
+msgstr "UNSERE POPULÄRE THEMEN"
+
+#: admin/partials/header/plugin-sidebar.php:81
+msgid "Appify – Multipurpose WordPress Theme"
+msgstr "Appify - Mehrzweck-WordPress Theme"
+
+#: admin/partials/header/plugin-sidebar.php:84
+msgid "Brand Agency – WordPress Theme for Agency"
+msgstr "Brand Agency - WordPress Theme für Agentur"
+
+#: admin/partials/header/plugin-sidebar.php:87
+msgid "Meraki - WordPress Theme for Resume"
+msgstr "Meraki - WordPress Theme für Lebenslauf"
+
+#: includes/class-advanced-flat-rate-shipping-for-woocommerce.php:271
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/class-advanced-flat-rate-shipping-for-woocommerce.php:272
+msgid "Docs"
+msgstr "Docs"
+
+#: includes/class-advanced-flat-rate-shipping-for-woocommerce.php:273
+msgid "Support"
+msgstr "Unterstützung"
+
+#: woocommerce/cart/cart-shipping.php:170
+msgid "Shipping costs will be calculated once you have provided your address."
+msgstr ""
+"Die Versandkosten werden berechnet, sobald Sie Ihre Adresse angegeben haben."
+
+#: woocommerce/cart/cart-shipping.php:172
+msgid ""
+"There are no shipping methods available. Please double check your address, "
+"or contact us if you need any help."
+msgstr ""
+"Es gibt keine Versandmethoden. Bitte überprüfen Sie Ihre Adresse, oder "
+"kontaktieren Sie uns, wenn Sie Hilfe benötigen."
