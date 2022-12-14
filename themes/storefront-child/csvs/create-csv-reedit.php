@@ -144,7 +144,7 @@ if (empty($mail_send)) {
                     font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
                     <tr>
                         <td width="33%">{DATE j-m-Y}</td>
-                        <td width="33%" align="center">www.lifetimeshutters.co.uk</td>
+                        <td width="33%" align="center">www.lifetimeshutters.com</td>
                         <td width="33%" style="text-align: right;">{PAGENO}/{nbpg}</td>
                     </tr>
                 </table>');
