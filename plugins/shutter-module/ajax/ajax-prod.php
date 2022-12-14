@@ -321,10 +321,12 @@ if ($products['property_lightblocks'] == 'Yes') {
 
 if ($products['property_style'] == 36) {
     if ($products['property_material'] == 138) {
-        $arched_price_user = get_user_meta($user_id, 'Arched', true) + 30;
-        $arched_price = get_post_meta(1, 'Arched', true) + 30;
+        //   $arched_price_user = get_user_meta($products['customer_id'], 'Arched', true) + 30;
+        $arched_price_user = get_user_meta($products['customer_id'], 'Arched', true);
+//        $arched_price = get_post_meta(1, 'Arched', true) + 30;
+        $arched_price = get_post_meta(1, 'Arched', true);
     } else {
-        $arched_price_user = get_user_meta($user_id, 'Arched', true);
+        $arched_price_user = get_user_meta($products['customer_id'], 'Arched', true);
         $arched_price = get_post_meta(1, 'Arched', true);
     }
     if (!empty(get_user_meta($user_id, 'Arched', true)) || (get_user_meta($user_id, 'Arched', true) > 0)) {
