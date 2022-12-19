@@ -236,7 +236,8 @@ function rfvc_update_order_status($order_status, $order_id)
 add_filter('woocommerce_cheque_process_payment_order_status', 'matrix_change_order_to_agent_processing', 10, 1);
 function matrix_change_order_to_agent_processing($status)
 {
-    if (get_current_user_id() == 18 || get_current_user_id() == 211 || get_current_user_id() == 1) {
+    if (get_current_user_id() == 18 || get_current_user_id() == 211 ||
+        get_current_user_id() == 1 || get_current_user_id() == 192) {
         return 'wc-inproduction';
     } else {
         return 'wc-pending';
