@@ -246,7 +246,7 @@
                 
                 // Marian Putirac answered
                 $ticket_author = Stg_Helpdesk_Ticket::getAuthor($parent_id);
-                if ($ticket_author && $userId == $ticket_author->ID) {
+                if ($ticket_author && ($userId == $ticket_author->ID || $userId == 18)) {
                     Stg_Helpdesk_Ticket::setInNotAnswered($parent_id);
 
                     stgh_add_event_ticket_to_reply($parent_id, array('post_status_override'), array('post_status_override' => 'stgh_notanswered'), $comment_id);
