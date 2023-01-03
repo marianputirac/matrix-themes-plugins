@@ -2,3 +2,107 @@
 [22-Sep-2022 14:12:47 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
 [22-Sep-2022 14:39:03 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
 [22-Sep-2022 14:39:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[05-Dec-2022 19:50:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:759
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 759
+[07-Dec-2022 10:20:36 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
+[07-Dec-2022 10:27:32 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
+[07-Dec-2022 20:27:19 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 678
+[07-Dec-2022 20:27:19 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1230
+[07-Dec-2022 20:28:22 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 678
+[07-Dec-2022 20:28:22 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1230
+[12-Dec-2022 14:40:44 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[12-Dec-2022 14:43:51 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[12-Dec-2022 14:50:45 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[12-Dec-2022 14:51:44 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 14:03:14 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
+[14-Dec-2022 14:04:19 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
+[14-Dec-2022 14:06:15 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 324
+[14-Dec-2022 14:06:37 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 15:43:36 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 15:54:45 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 16:03:14 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 16:03:32 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 365
+[14-Dec-2022 19:57:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 732
+[14-Dec-2022 19:57:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1245
+[20-Dec-2022 18:52:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[20-Dec-2022 18:57:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[21-Dec-2022 16:48:02 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 87
+[21-Dec-2022 16:48:02 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 89
+[21-Dec-2022 16:48:02 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 221
+[21-Dec-2022 16:48:02 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 223
+[02-Jan-2023 18:17:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 09:08:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 17:58:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:08:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:09:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:11:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:21:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:22:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:26:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:33:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:34:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:35:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:42:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:46:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:46:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:48:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[03-Jan-2023 18:53:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function nrPanelsCount() in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php:761
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761

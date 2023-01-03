@@ -6682,7 +6682,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\"]}",
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\"]}",
                     "graphic": "image",
                     "image_file_name": "40078C.png",
                     "image_content_type": "image/jpeg",

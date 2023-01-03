@@ -2677,7 +2677,10 @@ if (!empty($_GET['id'])) {
                                                     <div id="locks" style="display:block">
                                                         <div class="col-sm-12">
                                                             <label>
-                                                                <?php $property_locks = get_post_meta($product_id, 'property_locks', true) ?>
+                                                                <?php $property_locks = get_post_meta($product_id, 'property_locks', true);
+                                                                $showByLock = $property_locks == 'Yes' ? 'block' : 'none;'
+                                                                ?>
+                                                                ?>
                                                                 <select id="property_locks" name="property_locks">
                                                                     <option value="No" <?php if ($property_locks == 'No') {
                                                                         echo 'selected';
@@ -2692,7 +2695,7 @@ if (!empty($_GET['id'])) {
                                                             </label>
                                                         </div>
                                                         <div class="col-sm-4" id="section_locks_volume"
-                                                             style="display:none">
+                                                             style="display:<?php echo $showByLock; ?>">
                                                             <label>
                                                                 <?php $property_locks_volume = get_post_meta($product_id, 'property_locks_volume', true); ?>
                                                                 <input type="number" id="property_locks_volume"
@@ -2702,7 +2705,7 @@ if (!empty($_GET['id'])) {
                                                             </label>
                                                         </div>
                                                         <div class="col-sm-4" id="section_lock_position"
-                                                             style="display:none">
+                                                             style="display:<?php echo $showByLock; ?>">
                                                             <label>
                                                                 <select name="property_lock_position">
                                                                     <?php
@@ -2778,13 +2781,13 @@ if (!empty($_GET['id'])) {
                                                         <br/>
                                                         <?php
                                                         $comments_customer = get_post_meta($product_id, 'comments_customer', true);
-                                                        // print_r($product_id);
+//                                                        print_r($comments_customer);
                                                         if (!empty($product_id)) {
                                                             ?>
-                                                            <textarea id="comments_customer" name="comments_customer"
+                                                            <textarea id="comments_customer" data-edit="1234" name="comments_customer"
                                                                       rows="5"
                                                                       style="width: 100%"><?php
-                                                                echo get_post_meta($product_id, 'comments_customer', true); ?></textarea>
+                                                                echo $comments_customer; ?></textarea>
                                                             <?php
                                                         } else {
                                                             echo ' <textarea id="comments_customer" name="comments_customer" rows="5" style="width: 100%"></textarea>';

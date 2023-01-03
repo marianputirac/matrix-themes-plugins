@@ -985,6 +985,8 @@ update_post_meta($post_id, '_regular_price', floatval($sum));
 update_post_meta($post_id, '_sale_price', floatval($sum));
 // update_post_meta($post_id, 'svg_product', $products['svg']);
 update_post_meta($post_id, 'attachmentDraw', $products['attachmentDraw']);
+update_post_meta($post_id, 'comments_customer', $products['comments_customer']);
+echo 'comments_customer'.$products['comments_customer'];
 
 echo $t . ' nr t <br>';
 echo $b . ' nr b <br>';
@@ -1746,6 +1748,35 @@ function blackoutSqms($products)
     }
     return $sqm_array;
 }
+
+
+
+function nrPanelsCount($layout_code)
+{
+    $freq = array('l' => 0, 'r' => 0);
+    $word = $layout_code;
+    $len = strlen($word);
+    for ($i = 0; $i < $len; $i++) {
+        $letter = strtolower($word[$i]);
+        if (array_key_exists($letter, $freq)) {
+            $freq[$letter]++;
+        }
+    }
+    $nrPanels = $freq['l'] + $freq['r'];
+    return $nrPanels;
+}
+
+function midrailDividerCounter($mid1, $mid2, $dvd1, $dvd2)
+{
+    $count = 1;
+    if (!empty($mid1) && $mid1 > 1) $count++;
+    if (!empty($mid2) && $mid2 > 1) $count++;
+    if (!empty($dvd1) && $dvd1 > 1) $count++;
+    if (!empty($dvd2) && $dvd2 > 1) $count++;
+    return $count;
+
+}
+
 
 function dolarSum($name_prop, $user_id)
 {

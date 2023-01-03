@@ -16,26 +16,26 @@
 
 <div style="display: none;">
     <?php
-        $users = get_users(array(
-            'meta_key'     => 'app_access',
-            'meta_value'   => 'yes',
-            'meta_compare' => '=',
-        ));
-        
-        //        echo '<pre>';
-        //        print_r($users);
-        //        echo '</pre>';
-        echo '<ol>';
-        $n = 0;
-        foreach($users as $user){
-            $n++;
-            echo '<li><br>'.$n.'. ';
-            echo ' Username: '.$user->user_nicename;
-            echo '<br> Email: '.$user->user_email;
-//            print_r($user);
-            echo '</li>';
-        }
-        echo '</ol>';
+//        $users = get_users(array(
+//            'meta_key'     => 'app_access',
+//            'meta_value'   => 'yes',
+//            'meta_compare' => '=',
+//        ));
+//
+//        //        echo '<pre>';
+//        //        print_r($users);
+//        //        echo '</pre>';
+//        echo '<ol>';
+//        $n = 0;
+//        foreach($users as $user){
+//            $n++;
+//            echo '<li><br>'.$n.'. ';
+//            echo ' Username: '.$user->user_nicename;
+//            echo '<br> Email: '.$user->user_email;
+////            print_r($user);
+//            echo '</li>';
+//        }
+//        echo '</ol>';
     ?>
 </div>
 
