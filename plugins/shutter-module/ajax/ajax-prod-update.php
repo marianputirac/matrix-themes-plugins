@@ -741,7 +741,7 @@ if (!empty($products['property_locks'] && $products['property_locks'] == 'Yes'))
             $sum = $sum + (get_post_meta(1, 'Central_Lock', true) * $products['property_locks_volume']);
         }
         if ($val_lock_position == 'Top & Bottom Lock') {
-            $sum = $sum + (get_post_meta(1, 'Top_Bottom_Lock', true) * $products['property_locks_volume']) * 2;
+            $sum = $sum + (get_post_meta(1, 'Top_Bottom_Lock', true) * $products['property_locks_volume']);
         }
         echo 'SUM lock_position: ' . $sum . '<br>';
     } else {
