@@ -2680,7 +2680,6 @@ if (!empty($_GET['id'])) {
                                                                 <?php $property_locks = get_post_meta($product_id, 'property_locks', true);
                                                                 $showByLock = $property_locks == 'Yes' ? 'block' : 'none;'
                                                                 ?>
-                                                                ?>
                                                                 <select id="property_locks" name="property_locks">
                                                                     <option value="No" <?php if ($property_locks == 'No') {
                                                                         echo 'selected';

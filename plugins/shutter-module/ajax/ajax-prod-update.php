@@ -733,17 +733,7 @@ if (($products['property_style'] == 221) || ($products['property_style'] == 227)
 }
 
 if (!empty($products['property_locks'] && $products['property_locks'] == 'Yes')) {
-    if (!empty(get_user_meta($products['customer_id'], 'Lock', true)) || (get_user_meta($products['customer_id'], 'Lock', true) > 0)) {
-        $sum = $sum + (get_user_meta($products['customer_id'], 'Lock', true) * $products['property_locks_volume'] * 2);
-        echo 'SUM Lock: ' . $sum . '<br>';
-        echo '<br>BASIC 8: ' . $basic . '<br>';
-    } else {
-        if (!empty(get_post_meta(1, 'Lock', true))) {
-            $sum = $sum + (get_post_meta(1, 'Lock', true) * $products['property_locks_volume'] * 2);
-            echo 'SUM Lock: ' . $sum . '<br>';
-            echo '<br>BASIC 8: ' . $basic . '<br>';
-        }
-    }
+
 
     if (!empty($products['property_lock_position'])) {
         $val_lock_position = $products['property_lock_position'];
@@ -751,9 +741,21 @@ if (!empty($products['property_locks'] && $products['property_locks'] == 'Yes'))
             $sum = $sum + (get_post_meta(1, 'Central_Lock', true) * $products['property_locks_volume']);
         }
         if ($val_lock_position == 'Top & Bottom Lock') {
-            $sum = $sum + (get_post_meta(1, 'Top_Bottom_Lock', true) * $products['property_locks_volume']);
+            $sum = $sum + (get_post_meta(1, 'Top_Bottom_Lock', true) * $products['property_locks_volume']) * 2;
         }
         echo 'SUM lock_position: ' . $sum . '<br>';
+    } else {
+        if (!empty(get_user_meta($products['customer_id'], 'Lock', true)) || (get_user_meta($products['customer_id'], 'Lock', true) > 0)) {
+            $sum = $sum + (get_user_meta($products['customer_id'], 'Lock', true) * $products['property_locks_volume'] * 2);
+            echo 'SUM Lock: ' . $sum . '<br>';
+            echo '<br>BASIC 8: ' . $basic . '<br>';
+        } else {
+            if (!empty(get_post_meta(1, 'Lock', true))) {
+                $sum = $sum + (get_post_meta(1, 'Lock', true) * $products['property_locks_volume'] * 2);
+                echo 'SUM Lock: ' . $sum . '<br>';
+                echo '<br>BASIC 8: ' . $basic . '<br>';
+            }
+        }
     }
 }
 
