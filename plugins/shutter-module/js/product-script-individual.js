@@ -4,6 +4,22 @@ jQuery.noConflict();
     $(function () {
 
 
+
+        // ========== START - customize some properties by user =========
+        var idCustomer = null;
+        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
+
+        idCustomer = jQuery('input[name="customer_id"]').val();
+
+        // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+        if (idCustomer == 274) {
+            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
+        }
+        console.log('idCustomer ', idCustomer);
+        console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
+        // ========== END - customize some properties by user =========
+
+
         function getPropertyCodeById(id) {
             code = '';
             for (i = 0; i < property_fields.length; i++) {
@@ -92,11 +108,19 @@ jQuery.noConflict();
         //get all field data
         function getAllFieldData(property_id) {
             data = [];
-            for (var i = 0; i < property_values.length; i++) {
-                if (property_values[i].property_id == property_id) {
-                    data.push(property_values[i]);
+            var idCustomer = $('input[name="customer_id"]').val();
+            if (idCustomer == 274) {
+                for (var i = 0; i < property_values.length; i++) {
+                    if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
+                        data.push(property_values[i]);
+                    }
                 }
-
+            } else {
+                for (var i = 0; i < property_values.length; i++) {
+                    if (property_values[i].property_id == property_id) {
+                        data.push(property_values[i]);
+                    }
+                }
             }
             return data;
         }
@@ -8272,7 +8296,8 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
