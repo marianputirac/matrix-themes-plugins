@@ -19,14 +19,38 @@ if ($_POST['group_name']) {
 </div>
 <?php
 
+function order_items_materials_sqm($order_id)
+{
+    $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
+    $order_material_sqm = array();
+    $order = wc_get_order($order_id);
+    $items = $order->get_items();
+
+    foreach ($items as $item_id => $item) {
+        $product_id = $item['product_id'];
+        $material_id = get_post_meta($product_id, 'property_material', true);
+        $material = $materials[$material_id];
+        $sqm = get_post_meta($product_id, 'property_total', true);
+        // do something with the material value
+        if (array_key_exists($material, $order_material_sqm)) {
+            $prev_value = $order_material_sqm[$material];
+            $order_material_sqm[$material] = $sqm + $prev_value;
+        } else {
+            $order_material_sqm[$material] = $sqm;
+        }
+    }
+    return $order_material_sqm;
+}
+
+
 if ($_POST['group_name']) {
-    if($_POST['group_name'] === 'all_users'){
-        $users = get_users( array( 'fields' => array( 'ID' ) ) );
+    if ($_POST['group_name'] === 'all_users') {
+        $users = get_users(array('fields' => array('ID')));
         $group = array();
-        foreach($users as $user){
+        foreach ($users as $user) {
             $group[] = $user->ID;
         }
-    }else{
+    } else {
         $group = get_post_meta(1, $_POST['group_name'], true);
     }
 } else {
@@ -121,6 +145,7 @@ $totaly_order_shipping = array();
 $total_dolar = array();
 $total_gbp = array();
 $total_gbp_train = array();
+$total_materials_sqm = array();
 $months = array('01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.');
 $months_sum = array('01' => 0, '02' => 0, '03' => 0, '04' => 0, '05' => 0, '06' => 0, '07' => 0, '08' => 0, '09' => 0, '10' => 0, '11' => 0, '12' => 0);
 $i = 1;
@@ -128,7 +153,10 @@ $i = 1;
 // Get all orders and find date and and calculate total payment for each month
 $count_month = 0;
 foreach ($orders as $order_id) {
+    $materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'Supreme' => 0, 'Ecowood' => 0);
+
     $order = wc_get_order($order_id);
+
     $order_data = $order->get_data();
     $myOrder = $myOrders[$order_id];
     $user_id_customer = get_post_meta($order_id, '_customer_user', true);
@@ -155,6 +183,7 @@ foreach ($orders as $order_id) {
         $total_gbp_train[$year] = $months_sum;
     }
 
+
     $train_price = 0;
     if ($property_total > 0 && $year >= 2021) {
 //        $train_price = get_user_meta($user_id_customer, 'train_price', true);
@@ -171,6 +200,19 @@ foreach ($orders as $order_id) {
 
     $suma = floatval($order->get_total());
 
+// materials
+    $items_material = order_items_materials_sqm($order_id);
+//    echo '<pre>';
+//    print_r($items_material);
+//    echo '</pre>';
+    foreach ($items_material as $material => $material_sqm) {
+        $prev_sqm = $materials[$material];
+        $materials[$material] = $material_sqm + $prev_sqm;
+
+        $total_materials_sqm[$year][$month][$material] = $total_materials_sqm[$year][$month][$material] + $material_sqm + $prev_sqm;
+    }
+
+    // sqm's
     $sum_total[$year][$month] = $sum_total[$year][$month] + $suma;
     $sum_totaly[$year][$month] = $sum_totaly[$year][$month] + $suma;
 
@@ -243,7 +285,6 @@ foreach ($newlunian as $k => $anluna) {
             //print_r($new[$luna]);
         }
     }
-
 }
 
 //echo '<pre>';
@@ -267,6 +308,11 @@ foreach ($newlunian as $k => $anluna) {
                 <th style="text-align:right">Delivery</th>
                 <th style="text-align:right">Train</th>
                 <th style="text-align:right">GBP Total</th>
+                <th style="text-align:right">Earth</th>
+                <th style="text-align:right">Ecowood</th>
+                <th style="text-align:right">Green</th>
+                <th style="text-align:right">Biowood</th>
+                <th style="text-align:right">Supreme</th>
             </tr>
             <?php
             $current_year = date("Y");
@@ -297,6 +343,11 @@ foreach ($newlunian as $k => $anluna) {
                             <th style="text-align:right">' . number_format($total_order_shipping[$year][$luna], 2) . '</th>
                             <th style="text-align:right">' . number_format($sum_totaly_train[$year][$luna], 2) . '</th>
                             <th style="text-align:right">' . number_format($sum_totaly[$year][$luna], 2) . '</th>
+                            <th style="text-align:right">' . number_format($total_materials_sqm[$year][$luna]['Earth'], 2) . '</th>
+                            <th style="text-align:right">' . number_format($total_materials_sqm[$year][$luna]['Ecowood'], 2) . '</th>
+                            <th style="text-align:right">' . number_format($total_materials_sqm[$year][$luna]['Green'], 2) . '</th>
+                            <th style="text-align:right">' . number_format($total_materials_sqm[$year][$luna]['Biowood'], 2) . '</th>
+                            <th style="text-align:right">' . number_format($total_materials_sqm[$year][$luna]['Supreme'], 2) . '</th>
                         </tr>';
                         $sum_tot_sqm = $sum_tot_sqm + $total[$year][$luna];
                         $sum_tot_dolar = $sum_tot_dolar + $total_dolar[$year][$luna];
@@ -308,6 +359,11 @@ foreach ($newlunian as $k => $anluna) {
                         echo '<tr>
                             <th>' . $year . '</th>
                             <th>' . $months[$luna] . '</th>
+                            <th style="text-align:right"></th>
+                            <th style="text-align:right"></th>
+                            <th style="text-align:right"></th>
+                            <th style="text-align:right"></th>
+                            <th style="text-align:right"></th>
                             <th style="text-align:right"></th>
                             <th style="text-align:right"></th>
                             <th style="text-align:right"></th>

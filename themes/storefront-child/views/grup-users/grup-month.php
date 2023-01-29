@@ -3,6 +3,7 @@
        *********************************************************************************************	-->
 
 <?php
+
 if (isset($_POST['group_name'])) {
     if($_POST['group_name'] === 'all_users'){
         $users = get_users( array( 'fields' => array( 'ID' ) ) );
@@ -66,6 +67,8 @@ $totaly = array();
 $users_sqm = array();
 
 foreach ($orders as $id_order) {
+    $materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'Supreme' => 0, 'Ecowood' => 0);
+
     $order = wc_get_order($id_order);
     $order_data = $order->get_data();
     $order_status = $order_data['status'];
@@ -77,9 +80,21 @@ foreach ($orders as $id_order) {
     $property_total = (float)$myOrder['sqm'];
     $user_id = get_post_meta($id_order, '_customer_user', true);
     if (array_key_exists($user_id, $users_sqm)) {
-        $users_sqm[$user_id] = $users_sqm[$user_id] + $property_total;
+        $users_sqm[$user_id]['sqm'] = $users_sqm[$user_id]['sqm'] + $property_total;
     } else {
-        $users_sqm[$user_id] = $property_total;
+        $users_sqm[$user_id]['sqm'] = $property_total;
+    }
+
+    // materials
+    $items_material = order_items_materials_sqm($id_order);
+//    echo '<pre>';
+//    print_r($items_material);
+//    echo '</pre>';
+    foreach ($items_material as $material => $material_sqm) {
+        $prev_sqm = $materials[$material];
+        $materials[$material] = $material_sqm + $prev_sqm;
+
+        $users_sqm[$user_id][$material] = $users_sqm[$user_id][$material] + $material_sqm + $prev_sqm;
     }
 
     $i++;
@@ -98,31 +113,48 @@ $months = array('01' => 'January', '02' => 'February', '03' => 'March', '04' => 
                     <th>Nr.</th>
                     <th>User</th>
                     <th>Toal SQM / <?php echo $months[$selected_month]; ?></th>
+                    <th style="text-align:right">Earth</th>
+                    <th style="text-align:right">Ecowood</th>
+                    <th style="text-align:right">Green</th>
+                    <th style="text-align:right">Biowood</th>
+                    <th style="text-align:right">Supreme</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                 $i = 1;
                 $total_sqm = 0;
-                foreach ($users_sqm as $user => $sqm) {
+                foreach ($users_sqm as $user => $val) {
+                    print_r($user);
                     $user_info = get_userdata($user);
-                    $total_sqm = $total_sqm + $users_sqm[$user];
+                    $total_sqm = $total_sqm + $users_sqm[$user]['sqm'];
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $user_info->display_name . " - " . $user_info->first_name . " " . $user_info->last_name; ?></td>
                         <td>
-                            <?php echo number_format($users_sqm[$user], 2); ?> SQM
+                            <?php echo number_format($users_sqm[$user]['sqm'], 2); ?> SQM
                         </td>
+                        <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Earth'], 2); ?></td>
+                        <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Ecowood'], 2); ?></td>
+                        <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Green'], 2); ?></td>
+                        <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Biowood'], 2); ?></td>
+                        <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Supreme'], 2); ?></td>
                     </tr>
                     <?php $i++;
                 }
                 ?>
                 </tbody>
                 <tfoot>
-                    <th></th>
-                    <th></th>
-                    <th>Toal SQM <?php echo number_format($total_sqm, 2); ?></th>
+                    <td></td>
+                    <td></td>
+                    <td>Toal SQM <?php echo number_format($total_sqm, 2); ?></td>
+                    <td style="text-align:right"></td>
+                    <td style="text-align:right"></td>
+                    <td style="text-align:right"></td>
+                    <td style="text-align:right"></td>
+                    <td style="text-align:right"></td>
+                    <td style="text-align:right"></td>
                 </tfoot>
             </table>
         </div>
