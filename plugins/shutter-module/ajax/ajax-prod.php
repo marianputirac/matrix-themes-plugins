@@ -33,6 +33,7 @@ echo "</pre>";
 echo "--------------------" . $products['page_title'];
 
 $user_id = get_current_user_id();
+$dealer_id = get_user_meta($user_id, 'company_parent', true);
 
 $post = array(
     'post_author' => $user_id,

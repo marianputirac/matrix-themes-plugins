@@ -5,6 +5,8 @@
 }
 $item_id = $_GET['item_id'];
 
+$dealer_id = get_user_meta($user_id, 'company_parent', true);
+
 $edit_customer = ($_GET['order_edit_customer'] == 'editable') ? true : false;
 $order_edit = (!empty($_GET['order_id'])) ? $_GET['order_id'] / 1498765 / 33 : '';
 
@@ -315,6 +317,7 @@ if (!empty($_GET['id'])) {
                         <div style="display:none"></div>
                         <input type="hidden" name="product_id_updated" value="<?php echo $product_id; ?>">
                         <input type="hidden" name="customer_id" value="<?php echo $user_id; ?>">
+                        <input type="hidden" name="dealer_id" value="<?php echo $dealer_id; ?>">
                         <input type="hidden" name="edit_customer" value="<?php echo $edit_customer; ?>">
                         <input type="hidden" name="order_edit" value="<?php echo $order_edit; ?>">
 

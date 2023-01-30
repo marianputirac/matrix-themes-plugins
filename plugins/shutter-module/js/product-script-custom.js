@@ -4,23 +4,24 @@ jQuery.noConflict();
     $(function () {
 
 
-        // ========== START - customize some properties by user =========
-        var idCustomer = null;
-        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
+            // ========== START - customize some properties by user =========
+            var idCustomer = null;
+            var idDealer = null;
+            var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
 
-        idCustomer = jQuery('input[name="customer_id"]').val();
+            idCustomer = jQuery('input[name="customer_id"]').val();
+            idDealer = jQuery('input[name="dealer_id"]').val();
 
-        // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-        if (idCustomer == 274) {
-            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
-        }
-        console.log('idCustomer ', idCustomer);
-        console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
-        // ========== END - customize some properties by user =========
+            // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+            if (idCustomer == 274 || idDealer == ) {
+                selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
+            }
+            console.log('idCustomer ', idCustomer);
+            console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
+            // ========== END - customize some properties by user =========
 
 
-
-        $(".show-next-panel").click(function () {
+            $(".show-next-panel").click(function () {
                 $(this).closest(".panel").find(".panel-collapse").collapse("hide");
                 $(this).closest(".panel").next().find(".panel-collapse").collapse("show");
                 return false;
@@ -110,24 +111,24 @@ jQuery.noConflict();
             }
 
             //get all field data
-        function getAllFieldData(property_id) {
-            data = [];
-            var idCustomer = $('input[name="customer_id"]').val();
-            if (idCustomer == 274) {
-                for (var i = 0; i < property_values.length; i++) {
-                    if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
-                        data.push(property_values[i]);
+            function getAllFieldData(property_id) {
+                data = [];
+                var idCustomer = $('input[name="customer_id"]').val();
+                if (idCustomer == 274) {
+                    for (var i = 0; i < property_values.length; i++) {
+                        if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
+                            data.push(property_values[i]);
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < property_values.length; i++) {
+                        if (property_values[i].property_id == property_id) {
+                            data.push(property_values[i]);
+                        }
                     }
                 }
-            } else {
-                for (var i = 0; i < property_values.length; i++) {
-                    if (property_values[i].property_id == property_id) {
-                        data.push(property_values[i]);
-                    }
-                }
+                return data;
             }
-            return data;
-        }
 
             //get field data whose value contains...
             function getFieldDataContains(property_id, contains, field_values) {
@@ -3964,7 +3965,102 @@ jQuery.noConflict();
                         "help_text": "",
                         "input_type": "input"
                     }
-                }, {
+                },
+
+                {
+                    "id": 411,
+                    "property_id": 17,
+                    "value": "Frosted White",
+                    "created_at": "2015-09-26T01:28:40.000+01:00",
+                    "updated_at": "2015-09-26T01:28:40.000+01:00",
+                    "code": "",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 16,
+                        "name": "Control Type",
+                        "created_at": "2015-09-26T01:25:55.000+01:00",
+                        "updated_at": "2015-09-26T01:25:55.000+01:00",
+                        "code": "controltype",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                }
+                , {
+                    "id": 412,
+                    "property_id": 17,
+                    "value": "Neutral White",
+                    "created_at": "2015-09-26T01:28:40.000+01:00",
+                    "updated_at": "2015-09-26T01:28:40.000+01:00",
+                    "code": "",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 16,
+                        "name": "Control Type",
+                        "created_at": "2015-09-26T01:25:55.000+01:00",
+                        "updated_at": "2015-09-26T01:25:55.000+01:00",
+                        "code": "controltype",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                }
+                , {
+                    "id": 413,
+                    "property_id": 17,
+                    "value": "Shell White",
+                    "created_at": "2015-09-26T01:28:40.000+01:00",
+                    "updated_at": "2015-09-26T01:28:40.000+01:00",
+                    "code": "",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 16,
+                        "name": "Control Type",
+                        "created_at": "2015-09-26T01:25:55.000+01:00",
+                        "updated_at": "2015-09-26T01:25:55.000+01:00",
+                        "code": "controltype",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                }
+                , {
                     "id": 101,
                     "property_id": 17,
                     "value": "LS 601 PURE WHITE",
@@ -8378,96 +8474,6 @@ jQuery.noConflict();
                         "help_text": "",
                         "input_type": "select"
                     }
-                }, {
-                    "id": 411,
-                    "property_id": 17,
-                    "value": "Frosted White",
-                    "created_at": "2015-09-26T01:28:40.000+01:00",
-                    "updated_at": "2015-09-26T01:28:40.000+01:00",
-                    "code": "",
-                    "uplift": "0.0",
-                    "color": "",
-                    "all_products": true,
-                    "selected_products": "{\"product_ids\":null}",
-                    "all_property_values": false,
-                    "selected_property_values": selectedPropertyValuesEcowood,
-                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                    "graphic": "none",
-                    "image_file_name": null,
-                    "image_content_type": null,
-                    "image_file_size": null,
-                    "image_updated_at": null,
-                    "is_active": true,
-                    "property": {
-                        "id": 16,
-                        "name": "Control Type",
-                        "created_at": "2015-09-26T01:25:55.000+01:00",
-                        "updated_at": "2015-09-26T01:25:55.000+01:00",
-                        "code": "controltype",
-                        "sort": null,
-                        "help_text": "",
-                        "input_type": "select"
-                    }
-                }
-                , {
-                    "id": 412,
-                    "property_id": 17,
-                    "value": "Neutral White",
-                    "created_at": "2015-09-26T01:28:40.000+01:00",
-                    "updated_at": "2015-09-26T01:28:40.000+01:00",
-                    "code": "",
-                    "uplift": "0.0",
-                    "color": "",
-                    "all_products": true,
-                    "selected_products": "{\"product_ids\":null}",
-                    "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                    "graphic": "none",
-                    "image_file_name": null,
-                    "image_content_type": null,
-                    "image_file_size": null,
-                    "image_updated_at": null,
-                    "is_active": true,
-                    "property": {
-                        "id": 16,
-                        "name": "Control Type",
-                        "created_at": "2015-09-26T01:25:55.000+01:00",
-                        "updated_at": "2015-09-26T01:25:55.000+01:00",
-                        "code": "controltype",
-                        "sort": null,
-                        "help_text": "",
-                        "input_type": "select"
-                    }
-                }
-                , {
-                    "id": 413,
-                    "property_id": 17,
-                    "value": "Shell White",
-                    "created_at": "2015-09-26T01:28:40.000+01:00",
-                    "updated_at": "2015-09-26T01:28:40.000+01:00",
-                    "code": "",
-                    "uplift": "0.0",
-                    "color": "",
-                    "all_products": true,
-                    "selected_products": "{\"product_ids\":null}",
-                    "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                    "graphic": "none",
-                    "image_file_name": null,
-                    "image_content_type": null,
-                    "image_file_size": null,
-                    "image_updated_at": null,
-                    "is_active": true,
-                    "property": {
-                        "id": 16,
-                        "name": "Control Type",
-                        "created_at": "2015-09-26T01:25:55.000+01:00",
-                        "updated_at": "2015-09-26T01:25:55.000+01:00",
-                        "code": "controltype",
-                        "sort": null,
-                        "help_text": "",
-                        "input_type": "select"
-                    }
                 }
                 , {
                     "id": 437,
@@ -9579,13 +9585,12 @@ jQuery.noConflict();
             });
 
 
-            $('input[type=radio][name=property_freefolding]').change(function() {
+            $('input[type=radio][name=property_freefolding]').change(function () {
                 console.log('property_freefolding val', this.value);
                 if (this.value == 'yes') {
                     $('input[type=radio][name=property_freefolding][value=no]').removeAttr('checked')
                     $('input[type=radio][name=property_freefolding][value=yes]').attr('checked', 'checked')
-                }
-                else if (this.value == 'no') {
+                } else if (this.value == 'no') {
                     $('input[type=radio][name=property_freefolding][value=yes]').removeAttr('checked')
                     $('input[type=radio][name=property_freefolding][value=no]').attr('checked', 'checked')
                 }
