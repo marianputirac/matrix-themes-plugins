@@ -1369,6 +1369,7 @@ if (!empty($_GET['id'])) {
                                                         <div id="choose-frametype">
 
                                                             <label>
+                                                                PVC
 
                                                                 <br/> P4028X
 
@@ -3404,6 +3405,8 @@ if (!empty($_GET['id'])) {
 
                                 font-weight: bold;
 
+                                color: black;
+
                                 background-color: #ced3e4;
 
                                 border-radius: 7px;
@@ -3460,7 +3463,12 @@ if (!empty($_GET['id'])) {
 
                                 margin-right: 1em;
 
-                                font-size: 10px
+                                font-size: 10px;
+
+                                font-weight: bold;
+
+                                color: black;
+
 
                             }
 

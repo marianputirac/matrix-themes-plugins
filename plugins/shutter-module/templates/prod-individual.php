@@ -788,6 +788,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/4022B.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4022B
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z40" data-title="P4022B" value="351"
@@ -810,6 +811,7 @@ if (!empty($_GET['id'])) {
                                                             <!--                                                                <img src="/wp-content/plugins/shutter-module/imgs/P4008K.png">-->
                                                             <!--                                                            </label>-->
                                                             <label>
+                                                                PVC
                                                                 <br /> P4008H
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F50" data-title="P4008H" value="321"
@@ -820,6 +822,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4008H.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4028B
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F90" data-title="P4028B" value="318"
@@ -830,6 +833,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4028B.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4008S
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F70" data-title="P4008S" value="330"
@@ -840,6 +844,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4008S.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4008T
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F90" data-title="P4008T" value="322"
@@ -850,6 +855,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4008T.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4008W
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F90" data-title="P4008W" value="319"
@@ -860,6 +866,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4008W.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4007A
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="F50" data-title="P4007A" value="331"
@@ -870,6 +877,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4007A.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4001N
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="L50" data-title="P4001N" value="320"
@@ -890,6 +898,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/A4001A.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4013
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z40" data-title="P4013" value="325"
@@ -900,6 +909,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4013.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4033
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z50" data-title="P4033" value="327"
@@ -910,6 +920,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4033.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4043
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z40" data-title="P4043" value="328"
@@ -920,6 +931,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4043.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4073
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z50" data-title="P4073" value="324"
@@ -930,6 +942,7 @@ if (!empty($_GET['id'])) {
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4073.png">
                                                             </label>
                                                             <label>
+                                                                PVC
                                                                 <br /> P4014
                                                                 <input type="radio" name="property_frametype"
                                                                     data-code="Z3CS" data-title="P4014" value="329"
@@ -938,6 +951,17 @@ if (!empty($_GET['id'])) {
                                                                                                                                                                 } ?> />
                                                                 <img
                                                                     src="/wp-content/plugins/shutter-module/imgs/P4014.png">
+                                                            </label>
+                                                            <label>
+                                                                PVC
+                                                                <br/> P4009
+                                                                <input type="radio" name="property_frametype"
+                                                                       data-code="Z3CS" data-title="P4009" value="303"
+                                                                    <?php if ($property_frametype == '303') {
+                                                                        echo "checked";
+                                                                    } ?> />
+                                                                <img
+                                                                        src="/wp-content/plugins/shutter-module/imgs/P4009.png">
                                                             </label>
                                                             <label>
                                                                 Basswood
@@ -2398,6 +2422,7 @@ if (!empty($_GET['id'])) {
                             margin-right: 1em;
                             font-size: 10px;
                             font-weight: bold;
+                            color: black;
                             background-color: #ced3e4;
                             border-radius: 7px;
                             height: 170px;
@@ -2430,7 +2455,10 @@ if (!empty($_GET['id'])) {
                             background-color: #ced3e4;
                             border-radius: 7px;
                             margin-right: 1em;
-                            font-size: 10px
+                            font-size: 10px;
+                            font-weight: bold;
+                            color: black;
+
                         }
 
                         #choose-frametype label>input+img,

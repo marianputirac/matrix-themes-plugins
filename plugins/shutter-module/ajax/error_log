@@ -106,3 +106,5 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod-update.php on line 761
+[30-Jan-2023 14:59:56 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 719
+[30-Jan-2023 14:59:56 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1263

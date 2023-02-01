@@ -41,11 +41,10 @@ if (!empty($order_id)) {
         $fob_components = true;
     }
 }
-
-$no_view_price = (get_user_meta($user_id, 'view_price', true) == 'no') ? true : false;
+$var_view_price = get_user_meta($user_id, 'view_price', true);
+$view_price = ($var_view_price == 'yes' || $var_view_price == '') ? true : false;
 $deler_id = get_user_meta($user_id, 'company_parent', true);
-if ($view_price == true) $no_view_price = false;
-if (current_user_can('administrator') || get_current_user_id() == $deler_id) $no_view_price = false;
+//if (current_user_can('administrator') || get_current_user_id() == $deler_id) $view_price = true;
 
 
 $nr_code_prod = array();
@@ -197,7 +196,7 @@ foreach ($items as $item_id => $item_data) {
         $base_price_earth = get_post_meta($product_id, 'basic_earth_price', true);
 
 
-        if ($no_view_price) {
+        if (!$view_price) {
             $price = 0;
             $regular_price = 0;
             $sale_price = 0;
@@ -314,7 +313,7 @@ foreach ($items as $item_id => $item_data) {
                 </td>
                 <td><!-- $ 5000 -->
                     <?php
-                    if (!$no_view_price) {
+                    if ($view_price) {
                         if (current_user_can('administrator')) {
                             $batten_type = get_post_meta($product_id, 'batten_type', true);
                             if ($batten_type == 'custom') {
@@ -738,7 +737,7 @@ foreach ($items as $item_id => $item_data) {
                             //                            print_r($product_id);
                             //                            echo ' -- ';
 
-                            if (!current_user_can('china_admin') && !$no_view_price) {
+                            if (!current_user_can('china_admin') && $view_price) {
                                 $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
                                 $price_for_update = get_post_meta($order_id, 'price_for_update', true);
                                 foreach ($materials as $key => $material) {
@@ -790,7 +789,7 @@ foreach ($items as $item_id => $item_data) {
                         </td>
                         <td>£
                             <?php
-                            if (!$no_view_price) {
+                            if ($view_price) {
                                 $sum = number_format($sections_price[$sec], 2);
                                 echo number_format($sum, 2);
                                 // echo '<br>' . $product->get_price();
@@ -1263,7 +1262,7 @@ foreach ($items as $item_id => $item_data) {
                     </td>
                     <td>
                         <?php
-                        if (!current_user_can('china_admin') && !$no_view_price) {
+                        if (!current_user_can('china_admin') && $view_price) {
                             $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
                             $price_for_update = get_post_meta($order_id, 'price_for_update', true);
                             foreach ($materials as $key => $material) {
@@ -1310,7 +1309,8 @@ foreach ($items as $item_id => $item_data) {
                     </td>
                     <td>£
                         <?php
-                        echo number_format($price * $item_data['quantity'], 2);
+
+                        if ($view_price) echo number_format($price * $item_data['quantity'], 2);
                         // echo '<br>' . $product->get_price();
                         ?>
                     </td>
@@ -1397,7 +1397,7 @@ foreach ($items as $item_id => $item_data) {
     } else {
         $excl_vat = 'FOB China';
     }
-    if (!$no_view_price) {
+    if ($view_price) {
         if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) { ?>
             <tr class="table-totals">
                 <td colspan="3" style="text-align:right">Products Total (<?php echo $excl_vat; ?>):</td>

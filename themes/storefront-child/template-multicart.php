@@ -270,7 +270,9 @@ get_header(); ?>
 
                         </table>
 
-                    <?php } ?>
+                    <?php }
+
+                    ?>
 
                     <br>
                     <br>
@@ -300,6 +302,8 @@ get_header(); ?>
                         <tbody>
                         <?php
                         $user = get_userdata($user_id);
+                        $var_view_price = get_user_meta($user_id, 'view_price', true);
+                        $view_price = ($var_view_price == 'yes' || $var_view_price == '') ? true : false;
 
                         // if dealer if is not empty and current user have employe role and not dealer_employe add dealer orders
 
@@ -380,7 +384,7 @@ get_header(); ?>
                                 </td>
                                 <td>
                                     <?php
-                                    echo $order->get_total();
+                                    if($view_price) echo $order->get_total();
                                     ?>
                                 </td>
                                 <td>

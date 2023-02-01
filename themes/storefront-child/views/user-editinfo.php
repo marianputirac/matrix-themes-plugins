@@ -8,6 +8,7 @@ $vat_number = get_user_meta($user->id, 'vat_number_custom', true);
 $discount_custom = get_user_meta($user->id, 'discount_custom', true);
 $train_price = get_user_meta($user->id, 'train_price', true);
 $group_added = get_user_meta($user->id, 'group_added', true);
+$max_nr_employees = get_user_meta($user->id, 'max_nr_employees', true);
 $roles = $user->roles;
 
 $properties = array(3 => 'BattenStandard', 4 => 'BattenCustom', 188 => 'Ecowood', 138 => 'Biowood', 137 => 'Green', 139 => 'Supreme', 187 => 'Earth', 221 => 'Solid-%', 229 => 'Combi-%', 33 => 'Shaped-%', 34 => 'French Door-+', 35 => 'Tracked-+', 37 => 'TrackedByPass-+', 36 => 'Arched-%', 56 => 'Inside-%', 100 => 'Buildout-%', 186 => 'Hidden-%', 93 => 'Stainless Steel-%', 403 => 'Concealed Rod-%', 101 => 'Bay Angle-%', 264 => 'Colors-%', 102 => 'Ringpull-+', 103 => 'Spare_Louvres-+', 171 => 'P4028X-%', 319 => 'P4008W-%', 322 => 'P4008T-%', 353 => '4008T-%', 275 => 'T_Buildout-%', 276 => 'B_Buildout-%', 277 => 'C_Buildout-%', 278 => 'Lock-+', 500 => 'G_post-%', 501 => 'blackoutblind-+', 52 => 'Flat Louver-%', 2 => 'B_typeFlexible-%', 5 => 'T_typeAdjustable-%', 502 => 'tposttype_blackout-%', 503 => 'bposttype_blackout-%');
@@ -103,7 +104,7 @@ $propertie_price_tax = array(3 => get_user_meta($user->id, 'BattenStandard_tax',
                 <p><label for="employee_nr"> Max Nr of Employees</label></p>
             </th>
             <td>
-                <input id="employee_nr" type="number" name="max_nr_employees" value="3">
+                <input id="employee_nr" type="number" name="max_nr_employees" value="<?php echo $max_nr_employees; ?>">
             </td>
         </tr>
         <?php
