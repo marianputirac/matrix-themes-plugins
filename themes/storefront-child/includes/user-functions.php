@@ -100,6 +100,10 @@ function my_user_profile_update_action($user_id)
         update_user_meta($user_id, 'C_Buildout', $_POST['price-C_Buildout']);
         update_user_meta($user_id, 'B_typeFlexible', $_POST['price-B_typeFlexible']);
         update_user_meta($user_id, 'blackoutblind', $_POST['price-blackoutblind']);
+        update_user_meta($user_id, 'T_typeAdjustable', $_POST['price-T_typeAdjustable']);
+        update_user_meta($user_id, 'tposttype_blackout', $_POST['price-tposttype_blackout']);
+        update_user_meta($user_id, 'bposttype_blackout', $_POST['price-bposttype_blackout']);
+
         update_user_meta($user_id, 'Lock', $_POST['price-Lock']);
         update_user_meta($user_id, 'P4028X', $_POST['price-P4028X']);
         update_user_meta($user_id, 'P4008T', $_POST['price-P4008T']);

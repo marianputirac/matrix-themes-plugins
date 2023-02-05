@@ -108,6 +108,11 @@ if ($suspended != 'yes') {
                 $comp_visible = 'block';
                 $show_spec = true;
             }
+
+            $train_price = get_user_meta(get_current_user_id(), 'train_price', true);
+            if (empty($train_price) && !is_numeric($train_price)) {
+              $train_price = get_post_meta(1, 'train_price', true);
+            }
             ?>
             <div class="shipping-methods-select" style="<?php echo 'display:' . $comp_visible; ?>">
                 <div class="col-sm-12 col-md-12">
@@ -115,10 +120,7 @@ if ($suspended != 'yes') {
                     <select name="shipping-method" id="shipping-select">
                         <?php
 
-                        $train_price = get_user_meta(get_current_user_id(), 'train_price', true);
-                        if (empty($train_price) && !is_numeric($train_price)) {
-                            $train_price = get_post_meta(1, 'train_price', true);
-                        }
+
 
                         $shipping = new WC_Shipping();
                         $shipping_classes = $shipping->get_shipping_classes();

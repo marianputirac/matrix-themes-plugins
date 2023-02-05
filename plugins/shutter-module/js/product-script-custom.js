@@ -13,7 +13,7 @@ jQuery.noConflict();
             idDealer = jQuery('input[name="dealer_id"]').val();
 
             // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-            if (idCustomer == 274 || idDealer == ) {
+            if (idCustomer == 274 || idDealer == 274) {
                 selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
             }
             console.log('idCustomer ', idCustomer);
@@ -7210,7 +7210,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\"]}",
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\"]}",
                     "graphic": "image",
                     "image_file_name": "4028B.png",
                     "image_content_type": "image/jpeg",
