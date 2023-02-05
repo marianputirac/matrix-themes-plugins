@@ -8930,9 +8930,7 @@ jQuery.noConflict();
 
                 if ($("#property_shuttercolour").select2('data')) {
                     var property_shcolour_check = $("#property_shuttercolour").select2('data').value;
-                    console.log('step 1');
                     var property_stile_check = $("input[name=property_stile]:checked").attr('data-title');
-                    console.log('step 2');
                     if (typeof property_stile_check !== "undefined") {
                         if (property_shcolour_check.includes("brushed") || property_shcolour_check.includes("BRUSHED")) {
                             if (!property_stile_check.includes("51mm")) {
@@ -8964,6 +8962,7 @@ jQuery.noConflict();
 
                             if ($('form').attr('edit') === 'no') {
                                 // console.log('frame_top 6');
+
                                 $("#property_frameleft").select2("val", '70');
                                 $("#property_frameright").select2("val", '75');
                                 $("#property_frametop").select2("val", '80');
@@ -8978,7 +8977,7 @@ jQuery.noConflict();
                         }
                     } else {
                         if ($('form').attr('edit') === 'no') {
-                            // console.log('frame_top 7');
+
                             $("#property_frameleft").select2("val", '70');
                             $("#property_frameright").select2("val", '75');
                             $("#property_frametop").select2("val", '80');
@@ -9006,8 +9005,8 @@ jQuery.noConflict();
                 id = $(this).attr('id');
                 field_id = getPropertyIdByCode(id);
                 related_fields = getRelatedFields(field_id);
-                console.log(field_id);
-                console.log(related_fields);
+                // console.log(field_id);
+                // console.log(related_fields);
 
                 for (var i = 0; i < related_fields.length; i++) {
                     field_data = getRelatedFieldData(related_fields[i], field_id, $(this).val());
@@ -9194,9 +9193,6 @@ jQuery.noConflict();
                         // console.log('frame_top 1');
                         $("#property_frametop").select2("val", '81');
                         $("#property_tposttype").select2("val", '439');
-                    } else {
-                        // console.log('frame_top 2');
-                        $("#property_frametop").select2("val", '80');
                     }
 
                     if (style_check.indexOf('By-Pass') > -1) {
@@ -9298,6 +9294,7 @@ jQuery.noConflict();
                         // console.log('selected 144');
                         // console.log('#choose-frametype label 144');
                         // console.log('frame_top 8');
+
                         $("#property_framebottom").select2('val', '151');
                         $("#property_frameleft").select2("val", '70');
                         $("#property_frameright").select2("val", '75');
@@ -9311,19 +9308,20 @@ jQuery.noConflict();
                         $("#property_frameright").select2("val", '75');
                         $("#property_frametop").select2("val", '80');
                     } else {
-                        // console.log('frame_top 10');
                         //$("#frame-left, #frame-right, #frame-top, #frame-bottom").show();
                         // console.log('selectare property_frametype 3');
 
                         // freme top problem on add new shutter
 
-                        $("#property_frameleft").select2("val", '70');
-                        $("#property_frameright").select2("val", '75');
-                        $("#property_framebottom").select2("val", '85');
-                        if (style_check.indexOf('Café') > -1) {
-                            $("#property_frametop").select2("val", '81');
-                        } else {
-                            $("#property_frametop").select2("val", '80');
+                        if ($('form').attr('edit') === 'no') {
+                            $("#property_frameleft").select2("val", '70');
+                            $("#property_frameright").select2("val", '75');
+                            $("#property_framebottom").select2("val", '85');
+                            if (style_check.indexOf('Café') > -1) {
+                                $("#property_frametop").select2("val", '81');
+                            } else {
+                                $("#property_frametop").select2("val", '80');
+                            }
                         }
                     }
 
@@ -9332,8 +9330,8 @@ jQuery.noConflict();
                      * else hide
                      */
                     let titleFrameType = $('input[name="property_frametype"]:checked').attr('data-title');
-                    console.log('frame type name');
-                    console.log(titleFrameType);
+                    // console.log('frame type name');
+                    // console.log(titleFrameType);
                     // let result = titleFrameType.includes("P4");
                     // console.log(result);
                     if (titleFrameType) {
@@ -9398,9 +9396,6 @@ jQuery.noConflict();
                     if (style_check.indexOf('Café') > -1) {
                         // console.log('frame_top 11');
                         $("#property_frametop").select2("val", '81');
-                    } else {
-                        // console.log('frame_top 12');
-                        $("#property_frametop").select2("val", '80');
                     }
                 }
             });
@@ -9666,6 +9661,16 @@ jQuery.noConflict();
                     // console.log("Loading to " + property_code + " data: " + field_data);
                     loadItems("property_" + property_code, field_data);
                 }
+                // preselect frames top, left, roight, bottom
+                var frameLeft = $("#property_frameleft").val();
+                var frameRight = $("#property_frameright").val();
+                var frameTop = $("#property_frametop").val();
+                var frameBottom = $("#property_framebottom").val();
+                console.log('Frames val: ', frameLeft, frameRight, frameTop, frameBottom);
+                $("#property_frameleft").select2("val", frameLeft);
+                $("#property_frameright").select2("val", frameRight);
+                $("#property_frametop").select2("val", frameTop);
+                $("#property_framebottom").select2("val", frameBottom);
             }
 
             function filterStiles() {
@@ -10418,12 +10423,11 @@ jQuery.noConflict();
                 }
 
                 //  console.log('selectare property_frametype 2');
-                if (style_check.indexOf('Café') > -1) {
-                    // console.log('frame_top 3');
-                    $("#property_frametop").select2("val", '81');
-                } else {
-                    // console.log('frame_top 4');
-                    $("#property_frametop").select2("val", '80');
+                if ($('form').attr('edit') === 'no') {
+                    if (style_check.indexOf('Café') > -1) {
+                        // console.log('frame_top 3');
+                        $("#property_frametop").select2("val", '81');
+                    }
                 }
 
 
@@ -10439,9 +10443,6 @@ jQuery.noConflict();
                     if (style_check.indexOf('Café') > -1) {
                         // console.log('frame_top 13');
                         $("#property_frametop").select2("val", '81');
-                    } else {
-                        // console.log('frame_top 14');
-                        $("#property_frametop").select2("val", '80');
                     }
                 }
                 //teo
@@ -10491,11 +10492,11 @@ jQuery.noConflict();
 
                     if ($('form').attr('edit') === 'no') {
                         // console.log('frame_top 19');
+
                         $("#property_frameleft").select2("val", '70');
                         $("#property_frameright").select2("val", '75');
                         $("#property_frametop").select2("val", '80');
                         $("#property_framebottom").select2("val", '85');
-
                     }
 
                     if (style_check.indexOf('Tier') > -1) {
@@ -10538,6 +10539,7 @@ jQuery.noConflict();
 
                     if ($('form').attr('edit') === 'no') {
                         // console.log('frame_top 5');
+
                         $("#property_frameleft").select2("val", '70');
                         $("#property_frameright").select2("val", '75');
                         $("#property_frametop").select2("val", '80');
@@ -10675,10 +10677,8 @@ jQuery.noConflict();
                     $("#property_layoutcode").val("");
 
                     let property_framebottom = $("#property_framebottom").val();
-                    // console.log('property_framebottom value: ' + property_framebottom);
                     let property_frameleft = $("#property_frameleft").val();
                     let property_frameright = $("#property_frameright").val();
-                    // console.log('frame_top 17');
                     let property_frametop = $("#property_frametop").val();
                     //set default values for frame left-right-top-bottom
                     if (property_framebottom) { //bottom m-track
