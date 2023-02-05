@@ -1410,12 +1410,30 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
 
         console.log('errors ' + errors_no_warranty);
         console.log('errors_no_warranty ' + errors_no_warranty);
+
+
+        /**
+         * verify cart items name
+         * @type {any}
+         */
+        let cart_items_name = $('input[name="cart_items_name"]').val();
+        let itemsName = JSON.parse(cart_items_name);
+        console.log(itemsName);
+        if (itemsName.includes(property_room_other)) {
+            errors_no_warranty++;
+            errors++;
+
+            const error_text = 'Item name exists in order, please change!';
+            modalShowErrorNoWarranty(error_text);
+        }
+
+        console.log(errors);
+
         if (errors === 0 && errors_no_warranty === 0) {
 
             var formser = jQuery('#add-product-single-form').serialize();
             var svg = jQuery('#canvas_container1').html();
-
-
+            
             // console.log(formser);
             //alert(formser);
             // console.log('submit 1');
@@ -1555,6 +1573,23 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
             modalShowErrorNoWarranty(error_text);
         }
 
+
+        /**
+         * verify cart items name
+         * @type {any}
+         */
+        let cart_items_name = $('input[name="cart_items_name"]').val();
+        let itemsName = JSON.parse(cart_items_name);
+        console.log(itemsName);
+        if (itemsName.includes(property_room_other)) {
+            errors_no_warranty++;
+            errors++;
+
+            const error_text = 'Item name exists in order, please change!';
+            modalShowErrorNoWarranty(error_text);
+        }
+
+
         if (errors_no_warranty === 0) {
 
             var formser = jQuery('#add-product-single-form').serialize();
@@ -1610,6 +1645,7 @@ jQuery('#add-product-single-form .update-btn').on('click', function (e) {
 
     e.preventDefault();
     resetErrors();
+
 
     console.log('in update cusrom-script');
 
@@ -3103,6 +3139,7 @@ jQuery('#add-product-single-form .update-btn-admin').on('click', function (e) {
 
     e.preventDefault();
     resetErrors();
+
 
     jQuery(document).ajaxStart(function () {
         jQuery('.spinner').show();
@@ -4794,7 +4831,6 @@ jQuery("#property_material").change(function () {
     }
 
 });
-
 
 
 jQuery(document).ready(function () {
