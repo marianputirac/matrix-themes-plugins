@@ -421,7 +421,7 @@ if (!empty($_GET['id'])) {
                                                             </label>
                                                             <label style="display:none;">
                                                                 <br/> Tier-on-Tier
-                                                                <br/> 
+                                                                <br/>
                                                                 <input type="radio" name="property_style"
                                                                        data-code="tot" data-title="Tier-on-Tier"
                                                                        value="31"

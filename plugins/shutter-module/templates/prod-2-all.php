@@ -12,7 +12,7 @@ $order_edit = (!empty($_GET['order_id'])) ? $_GET['order_id'] / 1498765 / 33 : '
 $meta_key = 'wc_multiple_shipping_addresses';
 
 global $wpdb;
-
+ 
 if ($addresses = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = %d AND meta_key = %s", $user_id, $meta_key))) {
     $addresses = maybe_unserialize($addresses);
 }
