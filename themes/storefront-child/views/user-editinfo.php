@@ -334,7 +334,7 @@ if ($user->id == 18 || in_array('employe', $roles)) { ?>
                     <?php echo $id; ?>
                 </span>
                       <input type="text" class="form-control" style="width: 100%;"
-                             placeholder="general: <?php echo $propertie_price_placeholder[$id]; ?>"
+                             placeholder="  <?php echo $propertie_price_placeholder[$id]; ?>"
                              name="price-<?php echo $part[0]; ?>" value="<?php echo $propertie_price[$id]; ?>">
                     </td>
 
