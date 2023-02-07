@@ -47,9 +47,9 @@ $propertie_price_dolar = array(
     <div class="jumbotron">
       <?php
 
-      // update_post_meta( 1,'attributes_array',$atributezzz );
-      // update_post_meta( 1,'attributes_array_csv',$attributes_csv );
-      //  print_r($atributezzz);
+       update_post_meta( 1,'attributes_array',$atributezzz );
+       update_post_meta( 1,'attributes_array_csv',$attributes_csv );
+        print_r($atributezzz);
       ?>
 
       <!--            <h3>Shortcodes:</h3>-->

@@ -3,7 +3,8 @@
     include($path .
         'wp-load.php');
     
-    $atribute = include(__DIR__.'/atributes_array.php');
+//    $atribute = include(__DIR__.'/atributes_array.php');
+$atribute = get_post_meta(1, 'attributes_array', true);
     
     parse_str($_POST['prod'], $products);
     echo "<pre>";

@@ -911,11 +911,11 @@ echo $table_class; ?>">
                 echo $property_height; ?></strong>
               <br>
             </td>
-            <td>£
+            <td>
               <?php
-              if ($view_price) {
+              if (!current_user_can('china_admin') && $view_price) {
                 $sum = number_format($sections_price[$sec], 2);
-                echo number_format($sum, 2);
+                echo '£' . number_format($sum, 2);
                 // echo '<br>' . $product->get_price();
               }
               ?>
@@ -1505,10 +1505,12 @@ echo $table_class; ?>">
               echo $property_height; ?></strong>
             <br>
           </td>
-          <td>£
+          <td>
             <?php
 
-            if ($view_price) echo number_format($price * $item_data['quantity'], 2);
+            if (!current_user_can('china_admin') && $view_price) {
+              echo '£' . number_format($price * $item_data['quantity'], 2);
+            }
             // echo '<br>' . $product->get_price();
             ?>
           </td>
@@ -1635,7 +1637,7 @@ echo $table_class; ?>">
   if ($view_price) {
     if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) { ?>
       <tr class="table-totals">
-        <td colspan="3" style="text-align:right">Products Total (<?php
+        <td colspan="4" style="text-align:right">Products Total (<?php
           echo $excl_vat; ?>):
         </td>
         <td></td>
