@@ -35,6 +35,14 @@ function my_custom_order_colors()
       </style>';
     }
 
+  if (current_user_can('china_admin')) {
+    echo '<style>
+      th#order_total, td.order_total.column-order_total {
+        display: none !important;
+      }
+      </style>';
+  }
+
     if (is_admin()) {
         $screen = get_current_screen();
 

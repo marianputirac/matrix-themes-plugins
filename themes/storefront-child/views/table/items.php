@@ -1634,7 +1634,7 @@ echo $table_class; ?>">
   } else {
     $excl_vat = 'FOB China';
   }
-  if ($view_price) {
+  if (!current_user_can('china_admin') && $view_price) {
     if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) { ?>
       <tr class="table-totals">
         <td colspan="4" style="text-align:right">Products Total (<?php
@@ -1654,7 +1654,7 @@ echo $table_class; ?>">
         } ?>
       </tr>
       <?php
-      if ($term_list[0]->slug != 'components-fob') {
+      if ($term_list[0]->slug != 'components-fob' && (!current_user_can('china_admin') && $view_price)) {
         ?>
         <tr class="table-totals">
           <td colspan="3" style="text-align:right">Shipping :</td>
