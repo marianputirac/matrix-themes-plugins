@@ -299,7 +299,7 @@ if (empty($mail_send)) {
     $headers2 = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
 
     // wp_mail( $single_email, $subject2, $mess, $headers2, $attachments ); //temporary disabled attachments by Teo
- 
+
     if ($user_mail == $billing_email) {
         wp_mail($single_email, $subject2, $mess, $headers2, $attachments_summary);
     } else {

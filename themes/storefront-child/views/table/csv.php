@@ -21,7 +21,7 @@ $order_data = $order->get_data();
 // echo '</pre>';
 
 $i = 0;
-$atributes = get_post_meta(1, 'attributes_array', true);
+$atributes = get_post_meta(1, 'attributes_array_csv', true);
 //print_r($atributes);
 //Iterating through each "line" items in the order
 foreach ($order->get_items() as $item_id => $item_data) {
