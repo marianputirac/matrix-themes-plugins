@@ -1657,7 +1657,7 @@ echo $table_class; ?>">
       if ($term_list[0]->slug != 'components-fob' && (!current_user_can('china_admin') && $view_price)) {
         ?>
         <tr class="table-totals">
-          <td colspan="3" style="text-align:right">Shipping :</td>
+          <td colspan="4" style="text-align:right">Shipping :</td>
           <td></td>
           <td class="quantity"></td>
           <!--                <td class="amount">$-->
@@ -1671,7 +1671,7 @@ echo $table_class; ?>">
           } ?>
         </tr>
         <tr class="table-totals">
-          <td colspan="3" style="text-align:right">VAT:</td>
+          <td colspan="4" style="text-align:right">VAT:</td>
           <td></td>
           <td class="quantity"></td>
           <td class="amount">£<?php
@@ -1682,7 +1682,7 @@ echo $table_class; ?>">
           } ?>
         </tr>
         <tr class="table-totals">
-          <td colspan="3" style="text-align:right">Gross Total:</td>
+          <td colspan="4" style="text-align:right">Gross Total:</td>
           <td></td>
           <td class="quantity"></td>
           <td class="amount">
