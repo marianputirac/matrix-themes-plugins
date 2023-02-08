@@ -1419,12 +1419,14 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
         let cart_items_name = $('input[name="cart_items_name"]').val();
         let itemsName = JSON.parse(cart_items_name);
         console.log(itemsName);
-        if (itemsName.includes(property_room_other)) {
-            errors_no_warranty++;
-            errors++;
+        if (itemsName !== null) {
+            if (itemsName.includes(property_room_other)) {
+                errors_no_warranty++;
+                errors++;
 
-            const error_text = 'Item name exists in order, please change!';
-            modalShowErrorNoWarranty(error_text);
+                const error_text = 'Item name exists in order, please change!';
+                modalShowErrorNoWarranty(error_text);
+            }
         }
 
         console.log(errors);
@@ -1433,7 +1435,7 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
 
             var formser = jQuery('#add-product-single-form').serialize();
             var svg = jQuery('#canvas_container1').html();
-            
+
             // console.log(formser);
             //alert(formser);
             // console.log('submit 1');
@@ -1581,12 +1583,14 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
         let cart_items_name = $('input[name="cart_items_name"]').val();
         let itemsName = JSON.parse(cart_items_name);
         console.log(itemsName);
-        if (itemsName.includes(property_room_other)) {
-            errors_no_warranty++;
-            errors++;
+        if (itemsName !== null) {
+            if (itemsName.includes(property_room_other)) {
+                errors_no_warranty++;
+                errors++;
 
-            const error_text = 'Item name exists in order, please change!';
-            modalShowErrorNoWarranty(error_text);
+                const error_text = 'Item name exists in order, please change!';
+                modalShowErrorNoWarranty(error_text);
+            }
         }
 
 

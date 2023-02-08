@@ -2,7 +2,26 @@ jQuery.noConflict();
 (function ($) {
     $(function () {
 
-            function format(item) {
+
+        // ========== START - customize some properties by user =========
+        var idCustomer = null;
+        var idDealer = null;
+        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
+
+        idCustomer = jQuery('input[name="customer_id"]').val();
+        idDealer = jQuery('input[name="dealer_id"]').val();
+
+        // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+        if (idCustomer == 274 || idDealer == 274) {
+            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
+        }
+        console.log('idCustomer ', idCustomer);
+        console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
+        // ========== END - customize some properties by user =========
+
+
+
+        function format(item) {
                 var row = item.value;
                 if (item.image_file_name !== 'undefined' && item.image_file_name !== null) {
                     row = "<span><img src='/uploads/property_values/images/" + item.id + "/thumb_" + item.image_file_name + "' height='44' width='44' /> " + row + "</span>";
@@ -5067,7 +5086,8 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -5097,7 +5117,8 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -5127,7 +5148,8 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                    "selected_property_values": selectedPropertyValuesEcowood,
+                    //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,

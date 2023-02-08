@@ -714,7 +714,7 @@ if ($user_id == 274 || $dealer_id == 274) {
         }
     }
 }
-// ======== Start - special price for gren colors for user Perfect Shutters =========
+// ======== End - special price for gren colors for user Perfect Shutters =========
 
 
 

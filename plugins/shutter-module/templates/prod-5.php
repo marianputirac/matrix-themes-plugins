@@ -5,6 +5,10 @@ $meta_key = 'wc_multiple_shipping_addresses';
 $edit_customer = ($_GET['order_edit_customer'] == 'editable') ? true : false;
 $order_edit = (!empty($_GET['order_id'])) ? $_GET['order_id'] / 1498765 / 33 : '';
 
+$clone_id = !empty($_GET['clone']) ? base64_decode($_GET['clone']) : '';
+
+$dealer_id = get_user_meta($user_id, 'company_parent', true);
+
 global $wpdb;
 if ($addresses = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = %d AND meta_key = %s", $user_id, $meta_key))) {
     $addresses = maybe_unserialize($addresses);
@@ -64,8 +68,10 @@ if (is_array($carts_sort)) {
                                 } ?>
                                 <br/>
                                 <br/>
-                                <input type="hidden" name="edit_customer" value="<?php echo $edit_customer; ?>">
-                                <input type="hidden" name="order_edit" value="<?php echo $order_edit; ?>">
+                              <input type="hidden" name="customer_id" value="<?php echo $user_id; ?>">
+                              <input type="hidden" name="dealer_id" value="<?php echo $dealer_id; ?>">
+                              <input type="hidden" name="edit_customer" value="<?php echo $edit_customer; ?>">
+                              <input type="hidden" name="order_edit" value="<?php echo $order_edit; ?>">
                             </div>
                         </div>
 
