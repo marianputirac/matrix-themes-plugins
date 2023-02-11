@@ -31,24 +31,29 @@ function theme_enqueue_styles()
 add_action('admin_enqueue_scripts', 'custom_matrix_scripts_admin');
 function custom_matrix_scripts_admin($hook)
 {
-    wp_enqueue_script(
-        'wptuts53021_script', //unique handle
-        get_stylesheet_directory_uri() . '/js/jspdf.min.js'
-    );
-    wp_enqueue_script(
-        'wptuts53087654_script', //unique handle
-        get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
-    );
-    wp_enqueue_script(
-        'custom_scripts_admin', //unique handle
-        get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
-        array(),
-        '1.0',
-        true
-    );
+  wp_enqueue_style( 'bootstrap5-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' );
 
-    wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css');
-    wp_enqueue_script('jquery-ui-datepicker');
+  wp_enqueue_script(
+    'wptuts53021_script', //unique handle
+    get_stylesheet_directory_uri() . '/js/jspdf.min.js'
+  );
+  wp_enqueue_script(
+    'wptuts53087654_script', //unique handle
+    get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
+  );
+  wp_enqueue_script(
+    'custom_scripts_admin', //unique handle
+    get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
+    array(),
+    '1.0',
+    true
+  );
+
+  wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.min.css');
+  wp_enqueue_script('jquery-ui-datepicker');
+
+  wp_enqueue_script('bootstrap5-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js');
+
 }
 
 // Include custom functions to Theme Functions
@@ -56,7 +61,6 @@ include_once(get_stylesheet_directory() . '/includes/admin_menu.php');
 include_once(get_stylesheet_directory() . '/includes/custom-posts-functions.php');
 include_once(get_stylesheet_directory() . '/includes/woocommerce-functions.php');
 include_once(get_stylesheet_directory() . '/includes/login_redirects.php');
-include_once(get_stylesheet_directory() . '/includes/shortcodes.php');
 include_once(get_stylesheet_directory() . '/includes/add-meta-boxes.php');
 include_once(get_stylesheet_directory() . '/includes/user-functions.php');
 
@@ -64,6 +68,16 @@ include_once(get_stylesheet_directory() . '/includes/dashboard_footer.php');
 include_once(get_stylesheet_directory() . '/includes/class_quickbooks.php');
 include_once(get_stylesheet_directory() . '/includes/class-orders.php');
 include_once(get_stylesheet_directory() . '/includes/ajax.php');
+/**
+ * Mail custom settings
+ */
+include_once(get_stylesheet_directory() . '/includes/mail-settings.php');
+/**
+ * Shortcodes
+ */
+include_once(get_stylesheet_directory() . '/includes/shortcodes.php');
+// my orders page shortcodes
+include_once(get_stylesheet_directory() . '/includes/shortcodes-my-orders.php');
 
 
 $customOrder = new OrdersCustom();
