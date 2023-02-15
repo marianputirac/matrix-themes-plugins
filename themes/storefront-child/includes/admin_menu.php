@@ -320,6 +320,14 @@ function styling_admin_order_list()
       background: #cc0099;
       color: #ffffff;
     }
+    button.btn.btn-primary.insert_orders.hide.hidden {
+      display: none !important;
+    }
+    button.send_qcuickbooks_invoice.btn.btn-primary {
+      font-size: 12px !important;
+      width: 90px;
+      padding: 5px 0;
+    }
   </style>
   <?php
 }
