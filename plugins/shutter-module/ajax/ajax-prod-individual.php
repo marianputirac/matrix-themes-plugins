@@ -428,7 +428,7 @@ if ($products['property_nr_sections']) {
         if (strlen($products['property_builtout']) > 0 && !empty($products['property_builtout'])) {
             $frdepth = $framesType[$products['property_frametype']];
             $sum_build_frame = $frdepth + $products['property_builtout'];
-            if ($sum_build_frame < 100) {
+            if ($sum_build_frame <= 100) {
                 if (!empty(get_user_meta($user_id, 'Buildout', true)) || (get_user_meta($user_id, 'Buildout', true) > 0)) {
                     $sum = $sum + (get_user_meta($user_id, 'Buildout', true) * $basic) / 100;
                     echo 'SUM Buildout: ' . $sum . '<br>';
@@ -438,7 +438,7 @@ if ($products['property_nr_sections']) {
                     echo 'SUM Buildout: ' . $sum . '<br>';
                     echo 'BASIC 5: ' . $basic . '<br>';
                 }
-            } elseif ($sum_build_frame >= 100) {
+            } elseif ($sum_build_frame > 100) {
                 update_post_meta($post_id, 'sum_build_frame', true);
                 $sum = $sum + (20 * $basic) / 100;
                 echo 'SUM Buildout: ' . $sum . '<br>';

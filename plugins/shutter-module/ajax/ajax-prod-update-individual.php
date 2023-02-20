@@ -1086,14 +1086,14 @@ if ($products['property_frametype'] == 319) {
 if (strlen($products['property_builtout']) > 0 && !empty($products['property_builtout'])) {
 	$frdepth = $framesType[$products['property_frametype']];
 	$sum_build_frame = $frdepth + $products['property_builtout'];
-	if ($sum_build_frame < 100) {
+	if ($sum_build_frame <= 100) {
 		$val = dolarSum('Buildout-dolar', $user_id);
 		if (!empty($val) || ($val > 0)) {
 			$sum = $sum + ($val * $basic) / 100;
 			echo 'SUM Buildout: ' . $sum . '<br>';
 			echo 'BASIC 2: ' . $basic . '<br>';
 		}
-	} elseif ($sum_build_frame >= 100) {
+	} elseif ($sum_build_frame > 100) {
 		update_post_meta($post_id, 'sum_build_frame', true);
 		$sum = $sum + (20 * $basic) / 100;
 		echo 'SUM Buildout: ' . $sum . '<br>';
