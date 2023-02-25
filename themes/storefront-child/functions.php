@@ -59,6 +59,7 @@ function custom_matrix_scripts_admin($hook)
 // Include custom functions to Theme Functions
 include_once(get_stylesheet_directory() . '/includes/admin_menu.php');
 include_once(get_stylesheet_directory() . '/includes/custom-posts-functions.php');
+include_once(get_stylesheet_directory() . '/includes/filters-dashboard-lists.php');
 include_once(get_stylesheet_directory() . '/includes/woocommerce-functions.php');
 include_once(get_stylesheet_directory() . '/includes/login_redirects.php');
 include_once(get_stylesheet_directory() . '/includes/add-meta-boxes.php');
@@ -130,46 +131,6 @@ function cc_mime_types($mimes)
 
 add_filter('upload_mimes', 'cc_mime_types');
 
-
-// this action brings up a dropdown select box over the posts list in the dashboard
-add_action('restrict_manage_posts', 'my_custom_restrict_manage_posts', 50);
-
-
-function my_custom_restrict_manage_posts($post_type)
-{
-    if (current_user_can('manage_options')) {
-        if ($post_type == 'shop_order') {
-            $selected = '';
-            $request_attr = 'order_components_type';
-            if (isset($_REQUEST[$request_attr])) {
-                $selected = $_REQUEST[$request_attr];
-            }
-            //get unique values of the meta field to filer by.
-            $results = array('FOB', 'UK');
-            //build a custom dropdown list of values to filter by
-            echo '<select id="order_components_type" name="order_components_type">';
-            echo '<option value="all">' . __('Component type', 'my-custom-domain') . ' </option>';
-            foreach ($results as $type) {
-                $select = ($type == $selected) ? ' selected="selected"' : '';
-                echo '<option value="' . $type . '"' . $select . '>' . $type . ' </option>';
-            }
-            echo '</select>';
-        }
-    }
-}
-
-add_filter('parse_query', 'order_components_type_filter_request_query', 10);
-function order_components_type_filter_request_query($query)
-{
-    global $pagenow;
-    // Get the post type
-    $post_type = isset($_GET['post_type']) ? $_GET['post_type'] : '';
-    if (is_admin() && $pagenow == 'edit.php' && $post_type == 'shop_order' && isset($_GET['order_components_type']) && $_GET['order_components_type'] != 'all') {
-        $query->query_vars['meta_key'] = 'order_components_type';
-        $query->query_vars['meta_value'] = $_GET['order_components_type'];
-        $query->query_vars['meta_compare'] = 'LIKE';
-    }
-}
 
 function ticket_template_chooser($template)
 {

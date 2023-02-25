@@ -41,7 +41,7 @@ if (!empty($order_id)) {
     $fob_components = true;
   }
 }
-$var_view_price = get_user_meta($user_id, 'view_price', true);
+$var_view_price = get_user_meta(get_current_user_id(), 'view_price', true);
 $view_price = ($var_view_price == 'yes' || $var_view_price == '') ? true : false;
 $deler_id = get_user_meta($user_id, 'company_parent', true);
 //if (current_user_can('administrator') || get_current_user_id() == $deler_id) $view_price = true;
@@ -267,7 +267,8 @@ echo $table_class; ?>">
         <td><?php
           echo $fob_components ? '$' : '£'; ?>
           <?php
-          echo number_format($price * $item_data['quantity'], 2); ?>
+          echo number_format($price * $item_data['quantity'], 2);
+          ?>
         </td>
         <?php
         if ($edit === 'true') { ?>
@@ -351,8 +352,7 @@ echo $table_class; ?>">
         </td>
         <td><!-- $ 5000 -->
           <?php
-          if ($view_price) {
-            if (current_user_can('administrator')) {
+          if ($view_price || current_user_can('administrator')) {
               $batten_type = get_post_meta($product_id, 'batten_type', true);
               if ($batten_type == 'custom') {
                 if (!empty(get_user_meta($user_id, 'BattenCustom', true)) || (get_user_meta($user_id, 'BattenCustom', true) > 0)) {
@@ -367,7 +367,6 @@ echo $table_class; ?>">
                   echo '£' . get_post_meta(1, 'BattenStandard', true);
                 }
               }
-            }
           }
           ?>
         </td>
@@ -389,9 +388,12 @@ echo $table_class; ?>">
             echo $property_depth; ?></strong>
           <br>
         </td>
-        <td>£
+        <td>
           <?php
-          echo number_format($price, 2) * $item_data['quantity']; ?>
+      if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
+        echo '£ '.number_format($price, 2) * $item_data['quantity'];
+      }
+      ?>
         </td>
         <?php
         //                        if (current_user_can('china_admin')) {
@@ -859,7 +861,7 @@ echo $table_class; ?>">
               //                            print_r($product_id);
               //                            echo ' -- ';
 
-              if (!current_user_can('china_admin') && $view_price) {
+              if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
                 $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
                 $price_for_update = get_post_meta($order_id, 'price_for_update', true);
                 foreach ($materials as $key => $material) {
@@ -913,7 +915,7 @@ echo $table_class; ?>">
             </td>
             <td>
               <?php
-              if (!current_user_can('china_admin') && $view_price) {
+              if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
                 $sum = number_format($sections_price[$sec], 2);
                 echo '£' . number_format($sum, 2);
                 // echo '<br>' . $product->get_price();
@@ -1457,7 +1459,7 @@ echo $table_class; ?>">
           </td>
           <td>
             <?php
-            if (!current_user_can('china_admin') && $view_price) {
+            if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
               $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
               $price_for_update = get_post_meta($order_id, 'price_for_update', true);
               foreach ($materials as $key => $material) {
@@ -1508,7 +1510,7 @@ echo $table_class; ?>">
           <td>
             <?php
 
-            if (!current_user_can('china_admin') && $view_price) {
+            if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
               echo '£' . number_format($price * $item_data['quantity'], 2);
             }
             // echo '<br>' . $product->get_price();
@@ -1634,7 +1636,7 @@ echo $table_class; ?>">
   } else {
     $excl_vat = 'FOB China';
   }
-  if (!current_user_can('china_admin') && $view_price) {
+  if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
     if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) { ?>
       <tr class="table-totals">
         <td colspan="4" style="text-align:right">Products Total (<?php
@@ -1654,7 +1656,7 @@ echo $table_class; ?>">
         } ?>
       </tr>
       <?php
-      if ($term_list[0]->slug != 'components-fob' && (!current_user_can('china_admin') && $view_price)) {
+      if ($term_list[0]->slug != 'components-fob' && (!current_user_can('china_admin') && $view_price || current_user_can('administrator'))) {
         ?>
         <tr class="table-totals">
           <td colspan="4" style="text-align:right">Shipping :</td>

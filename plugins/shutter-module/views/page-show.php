@@ -245,10 +245,10 @@ foreach ($post_meta_props as $key => $prop) {
   (function ($) {
     $(function () {
       jQuery(document).ready(function () {
-        var firstTabEl = document.querySelector('#myTab li:last-child a')
-        var firstTab = new bootstrap.Tab(firstTabEl)
-
-        firstTab.show()
+        // var firstTabEl = document.querySelector('#myTab li:last-child a')
+        // var firstTab = new bootstrap.Tab(firstTabEl)
+        //
+        // firstTab.show()
 
         // Set price for normal atributes
         jQuery("#form-table-attributes").submit(function (event) {
