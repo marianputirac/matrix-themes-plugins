@@ -55,10 +55,14 @@ $post_meta_props = array(
 $propertie_price = array();
 $propertie_price_dolar = array();
 
+
 foreach ($post_meta_props as $key => $prop) {
-  $propertie_price[$key] = get_post_meta(1, $prop[0], true);
-  $propertie_price_dolar[$key] = get_post_meta(1, $prop[0] . '-dolar', true);
+  $name_with_underscore = str_replace(' ', '_', $prop[0]);
+
+  $propertie_price[$key] = get_post_meta(1, $name_with_underscore, true);
+  $propertie_price_dolar[$key] = get_post_meta(1, $name_with_underscore . '-dolar', true);
 }
+
 
 ?>
 
