@@ -343,7 +343,7 @@ jQuery.noConflict();
                 for (var i = 0; i < cusid_ele.length; ++i) {
                     var item = cusid_ele[i];
                     var itemAttr = $(item).attr('data-title');
-                    console.log("=== itemAttr ===", itemAttr);
+                    // console.log("=== itemAttr ===", itemAttr);
                     if (itemAttr.includes("P7") === true && titleFrameType.includes("P4") === true) {
                         $(item).parent().css("display", "block");
                     } else if (itemAttr.includes("P7") === false && titleFrameType.includes("P4") === false) {
@@ -4333,7 +4333,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\"]}",
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"139\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -9462,26 +9462,32 @@ jQuery.noConflict();
 
 
             var lengKeyR = 0;
+            var lengKeyCTBG = 0;
 
             $("#property_layoutcode").on('keypress', function (event) {
 
-                var charCode = event.which;
-                var character = String.fromCharCode(charCode).toUpperCase();
+                var charCode = event.key;
+                var character = charCode.toUpperCase();
+                // console.log('keypress event', event);
 
                 if (!charCode) { // <-- charCode === 0
                     return false; // return false, optionally
                 }
-
                 var text = $(this).val().toUpperCase();
                 let letter = text.charAt(0);
-                console.log('letter ' + letter);
-                if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
-                    console.log('letter r and lengkeyr1');
-                    return false; // return false, optionally
-                }
-                if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
-                    console.log('letter r and lengkeyr1');
-                    return false; // return false, optionally
+                let lastChar = text.charAt(text.length - 1);
+                // console.log('last letter press ' + lastChar, text);
+                // console.log('character press ' + character);
+                if (lastChar != "C" && lastChar != "G" && lastChar != "B" && lastChar != "T") {
+                    console.log('lastChar !== "C"');
+                    if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
+                        console.log('letter r and lengkeyr1');
+                        return false; // return false, optionally
+                    }
+                    if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
+                        console.log('letter r and lengkeyr2 || lengkeyr3');
+                        return false; // return false, optionally
+                    }
                 }
 
                 if (letter == 'R') {
@@ -9514,6 +9520,7 @@ jQuery.noConflict();
                         $('#layoutcode-column .error-text').remove();
                         // console.log('errors: ' + errors);
                         addError("property_layoutcode", 'Please choose Bay Window style for a layout code containing B or C.');
+                        lengKeyCTBG++;
 
                         return false;
                     } else {

@@ -4229,7 +4229,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"139\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -9344,15 +9344,20 @@ jQuery.noConflict();
             // console.log('Character key press: ' + character);
 
             var text = $(this).val().toUpperCase();
-            var letter = text.charAt(0);
-            console.log('letter ' + letter);
-            if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
-                console.log('letter r and lengkeyr1');
-                return false; // return false, optionally
-            }
-            if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character){
-                console.log('letter r and lengkeyr1');
-                return false; // return false, optionally
+            let letter = text.charAt(0);
+            let lastChar = text.charAt(text.length - 1);
+            // console.log('last letter press ' + lastChar, text);
+            // console.log('character press ' + character);
+            if (lastChar != "C" && lastChar != "G" && lastChar != "B" && lastChar != "T") {
+                console.log('lastChar !== "C"');
+                if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
+                    console.log('letter r and lengkeyr1');
+                    return false; // return false, optionally
+                }
+                if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
+                    console.log('letter r and lengkeyr2 || lengkeyr3');
+                    return false; // return false, optionally
+                }
             }
 
             if (letter == 'R') {
