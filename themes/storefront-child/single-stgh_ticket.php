@@ -21,9 +21,9 @@ global $post;
 $author = get_user_by('id', $post->post_author);
 
 if (current_user_can('administrator')) {
-  echo '<pre>';
-  print_r($author);
-  echo '</pre>';
+//  echo '<pre>';
+//  print_r($author);
+//  echo '</pre>';
 }
 
 ?>

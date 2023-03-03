@@ -850,7 +850,7 @@ if (!function_exists('stgh_letter_save')) {
 				$userId = get_current_user_id();
 				// if current user have company parent is employee
 				$deler_id = get_user_meta($userId, 'company_parent', true);
-				
+
 				$ticket_author = Stg_Helpdesk_Ticket::getAuthor($post_id);
 				if ($ticket_author && ($userId == $ticket_author->ID || $deler_id == $ticket_author->ID)) {
 					Stg_Helpdesk_Ticket::setInNotAnswered($post_id);
