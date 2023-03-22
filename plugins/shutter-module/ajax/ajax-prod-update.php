@@ -326,26 +326,28 @@ if ($products['property_style'] == 35 || $products['property_style'] == 39 || $p
     }
 }
 if ($products['property_style'] == 37 || $products['property_style'] == 38 || $products['property_style'] == 40) {
-    if (!empty(get_user_meta($user_id, 'TrackedByPass', true)) || (get_user_meta($user_id, 'TrackedByPass', true) > 0)) {
-        $sum = $sum + (get_user_meta($user_id, 'TrackedByPass', true) * ($width_track / 1000));
-        echo 'SUM Tracked: ' . $sum . '<br>';
-        echo 'BASIC 2: ' . $basic . '<br>';
-    } else {
-        $sum = $sum + (get_post_meta(1, 'TrackedByPass', true) * ($width_track / 1000));
-        echo 'SUM Tracked: ' . $sum . '<br>';
-        echo 'BASIC 4: ' . $basic . '<br>';
-    }
-    if ($products['property_tracksnumber'] == 3) {
-        if (!empty(get_user_meta($user_id, 'Tracked', true)) || (get_user_meta($user_id, 'Tracked', true) > 0)) {
-            $sum = $sum + (get_user_meta($user_id, 'Tracked', true) * ($width_track / 1000));
-            echo 'SUM Tracked: ' . $sum . '<br>';
-            echo 'BASIC 2: ' . $basic . '<br>';
-        } else {
-            $sum = $sum + 71 * ($width_track / 1000);
-            echo 'SUM Tracked: ' . $sum . '<br>';
-            echo 'BASIC 4: ' . $basic . '<br>';
-        }
-    }
+	if (!empty(get_user_meta($user_id, 'TrackedByPass', true)) || (get_user_meta($user_id, 'TrackedByPass', true) > 0)) {
+		$sum = $sum + (get_user_meta($user_id, 'TrackedByPass', true) * ($width_track / 1000));
+		echo 'SUM Tracked: ' . $sum . '<br>';
+		echo 'BASIC 2: ' . $basic . '<br>';
+	} else {
+		$sum = $sum + (get_post_meta(1, 'TrackedByPass', true) * ($width_track / 1000));
+		echo 'SUM Tracked: ' . $sum . '<br>';
+		echo 'BASIC 4: ' . $basic . '<br>';
+	}
+	if ($products['property_tracksnumber'] >= 3) {
+		if (!empty(get_user_meta($user_id, 'Tracked', true)) || (get_user_meta($user_id, 'Tracked', true) > 0)) {
+			$sum = $sum + (get_user_meta($user_id, 'Tracked', true) *
+					($products['property_tracksnumber'] - 2) * ($width_track / 1000));
+			echo 'SUM Tracked: ' . $sum . '<br>';
+			echo 'BASIC 2: ' . $basic . '<br>';
+		} else {
+			$sum = $sum + 71 *
+				($products['property_tracksnumber'] - 2) * ($width_track / 1000);
+			echo 'SUM Tracked: ' . $sum . '<br>';
+			echo 'BASIC 4: ' . $basic . '<br>';
+		}
+	}
 }
 
 if ($products['property_lightblocks'] == 'Yes') {

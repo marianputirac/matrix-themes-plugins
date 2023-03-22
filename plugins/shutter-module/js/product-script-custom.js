@@ -13,7 +13,7 @@ jQuery.noConflict();
             idDealer = jQuery('input[name="dealer_id"]').val();
 
             // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-            if (idCustomer == 274 || idDealer == 274) {
+            if (idCustomer == 274 || idDealer == 274 || idCustomer == 1) {
                 selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
             }
             console.log('idCustomer ', idCustomer);
@@ -114,7 +114,7 @@ jQuery.noConflict();
             function getAllFieldData(property_id) {
                 data = [];
                 var idCustomer = $('input[name="customer_id"]').val();
-                if (idCustomer == 274) {
+                if (idCustomer == 274 || idDealer == 274 || idCustomer == 1) {
                     for (var i = 0; i < property_values.length; i++) {
                         if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
                             data.push(property_values[i]);
@@ -4333,7 +4333,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"139\"]}",
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -10385,15 +10385,24 @@ jQuery.noConflict();
 
 
             function showMidrailPositionCritical() {
+
                 if ($("#property_material").select2('data')) {
                     product_title_check = $("#property_material").select2('data').value;
+                    var property_midrailpositioncritical = $("#property_midrailpositioncritical").val();
                     if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight").val() > 0) {
                         $("#midrail-position-critical").show();
-                        $("#property_midrailpositioncritical").select2("val", '170');
+
+                        console.log('property_midrailpositioncritical', property_midrailpositioncritical);
+                        if (property_midrailpositioncritical === '') {
+                            $("#property_midrailpositioncritical").select2("val", '170');
+                        }
                         $("midrail-position-critical input").removeClass('not-required');
                     } else if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight2").val() > 0) {
                         $("#midrail-position-critical").show();
-                        $("#property_midrailpositioncritical").select2("val", '170');
+                        console.log('property_midrailpositioncritical', property_midrailpositioncritical);
+                        if (property_midrailpositioncritical === '') {
+                            $("#property_midrailpositioncritical").select2("val", '170');
+                        }
                         $("midrail-position-critical input").removeClass('not-required')
                     } else {
                         $("#midrail-position-critical").hide();
@@ -10403,7 +10412,9 @@ jQuery.noConflict();
                     $("#midrail-position-critical").hide();
                     $("#midrail-position-critical input").addClass('not-required');
                 }
-                $("#property_midrailpositioncritical").select2("val", '170');
+                if (property_midrailpositioncritical === '') {
+                    $("#property_midrailpositioncritical").select2("val", '170');
+                }
                 // console.log('showMidrailPositionCritical #property_midrailheight, #property_midrailheight2');
                 if ($('input[name=property_style]:checked').length > 0) {
                     style_check = $('input[name=property_style]:checked').data('title');
@@ -10679,8 +10690,8 @@ jQuery.noConflict();
                     }
                     $('img[src="/wp-content/plugins/shutter-module/imgs/Track_in_Board.png"]').attr("src", "/wp-content/plugins/shutter-module/imgs/Track_in_Boardx2.png");
 
-                    $("#trackedtype, #free-folding, #property_layoutcode").hide();
-                    $("#property_layoutcode_tracked, #trackedtyperecess, #tracksnumber, #lightblocks, #bypasstype").show();
+                    $("#free-folding, #property_layoutcode").hide();
+                    $("#property_layoutcode_tracked, #trackedtyperecess, #trackedtype, #tracksnumber, #lightblocks, #bypasstype").show();
                     $("#property_layoutcode").val("");
 
                     let property_framebottom = $("#property_framebottom").val();

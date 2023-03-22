@@ -187,6 +187,7 @@ if (!empty($_GET['id'])) {
     $material = get_post_meta($first_prod_id, 'property_material', true);
     $property_style = get_post_meta($first_prod_id, 'property_style', true);
     $bladesize_first = get_post_meta($first_prod_id, 'property_bladesize', true);
+    $positioncritical_first = get_post_meta($first_prod_id, 'property_midrailpositioncritical', true);
     // Frame Type, Left, Right, Top, Bottom, Ad buildout, Stile
     if (!in_array($property_style, [35, 38, 39, 40, 41])) {
       $property_frametype = get_post_meta($first_prod_id, 'property_frametype', true);
@@ -810,18 +811,14 @@ if (!empty($_GET['id'])) {
                             <br/>
                             <div class="input-group-container">
                               <div class="input-group">
-                                <?php if (!empty($_GET['id'])) { ?>
-                                  <input class="property-select"
-                                         id="property_midrailpositioncritical"
-                                         name="property_midrailpositioncritical"
-                                         type="text"
-                                         value="<?php echo get_post_meta($product_id, 'property_midrailpositioncritical', true); ?>"/>
-                                <?php } else { ?>
-                                  <input class="property-select"
-                                         id="property_midrailpositioncritical"
-                                         name="property_midrailpositioncritical"
-                                         type="text"
-                                         value="170"/> <?php } ?>
+
+                                <input class="property-select"
+                                       id="property_midrailpositioncritical"
+                                       name="property_midrailpositioncritical"
+                                       type="text"
+                                       value="<?php
+                                       echo get_post_meta($product_id, 'property_midrailpositioncritical', true); ?>" />
+
                               </div>
                             </div>
                           </div>
@@ -2072,6 +2069,11 @@ if (!empty($_GET['id'])) {
                                       <?php if ($property_tracksnumber == '3') echo 'checked'; ?>
                                            value="3"/> 3
                                   </label>
+                                  <label class="radio-inline">
+                                    <input name="property_tracksnumber" type="radio"
+                                      <?php if ($property_tracksnumber == '4') echo 'checked'; ?>
+                                           value="4"/> 4
+                                  </label>
                                 </div>
                               </div>
                             </div>
@@ -2314,10 +2316,16 @@ if (!empty($_GET['id'])) {
                           </div>
                         </div>
 
+                        <?php
+                        /**
+                         * verify if layout contain T to show t-post
+                         */
+                        $containT = str_contains(get_post_meta($product_id, 'property_layoutcode', true), 'T');
 
+                        ?>
                         <div class="row">
                           <div class="col-sm-3 tpost-type"
-                               style="<?php if (get_post_meta($product_id, 'property_tposttype', true)) {
+                               style="<?php if ($containT) {
                                  echo 'display: block';
                                } else {
                                  echo 'display: none';
@@ -2325,14 +2333,14 @@ if (!empty($_GET['id'])) {
                             <br/>
                           </div>
                           <div class="tpost-type" style="<?php
-                          if (!empty($material) && $material == 187 && get_post_meta($product_id, 'property_tposttype', true)) {
+                          if (!empty($material) && $material == 187 && $containT) {
                             echo 'display: block;';
                           } else {
                             echo 'display: none;';
                           }
                           ?>">
                             <div class="col-sm-12 tpost-img type-img-earth" style="<?php
-                            if ($material == 187 && !empty(get_post_meta($product_id, 'property_tposttype', true))) {
+                            if ($material == 187 && !empty($containT)) {
                               $t_earth = true;
                               echo 'display: block;';
                             } else {
@@ -2358,7 +2366,7 @@ if (!empty($_GET['id'])) {
                           </div>
                           <div class="tpost-type" style="<?php
                           $material = get_post_meta($product_id, 'property_material', true);
-                          if (!empty($material) && $material == 188) {
+                          if (!empty($material) && $material == 188 && $containT) {
                             echo 'display: block;';
                           } else {
                             echo 'display: none;';
@@ -2367,7 +2375,7 @@ if (!empty($_GET['id'])) {
                             <div class="col-sm-12 tpost-img type-img-ecowood"
                                  style="<?php
                                  $material = get_post_meta($product_id, 'property_material', true);
-                                 if (!empty($material) && $material == 188 && get_post_meta($product_id, 'property_tposttype', true)) {
+                                 if (!empty($material) && $material == 188 && $containT) {
                                    $t_eco = true;
                                    echo 'display: block;';
                                  } else {
@@ -2414,7 +2422,7 @@ if (!empty($_GET['id'])) {
                           </div>
                           <div class="tpost-type" style="<?php
                           $material = get_post_meta($product_id, 'property_material', true);
-                          if (!empty($material) && $material == 139 && get_post_meta($product_id, 'property_tposttype', true)) {
+                          if (!empty($material) && $material == 139 && $containT) {
                             echo 'display: block;';
                           } else {
                             echo 'display: none;';
@@ -2487,7 +2495,7 @@ if (!empty($_GET['id'])) {
                           </div>
                           <div class="tpost-type" style="<?php
                           $material = get_post_meta($product_id, 'property_material', true);
-                          if (!empty($material) && $material == 138 && get_post_meta($product_id, 'property_tposttype', true)) {
+                          if (!empty($material) && $material == 138 && $containT) {
                             echo 'display: block;';
                           } else {
                             echo 'display: none;';
@@ -2596,7 +2604,7 @@ if (!empty($_GET['id'])) {
                           </div>
                           <div class="tpost-type" style="<?php
                           $material = get_post_meta($product_id, 'property_material', true);
-                          if (!empty($material) && $material == 137) {
+                          if (!empty($material) && $material == 137 && $containT) {
                             echo 'display: block;';
                           } else {
                             echo 'display: none;';
@@ -2604,7 +2612,7 @@ if (!empty($_GET['id'])) {
                           ?>">
                             <div class="col-sm-12 tpost-img type-img-green" style="<?php
                             $material = get_post_meta($product_id, 'property_material', true);
-                            if (!empty($material) && $material == 137 && get_post_meta($product_id, 'property_tposttype', true)) {
+                            if (!empty($material) && $material == 137 && $containT) {
                               $t_grn = true;
                               echo 'display: block;';
                             } else {

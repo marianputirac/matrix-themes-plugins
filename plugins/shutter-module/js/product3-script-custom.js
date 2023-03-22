@@ -4,7 +4,6 @@ jQuery.noConflict();
     $(function () {
 
 
-
         // ========== START - customize some properties by user =========
         var idCustomer = null;
         var idDealer = null;
@@ -116,7 +115,7 @@ jQuery.noConflict();
         function getAllFieldData(property_id) {
             data = [];
             var idCustomer = $('input[name="customer_id"]').val();
-            if (idCustomer == 274) {
+            if (idCustomer == 274 || idDealer == 274) {
                 for (var i = 0; i < property_values.length; i++) {
                     if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
                         data.push(property_values[i]);
@@ -3438,7 +3437,102 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "input"
                 }
-            }, {
+            },
+            {
+                "id": 411,
+                "property_id": 17,
+                "value": "Frosted White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }
+            , {
+                "id": 412,
+                "property_id": 17,
+                "value": "Neutral White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }
+            , {
+                "id": 413,
+                "property_id": 17,
+                "value": "Shell White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+            
+            {
                 "id": 101,
                 "property_id": 17,
                 "value": "LS 601 PURE WHITE",
@@ -7100,98 +7194,6 @@ jQuery.noConflict();
                     "input_type": "input"
                 }
             }, {
-                "id": 411,
-                "property_id": 17,
-                "value": "Frosted White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": selectedPropertyValuesEcowood,
-                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }
-            , {
-                "id": 412,
-                "property_id": 17,
-                "value": "Neutral White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": selectedPropertyValuesEcowood,
-                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }
-            , {
-                "id": 413,
-                "property_id": 17,
-                "value": "Shell White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": selectedPropertyValuesEcowood,
-                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
                 "id": 437,
                 "property_id": 23,
                 "value": "P7032 - Standard T-Post",
@@ -8798,14 +8800,20 @@ jQuery.noConflict();
         function showMidrailPositionCritical() {
             if ($("#property_material").select2('data')) {
                 product_title_check = $("#property_material").select2('data').value;
+                var property_midrailpositioncritical = $("#property_midrailpositioncritical").val();
+
                 if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight").val() > 0) {
                     $("#midrail-position-critical").show();
                     $("midrail-position-critical input").removeClass('not-required');
-                    $("#property_midrailpositioncritical").select2("val", '170');
+                    if (property_midrailpositioncritical === '') {
+                        $("#property_midrailpositioncritical").select2("val", '170');
+                    }
                 } else if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight2").val() > 0) {
                     $("#midrail-position-critical").show();
                     $("midrail-position-critical input").removeClass('not-required');
-                    $("#property_midrailpositioncritical").select2("val", '170');
+                    if (property_midrailpositioncritical === '') {
+                        $("#property_midrailpositioncritical").select2("val", '170');
+                    }
                 } else {
                     $("#midrail-position-critical").hide();
                     $("#midrail-position-critical input").addClass('not-required');

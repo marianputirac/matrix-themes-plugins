@@ -1060,6 +1060,21 @@ jQuery('#add-product-single-form .btn-success').on('click', function (e) {
         }
 
 
+        /**
+         * if layout have t must contain t-post selected
+         */
+        if (layout_code.indexOf("T") > 0) {
+            $property_tposttype = $('input[name="property_tposttype"]').val();
+
+            // property_tposttype
+            if($('input[name=property_tposttype]:checked').length < 1) {
+                errors++;
+                console.log('errors: ' + errors);
+                modalShowError('Please choose T-Post type.');
+            }
+        }
+
+
         /* clearview checks */
         var check_louvresize = $("input#property_bladesize").val();
         if (check_controltype == '96' || check_controltype == '95') {
@@ -2549,6 +2564,20 @@ jQuery('#add-product-single-form .update-btn').on('click', function (e) {
                 errors++;
                 console.log('errors: ' + errors);
                 addError("property_layoutcode", 'Please choose Bay Window style with a layout code containing B or C.');
+            }
+        }
+
+        /**
+         * if layout have t must contain t-post selected
+         */
+        if (layout_code.indexOf("T") > 0) {
+            $property_tposttype = $('input[name="property_tposttype"]').val();
+
+            // property_tposttype
+            if($('input[name=property_tposttype]:checked').length < 1) {
+                errors++;
+                console.log('errors: ' + errors);
+                modalShowError('Please choose T-Post type.');
             }
         }
 
@@ -4054,6 +4083,20 @@ jQuery('#add-product-single-form .update-btn-admin').on('click', function (e) {
                 errors++;
                 console.log('errors: ' + errors);
                 addError("property_layoutcode", 'Please choose Bay Window style with a layout code containing B or C.');
+            }
+        }
+
+        /**
+         * if layout have t must contain t-post selected
+         */
+        if (layout_code.indexOf("T") > 0) {
+            $property_tposttype = $('input[name="property_tposttype"]').val();
+
+            // property_tposttype
+            if($('input[name=property_tposttype]:checked').length < 1) {
+                errors++;
+                console.log('errors: ' + errors);
+                modalShowError('Please choose T-Post type.');
             }
         }
 
