@@ -288,7 +288,7 @@ get_header(); ?>
 
           <table class="table">
             <thead style="background-color: #f2dede;">
-            <!--                        <th></th>-->
+            <th></th>
             <th>Order ID</th>
             <th>SQM</th>
             <th>Date</th>
@@ -301,6 +301,11 @@ get_header(); ?>
             </thead>
             <tbody>
             <?php
+
+            if (get_current_user_id() == 1) {
+              $user_id = 18;
+            }
+
             $user = get_userdata($user_id);
             $var_view_price = get_user_meta($user_id, 'view_price', true);
             $view_price = ($var_view_price == 'yes' || $var_view_price == '') ? true : false;
@@ -333,13 +338,26 @@ get_header(); ?>
             $i = 1;
             // foreach ($users_orders as $user_id) {
 
+            $current_page = max(1, get_query_var('page', 1));
+            $orders_per_page = 250;
+
+            $i = 1;
+            $j = 1;
+            $j = ($current_page - 1) * $orders_per_page + 1;
+
             $args = array(
               'customer_id' => $users_orders,
-              'limit' => -1,
+              'limit' => $orders_per_page,
+              'page' => $current_page,
+              'paginate' => true,
             );
 
-            //print_r($user_id);
-            $orders = wc_get_orders($args);
+            //  $orders = wc_get_orders($args);
+            $customer_orders = wc_get_orders($args);
+            //  print_r($customer_orders->orders);
+            $orders = $customer_orders->orders;
+
+
             $total = array();
             $total2 = array();
             $months_sum = array('01' => 0, '02' => 0, '03' => 0, '04' => 0, '05' => 0, '06' => 0, '07' => 0, '08' => 0, '09' => 0, '10' => 0, '11' => 0, '12' => 0);
@@ -349,7 +367,7 @@ get_header(); ?>
                 $total2[$i][$luna] = $sum;
               }
             }
-            $j = 1;
+
 
             // echo '<pre>';
             // 	print_r($orders);
@@ -370,12 +388,11 @@ get_header(); ?>
               $tablename = $wpdb->prefix . 'custom_orders';
               $myOrder = $wpdb->get_row("SELECT sqm FROM $tablename WHERE idOrder = $order_id", ARRAY_A);
 
-
               ?>
               <tr class=" ">
-                <!--                                <td>-->
-                <!--                                    --><?php //echo $j; ?><!--.-->
-                <!--                                </td>-->
+                <td>
+                  <?php echo $j; ?>.
+                </td>
                 <td>
                   <?php echo 'LF0' . $order->get_order_number() . ' - <i>' . get_post_meta($order->get_id(), 'cart_name', true) . '</i>';
                   ?>
@@ -450,6 +467,36 @@ get_header(); ?>
           </table>
 
           <?php
+        }
+
+        if($orders) {
+          $total_pages = $customer_orders->max_num_pages;
+
+          if ($total_pages > 1) {
+            $pagination_links = paginate_links(array(
+              'base' => get_pagenum_link(1) . '%_%',
+              'format' => 'page/%#%',
+              'current' => $current_page,
+              'total' => $total_pages,
+              'prev_next' => true,
+              'prev_text' => __('&laquo; Previous'),
+              'next_text' => __('Next &raquo;'),
+              'type' => 'array',
+            ));
+
+            if ($pagination_links) {
+              echo '<nav aria-label="Pagination">';
+              echo '<ul class="pagination">';
+
+              foreach ($pagination_links as $link) {
+                $active_class = (strpos($link, 'current') !== false) ? 'active' : '';
+                echo '<li class="page-item ' . $active_class . '">' . str_replace('page-numbers', 'page-link', $link) . '</li>';
+              }
+
+              echo '</ul>';
+              echo '</nav>';
+            }
+          }
         }
 
         if ($orders) {

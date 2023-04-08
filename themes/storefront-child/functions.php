@@ -574,30 +574,7 @@ add_filter('handle_bulk_actions-edit-order_repair', 'repair_bulk_action_handler'
  * @since 1.1.0
  */
 
-function select_containers()
-{
-    global $typenow;
-    global $wp_query;
-    if ($typenow == 'shop_order') { // Your custom post type slug
 
-        $rand_posts = get_posts(array(
-            'post_type' => 'container',
-            'posts_per_page' => 10,
-        ));
-        if ($rand_posts) {
-            echo '   <select name="container">
-				<option value="">Select container</option>';
-            foreach ($rand_posts as $post) :
-                setup_postdata($post);
-                echo '<option value="' . $post->ID . '">' . get_the_title($post->ID) . '</option>';
-            endforeach;
-            echo '</select>';
-            wp_reset_postdata();
-        }
-    }
-}
-
-add_action('restrict_manage_posts', 'select_containers');
 
 /**
  * Update query

@@ -176,3 +176,99 @@ function search_company_name()
   echo json_encode($unique_users_data);
   die;
 }
+
+
+
+function select_containers()
+{
+  global $wpdb, $post_type;
+  if ('shop_order' === $post_type) {
+    $rand_posts = get_posts(array(
+      'post_type' => 'container',
+      'posts_per_page' => 10,
+    ));
+
+    echo '<select name="container" id="containers_ids">
+                <option value="">Select container</option>';
+    foreach ($rand_posts as $post) :
+      setup_postdata($post);
+      echo '<option value="' . $post->ID . '">' . get_the_title($post->ID) . '</option>';
+    endforeach;
+    echo '</select>';
+
+    ?>
+
+    <script>
+      jQuery(document).ready(function ($) {
+        var $customPostSelect = $('#containers_ids');
+
+        $customPostSelect.select2({
+          allowClear: false,
+          placeholder: 'Containers',
+          ajax: {
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+              return {
+                action: 'select_containers_name',
+                search: params.term,
+                page: params.page
+              };
+            },
+            processResults: function (response) {
+              if (response && response.length > 0) {
+                var results = $.map(response, function (item) {
+                  return {
+                    id: item.ID,
+                    text: item.title
+                  };
+                });
+
+                return {
+                  results: results
+                };
+              } else {
+                return {
+                  results: []
+                };
+              }
+            }
+          }
+        });
+      });
+    </script>
+
+    <?php
+    wp_reset_postdata();
+  }
+}
+
+
+add_action('restrict_manage_posts', 'select_containers', 20);
+
+// Handle search requests from the dropdown filter
+add_action('wp_ajax_select_containers_name', 'select_containers_ajax');
+add_action('wp_ajax_nopriv_select_containers_name', 'select_containers_ajax');
+
+function select_containers_ajax()
+{
+  $containers_posts = get_posts(array(
+    'post_type' => 'container',
+    'posts_per_page' => 10,
+  ));
+
+  // Create an empty array to store unique objects
+  $results = array();
+
+  if ($containers_posts) {
+    foreach ($containers_posts as $post) {
+      $results[] = array(
+        'ID' => $post->ID,
+        'title' => $post->post_title,
+      );
+    }
+  }
+
+  wp_send_json($results);
+}

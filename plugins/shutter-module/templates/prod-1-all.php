@@ -752,39 +752,39 @@ if (!empty($_GET['id'])) {
                           <div class="col-sm-2"> Width (mm):
                             <br/>
                             <input class="required number input-medium" id="property_width"
-                                   name="property_width" type="text"
+                                   name="property_width" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_width', true); ?>"/>
                           </div>
                           <div class="col-sm-2"> Height (mm):
                             <br/>
                             <input class="required number input-medium" id="property_height"
-                                   name="property_height" type="text"
+                                   name="property_height" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_height', true); ?>"/>
                           </div>
                           <div class="col-sm-2" id="midrail-height"> Midrail Height (mm):
                             <br/>
                             <input class="number input-medium" id="property_midrailheight"
-                                   name="property_midrailheight" type="text"
+                                   name="property_midrailheight" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_midrailheight', true); ?>"/>
                           </div>
                           <div class="col-sm-2" id="midrail-height2"> Midrail Height 2 (mm):
                             <br/>
                             <input class="number input-medium" id="property_midrailheight2"
-                                   name="property_midrailheight2" type="text"
+                                   name="property_midrailheight2" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_midrailheight2', true); ?>"/>
                           </div>
                           <div class="col-sm-2" id="midrail-divider"> Hidden Divider 1 (mm):
                             <br/>
                             <input class=" number input-medium"
                                    id="property_midraildivider1"
-                                   name="property_midraildivider1" type="text"
+                                   name="property_midraildivider1" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_midraildivider1', true); ?>"/>
                           </div>
                           <div class="col-sm-2" id="midrail-divider2"> Hidden Divider 2 (mm):
                             <br/>
                             <input class=" number input-medium"
                                    id="property_midraildivider2"
-                                   name="property_midraildivider2" type="text"
+                                   name="property_midraildivider2" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_midraildivider2', true); ?>"/>
                           </div>
                           <div id="solidtype" class="col-sm-2" style="display: none"> Solid
@@ -803,7 +803,7 @@ if (!empty($_GET['id'])) {
                             <br/>
                             <input class="number input-medium"
                                    id="property_solidpanelheight"
-                                   name="property_solidpanelheight" type="text"
+                                   name="property_solidpanelheight" type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_solidpanelheight', true); ?>"/>
                           </div>
                           <div class="col-sm-2" id="midrail-position-critical"> Position is
@@ -827,7 +827,7 @@ if (!empty($_GET['id'])) {
                             <br/>
                             <input class="required number input-medium"
                                    id="property_totheight" name="property_totheight"
-                                   type="text"
+                                   type="number"
                                    value="<?php echo get_post_meta($product_id, 'property_totheight', true); ?>"/>
                           </div>
                           <div class="col-sm-2 tot-height horizontal-t-post"

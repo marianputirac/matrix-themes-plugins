@@ -218,22 +218,22 @@ function wpse_load_plugin_css()
 
 
     if (in_array('prod1', $classes)) {
-        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.4.5', true);
+        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.4.6', true);
     }
     if (in_array('prodIndividual', $classes)) {
-        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.3.3', true);
+        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.3.4', true);
     }
 //    if (in_array('prod2', $classes)) {
 //        wp_enqueue_script('product2-script-custom', $plugin_url . 'js/product2-script-custom.js', array(), '1.1.6', true);
 //    }
     if (in_array('prod3', $classes)) {
-        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.3.3', true);
+        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.3.4', true);
     }
 //    if (in_array('prod4', $classes)) {
 //        wp_enqueue_script('product4-script-custom', $plugin_url . 'js/product4-script-custom.js', array(), '1.1.6', true);
 //    }
     if (in_array('prod5', $classes)) {
-        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.3.4', true);
+        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.3.5', true);
     }
 
 }
