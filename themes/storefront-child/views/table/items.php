@@ -267,7 +267,10 @@ echo $table_class; ?>">
         <td><?php
           echo $fob_components ? '$' : '£'; ?>
           <?php
-          echo number_format($price * $item_data['quantity'], 2);
+          $total = $price * $item_data['quantity'];  // Perform multiplication first
+
+          $formatted_total = number_format($total, 2);  // Then format the result
+          echo $formatted_total;
           ?>
         </td>
         <?php
@@ -353,20 +356,20 @@ echo $table_class; ?>">
         <td><!-- $ 5000 -->
           <?php
           if ($view_price || current_user_can('administrator')) {
-              $batten_type = get_post_meta($product_id, 'batten_type', true);
-              if ($batten_type == 'custom') {
-                if (!empty(get_user_meta($user_id, 'BattenCustom', true)) || (get_user_meta($user_id, 'BattenCustom', true) > 0)) {
-                  echo '£' . get_user_meta($user_id, 'BattenCustom', true);
-                } else {
-                  echo '£' . get_post_meta(1, 'BattenCustom', true);
-                }
-              } elseif ($batten_type == 'standard') {
-                if (!empty(get_user_meta($user_id, 'BattenStandard', true)) || (get_user_meta($user_id, 'BattenStandard', true) > 0)) {
-                  echo '£' . get_user_meta($user_id, 'BattenStandard', true);
-                } else {
-                  echo '£' . get_post_meta(1, 'BattenStandard', true);
-                }
+            $batten_type = get_post_meta($product_id, 'batten_type', true);
+            if ($batten_type == 'custom') {
+              if (!empty(get_user_meta($user_id, 'BattenCustom', true)) || (get_user_meta($user_id, 'BattenCustom', true) > 0)) {
+                echo '£' . get_user_meta($user_id, 'BattenCustom', true);
+              } else {
+                echo '£' . get_post_meta(1, 'BattenCustom', true);
               }
+            } elseif ($batten_type == 'standard') {
+              if (!empty(get_user_meta($user_id, 'BattenStandard', true)) || (get_user_meta($user_id, 'BattenStandard', true) > 0)) {
+                echo '£' . get_user_meta($user_id, 'BattenStandard', true);
+              } else {
+                echo '£' . get_post_meta(1, 'BattenStandard', true);
+              }
+            }
           }
           ?>
         </td>
@@ -388,12 +391,15 @@ echo $table_class; ?>">
             echo $property_depth; ?></strong>
           <br>
         </td>
-        <td>
+        <td class="price-batten">
           <?php
-      if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-        echo '£ '.number_format($price, 2) * $item_data['quantity'];
-      }
-      ?>
+          if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
+            $total = $price * $item_data['quantity'];  // Perform multiplication first
+
+            $formatted_total = number_format($total, 2);  // Then format the result
+            echo '£ ' . $formatted_total;
+          }
+          ?>
         </td>
         <?php
         //                        if (current_user_can('china_admin')) {
@@ -1008,7 +1014,7 @@ echo $table_class; ?>">
                     Edit</a><?php
                 } elseif (($pieces[1] == 'individual')) {
                   ?>
-                <a class="btn btn-primary transparent"
+                <a class="btn btn-primary transparent" target="_blank"
                    href="/prod-individual/?id=<?php
                    echo $product_id * 1498765 * 33;
                    echo $edit_placed_order; ?>">Edit</a><?php
@@ -1511,7 +1517,10 @@ echo $table_class; ?>">
             <?php
 
             if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-              echo '£' . number_format($price * $item_data['quantity'], 2);
+              $total = $price * $item_data['quantity'];  // Perform multiplication first
+
+              $formatted_total = number_format($total, 2);  // Then format the result
+              echo '£' . $formatted_total;
             }
             // echo '<br>' . $product->get_price();
             ?>

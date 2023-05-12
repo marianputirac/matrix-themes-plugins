@@ -5423,84 +5423,29 @@ jQuery.noConflict();
             });
 
             function calculateTotal() {
+                // Parse the height, width, and depth from the form inputs to floating point numbers.
+                var height = parseFloat($('#property_height').val());
+                var width = parseFloat($('#property_width').val());
+                var depth = parseFloat($('#property_depth').val());
 
-                // custom Marian batten
-                console.log('asdasd');
-                //     var type = $('input[name="batten_type"]:checked').val();
-                //     console.log('type:' + type);
-
-                var height = $('#property_height').val();
-                var width = $('#property_width').val();
-                var depth = $('#property_depth').val();
-
+                // Get the selected material ID from the form.
                 var material_id = jQuery("#property_material").val();
 
-                if (material_id == 188 || material_id == 137) {
-                    // if material - 139
-                    //biowood-138, supreme-139, earth-187, ecowood-188, green-137
-                    if (height < 3) {
-                        height = 3;
-                    }
-                    if (width < 3) {
-                        width = 3;
-                    }
-                    if (depth < 3) {
-                        depth = 3;
-                    }
-                } else {
-                    if (height < 5) {
-                        height = 5;
-                    }
-                    if (width < 5) {
-                        width = 5;
-                    }
-                    if (depth < 5) {
-                        depth = 5;
-                    }
-                }
+                // Determine the minimum value based on the material.
+                var minValue = (material_id == 188 || material_id == 137) ? 3 : 5;
 
+                // Set height, width, and depth to minValue if they're less than minValue.
+                height = (height < minValue) ? minValue : height;
+                width = (width < minValue) ? minValue : width;
+                depth = (depth < minValue) ? minValue : depth;
 
-                console.log(width);
-                console.log(height);
-                console.log(depth);
-
-                if (parseFloat(height) > parseFloat(width) && parseFloat(height) > parseFloat(depth)) {
-                    console.log('height');
-
-                    var total = (parseFloat(height) / parseFloat(1000)) * (parseFloat(width) / parseFloat(1000)) * (parseFloat(depth) / parseFloat(1000));
-
-                } else if (parseFloat(width) > parseFloat(height) && parseFloat(width) > parseFloat(depth)) {
-                    console.log('width');
-
-                    var total = (parseFloat(height) / parseFloat(1000)) * (parseFloat(width) / parseFloat(1000)) * (parseFloat(depth) / parseFloat(1000));
-
-                } else if (parseFloat(depth) > parseFloat(height) && parseFloat(depth) > parseFloat(width)) {
-
-                    var total = (parseFloat(height) / parseFloat(1000)) * (parseFloat(width) / parseFloat(1000)) * (parseFloat(depth) / parseFloat(1000));
-
-                }
-
-                // var total = (parseFloat(height) / parseFloat(1000)) * (parseFloat(width) / parseFloat(1000)) * (parseFloat(depth) / parseFloat(1000));
-
-                // total = total.toFixed(7);
+                // Calculate the total. Since all values are in millimeters, they're divided by 1000 to convert them to meters.
+                var total = (height / 1000) * (width / 1000) * (depth / 1000);
 
                 console.log('total: ' + total);
 
-                $('input#property_total').val(parseFloat(total).toFixed(7));
-                //  }
-
-
-                //
-                //     total = $("#property_width").val() * $("#property_height").val();
-                //     if (isNaN(total) || (1 * $("#property_depth").val()) == 'NaN') {
-                //         total = 0;
-                //     } else {
-                //         total = (parseFloat($("#property_width").val()) / parseFloat(1000)) * (parseFloat($("#property_height").val()) / parseFloat(1000)) * (parseFloat($("#property_depth").val()) / parseFloat(1000))
-                //         total = total.toFixed(7);
-                //     }
-                //     if (isNaN(total)) total = 0;
-                //     $("#property_total").val(parseFloat(total));
-
+                // Update the total in the form, rounded to 7 decimal places.
+                $('input#property_total').val(total.toFixed(7));
             }
 
             //get the data for a field, based on another field's value

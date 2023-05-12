@@ -2063,7 +2063,7 @@ jQuery('#add-product-single-form .update-btn').on('click', function (e) {
         }
 
         //check if property frametype is selected & if the selected value is visible
-        if ($('input[name="property_trackedtype"]:checked').length == 0 && $('input[name="property_style"]:checked').val() == 35) {
+        if ($('input[name="property_trackedtype"]:checked').length == 0 && $('input[name="21"]:checked').val() == 35) {
             errors_no_warranty++;
             errors++;
             // console.log('errors_no_warranty 3');

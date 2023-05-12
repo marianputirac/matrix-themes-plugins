@@ -3531,7 +3531,7 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             },
-            
+
             {
                 "id": 101,
                 "property_id": 17,
@@ -6901,18 +6901,18 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
-                "id": 401,
+                "id": 402,
                 "property_id": 16,
-                "value": "Hidden Rod",
-                "created_at": "2017-07-21T02:51:01.000+01:00",
-                "updated_at": "2017-11-27T12:04:38.000+00:00",
+                "value": "Offset Rod",
+                "created_at": "2015-09-26T01:29:43.000+01:00",
+                "updated_at": "2017-11-27T12:04:18.000+00:00",
                 "code": "",
-                "uplift": "15.0",
+                "uplift": "0.0",
                 "color": "",
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\",\"187\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6930,18 +6930,18 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
-                "id": 402,
+                "id": 401,
                 "property_id": 16,
-                "value": "Offset Tilt Rod",
-                "created_at": "2015-09-26T01:29:43.000+01:00",
-                "updated_at": "2017-11-27T12:04:18.000+00:00",
+                "value": "Hidden tilt",
+                "created_at": "2017-07-21T02:51:01.000+01:00",
+                "updated_at": "2017-11-27T12:04:38.000+00:00",
                 "code": "",
-                "uplift": "0.0",
+                "uplift": "15.0",
                 "color": "",
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\",\"187\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,

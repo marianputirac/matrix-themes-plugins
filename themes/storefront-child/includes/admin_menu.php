@@ -19,6 +19,7 @@ function my_custom_order_colors()
         td.order_status.column-order_status mark {display: none;}
         li#toplevel_page_wc-admin-path--analytics-overview {display: none;}
         a.button.wc-action-button.default-action-icon-selector {display: none !important;}
+        .table-responsive {overflow-x: unset;}
       </style>';
   } else {
     echo '<style>
@@ -31,7 +32,8 @@ function my_custom_order_colors()
        .status-inrevision  {background-color: #8B4513; color: yellow;}
        .status-revised  {background-color: #8B4513; color: yellow;}
        #titlediv div.inside {display: none;}
-        td.order_status.column-order_status mark {display: none;}
+       td.order_status.column-order_status mark {display: none;}
+       .table-responsive {overflow-x: unset;}
       </style>';
   }
 

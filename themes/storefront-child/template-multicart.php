@@ -292,9 +292,9 @@ get_header(); ?>
             <th>Order ID</th>
             <th>SQM</th>
             <th>Date</th>
-            <th>Deliveries Start</th>
+            <th><strong>Deliveries Status</strong></th>
             <th>Total</th>
-            <th>Status</th>
+            <th>Order Status</th>
             <th>Added by</th>
             <th>Last Update</th>
             <th></th>
@@ -305,6 +305,9 @@ get_header(); ?>
             if (get_current_user_id() == 1) {
               $user_id = 18;
             }
+
+            $favorite = get_user_meta($user_id, 'favorite_user', true);
+
 
             $user = get_userdata($user_id);
             $var_view_price = get_user_meta($user_id, 'view_price', true);
@@ -408,7 +411,26 @@ get_header(); ?>
                   ?>
                 </td>
                 <td>
-                  <?php echo get_post_meta($order->get_id(), 'delivereis_start', true); ?>
+                  <?php
+                  $delivereis_start = get_post_meta($order->get_id(), 'delivereis_start', true);
+
+                  if($delivereis_start != "") {
+                    echo $delivereis_start;
+                  } else {
+                    if ($favorite === "yes") {
+                      echo 'In Production';
+                    } else {
+                      if ($order_status == 'inproduction') {
+                        echo 'In Production';
+                      }
+                      else if ($order_status == 'processing') {
+                        echo 'In Production';
+                      } else {
+                        echo 'On Hold';
+                      }
+                    }
+                  }
+                  ?>
                 </td>
                 <td>
                   <?php

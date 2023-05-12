@@ -237,7 +237,8 @@ add_filter('woocommerce_cheque_process_payment_order_status', 'matrix_change_ord
 function matrix_change_order_to_agent_processing($status)
 {
     if (get_current_user_id() == 18 || get_current_user_id() == 211 ||
-        get_current_user_id() == 1 || get_current_user_id() == 192) {
+        get_current_user_id() == 1 || get_current_user_id() == 192 ||
+      get_current_user_id() == 183 || get_current_user_id() == 184) {
         return 'wc-inproduction';
     } else {
         return 'wc-pending';

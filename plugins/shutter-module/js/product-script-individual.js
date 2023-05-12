@@ -8295,38 +8295,9 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
-                "id": 401,
-                "property_id": 16,
-                "value": "Hidden Rod",
-                "created_at": "2017-07-21T02:51:01.000+01:00",
-                "updated_at": "2017-11-27T12:04:38.000+00:00",
-                "code": "",
-                "uplift": "15.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
                 "id": 402,
                 "property_id": 16,
-                "value": "Offset Tilt Rod",
+                "value": "Offset Rod",
                 "created_at": "2015-09-26T01:29:43.000+01:00",
                 "updated_at": "2017-11-27T12:04:18.000+00:00",
                 "code": "",
@@ -8353,9 +8324,38 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
+                "id": 401,
+                "property_id": 16,
+                "value": "Hidden tilt",
+                "created_at": "2017-07-21T02:51:01.000+01:00",
+                "updated_at": "2017-11-27T12:04:38.000+00:00",
+                "code": "",
+                "uplift": "15.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
                 "id": 403,
                 "property_id": 16,
-                "value": "Concealed rod",
+                "value": "Concealed tilt",
                 "created_at": "2015-09-26T01:28:40.000+01:00",
                 "updated_at": "2015-09-26T01:28:40.000+01:00",
                 "code": "",
@@ -8857,12 +8857,14 @@ jQuery.noConflict();
         $("#property_material").change(function () {
             $('#step4-info .alert-info').hide();
             if ($("#property_material").select2('data')) {
-                product_title_check = $("#property_material").select2('data').value;
+                let product_title_check = $("#property_material").select2('data').value;
                 if (product_title_check.indexOf('Green') > -1) {
                     //teo - only stainless steeel hinges for Green
-                    $("#property_hingecolour").select2("val", '93');
+                    if ($('input[name="product_id_updated"]').val() === "") {
+                        $("#property_hingecolour").select2("val", '93');
+                    }
 
-                    property_id = getPropertyIdByCode('property_hingecolour');
+                    let property_id = getPropertyIdByCode('property_hingecolour');
                     for (i = 0; i < property_values.length; i++) {
                         if (property_values[i].property_id === property_id) {
                             //set default value only if there is not
@@ -10232,7 +10234,7 @@ jQuery.noConflict();
                 console.log('total sqm All ' + i + ' : ' + sqm_section);
             }
             console.log('total sqm All: ' + total_sqm);
-            $("#property_total").val(parseFloat(total).toFixed(2));
+            // $("#property_total").val(parseFloat(total).toFixed(2));
 
             //midrailheight required for >1800 height and NOT Tier styles
             style_check = getStyleTitle();
