@@ -8448,7 +8448,7 @@ jQuery.noConflict();
                 }, {
                     "id": 403,
                     "property_id": 16,
-                    "value": "Concealed tilt",
+                    "value": "Concealed tilt(+10%)",
                     "created_at": "2015-09-26T01:28:40.000+01:00",
                     "updated_at": "2015-09-26T01:28:40.000+01:00",
                     "code": "",

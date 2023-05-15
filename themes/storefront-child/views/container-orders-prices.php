@@ -417,9 +417,14 @@ if ($container_orders) {
                   $frames[] = 'Buildout';
                 }
                 if (($property_controltype == 403)) {
-                  $dolar_sum = dolarSum('Concealed_Rod-dolar', $user_id);
+                  if (!empty(get_user_meta($user_id, 'Concealed_Rod-dolar', true)) || (get_user_meta($user_id, 'Concealed_Rod-dolar', true) > 0)) {
+                    $result = get_user_meta($user_id, 'Concealed_Rod-dolar', true);
+                    $sum = $sum + ($result * $basic) / 100;
+                  } else {
+                    $result = get_post_meta(1, 'Concealed_Rod-dolar', true);
+                    $sum = $sum + $result * $property_total;
+                  }
 
-                  $sum = $sum + ($dolar_sum * $basic) / 100;
                   $frames[] = 'Concealed_Rod';
                 }
                 if (($property_hingecolour == 93)) {
@@ -691,9 +696,15 @@ if ($container_orders) {
 //                        $frames[] = 'Buildout';
 //                    }
               if (($property_controltype == 403)) {
-                $dolar_sum = dolarSum('Concealed_Rod-dolar', $user_id);
 
-                $sum = $sum + ($dolar_sum * $basic) / 100;
+                if (!empty(get_user_meta($user_id, 'Concealed_Rod-dolar', true)) || (get_user_meta($user_id, 'Concealed_Rod-dolar', true) > 0)) {
+                  $result = get_user_meta($user_id, 'Concealed_Rod-dolar', true);
+                  $sum = $sum + ($result * $basic) / 100;
+                } else {
+                  $result = get_post_meta(1, 'Concealed_Rod-dolar', true);
+                  $sum = $sum + $result * $property_total;
+                }
+
                 // echo 'SUM 6: '.$sum.'<br>';
                 // echo 'BASIC 6: '.$basic.'<br>';
                 $frames[] = 'Concealed_Rod';
@@ -1355,7 +1366,13 @@ if ($container_orders) {
         }
 
         if (($property_controltype == 403)) {
-          $sum = $sum + (get_post_meta(1, 'Concealed_Rod-dolar', true) * $basic) / 100;
+          if (!empty(get_user_meta($user_id, 'Concealed_Rod-dolar', true)) || (get_user_meta($user_id, 'Concealed_Rod-dolar', true) > 0)) {
+            $result = get_user_meta($user_id, 'Concealed_Rod-dolar', true);
+            $sum = $sum + ($result * $basic) / 100;
+          } else {
+            $result = get_post_meta(1, 'Concealed_Rod-dolar', true);
+            $sum = $sum + $result * $property_total;
+          }
           // echo 'SUM 6: '.$sum.'<br>';
           // echo 'BASIC 6: '.$basic.'<br>';
           $frames[] = 'Concealed_Rod';
