@@ -176,20 +176,33 @@ function custom_orders_list_column_content_shutter($column, $post_id)
 
 		case 'eta_col':
 			$delivereis_start = get_post_meta($post_id, 'delivereis_start', true);
+			// get status of ticket
+			$ticket_id_for_order = get_post_meta($post_id, 'ticket_id_for_order', true);
 
-			if($delivereis_start != "") {
+			$statusArray = stgh_get_statuses();
+			$postStatus = get_post_status($ticket_id_for_order);
+			$colors_ticket = array('stgh_notanswered' => '#ff000', 'stgh_answered' => '#ff0000', 'stgh_new' => '#ff0000');
+
+			if ($delivereis_start != "") {
 				echo $delivereis_start;
 			} else {
-				if ($favorite === "yes") {
-					echo 'In Production';
+				if ($ticket_id_for_order) {
+
+					echo '<span style="color: ' . $colors_ticket[$postStatus] . '">';
+					echo 'Query ';
+					echo (isset($statusArray[$postStatus])) ? $statusArray[$postStatus] : $postStatus;
+					echo '</span>';
 				} else {
-					if ($order_status == 'inproduction') {
-						echo 'In Production';
-					}
-					else if ($order_status == 'processing') {
+					if ($favorite === "yes") {
 						echo 'In Production';
 					} else {
-						echo 'On Hold';
+						if ($order_status == 'inproduction') {
+							echo 'In Production';
+						} else if ($order_status == 'processing') {
+							echo 'In Production';
+						} else {
+							echo 'On Hold';
+						}
 					}
 				}
 			}
@@ -417,28 +430,28 @@ function custom_order_repair_column($column, $post_id)
 	}
 
 	if ($column == 'status-order') { ?>
-		<p class="statusOrder"
-			 style="<?php
+    <p class="statusOrder"
+       style="<?php
 			 foreach ($culori_status as $stat => $cul) {
 				 if ($stat == $order_status) {
 					 echo 'background-color:' . $cul . ';';
 				 }
 			 }
 			 ?> color: #fff; text-align:center;">
-			Ordered
-			-
+      Ordered
+      -
 			<?php
 			if ($order_status == 'pending') {
 				echo 'pending payment';
 			} //teo>
-			elseif ($order_status == 'waiting') {
+      elseif ($order_status == 'waiting') {
 				echo 'waiting delivery';
 			} //teo<
 			else {
 				echo $order_status;
 			}
 			?>
-		</p>
+    </p>
 		<?php
 	}
 

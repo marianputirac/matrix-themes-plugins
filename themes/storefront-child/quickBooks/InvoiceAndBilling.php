@@ -418,6 +418,14 @@ if ($QB_invoice == true) {
     $customer_id = (int)$order->user_id;
     $user_info = get_userdata($customer_id);
     $user_email = $user_info->user_email;
+
+    $dealer_id = get_user_meta($customer_id, 'company_parent', true);
+    // perfect shutter
+    if ($customer_id == 274 || $dealer_id == 274) {
+        $user_info = get_userdata(274);
+        $user_email = $user_info->user_email;
+    }
+
     $json['BillEmail'] = array("Address" => $user_email);
     $json['BillEmailBcc'] = array("Address" => "accounts@lifetimeshutters.com");
 
