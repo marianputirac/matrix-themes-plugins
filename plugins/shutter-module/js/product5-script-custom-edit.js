@@ -5335,31 +5335,9 @@ jQuery.noConflict();
                 console.log("Loaded values for element with id: " + id + " and property_id: " + property_id);
             });
 
-            jQuery('#add-batten').click(function () {
-                setTimeout(function () {
-                    var sections = $('input[name="sections"]').val();
-                    // Loop over each set of inputs
-                    // for (var index = 1; index <= sections; index++) {
-                    $(".property-select").each(function () {
-                        // var id = $(this).attr('name').replace(/_\d+$/, '');
-                        var id = $(this).attr('id');
-                        console.log('select id: ' + id);
 
-                        var property_id = getPropertyIdByCode(id);
-                        values = getAllFieldData(property_id);
-                        loadItems(id, values);
-                        console.log("Loaded values for element with id: " + id + " and property_id: " + property_id);
-                    });
-                    // }
-                }, 300);
-            });
-
-
-            $(document).on('change', '.property-select', function () {
-                var sections = $('input[name="sections"]').val();
-                // Loop over each set of inputs
-                // for (var index = 1; index <= sections; index++) {
-                var id = $(this).attr('name').replace(/_\d+$/, '');
+            $('.property-select').on('change', function () {
+                id = $(this).attr('id');
                 field_id = getPropertyIdByCode(id);
                 related_fields = getRelatedFields(field_id);
 
@@ -5369,11 +5347,11 @@ jQuery.noConflict();
                     //// console.log("Loading to " + property_code + " data: " + field_data);
 
 
-                    if ($('input[name^="property_' + property_code + '"]').data('select2')) {
+                    if ($("#" + "property_" + property_code).data('select2')) {
                         loadItems("property_" + property_code, field_data);
                     } else {
                         var field_check = "property_" + property_code;
-                        $('input[name^=' + field_check + ']').each(function () {
+                        $('input[name=' + field_check + ']').each(function () {
                             var found = false;
                             for (var i = 0; i < field_data.length; i++) {
                                 if ($(this).val() == field_data[i].id)
@@ -5387,40 +5365,43 @@ jQuery.noConflict();
                             }
                         });
                     }
-                }
 
+                }
+                //// console.log("Length: " + $("#choose-frametype label").filter(":visible").length);
+                if ($("#choose-frametype label").filter(":visible").length == 0) {
+                    $("#required-choices-frametype").show();
+                } else {
+                    //($("#choose-frametype label").filter(":visible").length);
+                    $("#required-choices-frametype").hide();
+                }
 
                 //after filtering if style is checked (selected) we need to apply some filters again
-                if ($(this).attr('name') == 'property_material_1' && $('input[name="property_style_1"]:checked').length > 0) {
-                    $('input[name^="property_style_"]:checked').trigger('click', false);
+                if ($(this).attr('id') == 'property_material' && $('input[name=property_style]:checked').length > 0) {
+                    $('input[name=property_style]:checked').trigger('click', false);
                 }
 
-                if ($('input[name="property_material_1"]').select2('data')) {
-                    product_title_check = $('input[name="property_material_1"]').select2('data').value;
+                if ($("#property_material").select2('data')) {
+                    product_title_check = $("#property_material").select2('data').value;
                 }
 
                 if ($("#canvas_container1").filter(":visible").length > 0) {
                     updateShutter();
                 }
-                // }
             });
 
 
             $(".property-select").css('width', '100%');
 
-            jQuery(document).on('change', 'input[name^="property_width_"], input[name^="property_height_"], input[name^="property_depth_"]', function () {
-                // Your code here
-                console.log('change with ^ works');
+            $('#property_width, #property_height, #property_depth').change(function () {
                 calculateTotal();
             });
-
 
             $('input[name="batten_type"]').change(function () {
                 console.log('change type');
                 calculateTotal();
             });
 
-            $("#property_shuttercolour_1").change(function () {
+            $("#property_shuttercolour").change(function () {
                 if ($(this).val() == '145') {
                     $("#colour-other").fadeIn();
                     $("#colour-other input").addClass('required');
@@ -5442,37 +5423,30 @@ jQuery.noConflict();
             });
 
             function calculateTotal() {
-                var sections = $('input[name="sections"]').val();
-                console.log('calculate total sectinos: ', sections);
-                // Loop over each set of inputs
-                for (var index = 1; index <= sections; index++) {
-                    console.log('loop index: ', index);
-                    // Parse the height, width, and depth from the form inputs to floating point numbers.
-                    var height = parseFloat($('input[name="property_height_' + index + '"]').val());
-                    var width = parseFloat($('input[name="property_width_' + index + '"]').val());
-                    var depth = parseFloat($('input[name="property_depth_' + index + '"]').val());
+                // Parse the height, width, and depth from the form inputs to floating point numbers.
+                var height = parseFloat($('#property_height').val());
+                var width = parseFloat($('#property_width').val());
+                var depth = parseFloat($('#property_depth').val());
 
-                    // Get the selected material ID from the form.
-                    var material_id = jQuery('input[name="property_material_1"]').val();
+                // Get the selected material ID from the form.
+                var material_id = jQuery("#property_material").val();
 
-                    // Determine the minimum value based on the material.
-                    var minValue = (material_id == 188 || material_id == 137) ? 3 : 5;
+                // Determine the minimum value based on the material.
+                var minValue = (material_id == 188 || material_id == 137) ? 3 : 5;
 
-                    // Set height, width, and depth to minValue if they're less than minValue.
-                    height = (height < minValue) ? minValue : height;
-                    width = (width < minValue) ? minValue : width;
-                    depth = (depth < minValue) ? minValue : depth;
+                // Set height, width, and depth to minValue if they're less than minValue.
+                height = (height < minValue) ? minValue : height;
+                width = (width < minValue) ? minValue : width;
+                depth = (depth < minValue) ? minValue : depth;
 
-                    // Calculate the total. Since all values are in millimeters, they're divided by 1000 to convert them to meters.
-                    var total = (height / 1000) * (width / 1000) * (depth / 1000);
+                // Calculate the total. Since all values are in millimeters, they're divided by 1000 to convert them to meters.
+                var total = (height / 1000) * (width / 1000) * (depth / 1000);
 
-                    console.log('total: ' + total);
+                console.log('total: ' + total);
 
-                    // Update the total in the form, rounded to 7 decimal places.
-                    $('input[name="property_total_' + index + '"]').val(total.toFixed(7));
-                }
+                // Update the total in the form, rounded to 7 decimal places.
+                $('input#property_total').val(total.toFixed(7));
             }
-
 
             //get the data for a field, based on another field's value
             function getRelatedFieldData(property_id, changed_property_id, value) {
@@ -5497,30 +5471,21 @@ jQuery.noConflict();
                 return data;
             }
 
-            // Function to get related fields that depend on a specific field
+            //get which fields depend on the specific field
             function getRelatedFields(field_id) {
-                // Initialize an array to hold the dependent fields
                 var fields = [];
 
-                // Loop through the global property_values array
-                for (var i = 0; i < property_values.length; i++) {
-                    // If all_property_values for the current item is 0
+                for (i = 0; i < property_values.length; i++) {
                     if (property_values[i].all_property_values == 0) {
-                        // Parse the selected_property_values from JSON to an object
-                        var selected_property_values = JSON.parse(property_values[i].selected_property_values);
-
-                        // Loop through property_value_ids in the selected_property_values
-                        for (var j = 0; j < selected_property_values.property_value_ids.length; j++) {
-                            // If the current property_field matches the field_id parameter
+                        selected_property_values = JSON.parse(property_values[i].selected_property_values);
+                        for (j = 0; j < selected_property_values.property_value_ids.length; j++) {
                             if (field_id == selected_property_values.property_field) {
-                                // Push the property_id into the fields array
                                 fields.push(property_values[i].property_id);
                             }
                         }
                     }
                 }
 
-                // Remove duplicate items from the fields array and return the result
                 return uniqueItems(fields);
             }
 

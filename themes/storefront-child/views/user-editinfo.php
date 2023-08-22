@@ -5,6 +5,7 @@ $suspended = get_user_meta($user->id, 'suspended_user', true);
 $view_price = get_user_meta($user->id, 'view_price', true);
 $favorite = get_user_meta($user->id, 'favorite_user', true);
 $vat_number = get_user_meta($user->id, 'vat_number_custom', true);
+$email_contabil = get_user_meta($user->id, 'email_contabil', true);
 $discount_custom = get_user_meta($user->id, 'discount_custom', true);
 $train_price = get_user_meta($user->id, 'train_price', true);
 $group_added = get_user_meta($user->id, 'group_added', true);
@@ -213,6 +214,14 @@ $propertie_price_placeholder = array(3 => get_post_meta(1, 'BattenStandard', tru
     </th>
     <td>
       <input name="vat_number_custom" type="text" id="vat_number" value="<?php echo $vat_number; ?>">
+    </td>
+  </tr>
+  <tr>
+    <th>
+      <label for="email_contabil">Email Contabil</label>
+    </th>
+    <td>
+      <input name="email_contabil" type="text" id="email_contabil" value="<?php echo $email_contabil; ?>">
     </td>
   </tr>
   <tr>

@@ -274,7 +274,7 @@ if ($products['property_layoutcode']) {
 // $basic = $sqm_value*100;
 // echo '<br>BASIC 1: '.$basic.'<br>';
 // style
-if (($products['property_style'] == 221) || ($products['property_style'] == 227) || ($products['property_style'] == 226) || ($products['property_style'] == 222) || ($products['property_style'] == 228) || ($products['property_style'] == 230) || ($products['property_style'] == 231) || ($products['property_style'] == 232) || ($products['property_style'] == 38) || ($products['property_style'] == 39)) {
+if (($products['property_style'] == 221) || ($products['property_style'] == 227) || ($products['property_style'] == 226) || ($products['property_style'] == 222) || ($products['property_style'] == 228) || ($products['property_style'] == 230) || ($products['property_style'] == 231) || ($products['property_style'] == 232) || ($products['property_style'] == 38) || ($products['property_style'] == 39) || $products['property_style'] == 42 || $products['property_style'] == 43) {
 	if (!empty(get_user_meta($products['customer_id'], 'Solid', true)) || (get_user_meta($products['customer_id'], 'Solid', true) > 0)) {
 		$sum = $sum + (get_user_meta($products['customer_id'], 'Solid', true) * $basic) / 100;
 		echo 'SUM Solid: ' . $sum . '<br>';
@@ -285,7 +285,7 @@ if (($products['property_style'] == 221) || ($products['property_style'] == 227)
 		echo '<br>BASIC 2: ' . $basic . '<br>';
 	}
 }
-if ($products['property_style'] == 33) {
+if ($products['property_style'] == 33 || $products['property_style'] == 43) {
 	if (!empty(get_user_meta($products['customer_id'], 'Shaped', true)) || (get_user_meta($products['customer_id'], 'Shaped', true) > 0)) {
 		$sum = $sum + (get_user_meta($products['customer_id'], 'Shaped', true) * $basic) / 100;
 		echo 'SUM Shaped: ' . $sum . '<br>';
@@ -361,7 +361,7 @@ if ($products['property_lightblocks'] == 'Yes') {
 	}
 }
 
-if ($products['property_style'] == 36) {
+if ($products['property_style'] == 36 || $products['property_style'] == 42) {
 	if ($products['property_material'] == 138) {
 		//   $arched_price_user = get_user_meta($products['customer_id'], 'Arched', true) + 30;
 		$arched_price_user = get_user_meta($products['customer_id'], 'Arched', true);
@@ -1061,13 +1061,13 @@ if ($products['property_material'] == 139) {
 	}
 }
 
-if (($products['property_style'] == 221) || ($products['property_style'] == 227) || ($products['property_style'] == 226) || ($products['property_style'] == 222) || ($products['property_style'] == 228) || ($products['property_style'] == 230) || ($products['property_style'] == 231) || ($products['property_style'] == 232) || ($products['property_style'] == 38) || ($products['property_style'] == 39)) {
+if (($products['property_style'] == 221) || ($products['property_style'] == 227) || ($products['property_style'] == 226) || ($products['property_style'] == 222) || ($products['property_style'] == 228) || ($products['property_style'] == 230) || ($products['property_style'] == 231) || ($products['property_style'] == 232) || ($products['property_style'] == 38) || ($products['property_style'] == 39) || $products['property_style'] == 42 || $products['property_style'] == 43) {
 	$val = dolarSum('Solid-dolar', $user_id);
 	$sum = $sum + ($val * $basic) / 100;
 	echo 'SUM 2: ' . $sum . '<br>';
 	echo 'BASIC 2: ' . $basic . '<br>';
 }
-if ($products['property_style'] == 33) {
+if ($products['property_style'] == 33 || $products['property_style'] == 43) {
 	$val = dolarSum('Shaped-dolar', $user_id);
 	$sum = $sum + ($val * $basic) / 100;
 	echo 'SUM 3: ' . $sum . '<br>';
@@ -1091,7 +1091,7 @@ if ($products['property_style'] == 37) {
 	echo 'SUM 4 dolar: ' . $sum . '<br>';
 	echo 'BASIC 4: ' . $basic . '<br>';
 }
-if ($products['property_style'] == 36) {
+if ($products['property_style'] == 36 || $products['property_style'] == 42) {
 	$val = dolarSum('Arched-dolar', $user_id);
 	$sum = $sum + ($val * $basic) / 100;
 	echo 'SUM Arched 3: ' . $sum . '<br>';

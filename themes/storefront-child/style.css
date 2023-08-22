@@ -743,7 +743,7 @@ div#stile-img-biowood img {
 }
 
 .tpost-type label {
-    display: block;
+    display: block !important;
     float: left;
     width: 15%;
     max-width: 110px;

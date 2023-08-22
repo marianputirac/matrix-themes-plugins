@@ -698,7 +698,13 @@ echo $table_class; ?>">
 								<?php
 								echo $atributes[$property_controltype]; ?><?php
 								if ($atributes[$property_controltype] == 'Clearview' || $property_controltype == 403) {
-									echo ' (+10%)';
+									$user_control = get_user_meta($user_id, 'Concealed_Rod', true);
+									$module_control = get_post_meta(1, 'Concealed_Rod', true);
+									if ($user_control) {
+										echo ' (+' . $user_control . '%)';
+									} else {
+										echo ' (+' . $module_control . '%)';
+									}
 								}
 								?>
               </strong>

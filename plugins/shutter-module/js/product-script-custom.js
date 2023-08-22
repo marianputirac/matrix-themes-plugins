@@ -357,10 +357,7 @@ jQuery.noConflict();
                 }
             }
 
-
             $(".property-select").css('width', '100%');
-
-            //$("#property_style").css('width', '18em');
 
             function format(item) {
                 var row = item.value;
@@ -717,29 +714,6 @@ jQuery.noConflict();
                 "product_type": "Shutter",
                 "vat_class_id": 1
             }, {
-                "id": 42,
-                "name": "Paulownia Fullheight",
-                "description": "",
-                "part_number": "paulownia-fullheight",
-                "is_active": true,
-                "status_id": null,
-                "category_id": 1,
-                "promote_category": false,
-                "promote_front": false,
-                "price1": null,
-                "price2": null,
-                "price3": null,
-                "created_at": "2015-10-20T00:30:32.000+01:00",
-                "updated_at": "2015-11-15T12:31:35.000+00:00",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "old_id": null,
-                "minimum_quantity": "1.0",
-                "product_type": "Shutter",
-                "vat_class_id": 1
-            }, {
                 "id": 90,
                 "name": "Paulownia Individual Shutter",
                 "description": "",
@@ -925,27 +899,33 @@ jQuery.noConflict();
                 "vat_class_id": 1
             }, {
                 "id": 43,
-                "name": "Paulownia Tier-on-Tier",
-                "description": "",
-                "part_number": "paulownia-tot",
+                "property_id": 7,
+                "value": "Solid Special Shaped",
+                "created_at": "2016-01-06T09:03:52.000+00:00",
+                "updated_at": "2017-11-27T13:50:52.000+00:00",
+                "code": "shaped",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "graphic": "image",
+                "image_file_name": "Special-Shape.png",
+                "image_content_type": "image/png",
+                "image_file_size": 55123,
+                "image_updated_at": "2015-10-04T21:10:12.000+01:00",
                 "is_active": true,
-                "status_id": null,
-                "category_id": 1,
-                "promote_category": false,
-                "promote_front": false,
-                "price1": null,
-                "price2": null,
-                "price3": null,
-                "created_at": "2015-10-20T00:31:30.000+01:00",
-                "updated_at": "2015-10-26T11:44:27.000+00:00",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "old_id": null,
-                "minimum_quantity": "0.0",
-                "product_type": "Shutter",
-                "vat_class_id": 1
+                "property": {
+                    "id": 7,
+                    "name": "Style",
+                    "created_at": "2015-09-07T19:18:34.000+01:00",
+                    "updated_at": "2015-09-07T19:18:34.000+01:00",
+                    "code": "style",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
             }, {
                 "id": 46,
                 "name": "Paulownia Tracked",
@@ -1576,7 +1556,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"7\",\"property_value_ids\":[\"32\",\"218\",\"146\",\"30\",\"225\",\"29\",\"33\",\"34\",\"221\",\"229\",\"227\",\"226\",\"222\",\"228\",\"230\",\"231\",\"232\",\"233\",\"31\",\"35\",\"36\",\"37\"]}",
+                    "selected_property_values": "{\"property_field\":\"7\",\"property_value_ids\":[\"32\",\"218\",\"146\",\"30\",\"225\",\"29\",\"33\",\"34\",\"42\",\"43\",\"221\",\"229\",\"227\",\"226\",\"222\",\"228\",\"230\",\"231\",\"232\",\"233\",\"31\",\"35\",\"36\",\"37\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1606,7 +1586,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"7\",\"property_value_ids\":[\"32\",\"218\",\"146\",\"30\",\"225\",\"29\",\"33\",\"34\",\"221\",\"229\",\"227\",\"226\",\"222\",\"228\",\"230\",\"231\",\"232\",\"233\",\"31\",\"35\",\"37\"]}",
+                    "selected_property_values": "{\"property_field\":\"7\",\"property_value_ids\":[\"32\",\"218\",\"146\",\"30\",\"225\",\"29\",\"33\",\"34\",\"42\",\"43\",\"221\",\"229\",\"227\",\"226\",\"222\",\"228\",\"230\",\"231\",\"232\",\"233\",\"31\",\"35\",\"37\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -3268,36 +3248,36 @@ jQuery.noConflict();
                         "input_type": "select"
                     }
                 },
-                //               {
-                //                "id": 172,
-                //                "property_id": 20,
-                //                "value": "-",
-                //                "created_at": "2016-06-16T13:59:23.000+01:00",
-                //                "updated_at": "2016-06-16T13:59:23.000+01:00",
-                //                "code": "-",
-                //                "uplift": "0.0",
-                //                "color": "",
-                //                "all_products": true,
-                //                "selected_products": "{\"product_ids\":null}",
-                //                "all_property_values": false,
-                //                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}",
-                //                "graphic": "none",
-                //                "image_file_name": null,
-                //                "image_content_type": null,
-                //                "image_file_size": null,
-                //                "image_updated_at": null,
-                //                "is_active": true,
-                //                "property": {
-                //                    "id": 20,
-                //                   "name": "Midrail Position Critical",
-                //                    "created_at": "2016-06-12T20:34:21.000+01:00",
-                //                    "updated_at": "2016-06-12T20:34:21.000+01:00",
-                //                    "code": "midrailpositioncritical",
-                //                    "sort": null,
-                //                    "help_text": "",
-                //                    "input_type": "input"
-                //                }
-                //            },
+                {
+                    "id": 172,
+                    "property_id": 15,
+                    "value": "Sea Mist",
+                    "created_at": "2016-02-25T09:16:36.000+00:00",
+                    "updated_at": "2016-04-01T23:26:38.000+01:00",
+                    "code": "",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"187\",\"188\",\"137\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 15,
+                        "name": "Hinge Color",
+                        "created_at": "2015-09-07T23:00:03.000+01:00",
+                        "updated_at": "2015-09-07T23:01:58.000+01:00",
+                        "code": "hingecolour",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                },
                 {
                     "id": 170,
                     "property_id": 20,
@@ -5887,7 +5867,38 @@ jQuery.noConflict();
                         "help_text": "",
                         "input_type": "select"
                     }
-                }, {
+                },
+                {
+                    "id": 42,
+                    "property_id": 7,
+                    "value": "Solid Arched Shaped",
+                    "created_at": "2016-01-06T09:03:52.000+00:00",
+                    "updated_at": "2017-11-27T13:50:52.000+00:00",
+                    "code": "shaped",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"137\"]}",
+                    "graphic": "image",
+                    "image_file_name": "Special-Shape.png",
+                    "image_content_type": "image/png",
+                    "image_file_size": 55123,
+                    "image_updated_at": "2015-10-04T21:10:12.000+01:00",
+                    "is_active": true,
+                    "property": {
+                        "id": 7,
+                        "name": "Style",
+                        "created_at": "2015-09-07T19:18:34.000+01:00",
+                        "updated_at": "2015-09-07T19:18:34.000+01:00",
+                        "code": "style",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                },
+                {
                     "id": 33,
                     "property_id": 7,
                     "value": "Special Shaped",
@@ -5916,7 +5927,38 @@ jQuery.noConflict();
                         "help_text": "",
                         "input_type": "select"
                     }
-                }, {
+                },
+                {
+                    "id": 43,
+                    "property_id": 7,
+                    "value": "Solid Special Shaped",
+                    "created_at": "2016-01-06T09:03:52.000+00:00",
+                    "updated_at": "2017-11-27T13:50:52.000+00:00",
+                    "code": "shaped",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                    "graphic": "image",
+                    "image_file_name": "Special-Shape.png",
+                    "image_content_type": "image/png",
+                    "image_file_size": 55123,
+                    "image_updated_at": "2015-10-04T21:10:12.000+01:00",
+                    "is_active": true,
+                    "property": {
+                        "id": 7,
+                        "name": "Style",
+                        "created_at": "2015-09-07T19:18:34.000+01:00",
+                        "updated_at": "2015-09-07T19:18:34.000+01:00",
+                        "code": "style",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                },
+                {
                     "id": 34,
                     "property_id": 7,
                     "value": "French Door Cut",
@@ -8680,6 +8722,93 @@ jQuery.noConflict();
                         "help_text": "",
                         "input_type": "select"
                     }
+                }, {
+                    "id": 445,
+                    "property_id": 19,
+                    "value": "41mm T1002M(beaded butt)",
+                    "created_at": "2016-01-06T07:05:36.000+00:00",
+                    "updated_at": "2016-02-19T10:48:43.000+00:00",
+                    "code": "RFS 50.8",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 19,
+                        "name": "Stile",
+                        "created_at": "2016-01-06T07:03:20.000+00:00",
+                        "updated_at": "2016-01-06T07:15:59.000+00:00",
+                        "code": "stile",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                }, {
+                    "id": 446,
+                    "property_id": 19,
+                    "value": "41mm T1004M(beaded rebate)",
+                    "created_at": "2016-01-06T07:05:36.000+00:00",
+                    "updated_at": "2016-02-19T10:48:43.000+00:00",
+                    "code": "RFS 50.8",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 19,
+                        "name": "Stile",
+                        "created_at": "2016-01-06T07:03:20.000+00:00",
+                        "updated_at": "2016-01-06T07:15:59.000+00:00",
+                        "code": "stile",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
+                }, {
+                    "id": 447,
+                    "property_id": 19,
+                    "value": "41mm T1006M(beaded D-mould)",
+                    "created_at": "2016-01-06T07:05:36.000+00:00",
+                    "updated_at": "2016-02-19T10:48:43.000+00:00",
+                    "code": "RFS 50.8",
+                    "uplift": "0.0",
+                    "color": "",
+                    "all_products": true,
+                    "selected_products": "{\"product_ids\":null}",
+                    "all_property_values": false,
+                    "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                    "graphic": "none",
+                    "image_file_name": null,
+                    "image_content_type": null,
+                    "image_file_size": null,
+                    "image_updated_at": null,
+                    "is_active": true,
+                    "property": {
+                        "id": 19,
+                        "name": "Stile",
+                        "created_at": "2016-01-06T07:03:20.000+00:00",
+                        "updated_at": "2016-01-06T07:15:59.000+00:00",
+                        "code": "stile",
+                        "sort": null,
+                        "help_text": "",
+                        "input_type": "select"
+                    }
                 }
 
             ];
@@ -8885,6 +9014,8 @@ jQuery.noConflict();
             });
 
             $("#property_width, #property_height").change(function () {
+                // if height is more then 2000 then hide stile where data-title contain string '41mm'
+                hideStileByHeight(2000);
                 calculateTotal();
             });
 
@@ -9128,6 +9259,12 @@ jQuery.noConflict();
                             $('#shape-section-draw .images .french').show();
                         }
 
+                        if (style_check.indexOf('Solid') > -1) {
+                            $('#solidtype input[value="raised"]').click();
+                            $('#solidtype input[value="raised"]').attr("checked", "checked");
+                            $('#solidtype #property_solidtype_flat').css("display", "none");
+                        }
+
                         // console.log('123');
                         $("#shape-section").fadeIn();
                         $("#shape-section").addClass("required");
@@ -9238,8 +9375,22 @@ jQuery.noConflict();
                     }
 
                     setProductByMaterialAndStyle();
+
+                    hideStileByHeight(2000);
+
                 }
             });
+
+            function hideStileByHeight(minHeght) {
+                // if height is more then 2000 then hide stile where data-title contain string '41mm'
+                if ($("#property_height").val() > minHeght) {
+                    $('input[name="property_stile"]').each(function () {
+                        if ($(this).data('title').indexOf('41mm') > -1) {
+                            $(this).parent().hide();
+                        }
+                    });
+                }
+            }
 
 
             $("#property_material").click(function () {
@@ -9837,6 +9988,8 @@ jQuery.noConflict();
 
             //create new columns based on the layout code types
             function updateLayoutFields(text) {
+                $('.tpost-type').hide();
+
                 var text = $("#property_layoutcode").val();
                 var property_material = $("#property_material").val();
 
@@ -9896,7 +10049,78 @@ jQuery.noConflict();
                             addFieldCheckboxBuildoutSelect(label2, id2, 'help text demo', 't');
                             addFieldCheckboxBuildout(label, id2, 1);
                             tchar_nr++;
-                            // console.log('tchar_nr after : ' + bchar_nr);
+                            console.log('tchar_nr after : ' + tchar_nr);
+
+
+                            jQuery('.tpost-img label').hide();
+
+                            // Earth 187
+                            if (material_id == 187) {
+                                // console.log('show earth img');
+                                jQuery('#stile-img-earth').show();
+                                jQuery('.tpost-img').hide();
+                                jQuery('#stile-img-supreme').hide();
+                                jQuery('#stile-img-biowood').hide();
+                                jQuery('#stile-img-green').hide();
+                                //tpost-type
+                                jQuery('.type-img-earth').show();
+                                jQuery('.type-img-earth').parent().show();
+
+                            }
+                            // Supreme 139
+                            else if (material_id == 139) {
+                                // console.log('show Supreme img');
+                                jQuery('.tpost-img').hide();
+                                jQuery('#stile-img-supreme').show();
+                                jQuery('#stile-img-earth').hide();
+                                jQuery('#stile-img-ecowood').hide();
+                                jQuery('#stile-img-biowood').hide();
+                                jQuery('#stile-img-green').hide();
+                                //tpost-type
+                                jQuery('.type-img-supreme').show();
+                                jQuery('.type-img-supreme').parent().show();
+                            }
+                            // Biowood 138
+                            else if (material_id == 138) {
+                                // console.log('show Biowood img');
+                                jQuery('.tpost-img').hide();
+                                jQuery('#stile-img-biowood').show();
+                                jQuery('#stile-img-supreme').hide();
+                                jQuery('#stile-img-earth').hide();
+                                jQuery('#stile-img-ecowood').hide();
+                                jQuery('#stile-img-green').hide();
+                                //tpost-type
+                                jQuery('.type-img-biowood').show();
+                                jQuery('.type-img-biowood').parent().show();
+                            }
+                            // Green 137
+                            else if (material_id == 137) {
+                                // console.log('show Green img');
+                                jQuery('.tpost-img').hide();
+                                jQuery('#stile-img-green').show();
+                                jQuery('#stile-img-supreme').hide();
+                                jQuery('#stile-img-biowood').hide();
+                                jQuery('#stile-img-earth').hide();
+                                jQuery('#stile-img-ecowood').hide();
+                                //tpost-type
+                                jQuery('.type-img-green').show();
+                                jQuery('.type-img-green').parent().show();
+                            }
+                            // ecowood 188
+                            else if (material_id == 188) {
+                                console.log('show ecowood img');
+                                jQuery('.tpost-img').hide();
+                                jQuery('#stile-img-ecowood').show();
+                                jQuery('#stile-img-supreme').hide();
+                                jQuery('#stile-img-biowood').hide();
+                                jQuery('#stile-img-earth').hide();
+                                jQuery('#stile-img-green').hide();
+                                //tpost-type
+                                jQuery('.type-img-ecowood').show();
+                                jQuery('.type-img-ecowood').parent().show();
+
+                            }
+
                             $('.tpost-type').show();
                             $('.tpost-type label').show();
                         } else {
@@ -10494,6 +10718,12 @@ jQuery.noConflict();
                         $("#midrail-height input").val('');
                     }
                     $("#solidtype").show();
+                    if (style_check.indexOf('Shaped') > -1) {
+                        $('#solidtype #property_solidtype_flat').css("display", "none");
+                    } else {
+                        $('#solidtype input[value="raised"]').removeAttr("checked");
+                        $('#solidtype #property_solidtype_flat').removeAttr("style");
+                    }
                     // $("#midrail-height2").hide();
                     // $("#midrail-height2 input").val('');
                     $("#property_bladesize").closest('div').hide();

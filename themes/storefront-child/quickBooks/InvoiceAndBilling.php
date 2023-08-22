@@ -188,14 +188,14 @@ if ($QB_invoice == true) {
         }
 
         // sandbox 4620816365021649600
-        // MultiPanel Display 3098 - Twin Sample Bags 1020 - Spare Parts Box 1026  - Painted Color Swatches 1030 - Stained Color Samples 1032
+        // MultiPanel Display 3098 - Twin Sample Bags 1020 - Spare Parts Box 1026  - Painted Color Swatches 1030 - Stained Color Samples 1032 - Mike's Magic Sticks 104450
         // OLD $qb_pos = array('3098' => 73, '1020' => 57, '1026' => 74, '1030' => 76, '1032' => 75);
         //ID: 74874 - Biowood Large Sample Panel
         //ID: 17065 - Ecowood Large Sample Panel
         //ID: 74880 - Earth Large Aluminium Sample Panel
         //ID: 74886 - Earth Large Aluminium Sample Panel
 
-        $qb_pos = array('3098' => 73, '1020' => 57, '17069' => 72, '1026' => 74, '17051' => 81, '1032' => 75, '1030' => 76, '17057' => 79, '17061' => 77, '17059' => 78, '17065 ' => 82, '17063 ' => 83, '17067' => 80, '17277' => 58);
+        $qb_pos = array('104450' => 90, '3098' => 73, '1020' => 57, '17069' => 72, '1026' => 74, '17051' => 81, '1032' => 75, '1030' => 76, '17057' => 79, '17061' => 77, '17059' => 78, '17065 ' => 82, '17063 ' => 83, '17067' => 80, '17277' => 58);
 
         // If order have POS items - QB id - 42
         if (array_key_exists($product_id, $qb_pos)) {
@@ -227,7 +227,7 @@ if ($QB_invoice == true) {
     $array_materials = array('24' => 'Green', '8' => 'Biowood', '13' => 'Supreme', '71' => 'Earth', '67' => 'Ecowood');
     //        green 137 - biowood 138 - supreme 139 - earth 187 - ecowood 188
     //$qb_materials = array('137' => 35, '138' => 31, '139' => 36, '187' => 33, '188' => 34, '3098' => 37, '1020' => 38, '1026' => 39, '1032' => 40, '1030' => 41, '337'=>42);
-    $qb_materials = array('137' => 24, '138' => 8, '139' => 13, '187' => 71, '188' => 67, '3098' => 73, '1020' => 57, '1026' => 74, '1030' => 76, '1032' => 75, '337' => 60);
+    $qb_materials = array('137' => 24, '138' => 8, '139' => 13, '187' => 71, '188' => 67, '3098' => 73, '1020' => 57, '1026' => 74, '1030' => 76, '1032' => 75, '337' => 60, '104450' => 90);
     foreach ($materials_array as $material_items) {
         $amount = 0;
         $amount_cat_black = 0;

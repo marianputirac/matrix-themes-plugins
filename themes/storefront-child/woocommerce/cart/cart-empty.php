@@ -120,7 +120,7 @@ if (strpos($mystring, $findmePos) !== false) { ?>
             <a href="/prod1-all/" class="btn btn-primary blue"> + Add New Shutter</a>
             <a href="/prod-individual/" class="btn btn-primary blue"> + Add Individual Bay Shutter</a>
             <a href="/prod2-all/" class="btn btn-primary blue"> + Add New Shutter & Blackout Blind</a>
-            <a href="/prod5/" class="btn btn-primary blue"> + Add Batten</a>
+            <a href="/prod5/" class="btn btn-danger blue"> + Add Batten</a>
 
             <br><br>
 

@@ -218,22 +218,26 @@ function wpse_load_plugin_css()
 
 
     if (in_array('prod1', $classes)) {
-        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.4.6', true);
+        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.5.0', true);
     }
     if (in_array('prodIndividual', $classes)) {
-        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.3.4', true);
+        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.4.0', true);
     }
 //    if (in_array('prod2', $classes)) {
 //        wp_enqueue_script('product2-script-custom', $plugin_url . 'js/product2-script-custom.js', array(), '1.1.6', true);
 //    }
     if (in_array('prod3', $classes)) {
-        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.3.4', true);
+        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.4.0', true);
     }
 //    if (in_array('prod4', $classes)) {
 //        wp_enqueue_script('product4-script-custom', $plugin_url . 'js/product4-script-custom.js', array(), '1.1.6', true);
 //    }
-    if (in_array('prod5', $classes)) {
-        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.3.5', true);
+    if (in_array('prod5', $classes)  && !is_page( 534 )) {
+        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.4.0', true);
+    }
+
+		if (in_array('prod5', $classes) && is_page( 534 )) {
+        wp_enqueue_script('product5-script-custom-edit', $plugin_url . 'js/product5-script-custom-edit.js', array(), '1.4.0', true);
     }
 
 }
@@ -290,6 +294,10 @@ add_filter('body_class', 'custom_class_prod');
 
 
 
+add_action('wp_ajax_create_product_and_add', 'create_product_and_add_to_cart');
+add_action('wp_ajax_nopriv_create_product_and_add', 'create_product_and_add_to_cart');
+function create_product_and_add_to_cart() {
 
+	include_once dirname(__FILE__) . '/ajax/multiple-batten-add.php';
 
-
+}

@@ -520,18 +520,23 @@ function wpa83368_price_html($price, $product)
 
     // return $product->price;
     if ($product_cat == 'components') {
-        $product_types = array('variable');
 //        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
 //            return '';
 //        }
         return '£<span>' . $product->get_price() . ' <small>per BOX +VAT</small></span>';
     } elseif ($product_cat == 'components-fob') {
-        $product_types = array('variable');
 //        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
 //            return '';
 //        }
         return '$<span>' . $product->get_price() . ' <small>per BOX</small></span>';
-    } else {
+    }
+    elseif ($product_cat == 'pos') {
+//        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
+//            return '';
+//        }
+			return '$<span>' . $product->get_price() . ' <small>+VAT</small></span>';
+		}
+    else {
         return '£<span>' . $product->get_price() . '' . $product->get_price_suffix() . '</span>';
     }
 }

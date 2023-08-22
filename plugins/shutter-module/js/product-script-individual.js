@@ -3262,36 +3262,36 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             },
-            //               {
-            //                "id": 172,
-            //                "property_id": 20,
-            //                "value": "-",
-            //                "created_at": "2016-06-16T13:59:23.000+01:00",
-            //                "updated_at": "2016-06-16T13:59:23.000+01:00",
-            //                "code": "-",
-            //                "uplift": "0.0",
-            //                "color": "",
-            //                "all_products": true,
-            //                "selected_products": "{\"product_ids\":null}",
-            //                "all_property_values": false,
-            //                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}",
-            //                "graphic": "none",
-            //                "image_file_name": null,
-            //                "image_content_type": null,
-            //                "image_file_size": null,
-            //                "image_updated_at": null,
-            //                "is_active": true,
-            //                "property": {
-            //                    "id": 20,
-            //                   "name": "Midrail Position Critical",
-            //                    "created_at": "2016-06-12T20:34:21.000+01:00",
-            //                    "updated_at": "2016-06-12T20:34:21.000+01:00",
-            //                    "code": "midrailpositioncritical",
-            //                    "sort": null,
-            //                    "help_text": "",
-            //                    "input_type": "input"
-            //                }
-            //            },
+            {
+                "id": 172,
+                "property_id": 15,
+                "value": "Sea Mist",
+                "created_at": "2016-02-25T09:16:36.000+00:00",
+                "updated_at": "2016-04-01T23:26:38.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"187\",\"188\",\"137\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 15,
+                    "name": "Hinge Color",
+                    "created_at": "2015-09-07T23:00:03.000+01:00",
+                    "updated_at": "2015-09-07T23:01:58.000+01:00",
+                    "code": "hingecolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
             {
                 "id": 170,
                 "property_id": 20,
@@ -9116,80 +9116,24 @@ jQuery.noConflict();
                     $("#property_frametop").select2("val", '80');
                 }
 
-                // if (style_check.indexOf('Tracked') > -1) {
-                //     $('input[name="property_stile"][type="radio"]').parent().hide();
-                //     // $('input[name="property_stile"][value="374"]').parent().show();
-                //     // $('input[name="property_stile"][value="375"]').parent().show();
-                //     $('input[name="property_stile"][value="376"]').parent().show();
-                //     $('input[name="property_stile"][value="370"]').parent().show();
-                //     $('input[name="property_stile"][value="372"]').parent().show();
-                //     $('input[name="property_stile"][value="360"]').parent().show();
-                //     $('input[name="property_stile"][value="359"]').parent().show();
-                //     $('input[name="property_stile"][value="366"]').parent().show();
-                //     $('input[name="property_stile"][value="365"]').parent().show();
-                //     $('input[name="property_stile"][value="385"]').parent().show();
-                //     $('input[name="property_stile"][value="384"]').parent().show();
-                //     $('input[name="property_stile"][value="350"]').parent().show();
-                // }
 
-                // if (style_check.indexOf('Tracked By-Fold') > -1) {
-                //     $('input[name="property_stile"][type="radio"]').parent().hide();
-                //     // $('input[name="property_stile"][value="374"]').parent().show();
-                //     // $('input[name="property_stile"][value="375"]').parent().show();
-                //
-                //     $('input[name="property_stile"][value="378"]').parent().show();
-                //     $('input[name="property_stile"][value="375"]').parent().show();
-                //     $('input[name="property_stile"][value="374"]').parent().show();
-                //
-                //     // $('input[name="property_stile"][value="376"]').parent().show();
-                //     // $('input[name="property_stile"][value="370"]').parent().show();
-                //     // $('input[name="property_stile"][value="372"]').parent().show();
-                //     // $('input[name="property_stile"][value="360"]').parent().show();
-                //     // $('input[name="property_stile"][value="359"]').parent().show();
-                //     // $('input[name="property_stile"][value="366"]').parent().show();
-                //     // $('input[name="property_stile"][value="365"]').parent().show();
-                //     // $('input[name="property_stile"][value="385"]').parent().show();
-                //     // $('input[name="property_stile"][value="384"]').parent().show();
-                //     // $('input[name="property_stile"][value="350"]').parent().show();
-                // }
-                // if (style_check.indexOf('Tracked By-Pass') > -1) {
-                //     $('input[name="property_stile"][type="radio"]').parent().hide();
-                //     $('input[name="property_stile"][value="376"]').parent().show();
-                //     $('input[name="property_stile"][value="370"]').parent().show();
-                //     $('input[name="property_stile"][value="372"]').parent().show();
-                //     $('input[name="property_stile"][value="360"]').parent().show();
-                //     $('input[name="property_stile"][value="359"]').parent().show();
-                //     $('input[name="property_stile"][value="366"]').parent().show();
-                //     $('input[name="property_stile"][value="365"]').parent().show();
-                //     $('input[name="property_stile"][value="385"]').parent().show();
-                //     $('input[name="property_stile"][value="384"]').parent().show();
-                //     $('input[name="property_stile"][value="350"]').parent().show();
-                // }
-
-                //default values for tracked style
-                // if ($("#order_product_id").val() == '') {
-                //     //default values for tracked style
-                //     if (style_check.indexOf('Tracked') > -1) {
-                //         //$("#property_frametype").select2("val", '68');
-                //         //$("#property_frametype").trigger('change'); //needed so that filtering will work correctly
-
-                //         $("#property_frameleft").select2("val", '73');
-                //         $("#property_frameright").select2("val", '78');
-                //         $("#property_frametop").select2("val", '135');
-                //         $("#property_framebottom").select2("val", '136');
-
-
-                //     }
-                //     else{
-                //         $("#property_frameleft").select2("val", '70');
-                //         $("#property_frameright").select2("val", '75');
-                //         $("#property_frametop").select2("val", '80');
-                //         $("#property_framebottom").select2("val", '85');
-                //     }
-                // }
                 setProductByMaterialAndStyle();
+
+                hideStileByHeight(2000);
+
             }
         });
+
+        function hideStileByHeight(minHeght) {
+            // if height is more then 2000 then hide stile where data-title contain string '41mm'
+            if ($("#property_height").val() > minHeght) {
+                $('input[name="property_stile"]').each(function () {
+                    if ($(this).data('title').indexOf('41mm') > -1) {
+                        $(this).parent().hide();
+                    }
+                });
+            }
+        }
 
 
         $("#property_material").click(function () {
@@ -9448,6 +9392,8 @@ jQuery.noConflict();
             console.log('change width');
             calculateTotalSection();
             calculateTotal();
+
+            hideStileByHeight(2000);
         });
 
         $("#property_nr_sections").on('keypress', function (ev) {
@@ -9502,6 +9448,9 @@ jQuery.noConflict();
                 console.log('change width');
                 calculateTotalSection();
                 calculateTotal();
+
+                hideStileByHeight(2000);
+
             });
 
             $(".layoutcode").on('keypress', function (event) {
@@ -9852,6 +9801,76 @@ jQuery.noConflict();
                         addFieldCheckboxBuildout(label, id2, 1, sec);
                         tchar_nr++;
                         // console.log('tchar_nr after : ' + bchar_nr);
+
+                        jQuery('.tpost-img label').hide();
+
+                        // Earth 187
+                        if (material_id == 187) {
+                            // console.log('show earth img');
+                            jQuery('#stile-img-earth').show();
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-earth').show();
+                            jQuery('.type-img-earth').parent().show();
+
+                        }
+                        // Supreme 139
+                        else if (material_id == 139) {
+                            // console.log('show Supreme img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-supreme').show();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-supreme').show();
+                            jQuery('.type-img-supreme').parent().show();
+                        }
+                        // Biowood 138
+                        else if (material_id == 138) {
+                            // console.log('show Biowood img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-biowood').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-biowood').show();
+                            jQuery('.type-img-biowood').parent().show();
+                        }
+                        // Green 137
+                        else if (material_id == 137) {
+                            // console.log('show Green img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-green').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            //tpost-type
+                            jQuery('.type-img-green').show();
+                            jQuery('.type-img-green').parent().show();
+                        }
+                        // ecowood 188
+                        else if (material_id == 188) {
+                            console.log('show ecowood img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-ecowood').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-ecowood').show();
+                            jQuery('.type-img-ecowood').parent().show();
+
+                        }
+
                         $('.tpost-type').show();
                         $('.tpost-type label').show();
                     } else {

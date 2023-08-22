@@ -152,3 +152,9 @@
 [30-Mar-2023 13:15:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 88
 [30-Mar-2023 13:15:35 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 260
 [30-Mar-2023 13:15:35 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten.php on line 262
+[16-Jul-2023 14:39:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 723
+[16-Jul-2023 14:39:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1267
+[03-Aug-2023 12:09:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function set_shipping_class_id() on bool in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten-update.php:288
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten-update.php on line 288
