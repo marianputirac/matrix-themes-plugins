@@ -167,7 +167,7 @@ if (!empty($_GET['id'])) {
 			// get id product
 			$product_id_cart = $cart_item['product_id'];
 			$property_room_other = get_post_meta($product_id_cart, 'property_room_other', true);
-			$items_name[] = $property_room_other;
+			$items_name[] = str_replace("'", "", $property_room_other);
 			// if clone id existsin GET and is equal to prod id from cart then update as principal id
 			if (!empty($clone_id) && $clone_id == $product_id_cart) {
 				update_post_meta($product_id_cart, 'clone_prod_id', $clone_id);

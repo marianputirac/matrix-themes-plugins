@@ -210,8 +210,8 @@ get_header();
 
                                         $name = get_user_meta($dealer_id, 'shipping_first_name', true) . ' ' . get_user_meta($dealer_id, 'shipping_last_name', true);
                                         //  $phone_dealer = $order_data['billing']['phone'];
-                                        $phone_dealer = get_user_meta($dealer_id, 'billing_phone', true);
-                                        $company_dealer = $order_data['billing']['company'];
+                                        $phone_dealer = get_user_meta($dealer_id, 'shipping_phone', true);
+                                        $company_dealer = $order_data['shipping']['company'];
                                         //  $city_dealer = $order_data['billing']['city'];
                                         $city_dealer = get_user_meta($dealer_id, 'shipping_city', true);
                                         $address_dealer = get_user_meta($dealer_id, 'shipping_address_1', true) . ' - ' . get_user_meta($dealer_id, 'shipping_postcode', true);

@@ -9383,7 +9383,15 @@ jQuery.noConflict();
 
             function hideStileByHeight(minHeght) {
                 // if height is more then 2000 then hide stile where data-title contain string '41mm'
-                if ($("#property_height").val() > minHeght) {
+
+                if ($("#property_totheight").val() > minHeght) {
+                    $('input[name="property_stile"]').each(function () {
+                        if ($(this).data('title').indexOf('41mm') > -1) {
+                            $(this).parent().hide();
+                        }
+                    });
+                }
+                else if ($("#property_height").val() > minHeght) {
                     $('input[name="property_stile"]').each(function () {
                         if ($(this).data('title').indexOf('41mm') > -1) {
                             $(this).parent().hide();
