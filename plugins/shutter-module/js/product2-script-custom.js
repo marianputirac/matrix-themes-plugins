@@ -6476,14 +6476,87 @@
                 updateLayoutFields(this, text);
             });
 
+            var lengKeyR = 0;
+            var lengKeyCTBG = 0;
+
+
             $(".layoutcode").on('keypress', function (event) {
-                var charCode = event.which;
+
+                var charCode = event.key;
+                var character = charCode.toUpperCase();
+                // console.log('keypress event', event);
+
                 if (!charCode) { // <-- charCode === 0
-                    return; // return false, optionally
+                    return false; // return false, optionally
                 }
-                var character = String.fromCharCode(charCode).toUpperCase();
+                var text = $(this).val().toUpperCase();
+                let letter = text.charAt(0);
+                let lastChar = text.charAt(text.length - 1);
+                // console.log('last letter press ' + lastChar, text);
+                // console.log('character press ' + character);
+                if (lastChar != "C" && lastChar != "G" && lastChar != "B" && lastChar != "T") {
+                    console.log('lastChar !== "C"');
+                    if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
+                        console.log('letter r and lengkeyr1');
+                        return false; // return false, optionally
+                    }
+                    if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
+                        console.log('letter r and lengkeyr2 || lengkeyr3');
+                        return false; // return false, optionally
+                    }
+                }
+
+                if (letter == 'R') {
+                    var str = text;
+                    var stringsearch = "R"
+                    for (var i = lengKeyR = 0; i < str.length; lengKeyR += +(stringsearch === str[i++])) ;
+                }
+
+                console.log('Character key press: ' + character);
+
+                $("#buildout-select").change(function () {
+                    // Check input( $( this ).val() ) for validity here
+                    if ($(this).val() === 'flexible') {
+                        // console.log('flexible');
+                        $('input[name="property_b_buildout1"]').prop('checked', false);
+                        $('.pull-left.extra-column-buildout.property_b_buildout1').hide();
+                    } else {
+                        $('.pull-left.extra-column-buildout.property_b_buildout1').show();
+                    }
+                });
+
                 if ("L" == character || "R" == character || event.keyCode == 8) {
+                    if ("R" == character) {
+                        lengKeyR++;
+                    }
                     return true;
+                } else if ("T" == character || "B" == character || "C" == character) {
+                    $('#layoutcode-column .error-text').remove();
+                    if (("B" == character || "C" == character) && (style_check.indexOf('Bay') == -1) && (style_check.indexOf('Tracked') == -1)) {
+                        $('#layoutcode-column .error-text').remove();
+                        // console.log('errors: ' + errors);
+                        addError("property_layoutcode", 'Please choose Bay Window style for a layout code containing B or C.');
+                        lengKeyCTBG++;
+
+                        return false;
+                    } else {
+                        var text = $("#property_layoutcode").val();
+                        //// console.log('in G press '+text.length);
+                        if (text.charAt(text.length - 1).toUpperCase() == 'G') {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                } else if ("G" == character) {
+                    var text = $("#property_layoutcode").val();
+                    //// console.log('in G press '+text.length);
+                    if (text.charAt(text.length - 1).toUpperCase() == 'L' || text.charAt(text.length - 1).toUpperCase() == 'R' || text.charAt(text.length - 1).toUpperCase() == 'G') {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }

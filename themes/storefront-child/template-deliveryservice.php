@@ -321,9 +321,7 @@ get_header();
                                     }
                                 }
 
-                                foreach ($container_orders_dealer
-
-                                as $dealer_id => $data) {
+                                foreach ($container_orders_dealer as $dealer_id => $data) {
                                 $name = get_user_meta($dealer_id, 'first_name', true) . ' ' . get_user_meta($dealer_id, 'last_name', true);
                                 $company = get_user_meta($dealer_id, 'shipping_company', true);
                                 $phone = get_user_meta($dealer_id, 'billing_phone', true);
@@ -338,8 +336,7 @@ get_header();
                                         <?php
                                         if (empty(get_user_meta($dealer_id, 'van_nr_' . $id_selected_container, true))) {
                                             ?>
-                                            <input type="checkbox" value="<?php echo $dealer_id; ?>"
-                                                   name="container-dealer">
+                                            <input type="checkbox" value="<?php echo $dealer_id; ?>" name="container-dealer">
                                             <?php
                                         }
                                         ?>

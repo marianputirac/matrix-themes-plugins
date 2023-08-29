@@ -147,7 +147,6 @@ if (!function_exists('stgh_show_status')) {
 
         $color = stgh_get_option("{$status}_color ddds", $defaultColor);
 
-
         echo "<span class='stgh-label'>$label</span>";
     }
 }

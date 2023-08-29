@@ -31,32 +31,37 @@ function theme_enqueue_styles()
 add_action('admin_enqueue_scripts', 'custom_matrix_scripts_admin');
 function custom_matrix_scripts_admin($hook)
 {
-    wp_enqueue_script(
-        'wptuts53021_script', //unique handle
-        get_stylesheet_directory_uri() . '/js/jspdf.min.js'
-    );
-    wp_enqueue_script(
-        'wptuts53087654_script', //unique handle
-        get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
-    );
-    wp_enqueue_script(
-        'custom_scripts_admin', //unique handle
-        get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
-        array(),
-        '1.0',
-        true
-    );
+  wp_enqueue_style( 'bootstrap5-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' );
 
-    wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css');
-    wp_enqueue_script('jquery-ui-datepicker');
+  wp_enqueue_script(
+    'wptuts53021_script', //unique handle
+    get_stylesheet_directory_uri() . '/js/jspdf.min.js'
+  );
+  wp_enqueue_script(
+    'wptuts53087654_script', //unique handle
+    get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
+  );
+  wp_enqueue_script(
+    'custom_scripts_admin', //unique handle
+    get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
+    array(),
+    '1.0',
+    true
+  );
+
+  wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.min.css');
+  wp_enqueue_script('jquery-ui-datepicker');
+
+  wp_enqueue_script('bootstrap5-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js');
+
 }
 
 // Include custom functions to Theme Functions
 include_once(get_stylesheet_directory() . '/includes/admin_menu.php');
 include_once(get_stylesheet_directory() . '/includes/custom-posts-functions.php');
+include_once(get_stylesheet_directory() . '/includes/filters-dashboard-lists.php');
 include_once(get_stylesheet_directory() . '/includes/woocommerce-functions.php');
 include_once(get_stylesheet_directory() . '/includes/login_redirects.php');
-include_once(get_stylesheet_directory() . '/includes/shortcodes.php');
 include_once(get_stylesheet_directory() . '/includes/add-meta-boxes.php');
 include_once(get_stylesheet_directory() . '/includes/user-functions.php');
 
@@ -64,6 +69,16 @@ include_once(get_stylesheet_directory() . '/includes/dashboard_footer.php');
 include_once(get_stylesheet_directory() . '/includes/class_quickbooks.php');
 include_once(get_stylesheet_directory() . '/includes/class-orders.php');
 include_once(get_stylesheet_directory() . '/includes/ajax.php');
+/**
+ * Mail custom settings
+ */
+include_once(get_stylesheet_directory() . '/includes/mail-settings.php');
+/**
+ * Shortcodes
+ */
+include_once(get_stylesheet_directory() . '/includes/shortcodes.php');
+// my orders page shortcodes
+include_once(get_stylesheet_directory() . '/includes/shortcodes-my-orders.php');
 
 
 $customOrder = new OrdersCustom();
@@ -116,46 +131,6 @@ function cc_mime_types($mimes)
 
 add_filter('upload_mimes', 'cc_mime_types');
 
-
-// this action brings up a dropdown select box over the posts list in the dashboard
-add_action('restrict_manage_posts', 'my_custom_restrict_manage_posts', 50);
-
-
-function my_custom_restrict_manage_posts($post_type)
-{
-    if (current_user_can('manage_options')) {
-        if ($post_type == 'shop_order') {
-            $selected = '';
-            $request_attr = 'order_components_type';
-            if (isset($_REQUEST[$request_attr])) {
-                $selected = $_REQUEST[$request_attr];
-            }
-            //get unique values of the meta field to filer by.
-            $results = array('FOB', 'UK');
-            //build a custom dropdown list of values to filter by
-            echo '<select id="order_components_type" name="order_components_type">';
-            echo '<option value="all">' . __('Component type', 'my-custom-domain') . ' </option>';
-            foreach ($results as $type) {
-                $select = ($type == $selected) ? ' selected="selected"' : '';
-                echo '<option value="' . $type . '"' . $select . '>' . $type . ' </option>';
-            }
-            echo '</select>';
-        }
-    }
-}
-
-add_filter('parse_query', 'order_components_type_filter_request_query', 10);
-function order_components_type_filter_request_query($query)
-{
-    global $pagenow;
-    // Get the post type
-    $post_type = isset($_GET['post_type']) ? $_GET['post_type'] : '';
-    if (is_admin() && $pagenow == 'edit.php' && $post_type == 'shop_order' && isset($_GET['order_components_type']) && $_GET['order_components_type'] != 'all') {
-        $query->query_vars['meta_key'] = 'order_components_type';
-        $query->query_vars['meta_value'] = $_GET['order_components_type'];
-        $query->query_vars['meta_compare'] = 'LIKE';
-    }
-}
 
 function ticket_template_chooser($template)
 {
@@ -492,51 +467,65 @@ function container_save_menu_meta_box($post_id)
 add_action('save_post', 'container_save_menu_meta_box');
 
 
-// Modify dashboard page container html
-add_filter('views_edit-container', function ($views) {
-    echo "<script type='text/javascript' >
-                jQuery(document).ready(function($) {
-                    var start = new Date().getTime();
-                     var arrayIds = [];
-                     $('span[data-id]').each(function(){
-                         var dataLayer = $(this).data('id');
-                          arrayIds.push(dataLayer);
-                     });
-                    var data_sqm = {
-                        'action': 'get_container_sqm',
-                        'conatiner_orders': arrayIds
-                    };
-                    
-                     var data_price = {
-                        'action': 'get_container_price',
-                        'conatiner_orders': arrayIds
-                    };
-                     
-                    var ajaxurl = '" . admin_url('admin-ajax.php') . "';
-                    jQuery.post(ajaxurl, data_price, function(response) {
-                        console.log(response);
-                      var containers_price = JSON.parse(response);
-                      for (const [key, value] of Object.entries(containers_price)) {
-                          jQuery('#container-price-'+key+'').text(value);
-                       }
-                      var end = new Date().getTime();
-                       console.log('price milliseconds passed', end - start);
-                    });
-                    
-                    jQuery.post(ajaxurl, data_sqm, function(response) {
-                        var containers_sqm = JSON.parse(response);
-                       for (const [key, value] of Object.entries(containers_sqm)) {
-                          jQuery('#container-sqm-'+key+'').text(value);
-                        }
-                       var end = new Date().getTime();
-                       console.log('sqm milliseconds passed', end - start);
-                    });
-                    
-                   
-                });
-            </script>";
+// Hook the function to the 'views_edit-container' filter
+add_filter('views_edit-container', 'modify_dashboard_container_html');
+
+/**
+ * Add a script to the dashboard page to fetch container data and modify HTML
+ */
+function modify_dashboard_container_html($views)
+{
+    // Start script tag
+    echo "<script type='text/javascript'>
+        jQuery(document).ready(function($) {
+            var start = new Date().getTime();
+            var arrayIds = [];
+
+            // Collect container IDs from the HTML
+            $('span[data-id]').each(function() {
+                var dataLayer = $(this).data('id');
+                arrayIds.push(dataLayer);
+            });
+
+            // Set up AJAX data
+            var data_sqm = {
+                'action': 'get_container_sqm',
+                'conatiner_orders': arrayIds
+            };
+
+            var data_price = {
+                'action': 'get_container_price',
+                'conatiner_orders': arrayIds
+            };
+
+            var ajaxurl = '" . admin_url('admin-ajax.php') . "';
+
+            // Fetch container price data and update the HTML
+            jQuery.post(ajaxurl, data_price, function(response) {
+                console.log(response);
+                var containers_price = JSON.parse(response);
+                for (const [key, value] of Object.entries(containers_price)) {
+                    jQuery('#container-price-' + key).text(value);
+                }
+                var end = new Date().getTime();
+                console.log('price milliseconds passed', end - start);
+            });
+
+            // Fetch container sqm data and update the HTML
+            jQuery.post(ajaxurl, data_sqm, function(response) {
+                var containers_sqm = JSON.parse(response);
+                for (const [key, value] of Object.entries(containers_sqm)) {
+                    jQuery('#container-sqm-' + key).text(value);
+                }
+                var end = new Date().getTime();
+                console.log('sqm milliseconds passed', end - start);
+            });
+        });
+    </script>";
+
+    // Return the original views
     return $views;
-});
+}
 
 
 /***************************************************************
@@ -599,30 +588,7 @@ add_filter('handle_bulk_actions-edit-order_repair', 'repair_bulk_action_handler'
  * @since 1.1.0
  */
 
-function select_containers()
-{
-    global $typenow;
-    global $wp_query;
-    if ($typenow == 'shop_order') { // Your custom post type slug
 
-        $rand_posts = get_posts(array(
-            'post_type' => 'container',
-            'posts_per_page' => 10,
-        ));
-        if ($rand_posts) {
-            echo '   <select name="container">
-				<option value="">Select container</option>';
-            foreach ($rand_posts as $post) :
-                setup_postdata($post);
-                echo '<option value="' . $post->ID . '">' . get_the_title($post->ID) . '</option>';
-            endforeach;
-            echo '</select>';
-            wp_reset_postdata();
-        }
-    }
-}
-
-add_action('restrict_manage_posts', 'select_containers');
 
 /**
  * Update query
@@ -862,38 +828,38 @@ add_action('save_post', 'order_repair_save_meta');
 //teo for ticketing module edit ticket page
 wp_enqueue_style('stgh_customstyle', get_stylesheet_directory_uri() . '/stgh_customstyle.css');
 
-// ticketing_cron_custom
-// Get tickets and send mail to not answered
+// Hook the function to a custom WordPress cron event
 add_action('ticketing_cron_custom', 'ticket_cron_mail');
 
+/**
+ * Send reminder emails for unanswered tickets
+ */
 function ticket_cron_mail()
 {
+    // Query unanswered tickets
+    $loop = new WP_Query(array(
+      'post_type' => 'stgh_ticket',
+      'post_status' => array('stgh_answered', 'stgh_new')
+    ));
 
-    $loop = new WP_Query(array('post_type' => 'stgh_ticket', 'post_status' => array('stgh_answered', 'stgh_new')));
+    // Loop through the tickets
     if ($loop->have_posts()) :
         while ($loop->have_posts()) : $loop->the_post();
-
             $ticket_id = get_the_id();
-
             $post = get_post($ticket_id);
-
             $title = $post->post_title;
 
+            // Get ticket owner information
             $user_id_ticket = get_post_meta($ticket_id, '_stgh_contact', true);
-
             $user_info = get_userdata($user_id_ticket);
             $email = $user_info->user_email;
-
             $first_name = get_user_meta($user_id_ticket, 'billing_first_name', true);
             $last_name = get_user_meta($user_id_ticket, 'billing_last_name', true);
 
+            // Set up email content
             $permalink = get_site_url() . '/factory-queries/';
-
-            $multiple_recipients = array(
-                $email, 'tudor@lifetimeshutters.com'
-            );
-
-            $bodyth = 'Dear ' . $first_name . ' ' . $last_name . ',
+            $multiple_recipients = array($email, 'tudor@lifetimeshutters.com');
+            $body = 'Dear ' . $first_name . ' ' . $last_name . ',
                 <br><br>
                 The above order is still on hold at the factory as they have questions they need you to answer,
                 <br><br>
@@ -903,17 +869,18 @@ function ticket_cron_mail()
                 <br><br>
                 Best Regards<br>
                 Matrix Ordering System';
+            $subject = 'Kind reminder: Not-Answered Querry for Order ' . $title;
+            $headers = array('Content-Type: text/html; charset=UTF-8');
 
-            $subth = 'Kind reminder: Not-Answered Querry for Order ' . $title;
-//                wp_mail( $multiple_recipients, 'Cron Ticket notanswered mail', 'Automatic email from WordPress to test cron for ticket id: '.$ticket_id.' with title: '.get_the_title($ticket_id));
-            $headersth = array('Content-Type: text/html; charset=UTF-8');
-            wp_mail($multiple_recipients, $subth, $bodyth, $headersth);
-
+            // Send email
+            wp_mail($multiple_recipients, $subject, $body, $headers);
         endwhile;
     endif;
-    wp_reset_postdata();
 
+    // Reset the post data
+    wp_reset_postdata();
 }
+
 
 
 /*
@@ -967,182 +934,124 @@ function delete_custom_order($post_id)
  */
 function recalculate_and_update_custom_shop_order_save_post($post_id)
 {
-
-    // do stuff here
+    // Update a custom post meta
     update_post_meta($post_id, 'custom_meta_save_post', 'meta_save');
 
-    // Only for shop order
+    // If the post type is not 'shop_order', then return early
     if (!isset($_POST['post_type']) || 'shop_order' != $_POST['post_type']) {
         return;
-    } else {
-        $order = wc_get_order($post_id);
-        $user_id_customer = get_post_meta($post_id, '_customer_user', true);
-        $items = $order->get_items();
-        $total_dolar = 0;
-        $sum_total_dolar = 0;
-        $totaly_sqm = 0;
-        $new_total = 0;
-        $order_train = 0;
-
-        $country_code = WC()->countries->countries[$order->get_shipping_country()];
-        if ($country_code == 'United Kingdom (UK)' || $country_code == 'Ireland') {
-            $tax_rate = 20;
-        } else {
-            $tax_rate = 0;
-        }
-
-        $pos = false;
-
-        foreach ($items as $item_id => $item_data) {
-
-            if (has_term(20, 'product_cat', $item_data['product_id']) || has_term(34, 'product_cat', $item_data['product_id']) || has_term(26, 'product_cat', $item_data['product_id'])) {
-                $pos = true;
-                // do something if product with ID = 971 has tag with ID = 5
-            } else {
-
-                $quantity = get_post_meta($item_data['product_id'], 'quantity', true);
-                $price = get_post_meta($item_data['product_id'], '_price', true);
-                $total = $price * $quantity;
-                $sqm = get_post_meta($item_data['product_id'], 'property_total', true);
-                if ($sqm > 0) {
-                    $train_price = get_user_meta($user_id_customer, 'train_price', true);
-                    if (empty($train_price) && !is_numeric($train_price)) {
-                        $train_price = get_post_meta(1, 'train_price', true);
-                    }
-                    $new_price = floatval($sqm * $quantity) * floatval($train_price);
-                    update_post_meta($item_data['product_id'], 'train_delivery', $new_price);
-                    $order_train = $order_train + $new_price;
-                } else {
-                    $new_price = 0;
-                }
-                $total = $total + $new_price;
-                $tax = ($tax_rate * $total) / 100;
-
-                $line_tax_data = array
-                (
-                    'total' => array
-                    (
-                        1 => $tax
-                    ),
-                    'subtotal' => array
-                    (
-                        1 => $tax
-                    )
-                );
-                /*
-                 * Doc to change order item meta: https://www.ibenic.com/manage-order-item-meta-woocommerce/
-                 */
-                if ($quantity == 0 || empty($quantity)) {
-                    $quantity = 1;
-                    $total = floatval($price) * $quantity;
-                    $tax = ($tax_rate * $total) / 100;
-                }
-
-
-                wc_update_order_item_meta($item_id, '_qty', $quantity, $prev_value = '');
-                wc_update_order_item_meta($item_id, '_line_tax', $tax, $prev_value = '');
-                wc_update_order_item_meta($item_id, '_line_subtotal_tax', $tax, $prev_value = '');
-                wc_update_order_item_meta($item_id, '_line_subtotal', $total, $prev_value = '');
-                wc_update_order_item_meta($item_id, '_line_total', $total, $prev_value = '');
-                wc_update_order_item_meta($item_id, '_line_tax_data', $line_tax_data);
-
-                // USD price
-                //$prod_qty = $item_data['quantity'];
-                $product_id = $item_data['product_id'];
-                $prod_qty = get_post_meta($product_id, 'quantity', true);
-                $dolar_price = get_post_meta($product_id, 'dolar_price', true);
-
-                $sum_total_dolar = floatval($sum_total_dolar) + floatval($dolar_price) * floatval($prod_qty);
-
-                $sqm = get_post_meta($product_id, 'property_total', true);
-                $property_total_sqm = floatval($sqm) * floatval($prod_qty);
-                $totaly_sqm = $totaly_sqm + $property_total_sqm;
-
-                ## -- Make your checking and calculations -- ##
-                $new_total = $new_total + $total + $tax; // <== Fake calculation
-
-                $_product = wc_get_product($product_id);
-            }
-        }
-
-        if ($order_train > 0) {
-            update_post_meta($post_id, 'order_train', $order_train);
-        }
-
-        if ($pos === false) {
-
-            foreach ($order->get_items('tax') as $item_id => $item_tax) {
-                // Tax shipping total
-                $tax_shipping_total = $item_tax->get_shipping_tax_total();
-            }
-            //$total_price = $subtotal_price + $total_tax;
-            $order_data = $order->get_data();
-            $total_price = $new_total + $order_data['shipping_total'] + $tax_shipping_total;
-            update_post_meta($post_id, '_order_total', $total_price);
-
-            /*
-             * UPDATE custom_orders table on each shop_order post update
-             */
-            $property_total_gbp = $order->get_total();
-            $property_subtotal_gbp = $order->get_subtotal();
-
-            $order_shipping_total = $order->shipping_total;
-
-            // $property_total_gbp = floatval(get_post_meta($order->id, '_order_total', true));
-
-            global $wpdb;
-
-            $idOrder = $post_id;
-            $orderExist = $wpdb->get_var("SELECT COUNT(*) FROM `wp_custom_orders` WHERE `idOrder` = $idOrder");
-
-            if ($orderExist != 0) {
-                /*
-                 * Update table
-                 */
-                $tablename = $wpdb->prefix . 'custom_orders';
-
-                $data = array(
-                    'usd_price' => $sum_total_dolar,
-                    'gbp_price' => $property_total_gbp,
-                    'subtotal_price' => $property_subtotal_gbp,
-                    'sqm' => $totaly_sqm,
-                    'shipping_cost' => $order_shipping_total,
-                );
-                $where = array(
-                    "idOrder" => $post_id
-                );
-                $wpdb->update($tablename, $data, $where);
-
-            } else {
-                /*
-                 * Insert in table
-                 */
-
-                $order_status = $order_data['status'];
-
-                $tablename = $wpdb->prefix . 'custom_orders';
-                $shipclass = $_product->get_shipping_class();
-
-                $data = array(
-                    'idOrder' => $post_id,
-                    'reference' => 'LF0' . $order->get_order_number() . ' - ' . get_post_meta($post_id, 'cart_name', true),
-                    'usd_price' => $sum_total_dolar,
-                    'gbp_price' => $property_total_gbp,
-                    'subtotal_price' => $property_subtotal_gbp,
-                    'sqm' => $totaly_sqm,
-                    'shipping_cost' => number_format($order_shipping_total, 2),
-                    'delivery' => $shipclass,
-                    'status' => $order_status,
-                    'createTime' => $order_data['date_created']->date('Y-m-d H:i:s'),
-                );
-                $wpdb->insert($tablename, $data);
-            }
-
-        }
     }
 
-}
+    // Get the order object
+    $order = wc_get_order($post_id);
 
+    // Get order related data
+    $user_id_customer = get_post_meta($post_id, '_customer_user', true);
+    $items = $order->get_items();
+    $country_code = WC()->countries->countries[$order->get_shipping_country()];
+
+    // Initialize some variables
+    $total_dolar = 0;
+    $sum_total_dolar = 0;
+    $totaly_sqm = 0;
+    $new_total = 0;
+    $order_train = 0;
+
+    // Determine tax rate based on country
+    $tax_rate = ($country_code == 'United Kingdom (UK)' || $country_code == 'Ireland') ? 20 : 0;
+
+    // Variable to track if certain product categories are in the order
+    $has_specified_categories = false;
+
+    // Traverse all items in the order
+    foreach ($items as $item_id => $item_data) {
+        // Update $has_specified_categories if product with certain categories is found
+        if (has_term([20, 34, 26], 'product_cat', $item_data['product_id'])) {
+            $has_specified_categories = true;
+            continue;
+        }
+
+        // Continue calculations and updates only for products that do not belong to the specified categories
+        // Code is largely similar to original, but with some simplifications and enhancements
+
+        // Get necessary product data
+        $quantity = get_post_meta($item_data['product_id'], 'quantity', true) ?: 1;
+        $price = get_post_meta($item_data['product_id'], '_price', true);
+        $sqm = get_post_meta($item_data['product_id'], 'property_total', true);
+        $train_price = get_user_meta($user_id_customer, 'train_price', true);
+        if (empty($train_price) && !is_numeric($train_price)) {
+            $train_price = get_post_meta(1, 'train_price', true);
+        }
+
+        // Calculate total, tax and new price
+        $total = $price * $quantity;
+        if ($sqm > 0) {
+            $new_price = floatval($sqm * $quantity) * floatval($train_price);
+        } else {
+            $new_price = 0;
+        }
+        $total += $new_price;
+        $tax = ($tax_rate * $total) / 100;
+
+        // Update line item meta
+        wc_update_order_item_meta($item_id, '_qty', $quantity);
+        wc_update_order_item_meta($item_id, '_line_tax', $tax);
+        wc_update_order_item_meta($item_id, '_line_subtotal_tax', $tax);
+        wc_update_order_item_meta($item_id, '_line_subtotal', $total);
+        wc_update_order_item_meta($item_id, '_line_total', $total);
+        wc_update_order_item_meta($item_id, '_line_tax_data', ['total' => [1 => $tax], 'subtotal' => [1 => $tax]]);
+
+        // Calculate USD price, total square meters, and new total
+        $prod_qty = get_post_meta($item_data['product_id'], 'quantity', true);
+        $dolar_price = get_post_meta($item_data['product_id'], 'dolar_price', true);
+        $sum_total_dolar += $dolar_price * $prod_qty;
+        $totaly_sqm += $sqm * $prod_qty;
+        $new_total += $total + $tax;
+    }
+
+// Update the order train meta data if it's greater than zero
+    if ($order_train > 0) {
+        update_post_meta($post_id, 'order_train', $order_train);
+    }
+
+// Only proceed if no product from specified categories were found in the order
+    if (!$has_specified_categories) {
+        $tax_shipping_total = array_reduce($order->get_items('tax'), function ($carry, $item_tax) {
+            return $carry + $item_tax->get_shipping_tax_total();
+        }, 0);
+
+        // Calculate the total price and update it in the post meta
+        $total_price = $new_total + $order->get_shipping_total() + $tax_shipping_total;
+        update_post_meta($post_id, '_order_total', $total_price);
+
+        // Update or insert into custom orders table
+        global $wpdb;
+        $idOrder = $post_id;
+        $orderExist = $wpdb->get_var("SELECT COUNT(*) FROM `wp_custom_orders` WHERE `idOrder` = $idOrder");
+        $data = [
+          'usd_price' => $sum_total_dolar,
+          'gbp_price' => $order->get_total(),
+          'subtotal_price' => $order->get_subtotal(),
+          'sqm' => $totaly_sqm,
+          'shipping_cost' => $order->get_shipping_total(),
+        ];
+
+        if ($orderExist != 0) {
+            // Update the existing record
+            $wpdb->update($wpdb->prefix . 'custom_orders', $data, ['idOrder' => $post_id]);
+        } else {
+            // Insert a new record
+            $data += [
+              'idOrder' => $post_id,
+              'reference' => 'LF0' . $order->get_order_number() . ' - ' . get_post_meta($post_id, 'cart_name', true),
+              'delivery' => wc_get_product($item_data['product_id'])->get_shipping_class(),
+              'status' => $order->get_status(),
+              'createTime' => $order->get_date_created()->date('Y-m-d H:i:s'),
+            ];
+            $wpdb->insert($wpdb->prefix . 'custom_orders', $data);
+        }
+    }
+}
 add_action('save_post', 'recalculate_and_update_custom_shop_order_save_post');
 
 /*

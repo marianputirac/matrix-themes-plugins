@@ -114,6 +114,9 @@ get_header();
             $csv_orders_array_panels_repair = get_post_meta($id_selected_container, 'csv_orders_array_panels_repair', true);
             $csv_orders_array_frames_repair = get_post_meta($id_selected_container, 'csv_orders_array_frames_repair', true);
 
+            $csv_orders_array_repair_sqm = get_post_meta($id_selected_container, 'csv_orders_array_repair', true);
+
+
             //                echo '<pre>';
             //                print_r($csv_orders_array_cartons_repair);
             //                print_r($csv_orders_array_panels_repair);
@@ -195,7 +198,7 @@ get_header();
                                     }
 
                                     $user_id_customer = get_post_meta($order_id, '_customer_user', true);
-                                    if (in_array($user_id_customer, $users_orders) && $order || current_user_can('administrator')) {
+                                    if (in_array($user_id_customer, $users_orders) && $order ) {
                                         foreach ($order->get_items('tax') as $item_id => $item_tax) {
                                             $tax_shipping_total = $item_tax->get_shipping_tax_total(); // Tax shipping total
                                         }
@@ -280,8 +283,18 @@ get_header();
                                                                 $weight_final = $weight_final + ($property_total * $item_data['quantity'] * 13);
                                                             }
                                                         }
-                                                        echo number_format($sqm_total, 2);
-                                                        $total_sqm = $total_sqm + number_format($sqm_total, 2); ?></span>
+//                                                        echo number_format($sqm_total, 2);
+//                                                        $total_sqm = $total_sqm + number_format($sqm_total, 2);
+
+                                                          if (get_post_type($repair_id) == 'order_repair') {
+                                                                $sqm_total = $csv_orders_array_repair_sqm[$order_id];
+                                                                echo number_format($sqm_total, 2);
+                                                            } else {
+                                                                echo number_format($sqm_total, 2);
+                                                            }
+
+                                                            $total_sqm = $total_sqm + number_format($sqm_total, 2);
+                                                ?></span>
                                                 </td>
                                                 <td>
                                                     <?php

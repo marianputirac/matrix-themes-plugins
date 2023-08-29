@@ -1,0 +1,3755 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-16 12:13+0300\n"
+"PO-Revision-Date: 2018-08-16 12:17+0300\n"
+"Last-Translator: MF <mphilatkin@gmail.com>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _e;__;_x:1,2c;_ex:1,2c;esc_attr_e;esc_html_x;"
+"esc_html_e;_n:1,2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: .\n"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-upload-file-field.php:7
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-attachements-block.php:9
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Email.php:343
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-upload-file-field.php:7
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-attachements-block.php:9
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Email.php:343
+msgid "Attachments"
+msgstr "Приложения"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-voting-form.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-voting-form.php:25
+msgid "Please rate our work!"
+msgstr "Оцените нашу работу, пожалуйста"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-voting-form.php:33
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-voting-form.php:33
+msgid "Leave a comment"
+msgstr "Ваш комментарий"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-voting-form.php:37
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:105
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-voting-form.php:37
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:105
+msgid "Please Wait..."
+msgstr "Пожалуйста подождите"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-voting-form.php:38
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form-by-id.php:71
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:90
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:459
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-voting-form.php:38
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form-by-id.php:71
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:90
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:484
+msgid "Submit"
+msgstr "Отправить "
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:8
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1338
+#: /var/www/for_translate/catchers-wc-support/helpers/tools-helpers.php:21
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:8
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1358
+msgid "My tickets"
+msgstr "Мои тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:37
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:104
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:37
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:104
+msgid "next tickets"
+msgstr "следующие тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:40
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:107
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:40
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:107
+msgid "previous tickets"
+msgstr "предыдущие тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:48
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:8
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:48
+msgid "Open Ticket"
+msgstr "Создать тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:114
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-last-tickets.php:83
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:129
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:168
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-last-tickets.php:83
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:129
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:168
+msgid "Not found"
+msgstr "Не найден"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-all-tickets.php:120
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-all-tickets.php:120
+msgid "Open new ticket"
+msgstr "Создать тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-last-tickets.php:30
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:64
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-last-tickets.php:30
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:64
+msgid "All tickets"
+msgstr "Все тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stgh-kb.php:81
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stgh-kb.php:81
+msgid "Knowledge base"
+msgstr "База знаний"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stgh-kb.php:101
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stgh-kb.php:101
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:225
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:309
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:331
+msgid "Search"
+msgstr "Искать"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:18
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:73
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments.php:104
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-published.php:58
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:18
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:73
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments.php:104
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-published.php:58
+#, php-format
+msgid "%s ago"
+msgstr "%s Назад"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:59
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:806
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:222
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:59
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:831
+msgid "Replies"
+msgstr "Ответы"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:86
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:86
+msgid "The ticket has been closed. "
+msgstr "Тикет был закрыт"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:92
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:92
+msgid "Write a reply"
+msgstr "Написать ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:99
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:99
+msgid "Type your reply here."
+msgstr "Введите текст вашего сообщения здесь"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-single-ticket.php:106
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:31
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:807
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-single-ticket.php:106
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:31
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:832
+msgid "Reply"
+msgstr "Ответить"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:1
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:1
+msgid "CRM Profile"
+msgstr "Профайл клиента в CRM системе"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:6
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:6
+msgid "Company"
+msgstr "Компания"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:13
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:13
+msgid "Please enter your crm company."
+msgstr "Укажите вашу компанию"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:19
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:19
+msgid "Skype"
+msgstr "Skype"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:25
+msgid "Please enter your crm skype."
+msgstr "Укажите ваш Skype"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:31
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:31
+msgid "Phone"
+msgstr "Телефон"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:37
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:37
+msgid "Please enter your crm phone."
+msgstr "Укажите Телефон"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:43
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:43
+msgid "Website"
+msgstr "Сайт"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:50
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:50
+msgid "Please enter your crm website."
+msgstr "Укажите адрес Сайта"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:56
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:56
+msgctxt "CRM_POSITION"
+msgid "Position"
+msgstr "Должность"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-profile-user-fields.php:63
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-profile-user-fields.php:63
+msgid "Please enter your crm position."
+msgstr "Укажите должность"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:54
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:54
+msgid "Your name"
+msgstr "Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:64
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:64
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:119
+msgid "Email"
+msgstr "Адрес электронной почты"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:72
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:289
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:109
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:372
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:72
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:289
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:109
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1117
+msgid "Category"
+msgstr "Категория"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:78
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-gethelp.php:29
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:111
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:466
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:83
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:357
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:78
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-gethelp.php:29
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:111
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:491
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1102
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:84
+msgid "Subject"
+msgstr "Тема"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-ticket-form.php:82
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:112
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-ticket-form.php:82
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:112
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-not-allowed.php:2
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-not-allowed.php:2
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to view tickets."
+msgstr ""
+"Вы должны  <a href=\"%s\">авторизоваться</a> для просмотра списка тикетов"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/stg-not-allowed.php:4
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/stg-not-allowed.php:4
+#, php-format
+msgid ""
+"Oops :( Looks like Cookies issue. Cookies are blocked or not supported by "
+"your browser. You must <a href=\"%s\">enable cookies</a> to use WordPress."
+msgstr ""
+"Упс :(  Cookies либо заблокированы, либо не поддерживаются вашим браузером. "
+"Чтобы использовать WordPress, нужно <a href=\"%s\">разрешить cookies.</a>"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/reply_agent.php:12
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_open.php:21
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/reply_agent.php:12
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_open.php:21
+msgid "View ticket in your web browser "
+msgstr "Просмотр билета в вашем веб-браузере"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_open.php:3
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_assign.php:5
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_accepted.php:6
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_open.php:3
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_assign.php:5
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_accepted.php:6
+msgid "On "
+msgstr "Вкл."
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_open.php:4
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_assign.php:6
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_accepted.php:7
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_open.php:4
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_assign.php:6
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_accepted.php:7
+msgid "wrote"
+msgstr "Написал(а)"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_assign.php:1
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_accepted.php:1
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_assign.php:1
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_accepted.php:1
+msgid "Hello"
+msgstr "Привет"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_assign.php:2
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_assign.php:2
+msgid "Ticket has been assigned to you"
+msgstr "Билет был назначен вам"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_accepted.php:3
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_accepted.php:3
+msgid ""
+"We just got your help request! And do our best to answer emails as soon as "
+"possible, with most inquiries receiving a response within about a day."
+msgstr ""
+"Мы только что получили помощь запрос! И делаем все возможное, чтобы ответить "
+"на письма как можно скорее с большинство запросов, получения ответа в "
+"течение примерно в день."
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/ticket_accepted.php:23
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/ticket_accepted.php:23
+msgid "To track your email, we've tagged it with a ticket code"
+msgstr ""
+"Чтобы отслеживать вашу электронную почту, мы присвоили ему идентификационный "
+"номер"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/reply_client.php:1
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/reply_client.php:1
+msgid "User "
+msgstr "Пользователь"
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/reply_client.php:3
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/reply_client.php:3
+msgid "just replied to ticket"
+msgstr "Только что ответили "
+
+#: /var/www/for_translate/catchers-helpdesk/public/template/mails/reply_client.php:23
+#: /var/www/for_translate/catchers-helpdesk-premium/public/template/mails/reply_client.php:23
+msgid ""
+"You have received this notification because you have either subscribed to "
+"it, or are involved in it."
+msgstr ""
+"Вы получили это сообщение потому, что ранее были подписаны на просмотр Демо "
+"версии или обращались в службу поддержки. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:823
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:87
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:823
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:87
+msgid "<strong>ERROR</strong>: Please enter a username."
+msgstr "<strong>ERROR</strong>: Введите Имя."
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:825
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:90
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:825
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:90
+msgid ""
+"<strong>ERROR</strong>: This username is invalid because it uses illegal "
+"characters. Please enter a valid username."
+msgstr ""
+"<strong>ERROR</strong>: Это имя не корректно. Пожалуйста укажите правильное "
+"Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:828
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:94
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:828
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:94
+msgid ""
+"<strong>ERROR</strong>: This username is already registered. Please choose "
+"another one."
+msgstr ""
+"<strong>ERROR</strong>: Это имя уже зарегистрировано. Пожалуйста выберете "
+"другое."
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:833
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:99
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:833
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:99
+msgid "<strong>ERROR</strong>: Please type your e-mail address."
+msgstr "<strong>ERROR</strong>:Укажите ваш электронный адрес."
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:835
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:101
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:835
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:101
+msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
+msgstr "<strong>ERROR</strong>: Электронный адрес &#8217;t не корректен."
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:838
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:105
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:838
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:105
+msgid ""
+"<strong>ERROR</strong>: This email is already registered, please choose "
+"another one."
+msgstr ""
+"<strong>ERROR</strong>: Указанный адрес уже существует, пожалуйста укажите "
+"другой. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/mailbox-helpers.php:878
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:120
+#: /var/www/for_translate/catchers-helpdesk-premium/src/mailbox-helpers.php:878
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:120
+#, php-format
+msgid ""
+"<strong>ERROR</strong>: Couldn&#8217;t register you&hellip; please contact "
+"the <a href=\"mailto:%s\">webmaster</a> !"
+msgstr ""
+"<strong>Ошибка</strong>: Couldn&#8217;t зарегистрировано&hellip; пожалуйста, "
+"сообщите <a href=\"mailto:%s\">администратору</a> !"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:351
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:351
+msgid "Required field(s) is empty"
+msgstr "Вы не можете добавить пустое поле "
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:358
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:358
+msgid "Email is not a valid"
+msgstr "Не верно указан email"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:532
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:532
+msgid "None"
+msgstr "Не определено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:706
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:721
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:706
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:721
+msgid "Month"
+msgstr "Месяц"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:712
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:727
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:712
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:727
+#, php-format
+msgid "%1$s-%2$s"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:716
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:731
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:716
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:731
+msgid "Day"
+msgstr "День"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:717
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:732
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:717
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:732
+msgid "Year"
+msgstr "Год"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:718
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:733
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:718
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:733
+msgid "Hour"
+msgstr "Час"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:719
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:734
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:719
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:734
+msgid "Minute"
+msgstr "Минута"
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:742
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:742
+#, php-format
+msgid "%1$s %2$s, %3$s"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:768
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:768
+msgid "OK"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/helpers.php:769
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:75
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:85
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:112
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:146
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:173
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-published.php:137
+#: /var/www/for_translate/catchers-helpdesk-premium/src/helpers.php:769
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:75
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:85
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:112
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:146
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:173
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-published.php:137
+msgid "Cancel"
+msgstr "Отменить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:141
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:107
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:115
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:44
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:141
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:107
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:115
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:44
+msgid "Open"
+msgstr "Открыть"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:176
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:386
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:176
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:387
+msgid "&lt;&lt;Me&gt;&gt;"
+msgstr "&lt;&lt;Я&gt;&gt;"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:227
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:227
+msgid "Please select"
+msgstr "Выбрать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:271
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:302
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:271
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:302
+msgid "Quote"
+msgstr "Цитировать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:276
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:306
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:276
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:306
+msgid "Show email"
+msgstr "Показать исходник"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:281
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:281
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/template-helpers.php:418
+#: /var/www/for_translate/catchers-helpdesk-premium/src/template-helpers.php:418
+msgid "Sorry, you can't vote at the moment"
+msgstr "Извините, вы не можете проголосовать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:601
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:601
+msgid "An error occured try again later"
+msgstr "Ошибка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:638
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:638
+msgid "An error has occurred during the file upload"
+msgstr "Ошибка при загрузке файла"
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:662
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:662
+msgid ""
+"<p><b>Message sent!</b><br> We just got your request! And do our best to "
+"answer emails as soon as possible</p>"
+msgstr ""
+"<p><b>Сообщение отправлено!</b><br> Мы получили ваш запрос и ответим вам как "
+"можно скорее</p>"
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:750
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:750
+msgid "Thank you for voting!"
+msgstr "Спасибо за участие!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:958
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:958
+msgid "Your CRM Profile Company was unable to be removed at this time."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:970
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:970
+msgid "Your CRM Profile Skype was unable to be removed at this time."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:981
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:981
+msgid "Your CRM Profile Phone was unable to be removed at this time."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:992
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:992
+msgid "Your CRM Profile Position was unable to be removed at this time."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/ticket-helpers.php:1004
+#: /var/www/for_translate/catchers-helpdesk-premium/src/ticket-helpers.php:1004
+msgid "Your CRM Profile Website was unable to be removed at this time."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Settings_Page.php:36
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Settings_Page.php:80
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Settings_Page.php:36
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Settings_Page.php:80
+msgid "Helpdesk settings"
+msgstr "Настройки Хелпдеск "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Settings_Page.php:36
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Settings_Page.php:79
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Settings_Page.php:36
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Settings_Page.php:79
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Help_Catcher.php:44
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:123
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:172
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Help_Catcher.php:44
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:123
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:172
+msgid "What we can help you with?"
+msgstr "Как мы можем вам помочь?"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Help_Catcher.php:52
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:130
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:180
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Help_Catcher.php:52
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:130
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:180
+msgid ""
+"<p><b>Message sent!</b><br /> We just got your request! And do our best to "
+"answer emails as soon as possible</p>"
+msgstr "Сообщение отправлено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:285
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:42
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:68
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:88
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:53
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:362
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:449
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:285
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:42
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1107
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1180
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:68
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:89
+msgid "Status"
+msgstr "Статус"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:286
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:286
+msgid "#"
+msgstr "#"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:287
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:287
+msgid "Title"
+msgstr "Заголовок"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:288
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:110
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:154
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:377
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:288
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:110
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1122
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:154
+msgid "Tags"
+msgstr "Теги"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:290
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:52
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:290
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:52
+msgid "Ticket"
+msgstr "Тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:291
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:291
+msgid "Author"
+msgstr "Автор"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:292
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:352
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:292
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1097
+msgid "Assignee"
+msgstr "Назначено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:293
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:293
+msgid "Create Date"
+msgstr "Дата создания"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:857
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:877
+msgid "Are you sure you want to delete this comment?"
+msgstr "Вы уверены что хотите удалить сообщение?"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:858
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:878
+msgid "This ticket spam? Comments and contact will be deleted."
+msgstr "Отправить этот тикет в спам? "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:859
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:879
+msgid ""
+"No instance of TinyMCE found. Please use wp_editor on this page at least "
+"once: http://codex.wordpress.org/Function_Reference/wp_editor"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:861
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:881
+msgid "You can't submit an empty comment"
+msgstr "Вы не можете отправить пустой комментарий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:862
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:882
+msgid "You can't save an empty comment"
+msgstr "Вы не можете сохранить пустой комментарий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:863
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:883
+msgid "Wrong email"
+msgstr "Не верно указан email"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:864
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:884
+msgid "You can't add an empty field name"
+msgstr "Вы не можете добавить пустое поле "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:865
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:150
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:69
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:84
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:367
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:885
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1112
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:150
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:69
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:85
+msgid "Contact"
+msgstr "Контакт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:866
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:886
+msgid "Select contact"
+msgstr "Выбрать контакт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:867
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:49
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:79
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:140
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:887
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:49
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:79
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:140
+msgid "Add new contact"
+msgstr "Добавить новый контакт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:868
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:888
+msgid "Please select contact"
+msgstr "Выбрать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:869
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:889
+msgid "Cc and Bcc options available only if \"Reply To\" address specified"
+msgstr "Cc и Bcc доступны только если определен адрес \"Ответить\""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1061
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:286
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1081
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:286
+msgid "You are not allowed to view this attachment"
+msgstr "У вас нет прав на просмотр файлов"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1108
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1128
+msgid "Get help!"
+msgstr "Поддержка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1300
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1320
+msgid "StudioTG Helpdesk Welcome page"
+msgstr "Добро пожаловать на страницу Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1300
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:239
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:191
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:292
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:601
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:509
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:398
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1320
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:283
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1314
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1334
+msgid "StudioTG Helpdesk Wizard page"
+msgstr "Подсказка как использовать плагин Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1314
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1334
+msgid "Wizard"
+msgstr "Подсказка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1321
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-pro-version.php:20
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1341
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-pro-version.php:20
+msgid "Addons"
+msgstr "Аддоны"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1423
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1443
+msgid ""
+"See also: <a href=\"https://support.google.com/accounts/answer/6009563\" "
+"target=\"_blank\">https://support.google.com/accounts/answer/6009563</a>"
+msgstr ""
+"Так же смотри тут : <a href=\"https://support.google.com/accounts/"
+"answer/6009563\" target=\"_blank\">https://support.google.com/accounts/"
+"answer/6009563</a>"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1442
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1462
+msgid "No new messages for processing"
+msgstr "Нет сообщений для работы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1448
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1468
+msgid "Can not connect to the server. Please, check your setting."
+msgstr ""
+"Не возможно подключится к серверу. Пожалуйста проверьте ваши настройки. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1462
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:353
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:359
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1482
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:353
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:359
+msgid ""
+"Thank you for contacting us. Your message has been successfully sent. We "
+"will contact you very soon!"
+msgstr ""
+"Спасибо что написали нам. Ваше сообщение успешно отправлено. Мы с вами "
+"свяжемся в ближайшее время. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1465
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1485
+msgid "An error occurred when send message."
+msgstr "Ошибка при отправки сообщения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1479
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1499
+msgid "Check connection from Tickets"
+msgstr "Проверить соединение "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1480
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1500
+msgid "Connection successful!"
+msgstr "Успешное соединение!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1526
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1546
+msgid "My"
+msgstr "Мои"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1534
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1554
+msgid "All"
+msgstr "Все"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1559
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1579
+#, php-format
+msgid ""
+"If you like <b>Catchers Helpdesk</b> please leave us a <a id=\"stg-rating-"
+"anchor\" data-msg-click=\"%s\" target=\"_blank\" href=\"%s\">&#9733;&#9733;"
+"&#9733;&#9733;&#9733;</a> rating. A huge thank you from Catchers in advance!"
+msgstr ""
+"Если вам нравится <b>Catchers Helpdesk</b> пожалуйста поставьте нам <a id="
+"\"stg-rating-anchor\" data-msg-click=\"%s\" target=\"_blank\" href=\"%s"
+"\">&#9733;&#9733;&#9733;&#9733;&#9733;</a> оценку. Огромное спасибо от "
+"Catchers заранее!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1559
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1579
+msgid "Thanks!"
+msgstr "Спасибо!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/Stg_Helpdesk_Admin.php:1561
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/Stg_Helpdesk_Admin.php:1581
+msgid "Thank you for using our plugin!"
+msgstr "Спасибо, что пользуетесь нашим плагином!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/notify-agent.php:21
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/notify-agent.php:21
+msgid "Not send"
+msgstr "Не отправлять"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/notify-agent.php:27
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/notify-agent.php:27
+msgid "Notify contact"
+msgstr "Уведомить контакт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/notify-agent.php:33
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/notify-agent.php:33
+msgid "Send to contact"
+msgstr "Отправить контакту"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:41
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:41
+msgid "Contact:"
+msgstr "Контакт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:44
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:44
+msgid "Enter 3 or more characters"
+msgstr "Введите 3 или более символов"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:53
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:392
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:53
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1073
+msgid "Cc/Bcc"
+msgstr "Cc/Bcc"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:61
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:98
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:159
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:61
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:98
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:159
+msgid "Name:"
+msgstr "Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:66
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:103
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:164
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:66
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:103
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:164
+msgid "Email:"
+msgstr "Email:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:77
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:114
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:175
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:77
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:175
+msgid "Add"
+msgstr "Добавить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:85
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:399
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:85
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1080
+msgid "Cc:"
+msgstr "Cc:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:90
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:404
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:90
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1085
+msgid "Bcc:"
+msgstr "Bcc:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:129
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:27
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:118
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:34
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:129
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:27
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:118
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:34
+msgid "Status:"
+msgstr "Статус:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:137
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:126
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:137
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:126
+msgid "Assigned:"
+msgstr "Назначено:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:149
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:59
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:149
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:59
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:119
+msgid "Add new ticket"
+msgstr "Добавить новый тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:160
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:148
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:160
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:148
+msgid "Ticket is closed"
+msgstr "Тикет был закрыт"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:163
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:151
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:163
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:151
+msgid ""
+"This ticket has been closed. If you want to write a new comment to this "
+"ticket, you need to re-open it first."
+msgstr ""
+"Тикет был закрыт. Если вы хотите написать комментарий к нему, вам необходимо "
+"открыть его заново. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/ticket-form.php:170
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:158
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/ticket-form.php:170
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:158
+msgid "Sorry, you don't have sufficient permissions to add comments."
+msgstr "Извините, у вас не достаточно прав чтобы добавить комментарий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:37
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:37
+msgid "at"
+msgstr "У"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:65
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:126
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:32
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:53
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:67
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:82
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/custom_fields.php:33
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/custom_fields_default.php:27
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:39
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:60
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:90
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:65
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:126
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:32
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:53
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:67
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:82
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/custom_fields.php:33
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/custom_fields_default.php:27
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:39
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:60
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:90
+msgid "Change"
+msgstr "Изменить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:87
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:148
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:101
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:109
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:87
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:148
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:101
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:109
+msgid "Update"
+msgstr "Обновить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/user_crm_profile.php:121
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:17
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/user_crm_profile.php:121
+msgid "User not found"
+msgstr "Не найден"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:48
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:55
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:48
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:55
+msgid "Category:"
+msgstr "Категория:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:63
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:70
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:63
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:70
+msgid "Date:"
+msgstr "Дата:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:76
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:84
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:288
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:76
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:84
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:289
+msgid "Assigned to:"
+msgstr "Назначено:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:100
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:108
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:100
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:108
+msgid "Updating"
+msgstr "Обновить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:106
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:106
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:114
+msgid "Creating..."
+msgstr "Создается..."
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details-agent.php:114
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:122
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details-agent.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:122
+msgid "Re-open"
+msgstr "Открыть заново"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:50
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:50
+msgid "Reply To:"
+msgstr "Ответить:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-form.php:137
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-form.php:137
+msgid "Send reply"
+msgstr "Отправить ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/comments-published.php:131
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/comments-published.php:131
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/details.php:77
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/details.php:77
+msgid "Vote:"
+msgstr "Голос:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/added-info.php:20
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5-report.php:329
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/added-info.php:20
+msgid "agent"
+msgstr "Саппорт менеджер (агент)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/added-info.php:28
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/added-info.php:28
+msgid "Added:"
+msgstr "Добавлено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/added-info.php:29
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/added-info.php:29
+#, php-format
+msgid "about %s ago by"
+msgstr "Около %s  назад "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/metaboxes/added-info.php:34
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/metaboxes/added-info.php:34
+#, php-format
+msgid "via %s"
+msgstr "через %s"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-fileupload.php:8
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-fileupload.php:8
+msgid "File upload"
+msgstr "Загрузить файл"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-fileupload.php:18
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-fileupload.php:18
+msgid "Maximum files"
+msgstr "Максимальное количество файлов"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-fileupload.php:22
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-fileupload.php:22
+msgid "How many files can a user attach to a ticket?"
+msgstr "Сколько файлов можно приложить к тикету? "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-fileupload.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-fileupload.php:25
+msgid "Allowed types"
+msgstr "Подходящий формат"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-fileupload.php:29
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-fileupload.php:29
+msgid ""
+"Which file types do you allow your users to attach uncompressed? Other files "
+"will be converted zip. <br> (Option is also used for file through the mail "
+"server)"
+msgstr ""
+"Какие типы файлов вы хотите принимать от клиентов? Настройте в почтовом "
+"сервере. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:12
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:12
+msgid "Outgoing mail"
+msgstr "Исходящая почта"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:16
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:16
+msgid "From"
+msgstr "От"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:19
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:41
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:19
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:41
+msgid "From  e-mail"
+msgstr "From  e-mail"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:25
+msgid "From name*"
+msgstr "От кого"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:32
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:32
+msgid "Advanced settings"
+msgstr "Дополнительные настройки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:35
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:35
+msgid "Set smtp settings"
+msgstr "Установите  SMTP настройки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:48
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:75
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:48
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:75
+msgid "Host*"
+msgstr "Host*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:55
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:43
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:55
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:43
+msgid "Username*"
+msgstr "Username*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:61
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:50
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:61
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:50
+msgid "Password*"
+msgstr "Password*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:68
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:81
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:68
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:81
+msgid "Encryption*"
+msgstr "Encryption*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:76
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:88
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:76
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:88
+msgid "Port*"
+msgstr "Port*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:80
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:91
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:80
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:91
+msgid "Default ports"
+msgstr "Порт по умолчанию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:85
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:85
+msgid "Send a test e-mail"
+msgstr "Отправить тестовое  сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:88
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:464
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:88
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:489
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:92
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:92
+msgid "Enter e-mail address to send the test letter (save first)"
+msgstr "Укажите E-mail на которое отправить тестовое сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:95
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:95
+msgid "Send test e-mail"
+msgstr "Отправить тестовое сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:98
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-gethelp.php:35
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:98
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-gethelp.php:35
+msgid "Send"
+msgstr "Отправить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:99
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:99
+msgid "Save changes first"
+msgstr "Сохранить изменения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:100
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:100
+msgid "Message sent successfully"
+msgstr "Сообщение отправлено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-outgoing.php:101
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-outgoing.php:101
+msgid "Error. Message not sent"
+msgstr "Ошибка! Сообщение не отправлено."
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:14
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:14
+msgid "Incoming mail"
+msgstr "Входящая почта"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:18
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:18
+msgid "Mail check interval"
+msgstr "Интервал проверки почты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:22
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:22
+msgid "every minute"
+msgstr "Каждую минуту"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:23
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:23
+msgid "every five minutes"
+msgstr "Каждые 5 минут"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:24
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:24
+msgid "every fifteen minutes"
+msgstr "Каждые 15 минут"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:25
+msgid "every thirty minutes"
+msgstr "Каждые 30 минут"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:26
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:26
+msgid "every hour"
+msgstr "Каждый час"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:27
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:335
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:27
+msgid "never"
+msgstr "Никогда"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:32
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:32
+msgid "Truncate emails after this line"
+msgstr "Вставить предыдущее сообщение после линии"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:35
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:35
+msgid "Please type your reply above this line"
+msgstr "Напишите ваше сообщение ниже"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:46
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:46
+msgid "e-mail address for auto-reply and notification"
+msgstr "Укажите E-mail для авто ответа и получения уведомлений"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:56
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:56
+msgid "Protocol*"
+msgstr "Protocol*"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:63
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:63
+msgid "Leave a copy of email on the server"
+msgstr "Сохранять копию письма на сервере"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:117
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:117
+msgid "Check configuration"
+msgstr "Проверить конфигурацию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:119
+msgid "Check"
+msgstr "Проверить"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:121
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:121
+msgid "Test your configuration (save first)"
+msgstr "Протестировать конфигурацию. Но сначала сохраните изменения!"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:125
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-mailserver.php:127
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:125
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-mailserver.php:127
+msgid "Get mails"
+msgstr "Получить почту"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:9
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:416
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:9
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1140
+msgid "General"
+msgstr "Общие "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:12
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:419
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:12
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1143
+msgid "Default assignee"
+msgstr "Назначено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:15
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:422
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:15
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1146
+msgid "New tickets will be automatically assigned to that person"
+msgstr "Новые тикеты будут приходить этому менеджеру"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:20
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:111
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:160
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:427
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:20
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1151
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:111
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:160
+msgid "File Upload Configuration"
+msgstr "Настройки получения файлов через тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:24
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:431
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:24
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1155
+msgid ""
+"Do you want to allow users and helpdesk managers to upload attachments? <br> "
+"(Option is also used for file send through the mail server)"
+msgstr ""
+"Вы хотите предоставить пользователями или агентам хелпдеска возможность  "
+"прикреплять файлы к тикетам?"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:27
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:434
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:27
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1165
+msgid "Tracking"
+msgstr "Отслеживание"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:31
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:438
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:31
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1169
+msgid "Open tracking"
+msgstr "Открыть отслеживание"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:35
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:442
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:35
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1173
+msgid "Enable open tracking"
+msgstr "Активировать отслеживание"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:38
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:445
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:38
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1176
+msgid "Auto reply"
+msgstr "Использовать авто-ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:46
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:453
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:46
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1184
+msgid "Enable auto reply"
+msgstr "Активировать авто-ответ "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:50
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-gethelp.php:32
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:467
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:457
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:50
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-gethelp.php:32
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:492
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1188
+msgid "Message"
+msgstr "Сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:54
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:461
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:54
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1192
+msgid ""
+"<br /><p>Hello, <br /> We just got your help request! And do our best to "
+"answer emails as soon as possible, with most inquiries receiving a response "
+"within about a day.</p>"
+msgstr ""
+"<br /><p>Hello, <br /> Мы только что получили помощь запрос! И делаем все "
+"возможное, чтобы ответить на письма как можно скорее с большинство запросов, "
+"получения ответа в течение примерно в день.</p>"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:58
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:477
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:58
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1208
+msgid "Plugin pages"
+msgstr "Страницы плагина"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:62
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:481
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:62
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1212
+msgid "Create plugin pages"
+msgstr "Создать страницы "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:64
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:483
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:64
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1214
+msgid "Create"
+msgstr "Создать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-core.php:68
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:486
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-core.php:68
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1218
+msgid "Add headers to emails body"
+msgstr "Добавить почтовые заголовки в тело письма"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:13
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:295
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:13
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:17
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:17
+msgid "Ticket subject"
+msgstr "Тема тикета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:20
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Email.php:473
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:20
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Email.php:473
+msgid "Re: "
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:21
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:21
+msgid "Each e-mail notification will have this subject."
+msgstr "Каждое e-mail сообщение будет иметь эту тему"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:26
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:26
+msgid "Agent notifications"
+msgstr "Оповещения агента по сопровождению "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:30
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:30
+msgid "New reply from client"
+msgstr "Новый ответ от клиента"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:31
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:31
+msgid "Ticket assigned to agent"
+msgstr "Тикет назначен на агента"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-email.php:38
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:38
+msgid "Add a  ticket link to notification letter"
+msgstr "Добавить ссылку на тикет в письме с оповещением "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-contactform.php:15
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:593
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-contactform.php:15
+msgid "Contact form"
+msgstr "Контактная форма"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-contactform.php:18
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-contactform.php:18
+msgid "Contact form fields"
+msgstr "Поля контактной формы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-contactform.php:22
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-contactform.php:22
+msgid "Ticket Category"
+msgstr "Категория тикета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-gethelp.php:14
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-gethelp.php:14
+msgid "Get help"
+msgstr "Поддержка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Admin/settings/settings-gethelp.php:23
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:118
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:462
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-gethelp.php:23
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:118
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:487
+msgid "Name"
+msgstr "Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:18
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:18
+msgid "Select fields"
+msgstr "Выбрать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:19
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:19
+msgid "Required field"
+msgstr "Вы не можете добавить пустое поле "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:20
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:20
+msgid "not found"
+msgstr "не найден"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:107
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:107
+msgid "Ticket fields"
+msgstr "Поля тикета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:112
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:112
+msgid "Message (required field)"
+msgstr "Сообщение (обязательное поле)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:113
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:113
+msgid "Files"
+msgstr "Файлы (Приложения)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:116
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:116
+msgid "Contact fields"
+msgstr "Поля контакта"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:119
+msgid "Email (required field)"
+msgstr "Е-майл (обязательное поле)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Custom_Forms.php:121
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:188
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:195
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Custom_Forms.php:121
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:188
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:195
+msgid "Custom fields"
+msgstr "Пользовательские поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:19
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:19
+msgid "Select macros"
+msgstr "Выберете макрос"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:20
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:20
+msgid "Select saved reply"
+msgstr "Выбрать заготовленный ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:26
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:26
+msgctxt "Client vote"
+msgid "Good"
+msgstr "Хорошо"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:27
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:27
+msgctxt "Client vote"
+msgid "Just ok"
+msgstr "Неплохо"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:28
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:28
+msgctxt "Client vote"
+msgid "Not good"
+msgstr "Плохо"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:40
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:40
+msgid "Customer"
+msgstr "Клиент"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:42
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:48
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:42
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:48
+msgid "First Name"
+msgstr "Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:43
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:49
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:43
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:49
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:44
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:50
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:44
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:50
+msgid "Full Name"
+msgstr "ФИО"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:46
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:46
+msgid "Agent"
+msgstr "Саппорт менеджер (агент)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:54
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:54
+msgid "Ticket Assigned"
+msgstr "Тикет назначен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:55
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:55
+msgid "Ticket ID"
+msgstr "ID Тикета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:56
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:56
+msgid "Ticket Subject"
+msgstr "Тема тикета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:57
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:57
+msgid "Ticket Quoted Description"
+msgstr "Описание"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:58
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:58
+msgid "Ticket History"
+msgstr "История переписки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:59
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:59
+msgid "Ticket Status"
+msgstr "Статус:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:60
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:60
+msgid "Ticket Public URL"
+msgstr "Публичная ссылка на тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:61
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:61
+msgid "Ticket Public URL (without hash)"
+msgstr "Публичная ссылка на тикет (без хеша)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_Saved_Replies.php:62
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:62
+msgid "Ticket Date"
+msgstr "Дата:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:72
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:72
+msgid "File uploading failed"
+msgstr "Файл не загружен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:100
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:100
+msgid "This post type is not supported"
+msgstr "Этот почтовая служба не используется"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:107
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:107
+msgid "File uploads are disabled"
+msgstr "Загруженный файл не может быть открыть"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:114
+msgid "You are trying to add the same files"
+msgstr "Вы пытаетесь приложить тот же файл"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:275
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:275
+msgid "The file you requested is not a valid attachment"
+msgstr "Приложение не корректно"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:279
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:279
+msgid "The attachment you requested is not attached to any ticket"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:457
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:457
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
+msgstr "Превышен лимит "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:460
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:460
+msgid ""
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
+"the HTML form"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:463
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:463
+msgid "The uploaded file was only partially uploaded"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:466
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:466
+msgid "No file was uploaded"
+msgstr "Файл не обнаружен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:469
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:469
+msgid "Missing a temporary folder"
+msgstr "Папка не обнаружена"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:472
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:472
+msgid "Failed to write file to disk"
+msgstr "Файл не загружен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:475
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:475
+msgid "File upload stopped by extension"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Helpers/Stg_Helper_UploadFiles.php:478
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_UploadFiles.php:478
+msgid "Unknown upload error"
+msgstr "Ошибка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Widget/Stg_Widget_Form.php:14
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Widget/Stg_Widget_Form.php:14
+msgid "Widget form support"
+msgstr "Виджет "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Widget/Stg_Widget_Form.php:15
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Widget/Stg_Widget_Form.php:15
+msgid "A widget form support"
+msgstr "Виджет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Widget/Stg_Widget_Form.php:28
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Widget/Stg_Widget_Form.php:28
+msgid "Title:"
+msgstr "Заголовок"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:460
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:485
+msgid "Attach file"
+msgstr "Файл приложение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:470
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:495
+msgid "This field is required"
+msgstr "Это обязательное поле"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:471
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:496
+msgid "Please inter a valid email address"
+msgstr "Пожалуйста укажите корректный email"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:491
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:502
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:516
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:527
+msgid "Custom Fields"
+msgstr "Пользовательские поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:492
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:517
+msgid "Custom Field"
+msgstr "Пользовательское поле"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:493
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:518
+msgid "Search Custom Fields"
+msgstr "Искать пользовательские поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:494
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:519
+msgid "All Custom Fields"
+msgstr "Все пользовательские поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:495
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:520
+msgid "Parent Custom Field"
+msgstr "Родительский"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:496
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:521
+msgid "Parent Custom Field:"
+msgstr "Родительский:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:497
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:522
+msgid "Edit Custom Field"
+msgstr "Редактировать пользовательское поле"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:498
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:523
+msgid "View Custom Field"
+msgstr "Просмотр пользовательского поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:499
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:524
+msgid "Update Custom Field"
+msgstr "Обновление пользовательского поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:500
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:525
+msgid "Add New Custom Field"
+msgstr "Добавить новое пользовательское поле"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:501
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:526
+msgid "New Custom Field Name"
+msgstr "Имя нового пользовательского поля"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:540
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:563
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:565
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:588
+msgid "Type"
+msgstr "Тип"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:579
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:604
+msgid "Required"
+msgstr "Обязательно"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:588
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:613
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:155
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:239
+msgid "Options"
+msgstr "Опции"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:591
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:616
+msgid "Add each value from new line"
+msgstr "Добавляйте новые значения с новой строки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:597
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:622
+msgid "Default value"
+msgstr "Значение по умолчанию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:605
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:630
+msgid "Format"
+msgstr "Формат"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:613
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:638
+msgid "Container"
+msgstr "Контейнер"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:716
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:727
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:741
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:752
+msgid "Contact Forms"
+msgstr "Контактные формы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:717
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:742
+msgid "Contact Form"
+msgstr "Контактная форма"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:718
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:743
+msgid "Search Contact Forms"
+msgstr "Искать контактные формы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:719
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:744
+msgid "All Contact Forms"
+msgstr "Все контактные формы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:720
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:745
+msgid "Parent Contact Form"
+msgstr "Роительская"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:721
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:746
+msgid "Parent Contact Form:"
+msgstr "Роительская:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:722
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:747
+msgid "Edit Contact Form"
+msgstr "Редактировать контактную форму"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:723
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:748
+msgid "View Contact Form"
+msgstr "Смотреть контактную форму"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:724
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:749
+msgid "Update Contact Form"
+msgstr "Обновить контактную форму"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:725
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:750
+msgid "Add New Contact Form"
+msgstr "Добавить новую контактную форму"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:726
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:751
+msgid "New Contact Form Name"
+msgstr "Имя новой контактной формы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:808
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:833
+msgid "Search Replies"
+msgstr "Искать ответы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:809
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:834
+msgid "All Replies"
+msgstr "Все ответы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:810
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:835
+msgid "Parent Reply"
+msgstr "Начальный ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:811
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:836
+msgid "Parent Reply:"
+msgstr "Изначальный ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:812
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:837
+msgid "Edit Reply"
+msgstr "Редактировать ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:813
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:838
+msgid "View Reply"
+msgstr "Показать ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:814
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:839
+msgid "Update Reply"
+msgstr "Обновить ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:815
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:840
+msgid "Add New Reply"
+msgstr "Добавить новый ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:816
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:841
+msgid "New Reply Name"
+msgstr "Добавить новое имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:817
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:842
+msgid "Saved Replies"
+msgstr "Сохраненные ответы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:843
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:868
+msgid "How do you rate my response?"
+msgstr "Оцените мой ответ, пожалуйста"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:855
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:880
+#, php-format
+msgid "I read and agree with <a href=\"//%s\">terms&conditions</a>"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:881
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:906
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:210
+msgid "Convert into public Q&A note"
+msgstr "Отметить как запись Вопрос&Ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:886
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:911
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:217
+msgid "Topic"
+msgstr "Тема"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:903
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:928
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:237
+msgid "or choose from the most used:"
+msgstr "Выбрать наиболее популярные"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:917
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:942
+msgctxt "Taxonomy Description"
+msgid "Description"
+msgstr "Описание"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:925
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:950
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+"Описание по умолчанию не отображается, однако некоторые темы могут его "
+"показывать."
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:944
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:969
+msgctxt "Taxonomy Description"
+msgid "Form Constructor"
+msgstr "Конструктор форм"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:953
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:978
+msgid "Confirmation URL"
+msgstr "URL подтверждения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:962
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:987
+msgid "Shortcode"
+msgstr "Шорткод"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:1020
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:327
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1279
+msgid "Private notes"
+msgstr "Приватные сообщения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Init.php:1021
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:327
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1280
+msgid "History"
+msgstr "История"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Activator.php:237
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Activator.php:237
+msgid "Helpdesk manager"
+msgstr "Менеджер службы поддержки (агент) "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk_Activator.php:238
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Activator.php:238
+msgid "Helpdesk client"
+msgstr "Клиент"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk.php:156
+#: /var/www/for_translate/catchers-helpdesk/src/Core/Stg_Helpdesk.php:168
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk.php:156
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk.php:168
+msgid "Catchers ticket eraser"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:10
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:10
+msgctxt "Ticket priority"
+msgid "Low"
+msgstr "Низкий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:11
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:11
+msgctxt "Ticket priority"
+msgid "Normal"
+msgstr "Нормальный"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:12
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:12
+msgctxt "Ticket priority"
+msgid "High"
+msgstr "Высокий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:13
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:13
+msgctxt "Ticket priority"
+msgid "Urgent"
+msgstr "Срочный"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:14
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Priority.php:14
+msgctxt "Ticket priority"
+msgid "Immediately"
+msgstr "Немедленно"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:10
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:126
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:10
+msgctxt "Ticket status"
+msgid "Answered"
+msgstr "Отвеченные"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:11
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:127
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:11
+msgctxt "Ticket status"
+msgid "Not answered"
+msgstr "Не отвеченные"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:12
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:128
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:12
+msgctxt "Ticket status"
+msgid "New"
+msgstr "Новые"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:13
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:129
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:13
+msgctxt "Ticket status"
+msgid "Closed"
+msgstr "Закрытые"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:14
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:130
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type_Statuses.php:14
+msgctxt "Ticket status"
+msgid "Pending"
+msgstr "Ожидающий"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:53
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:53
+msgctxt "post type general name"
+msgid "Tickets"
+msgstr "Тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:54
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:54
+msgctxt "post type singular name"
+msgid "Ticket"
+msgstr "Тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:55
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:55
+msgctxt "admin menu"
+msgid "Tickets"
+msgstr "Тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:56
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:56
+msgctxt "add new on admin bar"
+msgid "Ticket"
+msgstr "Тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:58
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:61
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:58
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:61
+msgid "New ticket"
+msgstr "Добавить новый тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:62
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:62
+msgid "Edit ticket"
+msgstr "Редактировать тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:63
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:236
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:63
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:236
+msgid "View ticket"
+msgstr "Смотреть тикет"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:65
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:65
+msgid "Search tickets"
+msgstr "Искать тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:66
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:66
+msgid "No tickets found."
+msgstr "Не найдено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:113
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:113
+msgctxt "Taxonomy general name"
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:114
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:114
+msgctxt "Taxonomy singular name"
+msgid "Category"
+msgstr "Категории"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:115
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:115
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:116
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:155
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:116
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:155
+msgid "All items"
+msgstr "Все тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:117
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:156
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:117
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:156
+msgid "Parent item"
+msgstr "Родительский"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:118
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:157
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:118
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:157
+msgid "Parent item:"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:119
+msgid "New category name"
+msgstr "Имя новой категории"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:120
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:120
+msgid "Add new category"
+msgstr "Добавить категорию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:121
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:121
+msgid "Edit category"
+msgstr "Редактировать категорию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:122
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:122
+msgid "Update category"
+msgstr "Обновить категорию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:123
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:123
+msgid "View category"
+msgstr "Показать категорию"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:124
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:163
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:124
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:163
+msgid "Separate items with commas"
+msgstr "Укажите раздельно через ;"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:125
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:164
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:125
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:164
+msgid "Add or remove items"
+msgstr "Добавить удаленные "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:126
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:165
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:126
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:165
+msgid "Choose from the most used"
+msgstr "Выбрать наиболее популярные"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:127
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:166
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:127
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:166
+msgid "Popular items"
+msgstr "Популярные "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:128
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:167
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:128
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:167
+msgid "Search items"
+msgstr "Искать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:130
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:169
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:130
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:169
+msgid "No items"
+msgstr "Не найдено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:131
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:170
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:131
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:170
+msgid "Items list"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:132
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:171
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:132
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:171
+msgid "Items list navigation"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:152
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:152
+msgctxt "Taxonomy general name"
+msgid "Tags"
+msgstr "Теги"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:153
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:153
+msgctxt "Taxonomy singular name"
+msgid "Tag"
+msgstr "Тег"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:158
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:158
+msgid "New tag name"
+msgstr "Имя нового тега"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:159
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:159
+msgid "Add new tag"
+msgstr "Новый тег"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:160
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:160
+msgid "Edit tag"
+msgstr "Редактировать тег"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:161
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:161
+msgid "Update tag"
+msgstr "Обновить тег"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:162
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:162
+msgid "View tag"
+msgstr "Смотреть тег"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:215
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:218
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:215
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:218
+msgid "Ticket updated."
+msgstr "Тикет обновлен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:216
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:216
+msgid "Custom field updated."
+msgstr "Поле обновлено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:217
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:217
+msgid "Custom field deleted."
+msgstr "Поле удалено"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:220
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:220
+#, php-format
+msgid "Ticket restored to revision from %s"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:222
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:222
+msgid "Ticket published."
+msgstr "Тикет опубликован"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:223
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:223
+msgid "Ticket saved."
+msgstr "Тикет сохранен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:224
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:224
+msgid "Ticket submitted."
+msgstr "Тикет отправлен"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:226
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:226
+#, php-format
+msgid "Ticket scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:228
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:228
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:230
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:230
+msgid "Ticket draft updated."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Core/PostType/Stg_Helpdesk_Post_Type.php:243
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/PostType/Stg_Helpdesk_Post_Type.php:243
+msgid "Preview ticket"
+msgstr "Предпросмотр тиккета"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:79
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:64
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:79
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:64
+msgid "Search result for"
+msgstr "Искать"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:101
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:150
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:101
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:150
+msgid "Help Catcher"
+msgstr "Help Catcher"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:104
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:153
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:104
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:153
+msgid "Enabled Help Catcher"
+msgstr "Активировать Help Catcher "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:115
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:164
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:115
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:164
+msgid "Do you want to allow your users to upload attachments in Help Catcher?"
+msgstr "Вы хотите позволить клиентам прикладывать файлы к тикету?"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:119
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:168
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:119
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:168
+msgid "Start conversation"
+msgstr "Начать переписку"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:127
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:177
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:127
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:177
+msgid "Result message"
+msgstr "Итоговое сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:136
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:186
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:136
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:186
+msgid "Button color"
+msgstr "Цвет кнопки "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:143
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:193
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:143
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:193
+msgctxt "HC Position"
+msgid "Position"
+msgstr "Расположение"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:147
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:197
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:147
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:197
+msgid "Bottom right"
+msgstr "Кнопка справа"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:148
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:198
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:148
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:198
+msgid "Bottom left"
+msgstr "Кнопка слева "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:154
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:154
+msgid "GDPR options"
+msgstr "GDPR опции"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:159
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:204
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:159
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:204
+msgid "Add GDPR checkbox"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:166
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:222
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:166
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:222
+msgid "GDPR label"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:170
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:226
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:170
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:226
+#, php-format
+msgid ""
+"I read and agree with <a href='//%s' target='_blank' "
+"rel='noopener'>terms&conditions</a>"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:173
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:210
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:173
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:210
+msgid "Hide Name field"
+msgstr "Скрыть поле Имя"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:179
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:216
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:179
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:216
+msgid "Hide Subject field"
+msgstr "Скрыть поле Тема"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:190
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:235
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:190
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:235
+msgid "Widget code"
+msgstr "Код виджета Help Catcher"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object.php:193
+#: /var/www/for_translate/catchers-helpdesk/src/Versionobject/Version_Object_3_6_1.php:238
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object.php:193
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Versionobject/Version_Object_3_6_1.php:238
+msgid ""
+"Below code needs to add on page for widget activation (save changes first)"
+msgstr ""
+"Ниже указан код для вставки для активации Help Catcher (сначала сохраните "
+"изменения) "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_MetaBoxes.php:473
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_MetaBoxes.php:473
+msgid "Change status"
+msgstr "Изменить статус"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_MetaBoxes.php:481
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:85
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_MetaBoxes.php:481
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:86
+msgid "Assigned to"
+msgstr "Назначено:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:91
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:91
+msgid "Reply to ticket"
+msgstr "Ответить:"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:131
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:138
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:131
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:138
+msgid "Details"
+msgstr "Детали"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:158
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:158
+msgid "Sending options"
+msgstr "Опции уведомления"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:178
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:178
+msgid "Previous conversations"
+msgstr "Предыдущие тикеты "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:209
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:420
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:209
+msgid ""
+"An error occurred while registering this metabox. Please contact the support."
+msgstr "Ошибка. Пожалуйста обратитесь в службу поддержки."
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:216
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:427
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Admin_Ticket_Layout.php:216
+msgid ""
+"An error occured while loading this metabox. Please contact the support."
+msgstr "Ошибка. Пожалуйста обратитесь в службу поддержки."
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:48
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:48
+msgid "Answer"
+msgstr "Ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:67
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:67
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:70
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:70
+msgid "Conversation"
+msgstr "Переписка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:71
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:71
+msgid "Last update"
+msgstr "Последнее обновление"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:87
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:88
+msgid "Last reply"
+msgstr "Последний ответ"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:111
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:224
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:112
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:225
+msgid "Trash"
+msgstr "Мусорная корзина"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:324
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:325
+msgid "All categories"
+msgstr "Категории"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketList.php:344
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:345
+msgid "Show all companies"
+msgstr "Все компании"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:264
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:269
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:264
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:269
+msgid "reCAPTCHA failed"
+msgstr "Проверка reCAPTCHA не пройдена"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:280
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:280
+msgid "Sign in before you can post a message. <a href=\""
+msgstr "Необходимо войти в систему"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:286
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:286
+msgid "No subject"
+msgstr "Без темы"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:291
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:291
+msgid "No message"
+msgstr "Нет сообщения"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:348
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:348
+msgid "An error occurred. Can`t add ticket"
+msgstr "Ошибка! Не возможно войти в систему"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:554
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:554
+#, php-format
+msgid "changed from %1$s to %2$s"
+msgstr "Изменено с %1$s на %2$s"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:556
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:556
+#, php-format
+msgid "set to %1$s "
+msgstr "установлен в %1$s "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_Ticket.php:558
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_Ticket.php:558
+#, php-format
+msgid "deleted (<s> %1$s </s>)"
+msgstr "Удалено (<s> %1$s </s>)"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_CommentsAjax.php:273
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_CommentsAjax.php:273
+msgid "View all conversations"
+msgstr "Смотреть все переписки"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_CommentsAjax.php:277
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_CommentsAjax.php:277
+msgid "No conversations"
+msgstr "Нет переписок"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketCategory.php:25
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketCategory.php:25
+msgid "Assign agent"
+msgstr "Назначенный агент"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:170
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:170
+msgid "Anonymous"
+msgstr "Любой"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:190
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:190
+msgid ""
+"Something went wrong. We couldn&#039;t identify your ticket. Please try "
+"again."
+msgstr "Ошибка"
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:257
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:257
+msgid "Your reply could not be submitted for an unknown reason."
+msgstr "Ответ не может быть отправлен. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:261
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:261
+msgid "Your reply has been submitted. Your agent will reply ASAP."
+msgstr "Ваш ответ был отправлен. "
+
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:342
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:343
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:387
+#: /var/www/for_translate/catchers-helpdesk/src/Ticket/Stg_Helpdesk_TicketComments.php:388
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:342
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:343
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:387
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketComments.php:388
+#, php-format
+msgid "Reply to ticket %s"
+msgstr "Ответить на тикет %s"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:2
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:2
+msgid "Plugin problem detected!"
+msgstr "Ошибка установки плагина!"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:4
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:4
+msgid ""
+"Sorry, but for the correct work of the plugin you should check following "
+"issues below: "
+msgstr ""
+"Извините, но для правильной работы плагина вы должны исправить следующее:"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:35
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:35
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:35
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:36
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:32
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:37
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:62
+msgid "Attention, please! Catchers Helpdesk plugin is not activated!"
+msgstr "Внимание! Catchers Helpdesk не активирован!"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:37
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:37
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:37
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:38
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:34
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:39
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:64
+msgid "Activate Catchers Helpdesk plugin"
+msgstr "Активировать плагин Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:40
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:41
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:40
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:41
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:37
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:44
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:68
+msgid ""
+"Attention, please! Catchers Helpdesk plugin is not installed or not "
+"activated!"
+msgstr "Внимание! Catchers Helpdesk не инсталлирован или не активирован!"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:42
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:43
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:42
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:43
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:39
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:46
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:70
+msgid "Install and activate Catchers Helpdesk plugin"
+msgstr "Установить и активировать плагин Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/admin/partials/welcome.php:52
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:54
+#: /var/www/for_translate/catchers-helpdesk-addon1/admin/partials/welcome.php:52
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/welcome.php:53
+#: /var/www/for_translate/catchers-helpdesk-addon2/admin/partials/welcome.php:49
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/partials/welcome.php:58
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:87
+msgid "Update Catchers Helpdesk plugin"
+msgstr "Обновить плагин Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon3/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_envato.php:55
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_envato.php:59
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_envato.php:86
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_envato.php:90
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-wc-support/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon4/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterEnvato.php:52
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterEnvato.php:56
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterEnvato.php:83
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterEnvato.php:87
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterMycatchers.php:70
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Updater/Adapter/AdapterMycatchers.php:74
+msgid "An unknown API error occurred."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:188
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:397
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:248
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:259
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:269
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:363
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1250
+msgid "Integrations"
+msgstr "Интеграция"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:192
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:401
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:252
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:263
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:367
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1254
+msgid "Addon's update"
+msgstr "Настройки обновления аддона"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:195
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:404
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:255
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:266
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:370
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1257
+msgid "Envato Personal Token"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:200
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:409
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:260
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:271
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:375
+msgid "Plugin license"
+msgstr "Лицензия плагина"
+
+#: /var/www/for_translate/catchers-helpdesk-addon3/includes/class-catchers-helpdesk-addon3.php:239
+#: /var/www/for_translate/catchers-wc-support/includes/class-catchers-wc-support.php:191
+msgid "Catchers Helpdesk  Add-on starting page. "
+msgstr "Стартовая страница аддонов Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:52
+msgid "Invalid version ("
+msgstr "Наверная версия ("
+
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:81
+msgid "Woocommerce plugin is not activated!"
+msgstr "Woocommerce плагин не активирован!"
+
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:83
+msgid "Activate WooCommerce plugin"
+msgstr "Активирован WooCommerce плагин"
+
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:87
+msgid "Woocommerce plugin is not installed!"
+msgstr "Woocommerce плагин не установлен!"
+
+#: /var/www/for_translate/catchers-wc-support/admin/partials/welcome.php:89
+msgid "Install and activate WooCommerce plugin"
+msgstr "Установить и активировать WooCommerce плагин"
+
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:61
+msgid "Items"
+msgstr "Товары"
+
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:69
+msgid "Date"
+msgstr "Дата"
+
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:76
+msgid "Order total cost"
+msgstr "Общая стоимость заказа"
+
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:83
+msgid "Lifetime value"
+msgstr ""
+
+#: /var/www/for_translate/catchers-wc-support/admin/metaboxes/user_order.php:90
+msgid "Previous orders"
+msgstr "Предыдущие заказы"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:338
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:452
+msgid "Order Items"
+msgstr "Товары заказа"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:359
+msgid "Order"
+msgstr "Заказ"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:367
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:453
+msgid "Products"
+msgstr "Товары"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:378
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:384
+msgid "Last tickets"
+msgstr "Последние тикеты"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:559
+msgid "The results could not be loaded."
+msgstr "Результаты не могут быть загружены"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:560
+msgid "Please delete"
+msgstr "Пожалуйста удалите"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:561
+msgid "characters"
+msgstr "символов"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:562
+msgid "Please enter"
+msgstr "Пожалуйста введите"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:563
+msgid "or more characters"
+msgstr "или более символов"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:564
+msgid "Loading more results..."
+msgstr "Загрузить больше результатов"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:565
+msgid "You can only select"
+msgstr "Вы можете выбрать только"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:566
+msgid "items"
+msgstr "Товары"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:567
+msgid "No results found"
+msgstr "Не найдено"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:568
+msgid "Searching..."
+msgstr "Поиск..."
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:597
+msgid ""
+"Choose custom contact form. Attention! This selector contains only form with "
+"order items line"
+msgstr ""
+"Выберите контактную форму. Внимание! Здесь отоборажены только формы "
+"содержащие строку с товарами заказа в настройках."
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:605
+msgid "Catchers Helpdesk section"
+msgstr "Настройки Хелпдеск "
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:610
+msgid "Add capabilities"
+msgstr "Добавить прав"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:615
+msgid "Allow to Helpdesk Manager have Shop Manager capabilities"
+msgstr "Дать обладателю роли Helpdesk Manager возможности Shop Manager"
+
+#: /var/www/for_translate/catchers-wc-support/helpers/orders-helpers.php:699
+msgid "Choose order"
+msgstr "Выбрать заказ"
+
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon1/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon5/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon2/updater/adapter/adapter_mycatchers.php:55
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_envato.php:61
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_envato.php:65
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_envato.php:93
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_envato.php:97
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_mycatchers.php:51
+#: /var/www/for_translate/catchers-helpdesk-addon6/updater/adapter/adapter_mycatchers.php:55
+msgid "Warning! An unknown API error occurred."
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:266
+msgid "Custom forms settings"
+msgstr "Настройки пользовательских полей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:269
+msgid "Allow Helpdesk Managers manage custom fields"
+msgstr "Разрешить Helpdesk Manager редактировать пользовательские поля"
+
+#: /var/www/for_translate/catchers-helpdesk-addon1/includes/class-catchers-helpdesk-addon1.php:292
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:601
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:509
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:398
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:283
+msgid "Catchers Helpdesk  Add-on starting page."
+msgstr "Стартовая страница аддонов Catchers Helpdesk"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:116
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:48
+msgid "All Categories"
+msgstr "Категории"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:118
+msgctxt "label for reports indicator"
+msgid "Average first response time"
+msgstr "Время первого ответа (среднее)"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:119
+msgctxt "label for reports indicator"
+msgid "Closed tickets"
+msgstr "Закрытые тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:120
+msgctxt "label for reports indicator"
+msgid "Total replies"
+msgstr "Все реплики"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:121
+msgctxt "label for reports indicator"
+msgid "Good"
+msgstr "Хорошо"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:122
+msgctxt "label for reports indicator"
+msgid "Bad"
+msgstr "Плохо"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:123
+msgctxt "label for reports indicator"
+msgid "Neutral"
+msgstr "Удовл"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:124
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:21
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:50
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:380
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:476
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:510
+msgctxt "label of undefined indicator"
+msgid "Not set"
+msgstr "Неопр."
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:125
+msgctxt "label of undefined indicator"
+msgid "No Data"
+msgstr "Нет Данных"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/class-catchers-helpdesk-addon5-admin.php:131
+msgctxt "Reports table header"
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:32
+msgid "Helpdesk metrics and Reports"
+msgstr "Метрики и отчеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:35
+msgid "Tasks left to import: "
+msgstr "Осталось проимпортировать:"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:38
+msgid "All dates"
+msgstr "За всё время"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:39
+msgid "Last year"
+msgstr "Последний год"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:40
+msgid "Last month"
+msgstr "Последний месяц"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:41
+msgid "Last week"
+msgstr "Последняя неделя"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:42
+msgid "Today"
+msgstr "Сегодня"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:44
+msgid "Customize: "
+msgstr "Свой запрос:"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:48
+msgid "Select category"
+msgstr "Выберите категорию"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:49
+msgid "Build reports"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:56
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:57
+msgid "clear cache"
+msgstr "очистить кеш"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:66
+msgid "Tickets"
+msgstr "Тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:72
+msgid "New tickets"
+msgstr "Новые тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:76
+msgid "New contacts"
+msgstr "Новые контакты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:83
+msgid "Total replies"
+msgstr "Все реплики"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:87
+msgid "Closed tickets"
+msgstr "Закрытые тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:94
+msgid "Average first response time"
+msgstr "Время первого ответа (среднее)"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:98
+msgid "Average closing ticket time"
+msgstr "Среднее время закрытия"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:111
+msgid "Busiest time of day"
+msgstr "Cамое загруженное время суток"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:126
+msgid "Open tickets"
+msgstr "Открытые тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:139
+msgid "Ticket's channel"
+msgstr "Каналы поступления тикетов"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:152
+msgid "Ticket's category"
+msgstr "Категории тикетов"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/admin/partials/reports.php:169
+msgid "Helpdesk managers"
+msgstr "Агенты поддержки"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:27
+msgctxt "Day"
+msgid "d"
+msgstr "д"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:31
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:57
+msgctxt "Hour"
+msgid "h"
+msgstr "ч"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:35
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:61
+msgctxt "Minute"
+msgid "m"
+msgstr "м"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-helpers.php:39
+msgctxt "Second"
+msgid "s"
+msgstr "с"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:480
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:514
+msgctxt "label of undefined indicator"
+msgid "email"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:550
+msgctxt "time label for reports"
+msgid "12-2a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:551
+msgctxt "time label for reports"
+msgid "2-4a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:552
+msgctxt "time label for reports"
+msgid "4-6a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:553
+msgctxt "time label for reports"
+msgid "6-8a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:554
+msgctxt "time label for reports"
+msgid "8-10a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:555
+msgctxt "time label for reports"
+msgid "10-12a"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:556
+msgctxt "time label for reports"
+msgid "12-2p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:557
+msgctxt "time label for reports"
+msgid "2-4p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:558
+msgctxt "time label for reports"
+msgid "4-6p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:559
+msgctxt "time label for reports"
+msgid "6-8p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:560
+msgctxt "time label for reports"
+msgid "8-10p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:561
+msgctxt "time label for reports"
+msgid "10-12p"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:565
+msgctxt "time label for reports"
+msgid "Mo"
+msgstr "Пн"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:566
+msgctxt "time label for reports"
+msgid "Tu"
+msgstr "Вт"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:567
+msgctxt "time label for reports"
+msgid "We"
+msgstr "Ср"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:568
+msgctxt "time label for reports"
+msgid "Th"
+msgstr "Чт"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:569
+msgctxt "time label for reports"
+msgid "Fr"
+msgstr "Пт"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:570
+msgctxt "time label for reports"
+msgid "Sa"
+msgstr "Сб"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/helpers/tools-reports.php:571
+msgctxt "time label for reports"
+msgid "Su"
+msgstr "Вс"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5-report.php:96
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5-report.php:116
+msgid "Reports table not created!"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5-report.php:158
+msgid "Reports tasks table not created!"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:317
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:318
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:582
+msgid "Reports"
+msgstr "Отчеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon5/includes/class-catchers-helpdesk-addon5.php:547
+msgctxt "label of undefined indicator"
+msgid "deleted"
+msgstr "удаленный"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:215
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Helpers/Stg_Helper_Saved_Replies.php:63
+msgid "Reply Voting Form"
+msgstr "Форма голосования"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:220
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:327
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:382
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1127
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1282
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Ticket/Stg_Helpdesk_TicketList.php:73
+msgid "Vote"
+msgstr "Голос"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:228
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1158
+msgid "Check customer satisfaction"
+msgstr "Проверить качество поддержки"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:229
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1159
+msgid "Send a voting message to the customer when the ticket is closed"
+msgstr "Отправлять форму голосования клиенту при закрытии тикета"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:298
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:44
+msgid "Global Cc for all notifications"
+msgstr "Сc для всех уведомлений"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:301
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:47
+msgid "e-mail address for set Cc header for all notification"
+msgstr "е-мейл для установки в  заголовок Сс для всех уведомлений"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:305
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:51
+msgid "Global Bcc for all notifications"
+msgstr "Bcc для всех уведомлений"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:308
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Admin/settings/settings-email.php:54
+msgid "e-mail address for set Bcc header for all notification"
+msgstr "е-мейл для установки в  заголовок Bcc для всех уведомлений"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:465
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1196
+msgid "Email footer"
+msgstr "Подвал email сообщения"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:469
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1200
+msgid "Footer content"
+msgstr "Содержание сообщения"
+
+#: /var/www/for_translate/catchers-helpdesk-addon2/includes/class-catchers-helpdesk-addon2.php:502
+#: /var/www/for_translate/catchers-helpdesk-premium/src/Core/Stg_Helpdesk_Init.php:1067
+msgid "Private note"
+msgstr "Частное сообщение"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/admin/class-catchers-helpdesk-addon4-admin.php:112
+msgid "Export"
+msgstr "Экспорт"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:199
+msgid "Last Modified Helpdesk Tickets"
+msgstr "Последние измененные тикеты"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:222
+msgid "All data"
+msgstr "Все данные"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:222
+msgid "Contact replies"
+msgstr "Ответы клиента"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:222
+msgid "Agent replies"
+msgstr "Ответы агента"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:273
+msgid "Google Invisible reCAPTCHA, "
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:276
+msgid "Site key"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:281
+msgid "Secret key"
+msgstr ""
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:286
+msgid "reCAPTCHA settings result"
+msgstr "Результат настройки reCAPTCHA"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:291
+msgid "Language code"
+msgstr "Языковой код"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:295
+msgid "Language settings, see more about "
+msgstr "Языковые настройки, смотри подробности о"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:295
+msgid "language codes"
+msgstr "языковых кодах"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:298
+msgid "Enable form protection"
+msgstr "Активировать защиту форм"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:321
+#, php-format
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s день"
+msgstr[1] "%s дня"
+msgstr[2] "%s дней"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:340
+msgid "Autoclose ticket after"
+msgstr "Автоматически закрывать через"
+
+#: /var/www/for_translate/catchers-helpdesk-addon4/includes/class-catchers-helpdesk-addon4.php:344
+msgid "From status \"Answered\" to status \"Сlosed\""
+msgstr "Из статуса \"Отвеченные\" в статус \"Закрытые\""
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:78
+msgid ""
+"Attention, please! Catchers Helpdesk Team Collaboration Add-on plugin is not "
+"installed or not activated!"
+msgstr ""
+"Внимание! Catchers Helpdesk Team Collaboration Add-on не инсталлирован или "
+"не активирован!"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:80
+msgid "Install and activate Catchers Helpdesk Team Collaboration Add-on plugin"
+msgstr ""
+"Установить и активировать плагин Catchers Helpdesk Team Collaboration Add-on"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/welcome.php:95
+msgid "Update Catchers Helpdesk Team Collaboration Add-on plugin"
+msgstr "Обновить плагин Catchers Helpdesk Team Collaboration Add-on"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/kb.php:12
+msgid "Preview."
+msgstr "Предпросмотр."
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/admin/partials/kb.php:13
+msgid "Drag and drop the order of the topic here."
+msgstr "Перетаскивайте темы чтобы изменить порядок"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:119
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:120
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:262
+#: /var/www/for_translate/catchers-helpdesk-addon6/includes/class-catchers-helpdesk-addon6.php:263
+msgid "Knowledge Base"
+msgstr "База Знаний"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:158
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:242
+msgid "Column count"
+msgstr "Количество колонок"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:166
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:250
+msgid "Search width"
+msgstr "Ширина блока поиска"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:176
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:260
+msgid "Round corners"
+msgstr "Круглые углы"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:182
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:266
+msgid "Articles header color"
+msgstr "Цвет заголовка статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:188
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:272
+msgid "Articles header font color"
+msgstr "Цвет шрифта заголовка статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:194
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:278
+msgid "Articles header font size"
+msgstr "Размер заголовка статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:202
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:286
+msgid "Articles color"
+msgstr "Цвет статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:208
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:292
+msgid "Articles font color"
+msgstr "Цвет шрифта статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:214
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:298
+msgid "Articles font size"
+msgstr "Размер шрифта статей"
+
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:222
+#: /var/www/for_translate/catchers-helpdesk-addon6/helpers/tools-helpers.php:306
+msgid "Search placeholder"
+msgstr "Плейсхолдер блока поиска"
+
+#~ msgid "Your tickets"
+#~ msgstr "Ваши Тикеты"
+
+#~ msgid "Subject (required field)"
+#~ msgstr "Тема (обязательное поле)"
+
+#~ msgid "Name (required field)"
+#~ msgstr "Имя (обязательное поле)"
+
+#~ msgctxt "label for reports indicator"
+#~ msgid "good"
+#~ msgstr "хорошо"
+
+#~ msgctxt "label of undefined indicator"
+#~ msgid "undef"
+#~ msgstr "неопр"
+
+#~ msgid "Last day"
+#~ msgstr "Последний  день"
+
+#~ msgid "Or customize dates: "
+#~ msgstr "Или задать самостоятельно:"
+
+#~ msgid "You can't voted"
+#~ msgstr "Вы не можете здесь проголосовать"
+
+#~ msgid "Re: {ticket_title}"
+#~ msgstr "Re: {ticket_title}"
+
+#~ msgid "website"
+#~ msgstr "Сайт"
+
+#~ msgid "Assigned to: "
+#~ msgstr "Назначено:"
+
+#~ msgid "Click here to search for the plugin."
+#~ msgstr "Нажмите сюда для поиска плагина"
+
+#~ msgid "Documentation"
+#~ msgstr "Документация"
+
+#~ msgid "Issue tracker"
+#~ msgstr "Статус обращения"
+
+#~ msgid ""
+#~ "There is a new version of %1$s available. <a target=\"_blank\" class="
+#~ "\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+#~ msgstr ""
+#~ "Доступна новая версия %1$s. <a target=\"_blank\" class=\"thickbox\" href="
+#~ "\"%2$s\">Смотреть версию %3$s details</a>."
+
+#~ msgid ""
+#~ "There is a new version of %1$s available. <a target=\"_blank\" class="
+#~ "\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+#~ "\">update now</a>."
+#~ msgstr ""
+#~ "Новая версия %1$s доступна. <a target=\"_blank\" class=\"thickbox\" href="
+#~ "\"%2$s\">Смотреть %3$s подробнее</a> or <a href=\"%4$s\">Обновить</a>."
+
+#~ msgid "You do not have permission to install plugin updates"
+#~ msgstr "У вас недостаточно прав для установки обновления плагина"
+
+#~ msgid "Error"
+#~ msgstr "Ошибка"
+
+#~ msgid "Container of type %s, does not exist."
+#~ msgstr "Тип контенера %s, не существует."
+
+#~ msgid "Enabled"
+#~ msgstr "Активировать"
+
+#~ msgid "Disabled"
+#~ msgstr "Отключить "
+
+#~ msgid "Untitled %s"
+#~ msgstr "Не определено %s"
+
+#~ msgid "Reset to defaults"
+#~ msgstr "Установить настройки по умолчанию"
+
+#~ msgid "Are you sure you want to reset ALL options to their default values?"
+#~ msgstr "Вы уверены что хотите сбросить все опции?"
+
+#~ msgid "Select Image"
+#~ msgstr "Выберете макрос"
+
+#~ msgid "Your license is valid and active."
+#~ msgstr "Лицензионный ключ активирован"
+
+#~ msgid "Activate"
+#~ msgstr "Активировать лицензию"
+
+#~ msgid "Theme license"
+#~ msgstr "Лицензия на Тему"
+
+#~ msgid "Enter your theme license key."
+#~ msgstr "Введите лицензионный ключ доступа к Теме"
+
+#~ msgid "License key"
+#~ msgstr "Лицензионный ключ доступа"
+
+#~ msgid "License action"
+#~ msgstr "Лицензия активна"
+
+#~ msgid "Deactivate license"
+#~ msgstr "Деактивировать лицензию"
+
+#~ msgid "Activate license"
+#~ msgstr "Активировать лицензию"
+
+#~ msgid "License status is unknown."
+#~ msgstr "Статус лицензии не определен"
+
+#~ msgid "Renew?"
+#~ msgstr "Обновить"
+
+#~ msgid "unlimited"
+#~ msgstr "Не ограничено "
+
+#~ msgid "License key is active."
+#~ msgstr "Лицензионный ключ активирован"
+
+#~ msgid "Expires %s."
+#~ msgstr "Просрочено %s."
+
+#~ msgid "You have %1$s / %2$s sites activated."
+#~ msgstr "У вас %1$s / %2$s активированных сайтов. "
+
+#~ msgid "Select"
+#~ msgstr "Выбрать"
+
+#~ msgid "Something went wrong"
+#~ msgstr "Что случилось"
+
+#~ msgid "Click me"
+#~ msgstr "Кликнуть"
+
+#~ msgid "Please wait..."
+#~ msgstr "Пожалуйста подождите"
+
+#~ msgid "Settings saved."
+#~ msgstr "Настойки сохранены"
+
+#~ msgid "Settings reset to default."
+#~ msgstr "Установлены настройки по умолчанию "

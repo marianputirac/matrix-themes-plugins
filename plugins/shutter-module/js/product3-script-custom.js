@@ -3,6 +3,30 @@ jQuery.noConflict();
 (function ($) {
     $(function () {
 
+
+        // ========== START - customize some properties by user =========
+        var idCustomer = null;
+        var idDealer = null;
+        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
+
+        idCustomer = jQuery('input[name="customer_id"]').val();
+        idDealer = jQuery('input[name="dealer_id"]').val();
+
+        // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+        if (idCustomer == 274 || idDealer == 274) {
+            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
+        }
+        console.log('idCustomer ', idCustomer);
+        console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
+        // ========== END - customize some properties by user =========
+
+
+        $(".show-next-panel").click(function () {
+            $(this).closest(".panel").find(".panel-collapse").collapse("hide");
+            $(this).closest(".panel").next().find(".panel-collapse").collapse("show");
+            return false;
+        });
+
         function getPropertyCodeById(id) {
             code = '';
             for (i = 0; i < property_fields.length; i++) {
@@ -90,11 +114,19 @@ jQuery.noConflict();
         //get all field data
         function getAllFieldData(property_id) {
             data = [];
-            for (var i = 0; i < property_values.length; i++) {
-                if (property_values[i].property_id == property_id) {
-                    data.push(property_values[i]);
+            var idCustomer = $('input[name="customer_id"]').val();
+            if (idCustomer == 274 || idDealer == 274) {
+                for (var i = 0; i < property_values.length; i++) {
+                    if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
+                        data.push(property_values[i]);
+                    }
                 }
-
+            } else {
+                for (var i = 0; i < property_values.length; i++) {
+                    if (property_values[i].property_id == property_id) {
+                        data.push(property_values[i]);
+                    }
+                }
             }
             return data;
         }
@@ -2707,37 +2739,36 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
+            },{
+                "id": 172,
+                "property_id": 15,
+                "value": "Sea Mist",
+                "created_at": "2016-02-25T09:16:36.000+00:00",
+                "updated_at": "2016-04-01T23:26:38.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"187\",\"188\",\"137\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 15,
+                    "name": "Hinge Color",
+                    "created_at": "2015-09-07T23:00:03.000+01:00",
+                    "updated_at": "2015-09-07T23:01:58.000+01:00",
+                    "code": "hingecolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
             },
-//            {
-//                "id": 172,
-//                "property_id": 20,
-//                "value": "-",
-//                "created_at": "2016-06-16T13:59:23.000+01:00",
-//                "updated_at": "2016-06-16T13:59:23.000+01:00",
-//                "code": "-",
-//                "uplift": "0.0",
-//                "color": "",
-//                "all_products": true,
-//                "selected_products": "{\"product_ids\":null}",
-//                "all_property_values": false,
-//                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
-//                "graphic": "none",
-//                "image_file_name": null,
-//                "image_content_type": null,
-//                "image_file_size": null,
-//                "image_updated_at": null,
-//                "is_active": true,
-//                "property": {
-//                    "id": 20,
-//                    "name": "Midrail Position Critical",
-//                    "created_at": "2016-06-12T20:34:21.000+01:00",
-//                    "updated_at": "2016-06-12T20:34:21.000+01:00",
-//                    "code": "midrailpositioncritical",
-//                    "sort": null,
-//                    "help_text": "",
-//                    "input_type": "input"
-//                }
-//            },
             {
                 "id": 170,
                 "property_id": 20,
@@ -3405,7 +3436,102 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "input"
                 }
-            }, {
+            },
+            {
+                "id": 411,
+                "property_id": 17,
+                "value": "Frosted White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }
+            , {
+                "id": 412,
+                "property_id": 17,
+                "value": "Neutral White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }
+            , {
+                "id": 413,
+                "property_id": 17,
+                "value": "Shell White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+
+            {
                 "id": 101,
                 "property_id": 17,
                 "value": "LS 601 PURE WHITE",
@@ -3678,7 +3804,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"139\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6774,18 +6900,18 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
-                "id": 401,
+                "id": 402,
                 "property_id": 16,
-                "value": "Hidden Rod",
-                "created_at": "2017-07-21T02:51:01.000+01:00",
-                "updated_at": "2017-11-27T12:04:38.000+00:00",
+                "value": "Offset Rod",
+                "created_at": "2015-09-26T01:29:43.000+01:00",
+                "updated_at": "2017-11-27T12:04:18.000+00:00",
                 "code": "",
-                "uplift": "15.0",
+                "uplift": "0.0",
                 "color": "",
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\",\"187\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6803,18 +6929,18 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             }, {
-                "id": 402,
+                "id": 401,
                 "property_id": 16,
-                "value": "Offset Tilt Rod",
-                "created_at": "2015-09-26T01:29:43.000+01:00",
-                "updated_at": "2017-11-27T12:04:18.000+00:00",
+                "value": "Hidden tilt",
+                "created_at": "2017-07-21T02:51:01.000+01:00",
+                "updated_at": "2017-11-27T12:04:38.000+00:00",
                 "code": "",
-                "uplift": "0.0",
+                "uplift": "15.0",
                 "color": "",
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\",\"187\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6922,7 +7048,7 @@ jQuery.noConflict();
             , {
                 "id": 406,
                 "property_id": 22,
-                "value": "K077 - Creamy",
+                "value": "K077 - Champagne",
                 "created_at": null,
                 "updated_at": "2018-03-01T23:46:10.000+00:00",
                 "code": "",
@@ -6952,7 +7078,7 @@ jQuery.noConflict();
             , {
                 "id": 407,
                 "property_id": 22,
-                "value": "616 - Champagne",
+                "value": "616 - Sand",
                 "created_at": null,
                 "updated_at": "2018-03-01T23:46:10.000+00:00",
                 "code": "",
@@ -6982,7 +7108,37 @@ jQuery.noConflict();
             , {
                 "id": 408,
                 "property_id": 22,
-                "value": "231 - Rusty Grey",
+                "value": "231 - Gold",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            }
+            , {
+                "id": 414,
+                "property_id": 22,
+                "value": "238 - Cappuccino",
                 "created_at": null,
                 "updated_at": "2018-03-01T23:46:10.000+00:00",
                 "code": "",
@@ -7011,7 +7167,7 @@ jQuery.noConflict();
             }, {
                 "id": 409,
                 "property_id": 22,
-                "value": "841 - Cherry",
+                "value": "841 - Terracotta",
                 "created_at": null,
                 "updated_at": "2018-03-01T23:46:10.000+00:00",
                 "code": "",
@@ -7040,7 +7196,7 @@ jQuery.noConflict();
             }, {
                 "id": 410,
                 "property_id": 22,
-                "value": "310 - Roasted Coffee",
+                "value": "310 - Gun Metal",
                 "created_at": null,
                 "updated_at": "2018-03-01T23:46:10.000+00:00",
                 "code": "",
@@ -7065,95 +7221,6 @@ jQuery.noConflict();
                     "sort": null,
                     "help_text": "",
                     "input_type": "input"
-                }
-            }, {
-                "id": 411,
-                "property_id": 17,
-                "value": "Frosted White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }
-            , {
-                "id": 412,
-                "property_id": 17,
-                "value": "Neutral White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }
-            , {
-                "id": 413,
-                "property_id": 17,
-                "value": "Shell White",
-                "created_at": "2015-09-26T01:28:40.000+01:00",
-                "updated_at": "2015-09-26T01:28:40.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 16,
-                    "name": "Control Type",
-                    "created_at": "2015-09-26T01:25:55.000+01:00",
-                    "updated_at": "2015-09-26T01:25:55.000+01:00",
-                    "code": "controltype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
                 }
             }, {
                 "id": 437,
@@ -7944,7 +8011,7 @@ jQuery.noConflict();
                     // console.log("text == 'L' || text == 'R'");
                     // console.log(text.length);
                     $('#property_opendoor').parent().hide();
-                } else if ((text == 'LL' || text == 'RR')  && text.length === 2) {
+                } else if ((text == 'LL' || text == 'RR') && text.length === 2) {
                     // console.log("text == 'LL' && text.length === 2");
                     // console.log(text.length);
                     $('#property_opendoor').parent().hide();
@@ -7997,7 +8064,7 @@ jQuery.noConflict();
                 console.log('letter r and lengkeyr1');
                 return false; // return false, optionally
             }
-            if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character){
+            if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
                 console.log('letter r and lengkeyr1');
                 return false; // return false, optionally
             }
@@ -8266,6 +8333,76 @@ jQuery.noConflict();
                         addFieldCheckboxBuildoutSelect(label2, id2, 'help text demo', 't');
                         addFieldCheckboxBuildout(label, id2, 1);
                         tchar_nr++;
+
+                        jQuery('.tpost-img label').hide();
+
+                        // Earth 187
+                        if (material_id == 187) {
+                            // console.log('show earth img');
+                            jQuery('#stile-img-earth').show();
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-earth').show();
+                            jQuery('.type-img-earth').parent().show();
+
+                        }
+                        // Supreme 139
+                        else if (material_id == 139) {
+                            // console.log('show Supreme img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-supreme').show();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-supreme').show();
+                            jQuery('.type-img-supreme').parent().show();
+                        }
+                        // Biowood 138
+                        else if (material_id == 138) {
+                            // console.log('show Biowood img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-biowood').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-biowood').show();
+                            jQuery('.type-img-biowood').parent().show();
+                        }
+                        // Green 137
+                        else if (material_id == 137) {
+                            // console.log('show Green img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-green').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            //tpost-type
+                            jQuery('.type-img-green').show();
+                            jQuery('.type-img-green').parent().show();
+                        }
+                        // ecowood 188
+                        else if (material_id == 188) {
+                            console.log('show ecowood img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-ecowood').show();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-green').hide();
+                            //tpost-type
+                            jQuery('.type-img-ecowood').show();
+                            jQuery('.type-img-ecowood').parent().show();
+
+                        }
+
                         // console.log('tchar_nr after : ' + bchar_nr);
                         $('.tpost-type').show();
                         $('.tpost-type label').show();
@@ -8762,14 +8899,20 @@ jQuery.noConflict();
         function showMidrailPositionCritical() {
             if ($("#property_material").select2('data')) {
                 product_title_check = $("#property_material").select2('data').value;
+                var property_midrailpositioncritical = $("#property_midrailpositioncritical").val();
+
                 if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight").val() > 0) {
                     $("#midrail-position-critical").show();
                     $("midrail-position-critical input").removeClass('not-required');
-                    $("#property_midrailpositioncritical").select2("val", '170');
+                    if (property_midrailpositioncritical === '') {
+                        $("#property_midrailpositioncritical").select2("val", '170');
+                    }
                 } else if (product_title_check.indexOf('PVC') == -1 && $("#property_midrailheight2").val() > 0) {
                     $("#midrail-position-critical").show();
                     $("midrail-position-critical input").removeClass('not-required');
-                    $("#property_midrailpositioncritical").select2("val", '170');
+                    if (property_midrailpositioncritical === '') {
+                        $("#property_midrailpositioncritical").select2("val", '170');
+                    }
                 } else {
                     $("#midrail-position-critical").hide();
                     $("#midrail-position-critical input").addClass('not-required');
@@ -9712,11 +9855,6 @@ jQuery.noConflict();
             }
         });
 
-        $(".show-next-panel").click(function () {
-            $(this).closest(".panel").find(".panel-collapse").collapse("hide");
-            $(this).closest(".panel").next().find(".panel-collapse").collapse("show");
-            return false;
-        });
 
         $(".print-drawing").click(function () {
             w = window.open();
@@ -12571,16 +12709,16 @@ jQuery.noConflict();
                     var splitHeight2 = (shutter.secondSplitHeight != null && shutter.secondSplitHeight.length >= 2) ? shutter.secondSplitHeight[1] : null;
                     var selectedSplitHeight = null;
                     if (!((splitHeight1 == null ||
-                        splitHeight1 <= shutter.railHeight ||
-                        splitHeight1 >= shutter.height - shutter.railHeight) ||
+                            splitHeight1 <= shutter.railHeight ||
+                            splitHeight1 >= shutter.height - shutter.railHeight) ||
                         !(splitHeight1 >= fromHeight - rodDistanceUp + splitDistance / 2.0 &&
                             splitHeight1 <= toHeight + rodDistanceUp - splitDistance / 2.0))) {
                         selectedSplitHeight = splitHeight1;
                     }
                     if (selectedSplitHeight == null &&
                         !((splitHeight2 == null ||
-                            splitHeight2 <= shutter.railHeight ||
-                            splitHeight2 >= shutter.height - shutter.railHeight) ||
+                                splitHeight2 <= shutter.railHeight ||
+                                splitHeight2 >= shutter.height - shutter.railHeight) ||
                             !(splitHeight2 >= fromHeight - rodDistanceUp + splitDistance / 2.0 &&
                                 splitHeight2 <= toHeight + rodDistanceUp - splitDistance / 2.0))) {
                         selectedSplitHeight = splitHeight2;
@@ -13447,7 +13585,7 @@ jQuery.noConflict();
                     pos = newPos;
                     b_pos += (layoutCode[i] == 'B') ? 1 : 0;
                     var scaledPanelWidth = getPanelWidth(layoutCode, i, shutter);
-                    if(layoutCode[i] != 'T'){
+                    if (layoutCode[i] != 'T') {
                         drawXLine(rPaper, pos.x, pos.y - 50, scaledPanelWidth, {
                             skipLine: true,
                             // textUp: layoutCode[i],
@@ -13485,7 +13623,7 @@ jQuery.noConflict();
                     pos = newPos;
                     b_pos -= (layoutCode[i] == 'B') ? 1 : 0;
                     var scaledPanelWidth = getPanelWidth(layoutCode, i, shutter);
-                    if(layoutCode[i] != 'T'){
+                    if (layoutCode[i] != 'T') {
                         drawXLine(rPaper, pos.x, pos.y - 50, scaledPanelWidth, {
                             skipLine: true,
                             // textUp: layoutCode[i],

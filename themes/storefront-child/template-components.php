@@ -24,7 +24,6 @@ get_header(); ?>
                                 <?php echo get_post_meta(1, 'notification_users_message', true); ?>
                             </div>
 
-
                             <div class="products-list-simple">
 
                                 <?php

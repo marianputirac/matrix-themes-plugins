@@ -69,6 +69,7 @@ function my_user_profile_update_action($user_id)
         update_user_meta($user_id, 'current_selected_group', $_POST['selected_group']);
         update_user_meta($user_id, 'group_added', $_POST['group_added']);
         update_user_meta($user_id, 'vat_number_custom', $_POST['vat_number_custom']);
+        update_user_meta($user_id, 'email_contabil', $_POST['email_contabil']);
         update_user_meta($user_id, 'discount_custom', $_POST['discount_custom']);
         update_user_meta($user_id, 'train_price', $_POST['train_price']);
         update_user_meta($user_id, 'discount_components', $_POST['discount_components']);
@@ -100,6 +101,10 @@ function my_user_profile_update_action($user_id)
         update_user_meta($user_id, 'C_Buildout', $_POST['price-C_Buildout']);
         update_user_meta($user_id, 'B_typeFlexible', $_POST['price-B_typeFlexible']);
         update_user_meta($user_id, 'blackoutblind', $_POST['price-blackoutblind']);
+        update_user_meta($user_id, 'T_typeAdjustable', $_POST['price-T_typeAdjustable']);
+        update_user_meta($user_id, 'tposttype_blackout', $_POST['price-tposttype_blackout']);
+        update_user_meta($user_id, 'bposttype_blackout', $_POST['price-bposttype_blackout']);
+        
         update_user_meta($user_id, 'Lock', $_POST['price-Lock']);
         update_user_meta($user_id, 'P4028X', $_POST['price-P4028X']);
         update_user_meta($user_id, 'P4008T', $_POST['price-P4008T']);
@@ -176,6 +181,7 @@ function my_user_profile_update_action($user_id)
         update_user_meta($master_dealer_id, 'employees', $employees);
 
         update_user_meta($user_id, 'vat_number_custom', get_user_meta($master_dealer_id, 'vat_number_custom', true));
+				update_user_meta($user_id, 'email_contabil', get_user_meta($master_dealer_id, 'email_contabil', true));
         update_user_meta($user_id, 'discount_custom', get_user_meta($master_dealer_id, 'discount_custom', true));
         update_user_meta($user_id, 'train_price', get_user_meta($master_dealer_id, 'train_price', true));
         update_user_meta($user_id, 'discount_components', get_user_meta($master_dealer_id, 'discount_components', true));
@@ -237,6 +243,7 @@ function my_user_profile_update_action($user_id)
             foreach ($employees as $employe_id) {
 
                 update_user_meta($employe_id, 'vat_number_custom', get_user_meta($master_dealer_id, 'vat_number_custom', true));
+								update_user_meta($employe_id, 'email_contabil', get_user_meta($master_dealer_id, 'email_contabil', true));
                 update_user_meta($employe_id, 'discount_custom', get_user_meta($master_dealer_id, 'discount_custom', true));
                 update_user_meta($employe_id, 'train_price', get_user_meta($master_dealer_id, 'train_price', true));
                 update_user_meta($employe_id, 'discount_components', get_user_meta($master_dealer_id, 'discount_components', true));
@@ -310,6 +317,7 @@ function sthc_salesman_registration_imports($user_id)
         $master_dealer_id = get_user_meta($user_id, 'company_parent', true);
         if (!empty($master_dealer_id)) {
             update_user_meta($user_id, 'vat_number_custom', get_user_meta($master_dealer_id, 'vat_number_custom', true));
+						update_user_meta($user_id, 'email_contabil', get_user_meta($master_dealer_id, 'email_contabil', true));
             update_user_meta($user_id, 'discount_custom', get_user_meta($master_dealer_id, 'discount_custom', true));
             update_user_meta($user_id, 'train_price', get_user_meta($master_dealer_id, 'train_price', true));
             update_user_meta($user_id, 'discount_components', get_user_meta($master_dealer_id, 'discount_components', true));

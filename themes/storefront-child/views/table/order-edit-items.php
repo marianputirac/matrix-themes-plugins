@@ -1289,9 +1289,11 @@ foreach ($items as $item_id => $item_data) {
                     <strong><?php echo $fob_components ? '$' : '£'; ?>
                         <?php echo number_format((double)$order->get_subtotal(), 2); ?></strong>
                 </td>
-                <?php if ($admin == 'true' || $template_order_edit_customer) {
-                    echo '<td></td>';
-                } ?>
+                <?php
+//                if ($admin == 'true' || $template_order_edit_customer) {
+//                    echo '<td></td>';
+//                }
+                ?>
             </tr>
             <?php
             if ($term_list[0]->slug != 'components-fob') {
@@ -1303,18 +1305,22 @@ foreach ($items as $item_id => $item_data) {
                     <!--                <td class="amount">$-->
                     <?php //echo $order_data['shipping_total'] + $tax_shipping_total; ?><!--</td>-->
                     <td class="amount">£<?php echo number_format($order_data['shipping_total'], 2) ?></td>
-                    <?php if ($admin == 'true' || $template_order_edit_customer) {
-                        echo '<td></td>';
-                    } ?>
+                    <?php
+//                    if ($admin == 'true' || $template_order_edit_customer) {
+//                        echo '<td></td>';
+//                    }
+                    ?>
                 </tr>
                 <tr class="table-totals">
                     <td colspan="3" style="text-align:right">VAT:</td>
                     <td></td>
                     <td class="quantity"></td>
                     <td class="amount">£<?php echo number_format($order_data['total_tax'], 2); ?></td>
-                    <?php if ($admin == 'true' || $template_order_edit_customer) {
-                        echo '<td></td>';
-                    } ?>
+                    <?php
+//                    if ($admin == 'true' || $template_order_edit_customer) {
+//                        echo '<td></td>';
+//                    }
+                    ?>
                 </tr>
                 <tr class="table-totals">
                     <td colspan="3" style="text-align:right">Gross Total:</td>
@@ -1325,9 +1331,11 @@ foreach ($items as $item_id => $item_data) {
                             echo number_format((double)$order->get_total(), 2); ?>
                         </strong>
                     </td>
-                    <?php if ($admin == 'true' || $template_order_edit_customer) {
-                        echo '<td></td>';
-                    } ?>
+                    <?php
+//                    if ($admin == 'true' || $template_order_edit_customer) {
+//                        echo '<td></td>';
+//                    }
+                    ?>
                 </tr>
                 <?php
             }

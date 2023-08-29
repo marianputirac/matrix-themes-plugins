@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 }
 
 require_once('inc/frontend-media.php');
+require_once('inc/shortcodes.php');
+require_once('inc/ajax.php');
 
 /**
  * Register a custom menu page shutter Module.
@@ -176,137 +178,6 @@ function shutter_table_property_fields()
 
 add_action('init', 'shutter_table_property_fields');
 
-// add shutter
-function product_shutter()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-1.php';
-
-}
-
-add_shortcode('product_shutter1', 'product_shutter');
-
-// add Individual Bay Shutters - prod2
-function product_shutter2()
-{
-    include_once dirname(__FILE__) . '/templates/prod-2.php';
-}
-
-add_shortcode('product_shutter2', 'product_shutter2');
-
-// add Shutter & Blackout Blind - prod3
-function product_shutter3()
-{
-    include_once dirname(__FILE__) . '/templates/prod-3.php';
-}
-
-add_shortcode('product_shutter3', 'product_shutter3');
-
-// add Blackout Frame - prod4
-function product_shutter4()
-{
-    include_once dirname(__FILE__) . '/templates/prod-4.php';
-}
-
-add_shortcode('product_shutter4', 'product_shutter4');
-
-// add Batten - prod5
-function product_shutter5()
-{
-    include_once dirname(__FILE__) . '/templates/prod-5.php';
-}
-
-add_shortcode('product_shutter5', 'product_shutter5');
-// add shutter
-function product_shutter_edit()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-1-edit.php';
-
-}
-
-add_shortcode('product_shutter1_edit', 'product_shutter_edit');
-
-function product_shutter3_edit()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-3-edit.php';
-
-}
-
-add_shortcode('product_shutter3_edit', 'product_shutter3_edit');
-
-function product_shutter5_edit()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-5-edit.php';
-
-}
-
-add_shortcode('product_shutter5_edit', 'product_shutter5_edit');
-
-//UPDATE ADMIN
-// add shutter
-function product_shutter_edit_admin()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-1-admin.php';
-
-}
-
-add_shortcode('product_shutter1_edit_admin', 'product_shutter_edit_admin');
-
-function product_shutter3_edit_admin()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-3-admin.php';
-
-}
-
-add_shortcode('product_shutter3_edit_admin', 'product_shutter3_edit_admin');
-
-function product_shutter5_edit_admin()
-{
-
-    include_once dirname(__FILE__) . '/templates/prod-5-admin.php';
-
-}
-
-add_shortcode('product_shutter5_edit_admin', 'product_shutter5_edit_admin');
-
-/*
- *
- *    Shortcode for all shutter configuration prod 1 - add, edit, update
- *
- * */
-// add shutter - prod1
-function product_shutter_all()
-{
-    include_once dirname(__FILE__) . '/templates/prod-1-all.php';
-}
-
-add_shortcode('product_shutter1_all', 'product_shutter_all');
-
-/*
- *
- *    Shortcode for all shutter configuration prod 1 - add, edit, update
- *
- * */
-// add shutter - prod2
-function product_shutter2_all()
-{
-    include_once dirname(__FILE__) . '/templates/prod-2-all.php';
-}
-
-add_shortcode('product_shutter2_all', 'product_shutter2_all');
-
-// add shutter - porodIndividual
-function product_shutter_individual()
-{
-    include_once dirname(__FILE__) . '/templates/prod-individual.php';
-}
-
-add_shortcode('product_shutter_individual', 'product_shutter_individual');
 
 /**
  * Plugin style and script enqueue
@@ -342,29 +213,32 @@ function wpse_load_plugin_css()
     wp_enqueue_script('jquery-flexslider', $plugin_url . 'js/jquery.flexslider.min.js', array(), '1.0.1', true);
     wp_enqueue_script('jquery-fancybox', $plugin_url . 'js/jquery.fancybox.min.js', array(), '1.0.1', true);
     wp_enqueue_script('jquery-masonry', $plugin_url . 'js/jquery.masonry.min.js', array(), '1.0.1', true);
-    wp_enqueue_script('shutter-modul-custom-scripts-js', $plugin_url . 'js/custom-scripts.js', array(), '1.3.6', true);
+    wp_enqueue_script('shutter-modul-custom-scripts-js', $plugin_url . 'js/custom-scripts.js', array(), '1.3.8', true);
     wp_enqueue_script('update-item-scripts-js', $plugin_url . 'js/update-item-scripts.js', array(), '1.0.1', true);
 
 
     if (in_array('prod1', $classes)) {
-        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.4.1', true);
+        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.5.0', true);
     }
     if (in_array('prodIndividual', $classes)) {
-        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.3.3', true);
+        wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.4.0', true);
     }
 //    if (in_array('prod2', $classes)) {
 //        wp_enqueue_script('product2-script-custom', $plugin_url . 'js/product2-script-custom.js', array(), '1.1.6', true);
 //    }
     if (in_array('prod3', $classes)) {
-        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.3.3', true);
+        wp_enqueue_script('product3-script-custom', $plugin_url . 'js/product3-script-custom.js', array(), '1.4.0', true);
     }
 //    if (in_array('prod4', $classes)) {
 //        wp_enqueue_script('product4-script-custom', $plugin_url . 'js/product4-script-custom.js', array(), '1.1.6', true);
 //    }
-    if (in_array('prod5', $classes)) {
-        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.3.3', true);
+    if (in_array('prod5', $classes)  && !is_page( 534 )) {
+        wp_enqueue_script('product5-script-custom', $plugin_url . 'js/product5-script-custom.js', array(), '1.4.0', true);
     }
 
+		if (in_array('prod5', $classes) && is_page( 534 )) {
+        wp_enqueue_script('product5-script-custom-edit', $plugin_url . 'js/product5-script-custom-edit.js', array(), '1.4.0', true);
+    }
 
 }
 
@@ -420,6 +294,10 @@ add_filter('body_class', 'custom_class_prod');
 
 
 
+add_action('wp_ajax_create_product_and_add', 'create_product_and_add_to_cart');
+add_action('wp_ajax_nopriv_create_product_and_add', 'create_product_and_add_to_cart');
+function create_product_and_add_to_cart() {
 
+	include_once dirname(__FILE__) . '/ajax/multiple-batten-add.php';
 
-
+}

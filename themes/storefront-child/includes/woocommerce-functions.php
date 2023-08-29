@@ -236,7 +236,9 @@ function rfvc_update_order_status($order_status, $order_id)
 add_filter('woocommerce_cheque_process_payment_order_status', 'matrix_change_order_to_agent_processing', 10, 1);
 function matrix_change_order_to_agent_processing($status)
 {
-    if (get_current_user_id() == 18 || get_current_user_id() == 211 || get_current_user_id() == 1) {
+    if (get_current_user_id() == 18 || get_current_user_id() == 211 ||
+        get_current_user_id() == 1 || get_current_user_id() == 192 ||
+      get_current_user_id() == 183 || get_current_user_id() == 184) {
         return 'wc-inproduction';
     } else {
         return 'wc-pending';
@@ -518,18 +520,23 @@ function wpa83368_price_html($price, $product)
 
     // return $product->price;
     if ($product_cat == 'components') {
-        $product_types = array('variable');
 //        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
 //            return '';
 //        }
         return '£<span>' . $product->get_price() . ' <small>per BOX +VAT</small></span>';
     } elseif ($product_cat == 'components-fob') {
-        $product_types = array('variable');
 //        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
 //            return '';
 //        }
         return '$<span>' . $product->get_price() . ' <small>per BOX</small></span>';
-    } else {
+    }
+    elseif ($product_cat == 'pos') {
+//        if ( in_array ( $product->product_type, $product_types ) && !(is_shop()) ) {
+//            return '';
+//        }
+			return '$<span>' . $product->get_price() . ' <small>+VAT</small></span>';
+		}
+    else {
         return '£<span>' . $product->get_price() . '' . $product->get_price_suffix() . '</span>';
     }
 }

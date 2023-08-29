@@ -65,7 +65,7 @@ The revised order will be sent to you when ready.<br />
         ';
 
 
-        wp_mail($multiple_recipients, $subject, $mess, $headers);
+    wp_mail($multiple_recipients, $subject, $mess, $headers);
 
     if ($orders_to_edit == 1) {
         createTicketOrderEdit($order_id, $customer_id);
@@ -87,11 +87,9 @@ The revised order will be sent to you when ready.<br />
     $order = new WC_Order($order_finish);
     $order->update_status('wc-revised', 'order_note');
     // order note is optional, if you want to  add a note to order
-    
+
 }
-
 print_r($orders_array);
-
 
 
 function createTicketOrderEdit($order_id, $customer_id)
@@ -112,7 +110,6 @@ function createTicketOrderEdit($order_id, $customer_id)
         $post['stg_messsageId'] = '';
         $post_id = Stg_Helpdesk_Ticket::saveTicket($post, $customer_id, false, 'website');
 
-
         if ($post_id) {
             $my_post = array(
                 'ID' => $post_id,
@@ -121,11 +118,8 @@ function createTicketOrderEdit($order_id, $customer_id)
             wp_update_post($my_post);
 
             update_post_meta($post_id, 'order_id', $order_id);
-
             update_post_meta($post_id, 'order_ref', 'LF' . $order->get_order_number());
-
             update_post_meta($post_id, '_stgh_contact', $customer_id);
-
             update_post_meta($order_id, 'ticket_id_for_order', $post_id);
 
             /* Load media uploader related files. */
@@ -152,7 +146,6 @@ function createResponseTicket($order_id)
 {
     // Get $order object from order ID
     $order = wc_get_order($order_id);
-
 // Now you have access to (see above)...
     if ($order) {
         $customer_id = $order->get_customer_id();

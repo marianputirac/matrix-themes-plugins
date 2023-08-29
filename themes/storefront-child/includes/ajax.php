@@ -568,3 +568,12 @@ function container_info_sync()
 {
    include 'ajax/container-info.php';
 }
+
+
+add_action("wp_ajax_container_insert_list", "container_list");
+add_action("wp_ajax_nopriv_container_insert_list", "container_list");
+
+function container_list()
+{
+    include 'ajax/container-list.php';
+}

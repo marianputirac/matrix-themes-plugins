@@ -144,7 +144,7 @@ if (empty($mail_send)) {
                     font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
                     <tr>
                         <td width="33%">{DATE j-m-Y}</td>
-                        <td width="33%" align="center">www.lifetimeshutters.co.uk</td>
+                        <td width="33%" align="center">www.lifetimeshutters.com</td>
                         <td width="33%" style="text-align: right;">{PAGENO}/{nbpg}</td>
                     </tr>
                 </table>');
@@ -219,14 +219,13 @@ if (empty($mail_send)) {
     $headers = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
 
 
-    if($customer_id == 1){
+    if ($customer_id == 1) {
         wp_mail('marian93nes@gmail.com', $subject, $body, $headers, $attachments);
         wp_mail('marian93nes@gmail.com', $subject, $body, $headers, $attachment2);
-    } else{
+    } else {
         wp_mail($multiple_recipients, $subject, $body, $headers, $attachments);
         wp_mail('order@lifetimeshutters.com', $subject, $body, $headers, $attachment2);
     }
-
 
 
     $order_id = wc_sequential_order_numbers()->find_order_by_order_number($_POST['id']);
@@ -270,6 +269,10 @@ if (empty($mail_send)) {
 
     $user_info = get_userdata($user_id);
     $user_mail = $user_info->user_email;
+    $billing_email = get_user_meta($user_id, 'billing_email', true);
+    $multiple_recipients = array(
+        $user_mail, $billing_email
+    );
 
     //print_r($user_mail);
 
@@ -286,9 +289,13 @@ if (empty($mail_send)) {
 
     // wp_mail( $single_email, $subject2, $mess, $headers2, $attachments ); //temporary disabled attachments by Teo
 
-    if($customer_id == 1){
+    if ($customer_id == 1) {
         wp_mail('marian93nes@gmail.com', $subject2, $mess, $headers2, $attachments_summary);
     } else {
-        wp_mail($single_email, $subject2, $mess, $headers2, $attachments_summary);
+        if ($user_mail == $billing_email) {
+            wp_mail($single_email, $subject2, $mess, $headers2, $attachments_summary);
+        } else {
+            wp_mail($multiple_recipients, $subject2, $mess, $headers2, $attachments_summary);
+        }
     }
 }

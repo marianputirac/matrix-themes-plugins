@@ -167,7 +167,7 @@ arsort($container_orders);
                             <?php } ?>
                            
                         </td>
-                        <td><?php echo get_post_meta($order->id, 'cart_name', true); ?></td>
+                        <td><?php echo get_post_meta($order->ID, 'cart_name', true); ?></td>
                         <td><?php echo $order_data['date_modified']->date('Y-m-d H:i:s'); ?></td>
                         <td><?php echo $order_data['billing']['phone']; ?></td>
                         <td><?php echo $order_data['billing']['company']; ?></td>
