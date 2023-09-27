@@ -24,7 +24,7 @@ function order_components_type_filter_request_query($query)
 }
 
 // this action brings up a dropdown select box over the posts list in the dashboard
-add_action('restrict_manage_posts', 'my_custom_restrict_manage_posts', 50);
+//add_action('restrict_manage_posts', 'my_custom_restrict_manage_posts', 50);
 function my_custom_restrict_manage_posts($post_type)
 {
   if (current_user_can('manage_options')) {

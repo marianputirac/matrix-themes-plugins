@@ -8,6 +8,8 @@
 
 get_header();
 
+$container_id = (isset($_GET['container_id'])) ? $_GET['container_id'] : '';
+
 ?>
 
     <div id="primary" class="content-area">
@@ -31,7 +33,7 @@ get_header();
                                 foreach ($rand_posts as $post) :
                                     $eta = get_post_meta(get_the_id(), 'delivereis_start', true);
                                     ?>
-                                    <option value="<?php echo get_the_id(); ?>" <?php if ($_GET['container_id'] == get_the_id()) {
+                                    <option value="<?php echo get_the_id(); ?>" <?php if ($container_id == get_the_id()) {
                                         echo 'selected';
                                     } ?> ><?php echo $eta . ' - ' . get_the_title(); ?></option>
                                 <?php

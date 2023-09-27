@@ -120,22 +120,25 @@ class Stg_Helpdesk_CommentsAjax
 
     private function parseSetting($init)
     {
-        $options = '';
-        foreach ($init as $k => $v) {
-            if (is_bool($v)) {
-                $val = $v ? 'true' : 'false';
-                $options .= $k . ':' . $val . ',';
-                continue;
-            } elseif (!empty($v) && is_string($v) && (('{' == $v{0} && '}' == $v{strlen($v) - 1}) || ('[' == $v{0} && ']' == $v{strlen($v) - 1}) || preg_match('/^\(?function ?\(/',
-                        $v))
-            ) {
-                $options .= $k . ':' . $v . ',';
-                continue;
-            }
-            $options .= $k . ':"' . $v . '",';
-        }
+			$options = '';
+			foreach ($init as $k => $v) {
+				if (is_bool($v)) {
+					$val = $v ? 'true' : 'false';
+					$options .= $k . ':' . $val . ',';
+					continue;
+				} elseif (!empty($v) && is_string($v) &&
+					(('{' == $v[0] && '}' == $v[strlen($v) - 1]) ||
+						('[' == $v[0] && ']' == $v[strlen($v) - 1]) ||
+						preg_match('/^\(?function ?\(/', $v))
+				) {
+					$options .= $k . ':' . $v . ',';
+					continue;
+				}
+				$options .= $k . ':"' . $v . '",';
+			}
 
-        return '{' . trim($options, ' ,') . '}';
+
+			return '{' . trim($options, ' ,') . '}';
     }
 
     protected function getEditorSetting($settings)

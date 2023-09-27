@@ -76,7 +76,7 @@
 <!--    </textarea>-->
 <!--        <input type="hidden" name="id_ord" value="--><?php //echo $order->get_order_number(); ?><!--">-->
 <!--        <input type="hidden" name="id_ord_original" value="--><?php //echo $order->get_id(); ?><!--">-->
-<!--        <input type="hidden" name="order_name" value="--><?php //echo get_post_meta($order->get_id(), 'cart_name', true); ?><!--">-->
+        <input type="hidden" name="order_name" value="<?php echo get_post_meta(get_the_id(), 'cart_name', true); ?>">
 <!--        -->
 <!--        --><?php
 //    }

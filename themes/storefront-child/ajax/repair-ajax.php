@@ -116,7 +116,7 @@ $email_body = '<br><p>Dear July,<br>A new repair order has been uploaded to Matr
                                     <th>Repair order no:</th>
                                     <th>LFR' . $order_id_scv . '</th>
                                     <th>Original order no:</th>
-                                    <th>LF' . $order->get_order_number() . '</th>
+                                    <th>LF0' . $order->get_order_number() . '</th>
                                     <th>Repair order date:</th>
                                     <th>' . get_the_date('Y-m-d', $post_id) . '</th>
                                 </tr>
@@ -656,7 +656,7 @@ if ($warranty_find_yes === false) {
     $subject_mail_begin = '';
 }
 //$multiple_recipients = 'marian93nes@gmail.com, tudor@fiqs.ro';
-$subject = $subject_mail_begin . 'Repair Order LFR' . $repair['order-id-scv'] . ' for Original Order LF' . $repair['order-id-scv'] . '';
+$subject = $subject_mail_begin . 'Repair Order LFR' . $repair['order-id-scv'] . ' for Original Order LF0' . $repair['order-id-scv'] . '';
 $body = $email_body;
 $headers = array('Content-Type: text/html; charset=UTF-8', 'From: Service LifetimeShutters <service@lifetimeshutters.co.uk>');
 

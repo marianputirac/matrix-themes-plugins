@@ -29,13 +29,23 @@ $i = 0;
 $atributes = get_post_meta(1, 'attributes_array', true);
 $user_id = get_current_user_id();
 
-$first_element_cart = reset(WC()->cart->get_cart());
+$cart_items = WC()->cart->get_cart();
+$first_element_cart = reset($cart_items);
 $product_id = $first_element_cart['product_id'];
+
 $term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 $fob_components = false;
-if ($term_list[0]->slug == 'components-fob') {
-    $fob_components = true;
+
+// Check if $term_list is an array and is not empty
+if (is_array($term_list) && !empty($term_list)) {
+	// Check if $term_list[0] is an object
+	if (is_object($term_list[0])) {
+		if ($term_list[0]->slug == 'components-fob') {
+			$fob_components = true;
+		}
+	}
 }
+
 
 $nr_code_prod = array();
 foreach (WC()->cart->get_cart() as $item_id => $item_data) {

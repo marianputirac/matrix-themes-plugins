@@ -788,7 +788,7 @@ function repair_oder_warranty_payment($meta_id)
 		}
 	}
 
-	if ($no_warranty) {
+//	if ($no_warranty) {
 		$sqm = ($type_cost == 'sqm') ? 'checked' : '';
 		$fixed = ($type_cost == 'fixed') ? 'checked' : '';
 		$outline = '<label for="sqm" style="display: inline-block; float: left;margin: 0 10px;"><input type="radio" id="sqm" name="type_cost" value="sqm" ' . $sqm . '> /sqm</label> ';
@@ -799,7 +799,7 @@ function repair_oder_warranty_payment($meta_id)
 		$outline .= '<input type="text" name="cost_repair" id="title_field" class="title_field" value="' . esc_attr($cost_field) . '" style="width:auto;"/>';
 
 		echo $outline;
-	}
+//	}
 }
 
 

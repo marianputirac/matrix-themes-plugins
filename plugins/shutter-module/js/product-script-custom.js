@@ -1705,7 +1705,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"61\",\"307\",\"291\",\"323\",\"62\",\"310\",\"313\",\"318\",\"319\",\"321\",\"216\",\"322\",\"352\",\"353\",\"59\",\"300\",\"305\",\"320\",\"305\",\"320\",\"173\",\"141\",\"60\",\"306\",\"308\",\"311\",\"150\",\"309\",\"312\",\"63\",\"217\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"61\",\"307\",\"291\",\"323\",\"62\",\"310\",\"313\",\"318\",\"319\",\"321\",\"216\",\"322\",\"352\",\"353\",\"59\",\"300\",\"305\",\"320\",\"305\",\"320\",\"173\",\"141\",\"60\",\"306\",\"308\",\"311\",\"150\",\"309\",\"312\",\"63\",\"217\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"303\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1763,7 +1763,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"324\",\"327\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"303\",\"324\",\"327\",\"352\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1821,7 +1821,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"352\",\"353\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"352\",\"353\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1881,7 +1881,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1939,7 +1939,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"324\",\"327\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"303\",\"324\",\"327\",\"352\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -1968,7 +1968,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2028,7 +2028,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2086,7 +2086,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"324\",\"327\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"303\",\"324\",\"327\",\"352\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2115,7 +2115,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2175,7 +2175,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"307\",\"291\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2233,7 +2233,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"324\",\"327\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"142\",\"67\",\"326\",\"66\",\"315\",\"316\",\"317\",\"329\",\"64\",\"314\",\"325\",\"328\",\"140\",\"65\",\"301\",\"302\",\"303\",\"324\",\"327\",\"352\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -2291,7 +2291,7 @@ jQuery.noConflict();
                     "all_products": true,
                     "selected_products": "{\"product_ids\":null}",
                     "all_property_values": false,
-                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
+                    "selected_property_values": "{\"property_field\":\"10\",\"property_value_ids\":[\"143\",\"144\",\"142\",\"291\",\"307\",\"323\",\"310\",\"313\",\"318\",\"319\",\"321\",\"322\",\"300\",\"303\",\"305\",\"320\",\"306\",\"308\",\"311\",\"309\",\"312\",\"326\",\"315\",\"316\",\"317\",\"329\",\"314\",\"325\",\"328\",\"301\",\"302\",\"324\",\"327\",\"330\",\"331\",\"332\",\"351\",\"352\",\"353\",\"333\"]}",
                     "graphic": "none",
                     "image_file_name": null,
                     "image_content_type": null,
@@ -9019,6 +9019,11 @@ jQuery.noConflict();
                 calculateTotal();
             });
 
+            $("#property_totheight").change(function () {
+                // if height is more then 2000 then hide stile where data-title contain string '41mm'
+                hideStileByHeight(2000);
+            });
+
             $('input[name="property_frametype"], .property-select').click(function () {
                 calculateTotal();
             });
@@ -9384,17 +9389,34 @@ jQuery.noConflict();
             function hideStileByHeight(minHeght) {
                 // if height is more then 2000 then hide stile where data-title contain string '41mm'
 
-                if ($("#property_totheight").val() > minHeght) {
+                if ($("#property_height").val() > minHeght && $("#property_totheight").val() == '') {
+                    console.log('cond 1');
                     $('input[name="property_stile"]').each(function () {
                         if ($(this).data('title').indexOf('41mm') > -1) {
                             $(this).parent().hide();
                         }
                     });
+                } else if ($("#property_height").val() < minHeght && $("#property_totheight").val() == '') {
+                    console.log('cond 2');
+                    $('input[name="property_stile"]').each(function () {
+                        if ($(this).data('title').indexOf('41mm') > -1) {
+                            $(this).parent().show();
+                        }
+                    });
                 }
-                else if ($("#property_height").val() > minHeght) {
+
+                if ($("#property_totheight").val() > minHeght) {
+                    console.log('cond 3');
                     $('input[name="property_stile"]').each(function () {
                         if ($(this).data('title').indexOf('41mm') > -1) {
                             $(this).parent().hide();
+                        }
+                    });
+                } else if ($("#property_height").val() > minHeght && ($("#property_totheight").val() < 2000 && $("#property_totheight").val() != '')) {
+                    console.log('cond 4');
+                    $('input[name="property_stile"]').each(function () {
+                        if ($(this).data('title').indexOf('41mm') > -1) {
+                            $(this).parent().show();
                         }
                     });
                 }
@@ -10073,7 +10095,7 @@ jQuery.noConflict();
                                 //tpost-type
                                 jQuery('.type-img-earth').show();
                                 jQuery('.type-img-earth').parent().show();
-
+                                console.log('jQuery(\'.type-img-earth\').show();');
                             }
                             // Supreme 139
                             else if (material_id == 139) {
@@ -10087,6 +10109,7 @@ jQuery.noConflict();
                                 //tpost-type
                                 jQuery('.type-img-supreme').show();
                                 jQuery('.type-img-supreme').parent().show();
+                                console.log('jQuery(\'.type-img-supreme\').show();');
                             }
                             // Biowood 138
                             else if (material_id == 138) {
@@ -10100,6 +10123,7 @@ jQuery.noConflict();
                                 //tpost-type
                                 jQuery('.type-img-biowood').show();
                                 jQuery('.type-img-biowood').parent().show();
+                                console.log('jQuery(\'.type-img-biowood\').show();');
                             }
                             // Green 137
                             else if (material_id == 137) {
@@ -10113,6 +10137,7 @@ jQuery.noConflict();
                                 //tpost-type
                                 jQuery('.type-img-green').show();
                                 jQuery('.type-img-green').parent().show();
+                                console.log('jQuery(\'.type-img-green\').show();');
                             }
                             // ecowood 188
                             else if (material_id == 188) {
@@ -10126,7 +10151,7 @@ jQuery.noConflict();
                                 //tpost-type
                                 jQuery('.type-img-ecowood').show();
                                 jQuery('.type-img-ecowood').parent().show();
-
+                                console.log('jQuery(\'.type-img-ecowood\').show();');
                             }
 
                             $('.tpost-type').show();
@@ -15438,8 +15463,8 @@ jQuery.noConflict();
                     code = code + "PVC";
                 }
 
-                style_check = $('input[name=property_style]:checked').data('title');
-                if (style_check.indexOf('ALU Panel Only') > -1 || style_check.indexOf('ALU Fixed Shutter') > -1) {
+                var style_check = $('input[name=property_style]:checked').data('title');
+                if (style_check && (style_check.indexOf('ALU Panel Only') > -1 || style_check.indexOf('ALU Fixed Shutter') > -1)) {
                     code = 'L50';
                 }
 

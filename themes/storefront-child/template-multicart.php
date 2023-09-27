@@ -110,7 +110,7 @@ get_header(); ?>
 
 							$pieces = explode("#", $carts['name']);
 							$pieces[0]; // piece1
-							$pieces[1]; // piece2
+//							$pieces[1]; // piece2
 
 							if ($carts['name'] == 'Order #1') {
 
@@ -421,8 +421,8 @@ get_header(); ?>
 									if ($delivereis_start != "") {
 										echo $delivereis_start;
 									} else {
-										if ($ticket_id_for_order && $postStatus !== 'stgh_notanswered') {
-											echo '<span style="color: ' . $colors_ticket[$postStatus] . ' !important; font-weight: bold;">';
+										if ($ticket_id_for_order) {
+											echo '<span style="color: ' . (!empty($postStatus) ? $colors_ticket[$postStatus] : '#ff0000') . ' !important">';
 											echo 'Query ';
 											echo (isset($statusArray[$postStatus])) ? $statusArray[$postStatus] : $postStatus;
 											echo '</span>';
@@ -476,7 +476,7 @@ get_header(); ?>
                 </td>
                 <td>
 									<?php
-									echo $order->billing_first_name . ' ' . $order->billing_last_name;
+									echo $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
 									?>
                 </td>
                 <td>
@@ -607,13 +607,13 @@ get_header(); ?>
 
 				//echo '<pre>';
 				//print_r($addresses[0]->meta_value);
-				$userialize_data = unserialize($addresses[0]->meta_value);
+//				$userialize_data = unserialize($addresses[0]->meta_value);
 				//print_r($userialize_data);
 				//print_r($userialize_session['cart']);
-				$unserialize_cart = $userialize_session['cart'];
-				$cart_uns = unserialize($unserialize_cart);
+//				$unserialize_cart = $userialize_session['cart'];
+//				$cart_uns = unserialize($unserialize_cart);
 				//print_r($cart_uns);
-				$products_ids = array();
+//				$products_ids = array();
 				// foreach($cart_uns as $key => $data){
 				// 	$products_ids[] = $data['product_id'];
 

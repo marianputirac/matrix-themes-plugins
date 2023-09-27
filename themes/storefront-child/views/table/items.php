@@ -13,12 +13,13 @@ if ($order_id) {
 	}
 }
 
-?>
-<!--<h2>Shortcode table</h2>-->
-<?php
+global $post;
+
+$term_slug = "";
 $i = 0;
 $atributes = get_post_meta(1, 'attributes_array', true);
 $edit_placed_order_param = '';
+$edit_placed_order = '';
 $template_order_edit_customer = false;
 if (!empty($order_id)) {
 	$items = $order->get_items();
@@ -33,12 +34,22 @@ if (!empty($order_id)) {
 	$user_id_customer = get_current_user_id();
 	$user_id = $user_id_customer;
 
-	$first_element_cart = reset(WC()->cart->get_cart());
+	$cart_items = WC()->cart->get_cart();
+	$first_element_cart = reset($cart_items);
 	$product_id = $first_element_cart['product_id'];
+
 	$term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 	$fob_components = false;
-	if ($term_list[0]->slug == 'components-fob') {
-		$fob_components = true;
+
+// Check if $term_list is an array and is not empty
+	if (is_array($term_list) && !empty($term_list)) {
+		// Check if $term_list[0] is an object
+		if (is_object($term_list[0])) {
+			$term_slug = $term_list[0]->slug;
+			if ($term_slug == 'components-fob') {
+				$fob_components = true;
+			}
+		}
 	}
 }
 $var_view_price = get_user_meta(get_current_user_id(), 'view_price', true);
@@ -54,8 +65,15 @@ foreach ($items as $item_id => $item_data) {
 	if ($i == 1) {
 		$term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 		$fob_components = false;
-		if ($term_list[0]->slug == 'components-fob') {
-			$fob_components = true;
+		// Check if $term_list is an array and is not empty
+		if (is_array($term_list) && !empty($term_list)) {
+			// Check if $term_list[0] is an object
+			if (is_object($term_list[0])) {
+				$term_slug = $term_list[0]->slug;
+				if ($term_slug == 'components-fob') {
+					$fob_components = true;
+				}
+			}
 		}
 	}
 	$nr_t = get_post_meta($product_id, 'counter_t', true);
@@ -240,7 +258,7 @@ echo $table_class; ?>">
 				} ?>
       </tr>
 			<?php
-		} elseif ($term_list[0]->slug == 'pos' || $term_list[0]->slug == 'components' || $term_list[0]->slug == 'components-fob') {
+		} elseif ($term_slug == 'pos' || $term_slug == 'components' || $term_slug == 'components-fob') {
 			?>
       <tr class="prod-item" data-pord-id="<?php
 			echo $product_id; ?>">
@@ -1392,13 +1410,13 @@ echo $table_class; ?>">
 						}
 						if ($tposttype_count == 0 && $tposttype) {
 							echo 'T-Post Style: <strong>' . $tposttype;
-//                        if ($tposttype == 'adjustable') {
-//                            if (!empty(get_user_meta($user_id_customer, 'T_typeFlexible', true)) || (get_user_meta($user_id_customer, 'B_typeFlexible', true) > 0)) {
-//                                echo '(+' . get_user_meta($user_id_customer, 'T_typeFlexible', true) . '%)';
-//                            } else {
-//                                echo '(+' . get_post_meta(1, 'T_typeFlexible', true) . '%)';
-//                            }
-//                        }
+							if ($tposttype == 'adjustable') {
+								if (!empty(get_user_meta($user_id_customer, 'T_typeAdjustable', true)) || (get_user_meta($user_id_customer, 'B_typeFlexible', true) > 0)) {
+									echo '(+' . get_user_meta($user_id_customer, 'T_typeAdjustable', true) . '%)';
+								} else {
+									echo '(+' . get_post_meta(1, 'T_typeAdjustable', true) . '%)';
+								}
+							}
 							echo '</strong>';
 							echo '<br>';
 							$tposttype_count++;
@@ -1648,7 +1666,7 @@ echo $table_class; ?>">
 		}
 	} ?>
 	<?php
-	if ($term_list[0]->slug != 'components-fob') {
+	if ($term_slug != 'components-fob') {
 		$excl_vat = 'excl. VAT';
 	} else {
 		$excl_vat = 'FOB China';
@@ -1673,7 +1691,7 @@ echo $table_class; ?>">
 				} ?>
       </tr>
 			<?php
-			if ($term_list[0]->slug != 'components-fob' && (!current_user_can('china_admin') && $view_price || current_user_can('administrator'))) {
+			if ($term_slug != 'components-fob' && (!current_user_can('china_admin') && $view_price || current_user_can('administrator'))) {
 				?>
         <tr class="table-totals">
           <td colspan="4" style="text-align:right">Shipping :</td>

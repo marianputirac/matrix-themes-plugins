@@ -158,3 +158,19 @@
 Stack trace:
 #0 {main}
   thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten-update.php on line 288
+[29-Aug-2023 19:21:37 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 704
+[29-Aug-2023 19:21:38 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1260
+[29-Aug-2023 19:24:33 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 704
+[29-Aug-2023 19:24:33 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1260
+[21-Sep-2023 18:32:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function set_shipping_class_id() on bool in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten-update.php:288
+Stack trace:
+#0 {main}
+  thrown in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-batten-update.php on line 288
+[25-Sep-2023 13:35:20 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 723
+[25-Sep-2023 13:35:20 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1267
+[25-Sep-2023 13:35:30 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 723
+[25-Sep-2023 13:35:31 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1267
+[25-Sep-2023 13:35:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 723
+[25-Sep-2023 13:35:34 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1267
+[25-Sep-2023 13:38:16 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 723
+[25-Sep-2023 13:38:16 UTC] PHP Warning:  A non-numeric value encountered in /home/matrixlifetimesh/public_html/wp-content/plugins/shutter-module/ajax/ajax-prod.php on line 1267

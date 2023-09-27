@@ -218,7 +218,7 @@ function wpse_load_plugin_css()
 
 
     if (in_array('prod1', $classes)) {
-        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.5.0', true);
+        wp_enqueue_script('product-script-custom', $plugin_url . 'js/product-script-custom.js', array(), '1.5.1', true);
     }
     if (in_array('prodIndividual', $classes)) {
         wp_enqueue_script('product-script-individual', $plugin_url . 'js/product-script-individual.js', array(), '1.4.0', true);

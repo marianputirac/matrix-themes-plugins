@@ -1111,13 +1111,13 @@ foreach ($items as $item_id => $item_data) {
                         }
                         if ($tposttype_count == 0 && $tposttype) {
                             echo 'T-Post Style: <strong>' . $tposttype;
-//                        if ($tposttype == 'adjustable') {
-//                            if (!empty(get_user_meta($user_id_customer, 'T_typeFlexible', true)) || (get_user_meta($user_id_customer, 'B_typeFlexible', true) > 0)) {
-//                                echo '(+' . get_user_meta($user_id_customer, 'T_typeFlexible', true) . '%)';
-//                            } else {
-//                                echo '(+' . get_post_meta(1, 'T_typeFlexible', true) . '%)';
-//                            }
-//                        }
+                        if ($tposttype == 'adjustable') {
+                            if (!empty(get_user_meta($user_id_customer, 'T_typeAdjustable', true)) || (get_user_meta($user_id_customer, 'B_typeFlexible', true) > 0)) {
+                                echo '(+' . get_user_meta($user_id_customer, 'T_typeAdjustable', true) . '%)';
+                            } else {
+                                echo '(+' . get_post_meta(1, 'T_typeAdjustable', true) . '%)';
+                            }
+                        }
                             echo '</strong>';
                             echo '<br>';
                             $tposttype_count++;

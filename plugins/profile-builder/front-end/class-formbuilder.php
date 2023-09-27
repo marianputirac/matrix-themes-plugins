@@ -760,13 +760,14 @@ function wppb_autologin_after_registration(){
         $arr_params = array( 'autologin', 'uid', '_wpnonce' );
         $current_page_url = remove_query_arg( $arr_params, wppb_curpageurl() );
 
-        if ( ! ( wp_verify_nonce( $nonce , 'autologin-'.$uid.'-'.(int)( time() / 60 ) ) || wp_verify_nonce( $nonce , 'autologin-'.$uid.'-'.(int)( time() / 60 ) - 1 ) ) ){
-            wp_redirect( $current_page_url );
-            exit;
-        } else {
-            wp_set_auth_cookie( $uid );
-            wp_redirect( $current_page_url );
-            exit;
-        }
-    }
+			if ( ! ( wp_verify_nonce( $nonce , 'autologin-'.$uid.'-'.((int)( time() / 60 )) ) || wp_verify_nonce( $nonce , 'autologin-'.$uid.'-'.((int)( time() / 60 ) - 1) ) ) ){
+				wp_redirect( $current_page_url );
+				exit;
+			} else {
+				wp_set_auth_cookie( $uid );
+				wp_redirect( $current_page_url );
+				exit;
+			}
+
+		}
 }

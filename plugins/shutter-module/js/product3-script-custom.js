@@ -7548,7 +7548,14 @@ jQuery.noConflict();
         });
 
         $("#property_width, #property_height").change(function () {
+            // if height is more then 2000 then hide stile where data-title contain string '41mm'
+            hideStileByHeight(2000);
             calculateTotal();
+        });
+
+        $("#property_totheight").change(function () {
+            // if height is more then 2000 then hide stile where data-title contain string '41mm'
+            hideStileByHeight(2000);
         });
 
         $('input[name="property_frametype"], .property-select').click(function () {
@@ -7864,8 +7871,47 @@ jQuery.noConflict();
 
 
                 setProductByMaterialAndStyle();
+                hideStileByHeight(2000);
             }
         });
+
+        function hideStileByHeight(minHeght) {
+            // if height is more then 2000 then hide stile where data-title contain string '41mm'
+
+            if ($("#property_height").val() > minHeght && $("#property_totheight").val() == '') {
+                console.log('cond 1');
+                $('input[name="property_stile"]').each(function () {
+                    if ($(this).data('title').indexOf('41mm') > -1) {
+                        $(this).parent().hide();
+                    }
+                });
+            }
+            else if ($("#property_height").val() < minHeght &&  $("#property_totheight").val() == '') {
+                console.log('cond 2');
+                $('input[name="property_stile"]').each(function () {
+                    if ($(this).data('title').indexOf('41mm') > -1) {
+                        $(this).parent().show();
+                    }
+                });
+            }
+
+            if ($("#property_totheight").val() > minHeght) {
+                console.log('cond 3');
+                $('input[name="property_stile"]').each(function () {
+                    if ($(this).data('title').indexOf('41mm') > -1) {
+                        $(this).parent().hide();
+                    }
+                });
+            }
+            else if ($("#property_height").val() > minHeght && ($("#property_totheight").val() < 2000 && $("#property_totheight").val() != '')) {
+                console.log('cond 4');
+                $('input[name="property_stile"]').each(function () {
+                    if ($(this).data('title').indexOf('41mm') > -1) {
+                        $(this).parent().show();
+                    }
+                });
+            }
+        }
 
         $("#property_material").click(function () {
             //alert( $(this).val() );

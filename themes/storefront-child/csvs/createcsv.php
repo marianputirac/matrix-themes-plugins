@@ -277,7 +277,7 @@ if (empty($mail_send)) {
 		$user_info = get_userdata($deler_id);
 		$user_mail = $user_info->user_email;
 		$multiple_recipients = array(
-			$billing_email, $email_contabil
+			$billing_email, $email_contabil,
 		);
 	} else {
 		$billing_email = get_user_meta($user_id, 'billing_email', true);
@@ -285,7 +285,7 @@ if (empty($mail_send)) {
 		$user_info = get_userdata($user_id);
 		$user_mail = $user_info->user_email;
 		$multiple_recipients = array(
-			$user_mail, $billing_email, $email_contabil
+			$user_mail, $billing_email, $email_contabil,
 		);
 	}
 

@@ -3,12 +3,12 @@
 } else {
 	$user_id = get_current_user_id();
 }
-$item_id = $_GET['item_id'];
+$item_id = (isset($_GET['item_id'])) ? $_GET['item_id'] : '';
 $clone_id = !empty($_GET['clone']) ? base64_decode($_GET['clone']) : '';
 
 $dealer_id = get_user_meta($user_id, 'company_parent', true);
 
-$edit_customer = ($_GET['order_edit_customer'] == 'editable') ? true : false;
+$edit_customer = (isset($_GET['order_edit_customer']) && $_GET['order_edit_customer'] == 'editable') ? true : false;
 $order_edit = (!empty($_GET['order_id'])) ? $_GET['order_id'] / 1498765 / 33 : '';
 
 $meta_key = 'wc_multiple_shipping_addresses';
@@ -26,6 +26,9 @@ $carts_sort = $userialize_data['carts'];
 ksort($carts_sort);
 $total_elements = count($carts_sort) + 1;
 $cart_name = '';
+$attachment = '';
+$product_id = '';
+$nr_code_prod = array();
 $items_name = array();
 foreach ($carts_sort as $key => $carts) {
 	if ($userialize_data['customer_id'] == $key) {
@@ -44,6 +47,7 @@ if (!empty($_GET['id'])) {
 	if (empty($order_edit)) {
 		$order_edit = $property_order_edit;
 	}
+	$property_room_other = get_post_meta($product_id, 'property_room_other', true);
 	$attachment = get_post_meta($product_id, 'attachment', true);
 	$attachmentDraw = get_post_meta($product_id, 'attachmentDraw', true);
 	$property_horizontaltpost = get_post_meta($product_id, 'property_horizontaltpost', true);
@@ -146,7 +150,6 @@ if (!empty($_GET['id'])) {
 	$nr_t = get_post_meta($product_id, 'counter_t', true);
 	$nr_b = get_post_meta($product_id, 'counter_b', true);
 	$nr_c = get_post_meta($product_id, 'counter_c', true);
-	$nr_code_prod = array();
 	$nr_code_prod['g'] = $nr_g;
 	$nr_code_prod['t'] = $nr_t;
 	$nr_code_prod['b'] = $nr_b;
@@ -382,7 +385,7 @@ if (!empty($_GET['id'])) {
                             <input required class="input-medium required"
                                    id="property_room_other" name="property_room_other"
                                    style="height: 30px" type="text"
-                                   value="<?php echo get_post_meta($product_id, 'property_room_other', true); ?>"/>
+                                   value="<?php echo $property_room_other; ?>"/>
                           </div>
                           <div class="col-sm-3"> Material:
                             <br/>
@@ -1839,7 +1842,7 @@ if (!empty($_GET['id'])) {
                                 <input type="radio" name="property_stile"
                                        data-code="RFS 50.8"
                                        data-title="41mm T1006M(beaded D-mould)"
-                                       value="446"
+                                       value="447"
 																	<?php if ($property_stile == '447' && $material == 138) {
 																		echo "checked";
 																	} ?> />
@@ -1851,7 +1854,7 @@ if (!empty($_GET['id'])) {
                                 <input type="radio" name="property_stile"
                                        data-code="RFS 50.8"
                                        data-title="41mm T1006M(beaded rebate)"
-                                       value="447"
+                                       value="446"
 																	<?php if ($property_stile == '446' && $material == 138) {
 																		echo "checked";
 																	} ?> />

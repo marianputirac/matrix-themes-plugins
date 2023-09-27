@@ -4812,77 +4812,77 @@ jQuery(document).ready(function () {
 
 // show stile iamges by material selected
 jQuery("#property_material").change(function () {
-    //
-    // var material_id = jQuery(this).val();
-    // // console.log(material_id);
-    // jQuery('.tpost-img label').hide();
-    //
-    // // Earth 187
-    // if (material_id == 187) {
-    //     // console.log('show earth img');
-    //     jQuery('#stile-img-earth').show();
-    //     jQuery('.tpost-img').hide();
-    //     jQuery('#stile-img-supreme').hide();
-    //     jQuery('#stile-img-biowood').hide();
-    //     jQuery('#stile-img-green').hide();
-    //     //tpost-type
-    //     jQuery('.type-img-earth').show();
-    //     jQuery('.type-img-earth').parent().show();
-    //
-    // }
-    // // Supreme 139
-    // else if (material_id == 139) {
-    //     // console.log('show Supreme img');
-    //     jQuery('.tpost-img').hide();
-    //     jQuery('#stile-img-supreme').show();
-    //     jQuery('#stile-img-earth').hide();
-    //     jQuery('#stile-img-ecowood').hide();
-    //     jQuery('#stile-img-biowood').hide();
-    //     jQuery('#stile-img-green').hide();
-    //     //tpost-type
-    //     jQuery('.type-img-supreme').show();
-    //     jQuery('.type-img-supreme').parent().show();
-    // }
-    // // Biowood 138
-    // else if (material_id == 138) {
-    //     // console.log('show Biowood img');
-    //     jQuery('.tpost-img').hide();
-    //     jQuery('#stile-img-biowood').show();
-    //     jQuery('#stile-img-supreme').hide();
-    //     jQuery('#stile-img-earth').hide();
-    //     jQuery('#stile-img-ecowood').hide();
-    //     jQuery('#stile-img-green').hide();
-    //     //tpost-type
-    //     jQuery('.type-img-biowood').show();
-    //     jQuery('.type-img-biowood').parent().show();
-    // }
-    // // Green 137
-    // else if (material_id == 137) {
-    //     // console.log('show Green img');
-    //     jQuery('.tpost-img').hide();
-    //     jQuery('#stile-img-green').show();
-    //     jQuery('#stile-img-supreme').hide();
-    //     jQuery('#stile-img-biowood').hide();
-    //     jQuery('#stile-img-earth').hide();
-    //     jQuery('#stile-img-ecowood').hide();
-    //     //tpost-type
-    //     jQuery('.type-img-green').show();
-    //     jQuery('.type-img-green').parent().show();
-    // }
-    // // ecowood 188
-    // else if (material_id == 188) {
-    //     console.log('show ecowood img');
-    //     jQuery('.tpost-img').hide();
-    //     jQuery('#stile-img-ecowood').show();
-    //     jQuery('#stile-img-supreme').hide();
-    //     jQuery('#stile-img-biowood').hide();
-    //     jQuery('#stile-img-earth').hide();
-    //     jQuery('#stile-img-green').hide();
-    //     //tpost-type
-    //     jQuery('.type-img-ecowood').show();
-    //     jQuery('.type-img-ecowood').parent().show();
-    //
-    // }
+
+    var material_id = jQuery(this).val();
+    // console.log(material_id);
+    jQuery('.tpost-img label').hide();
+
+    // Earth 187
+    if (material_id == 187) {
+        // console.log('show earth img');
+        jQuery('#stile-img-earth').show();
+        jQuery('.tpost-img').hide();
+        jQuery('#stile-img-supreme').hide();
+        jQuery('#stile-img-biowood').hide();
+        jQuery('#stile-img-green').hide();
+        //tpost-type
+        // jQuery('.type-img-earth').show();
+        // jQuery('.type-img-earth').parent().show();
+
+    }
+    // Supreme 139
+    else if (material_id == 139) {
+        // console.log('show Supreme img');
+        jQuery('.tpost-img').hide();
+        jQuery('#stile-img-supreme').show();
+        jQuery('#stile-img-earth').hide();
+        jQuery('#stile-img-ecowood').hide();
+        jQuery('#stile-img-biowood').hide();
+        jQuery('#stile-img-green').hide();
+        //tpost-type
+        // jQuery('.type-img-supreme').show();
+        // jQuery('.type-img-supreme').parent().show();
+    }
+    // Biowood 138
+    else if (material_id == 138) {
+        // console.log('show Biowood img');
+        jQuery('.tpost-img').hide();
+        jQuery('#stile-img-biowood').show();
+        jQuery('#stile-img-supreme').hide();
+        jQuery('#stile-img-earth').hide();
+        jQuery('#stile-img-ecowood').hide();
+        jQuery('#stile-img-green').hide();
+        //tpost-type
+        // jQuery('.type-img-biowood').show();
+        // jQuery('.type-img-biowood').parent().show();
+    }
+    // Green 137
+    else if (material_id == 137) {
+        // console.log('show Green img');
+        jQuery('.tpost-img').hide();
+        jQuery('#stile-img-green').show();
+        jQuery('#stile-img-supreme').hide();
+        jQuery('#stile-img-biowood').hide();
+        jQuery('#stile-img-earth').hide();
+        jQuery('#stile-img-ecowood').hide();
+        //tpost-type
+        // jQuery('.type-img-green').show();
+        // jQuery('.type-img-green').parent().show();
+    }
+    // ecowood 188
+    else if (material_id == 188) {
+        console.log('show ecowood img');
+        jQuery('.tpost-img').hide();
+        jQuery('#stile-img-ecowood').show();
+        jQuery('#stile-img-supreme').hide();
+        jQuery('#stile-img-biowood').hide();
+        jQuery('#stile-img-earth').hide();
+        jQuery('#stile-img-green').hide();
+        //tpost-type
+        // jQuery('.type-img-ecowood').show();
+        // jQuery('.type-img-ecowood').parent().show();
+
+    }
 
 });
 
