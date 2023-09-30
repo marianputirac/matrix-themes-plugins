@@ -592,7 +592,9 @@ function items_edit_render_menu_meta_box()
 
 	$orders_to_edit = get_user_meta($customer_id, 'orders_to_edit', true);
 	$selected = '';
-	if ($orders_to_edit[$order_id] == 'editable') $selected = 'selected';
+	if (isset($orders_to_edit[$order_id]) && $orders_to_edit[$order_id] == 'editable') {
+		$selected = 'selected';
+	}
 
 	// print_r($orders_to_edit);
 	?>

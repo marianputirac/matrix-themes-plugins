@@ -1759,7 +1759,7 @@ echo $table_class; ?>">
     jQuery('.btn.btn-danger').click(function (e) {
         e.preventDefault();
         var item_id = jQuery(this).attr('item-id');
-        var order_ID = <?php echo $order_id; ?>;
+        var order_ID = <?php echo json_encode($order_id); ?>;
         console.log(item_id);
 
         jQuery.ajax({

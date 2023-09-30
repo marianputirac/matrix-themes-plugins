@@ -16,12 +16,10 @@ $atribute = get_post_meta(1, 'attributes_array', true);
     in plus:	daca se foloseste Z-frame
                 daca una din perechile left|right($sillw) sau top|bottom($sillh) au valoarea "sill" sau "no"
 
-
 Calcul buildout
 acum:		daca $buildout > 0 se adauga 10%
 in plus:	daca si $buildout + $frdepth =< 100 raman +10%
         daca $buildout + $frdepth > 100 se adauga 20%
-
  */
 $framesType = array(303 => 36, 323 => 46, 321 => 51, 330 => 72, 318 => 60, 322 => 87, 352 => 60, 331 => 51, 320 => 46, 325 => 46, 326 => 46, 327 => 46, 328 => 46, 324 => 46, 329 => 49, 307 => 46, 310 => 64, 313 => 77, 333 => 60, 306 => 51, 309 => 64, 312 => 77, 305 => 46, 308 => 64, 311 => 77, 332 => 60, 142 => 36, 314 => 46, 315 => 46, 316 => 60, 317 => 60, 300 => 50, 302 => 50, 301 => 50);
 

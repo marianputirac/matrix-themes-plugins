@@ -289,12 +289,23 @@ foreach ($order->get_items() as $prod => $item_data) {
         $property_layoutcode = $property_layoutcode_tracked;
     }
 
+	$term_slug = "";
     $item_quantity = $item_data->get_quantity(); // Get the item quantity
 
     $term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 
+	if (is_array($term_list) && !empty($term_list)) {
+		// Check if $term_list[0] is an object
+		if (is_object($term_list[0])) {
+			$term_slug = $term_list[0]->slug;
+			if ($term_slug == 'components-fob') {
+				$fob_components = true;
+			}
+		}
+	}
+
     if ($product_id == 337 || $product_id == 72951) {
-    } elseif ($term_list[0]->slug == 'pos') {
+    } elseif ($term_slug == 'pos') {
     } elseif ($property_category === 'Batten') {
         $batten_qnt = get_post_meta($product_id, 'quantity', true);
         $email_body .= '<tr>
@@ -603,7 +614,7 @@ foreach ($order->get_items() as $prod => $item_data) {
                             <td>' . $atributes[$property_hingecolour] . '</td>
                             <td>' . $atributes[$property_shuttercolour] . '</td>
                             <td>' . $property_shuttercolour_other . '</td>
-                            <td>' . $atributes[$property_blackoutblindcolour] . '</td>
+                            <td>' . ($atributes[$property_blackoutblindcolour] ?? '') . '</td>
                             <td>' . $atributes[$property_controltype] . '</td>';
             if ($property_style == 37) {
                 if ($property_tracksnumber) {

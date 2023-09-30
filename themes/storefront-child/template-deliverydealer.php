@@ -173,7 +173,7 @@ get_header();
 											$order_data = $order->get_data();
 										}
 
-										$user_id_customer = get_post_meta($order->ID, '_customer_user', true);
+										$user_id_customer = get_post_meta($order->get_id(), '_customer_user', true);
 
 										if ($user_id_customer == $dealer_id) {
 
@@ -282,7 +282,7 @@ get_header();
 
                           </td>
 
-                          <td><?php echo get_post_meta($order->ID, 'cart_name', true); ?></td>
+                          <td><?php echo get_post_meta($order->get_id(), 'cart_name', true); ?></td>
 
                           <td><span id="sqm"><?php
 
@@ -296,7 +296,7 @@ get_header();
 
 																$property_total = get_post_meta($product_id, 'property_total', true);
 
-																$sqm_total = $sqm_total + $property_total * $item_data['quantity'];
+																$sqm_total += (float)$property_total * (int)$item_data['quantity'];
 
 																$property_material = get_post_meta($product_id, 'property_material', true);
 
@@ -341,20 +341,20 @@ get_header();
                           <td>
 
 														<?php
-
 														if (get_post_type($repair_id) == 'order_repair') {
-															$cartons = $csv_orders_array_cartons_repair[$order_id];
-															$panels = $csv_orders_array_panels_repair[$order_id];
-															$frames = $csv_orders_array_frames_repair[$order_id];
+															$cartons = isset($csv_orders_array_cartons_repair[$order_id]) ? $csv_orders_array_cartons_repair[$order_id] : 0;
+															$panels = isset($csv_orders_array_panels_repair[$order_id]) ? $csv_orders_array_panels_repair[$order_id] : 0;
+															$frames = isset($csv_orders_array_frames_repair[$order_id]) ? $csv_orders_array_frames_repair[$order_id] : 0;
 														} else {
-															$cartons = $csv_orders_array_cartons[$order_id];
-															$panels = $csv_orders_array_panels[$order_id];
-															$frames = $csv_orders_array_frames[$order_id];
+															$cartons = isset($csv_orders_array_cartons[$order_id]) ? $csv_orders_array_cartons[$order_id] : 0;
+															$panels = isset($csv_orders_array_panels[$order_id]) ? $csv_orders_array_panels[$order_id] : 0;
+															$frames = isset($csv_orders_array_frames[$order_id]) ? $csv_orders_array_frames[$order_id] : 0;
 														}
 
-														$total_cartons = $total_cartons + $cartons;
-														$total_panels = $total_panels + $panels;
-														$total_frames = $total_frames + $frames;
+														$total_cartons += $cartons;
+														$total_panels += $panels;
+														$total_frames += $frames;
+
 														echo $panels;
 														?>
                           </td>

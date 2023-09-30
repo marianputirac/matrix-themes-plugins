@@ -407,13 +407,15 @@ if (strpos($mystring, $findme) !== false) { ?>
     }
 
 
-    document.querySelector("button.download").addEventListener("click", function (e) {
-        e.preventDefault();
-        var html = document.querySelector("table#example").outerHTML;
-        export_table_to_csv(html, "table-order.csv");
-
-        //console.log(html);
-
+    document.addEventListener("DOMContentLoaded", function() {
+        var button = document.querySelector("button.download");
+        if (button) {
+            button.addEventListener("click", function(e) {
+                e.preventDefault();
+                var html = document.querySelector("table#example").outerHTML;
+                export_table_to_csv(html, "table-order.csv");
+            });
+        }
     });
 </script>
 

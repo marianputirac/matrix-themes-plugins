@@ -33,23 +33,23 @@ get_header(); ?>
 
 				$addresses = $wpdb->get_results("SELECT meta_value FROM `wp_usermeta` WHERE user_id = $user_id AND meta_key = '_woocom_multisession'");
 
+				?>
+        <h2>My Orders</h2>
+
+        <br>
+
+        <div class="alert alert-warning">
+					<?php echo get_post_meta(1, 'notification_users_message', true); ?>
+        </div>
+
+        <br>
+				<?php
+
 				if ($suspended != 'yes') {
 					?>
-          <h2>My Orders</h2>
 
-          <br>
-
-          <div class="alert alert-warning">
-						<?php echo get_post_meta(1, 'notification_users_message', true); ?>
-          </div>
-
-          <br>
           <div class="show-table2"></div>
 
-					<?php
-//                $suspended = get_user_meta($user_id, 'suspended_user', true);
-//                if ($suspended != 'yes') {
-					?>
           <a class="btn btn-primary" href="#new" onclick="return BMCWcMs.command('insert', this);">New
             Order</a>
           <a class="btn btn-primary" href="#newpos" onclick="return BMCWcMs.command('insertpos', this);">Order
@@ -203,6 +203,10 @@ get_header(); ?>
 					// echo '</pre>';
 //
 //                }
+				} else {
+					?>
+          <a href="/order-repairs" class="btn btn-danger">Order Repairs</a>
+					<?php
 				}
 				?>
 
@@ -325,16 +329,40 @@ get_header(); ?>
 							//$users_orders = array($user_id);
 
 							if (!empty($deler_id)) {
-								$users_orders = array();
-								$users_orders = get_user_meta($deler_id, 'employees', true);
+								// Initialize $users_orders as an array
+								$users_orders = [];
+
+								// Fetch the 'employees' user meta
+								$employees_meta = get_user_meta($deler_id, 'employees', true);
+
+								// Check if $employees_meta is an array
+								if (is_array($employees_meta)) {
+									$users_orders = $employees_meta;
+								}
+
+								// Append $deler_id to the array
 								$users_orders[] = $deler_id;
+
+								// Reverse the array
 								$users_orders = array_reverse($users_orders);
 							}
 						}
 						if (in_array('dealer', $user->roles)) {
-							// echo 'dealer master';
-							$users_orders = get_user_meta($user_id, 'employees', true);
+							// Initialize $users_orders as an array
+							$users_orders = [];
+
+							// Fetch the 'employees' user meta
+							$employees_meta = get_user_meta($user_id, 'employees', true);
+
+							// Check if $employees_meta is an array
+							if (is_array($employees_meta)) {
+								$users_orders = $employees_meta;
+							}
+
+							// Append $user_id to the array
 							$users_orders[] = $user_id;
+
+							// Reverse the array
 							$users_orders = array_reverse($users_orders);
 						}
 						$i = 1;
@@ -529,9 +557,7 @@ get_header(); ?>
 							echo '</nav>';
 						}
 					}
-				}
 
-				if ($orders) {
 					foreach ($orders as $order) {
 						$items = $order->get_items();
 						$order_data = $order->get_data();
@@ -634,8 +660,8 @@ get_header(); ?>
 
           var sqm = jQuery('input[name="totalcart"]').val();
           var js_array = [<?php echo '"' . implode('","', $new) . '"' ?>];
-          console.log(sqm);
-          console.log(js_array);
+          // console.log(sqm);
+          // console.log(js_array);
           var ints = js_array.map(parseFloat);
 
           Highcharts.chart('container', {
