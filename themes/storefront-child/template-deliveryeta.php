@@ -415,7 +415,15 @@ $container_id = (isset($_GET['container_id'])) ? $_GET['container_id'] : '';
                 dom: 'Bfrtip',
                 buttons: [
                     // 'print',
-
+                    {
+                        extend: 'excelHtml5',
+                        text: 'XLS',
+                        className: 'btn btn-info',
+                        filename: jQuery('input[name="company_dealer"]').val() + '_' + jQuery('input[name="id_container"]').val(),
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
                     {
                         text: 'PDF',
                         extend: 'pdfHtml5',

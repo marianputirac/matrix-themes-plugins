@@ -552,6 +552,26 @@ get_header();
 
                   },
 
+                  // {
+                  //     extend: 'csvHtml5',
+                  //     text: 'CSV',
+                  //     className: 'btn btn-primary',
+                  //     filename: jQuery('input[name="company_dealer"]').val() + '_' + jQuery('input[name="id_container"]').val(),
+                  //     exportOptions: {
+                  //         columns: ':visible'
+                  //     }
+                  // },
+
+                  {
+                      extend: 'excelHtml5',
+                      text: 'XLS',
+                      className: 'btn btn-info',
+                      filename: jQuery('input[name="company_dealer"]').val() + '_' + jQuery('input[name="id_container"]').val(),
+                      exportOptions: {
+                          columns: ':visible'
+                      }
+                  },
+
                   {
 
                       text: 'PDF',

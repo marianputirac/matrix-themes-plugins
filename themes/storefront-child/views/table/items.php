@@ -225,7 +225,7 @@ echo $table_class; ?>">
 		// echo '<pre>';
 		// print_r($term_list->slug);
 		// echo '</pre>';
-		if ($product_id == 337 || $product_id == 61275) { ?>
+		if ($product_id == 337 || $product_id == 72951) { ?>
       <tr class="prod-item" data-pord-id="<?php
 			echo $product_id; ?>">
         <td>
@@ -1756,7 +1756,7 @@ echo $table_class; ?>">
 
 <script>
 
-    jQuery('.btn.btn-danger').click(function (e) {
+    jQuery('.btn.btn-danger.delete-item').click(function (e) {
         e.preventDefault();
         var item_id = jQuery(this).attr('item-id');
         var order_ID = <?php echo json_encode($order_id); ?>;
