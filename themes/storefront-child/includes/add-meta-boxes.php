@@ -37,6 +37,7 @@ function matrix_all_meta_boxes()
 	add_meta_box('average-transport-container-meta-box-id', esc_html__('Average Transport', 'text-domain'), 'average_transport_menu_container_meta_box', 'container', 'side', 'low');
 //    add_meta_box('containers-info-container-meta-box-id', esc_html__('Calculate Info Container', 'text-domain'), 'containers_info_menu_container_meta_box', 'container', 'side', 'low');
 	add_meta_box('container-lf-list-meta-box-id', esc_html__('Container LF list', 'text-domain'), 'lf_list_container_meta_box', 'container', 'side', 'low');
+	add_meta_box('container-lf-list-status-meta-box-id', esc_html__('Container LF list Status', 'text-domain'), 'lf_list_container_status_meta_box', 'container', 'side', 'low');
 
 	add_meta_box('csv-order-deliveries', esc_html__('Deliveries Orders CSV', 'text-domain'), 'csv_oder_deliveries_render', 'container', 'side', 'low');
 	add_meta_box('csv-invoice-deliveries', esc_html__('Deliveries Invoice CSV', 'text-domain'), 'csv_invoice_deliveries_render', 'container', 'side', 'low');
@@ -843,6 +844,11 @@ function containers_info_menu_container_meta_box($meta_id)
 function lf_list_container_meta_box($meta_id)
 {
 	include 'meta-boxes-content/container-lf-list.php';
+}
+
+function lf_list_container_status_meta_box($meta_id)
+{
+	include 'meta-boxes-content/container-lf-list-status.php';
 }
 
 

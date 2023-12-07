@@ -577,3 +577,11 @@ function container_list()
 {
     include 'ajax/container-list.php';
 }
+
+add_action("wp_ajax_container_insert_list_status", "container_list_status");
+add_action("wp_ajax_nopriv_container_insert_list_status", "container_list_status");
+
+function container_list_status()
+{
+	include 'ajax/container-list-status.php';
+}
