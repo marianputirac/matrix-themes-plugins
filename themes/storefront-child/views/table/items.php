@@ -164,6 +164,7 @@ echo $table_class; ?>">
 		$property_midrailpositioncritical = get_post_meta($product_id, 'property_midrailpositioncritical', true);
 		$property_totheight = get_post_meta($product_id, 'property_totheight', true);
 		$property_horizontaltpost = get_post_meta($product_id, 'property_horizontaltpost', true);
+		$property_doubleClosingLouvres = get_post_meta($product_id, 'property_double_closing_louvres', true);
 		$property_bladesize = get_post_meta($product_id, 'property_bladesize', true);
 		$property_trackedtype = get_post_meta($product_id, 'property_trackedtype', true);
 		$property_freefolding = get_post_meta($product_id, 'property_freefolding', true);
@@ -637,6 +638,9 @@ echo $table_class; ?>">
 									echo $atributes[$property_bladesize]; ?></strong>
                 <br>
 								<?php
+							}
+							if (!empty($property_doubleClosingLouvres)) {
+								echo 'Double closing louvres: <strong>' . $property_doubleClosingLouvres . '</strong><br>';
 							}
 							if ($property_style == 35 || $property_style == 39 || $property_style == 41) {
 								echo 'Tracked type: <strong>' . $property_trackedtype . '</strong><br>';
@@ -1171,6 +1175,9 @@ echo $table_class; ?>">
               <br>
 							<?php
 						}
+						if (!empty($property_doubleClosingLouvres)) {
+							echo 'Double closing louvres: <strong>' . $property_doubleClosingLouvres . '</strong><br>';
+						}
 						if ($property_style == 35 || $property_style == 39 || $property_style == 41) {
 							echo 'Tracked type: <strong>' . $property_trackedtype . '</strong><br>';
 							echo 'Free folding: <strong>' . $property_freefolding . '</strong><br>';
@@ -1311,7 +1318,7 @@ echo $table_class; ?>">
 										if ((get_post_meta($product_id, 'property_ba' . $i, true) == 90) || (get_post_meta($product_id, 'property_ba' . $i, true) == 135)) {
 											echo '<br>';
 											if (!empty(get_post_meta($product_id, 'property_b_buildout' . $i, true))) {
-												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong>';
+												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong><br>';
 												$bbuilout++;
 												if ($bbuilout == 1) {
 													$user_b_build = get_user_meta($user_id, 'B_Buildout', true);

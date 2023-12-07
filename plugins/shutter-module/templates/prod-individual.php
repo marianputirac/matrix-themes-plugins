@@ -621,6 +621,25 @@ if (!empty($_GET['id'])) {
                               <?php if ($property_lightblocks == 'No') echo 'checked'; ?>
                                    value="No"/> No
                           </div>
+
+                          <div class="col-sm-4" id="doubleClosingLouvres"
+                               style="">
+                            <div>
+                              <label>
+                                Double closing louvres:
+                                <br/>
+                                <select name="property_double_closing_louvres">
+																	<?php
+																	$property_doubleClosingLouvres = get_post_meta($product_id, 'property_double_closing_louvres', true);
+																	$select = ($property_doubleClosingLouvres == 'Yes') ? 'selected' : ''; ?>
+                                  <option value="No">No
+                                  </option>
+                                  <option value="Yes" <?php echo $select; ?>>Yes
+                                  </option>
+                                </select>
+                              </label>
+                            </div>
+                          </div>
                         </div>
                         <div class="row" style="margin-bottom: 10px;">
                           <div class="col-sm-3 property_fit"> Measure Type:

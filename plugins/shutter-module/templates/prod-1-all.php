@@ -30,6 +30,7 @@ $attachment = '';
 $product_id = '';
 $nr_code_prod = array();
 $items_name = array();
+$first_item = null;
 foreach ($carts_sort as $key => $carts) {
 	if ($userialize_data['customer_id'] == $key) {
 		$cart_name = $carts['name'];
@@ -953,6 +954,24 @@ if (!empty($_GET['id'])) {
 															?>
                                    value="No"/> No
                           </div>
+                          <div class="col-sm-4" id="doubleClosingLouvres"
+                               style="">
+                            <div>
+                              <label>
+                                Double closing louvres:
+                                <br/>
+                                <select name="property_double_closing_louvres">
+																	<?php
+																	$property_doubleClosingLouvres = get_post_meta($product_id, 'property_double_closing_louvres', true);
+																	$select = ($property_doubleClosingLouvres == 'Yes') ? 'selected' : ''; ?>
+                                  <option value="No">No
+                                  </option>
+                                  <option value="Yes" <?php echo $select; ?>>Yes
+                                  </option>
+                                </select>
+                              </label>
+                            </div>
+                          </div>
                         </div>
                         <div class="row" style="margin-bottom: 10px;">
                           <div class="col-sm-3 property_fit"> Measure Type:
@@ -1791,7 +1810,7 @@ if (!empty($_GET['id'])) {
                           <div class="col-sm-12" id="stile-img-biowood">
                             <div id="choose-stiletype" class="" style="display: block;">
                               <label>
-                                <br/> 41mm T1001M<br />(plain butt)
+                                <br/> 41mm T1001M<br/>(plain butt)
                                 <input type="radio" name="property_stile"
                                        data-code="FS 50.8"
                                        data-title="41mm T1001M(plain butt)" value="376"
@@ -1802,7 +1821,7 @@ if (!empty($_GET['id'])) {
                                      src="/wp-content/plugins/shutter-module/imgs/T1001M.png"/>
                               </label>
                               <label>
-                                <br/> 41mm T1005M<br />(plain D-mould)
+                                <br/> 41mm T1005M<br/>(plain D-mould)
                                 <input type="radio" name="property_stile"
                                        data-code="DFS 50.8"
                                        data-title="41mm T1005M(plain D-mould)"
@@ -1814,7 +1833,7 @@ if (!empty($_GET['id'])) {
                                      src="/wp-content/plugins/shutter-module/imgs/T1005M.png"/>
                               </label>
                               <label>
-                                <br/> 41mm T1003M<br />(plain rebate)
+                                <br/> 41mm T1003M<br/>(plain rebate)
                                 <input type="radio" name="property_stile"
                                        data-code="RFS 50.8"
                                        data-title="41mm T1003M(plain rebate)"
@@ -1862,7 +1881,7 @@ if (!empty($_GET['id'])) {
                                      src="/wp-content/plugins/shutter-module/imgs/T1004M.png"/>
                               </label>
                               <label>
-                                <br/> 51mm T1001K<br />(plain butt)
+                                <br/> 51mm T1001K<br/>(plain butt)
                                 <input type="radio" name="property_stile"
                                        data-code="FS 50.8"
                                        data-title="51mm T1001K(plain butt)" value="370"
@@ -1873,7 +1892,7 @@ if (!empty($_GET['id'])) {
                                      src="/wp-content/plugins/shutter-module/imgs/T1001K.png"/>
                               </label>
                               <label>
-                                <br/> 51mm T1005K<br />(plain D-mould)
+                                <br/> 51mm T1005K<br/>(plain D-mould)
                                 <input type="radio" name="property_stile"
                                        data-code="DFS 50.8"
                                        data-title="51mm T1005K(plain D-mould)"
@@ -1885,7 +1904,7 @@ if (!empty($_GET['id'])) {
                                      src="/wp-content/plugins/shutter-module/imgs/T1005K.png"/>
                               </label>
                               <label>
-                                <br/> 51mm T1003K<br />(plain rebate)
+                                <br/> 51mm T1003K<br/>(plain rebate)
                                 <input type="radio" name="property_stile"
                                        data-code="RFS 50.8"
                                        data-title="51mm T1003K(plain rebate)"
