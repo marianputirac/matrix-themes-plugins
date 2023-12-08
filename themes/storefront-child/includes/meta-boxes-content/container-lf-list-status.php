@@ -3,7 +3,7 @@
 $container_orders = get_post_meta($meta_id->ID, 'container_orders_status', true);
 
 echo 'orders: ';
-print_r($container_orders);
+//print_r($container_orders);
 
 $outline = '';
 $outline .= '<br/><textarea name="listStatusLF" id="lf-list-status"></textarea>';
