@@ -106,11 +106,10 @@ foreach ($order->get_items() as $prod => $item_data) {
 	$shipclass = $_product->get_shipping_class();
 
 	if ($shipclass == 'ship') {
-		$transport = 'BY TRAIN';
+		$transport = 'BY SEA';
 	} elseif ($shipclass == 'air') {
 		$transport = 'BY AIR';
 	}
-
 }
 
 $email_body = '
@@ -180,6 +179,9 @@ $email_body = '
                         <th>Control Type</th>
                         <th>Nr. Tracks</th>
                         <th>Layout code</th>
+                        <th>Motorised</th>
+                        <th>Nr motors</th>
+                        <th>Nr remotes</th>
                         <th>Open first</th>';
 foreach ($nr_code_prod as $key => $val) {
 	for ($i = 1; $i < $val + 1; $i++) {
@@ -253,6 +255,8 @@ foreach ($order->get_items() as $prod => $item_data) {
 	$property_builtout = get_post_meta($product_id, 'property_builtout', true);
 	$property_stile = get_post_meta($product_id, 'property_stile', true);
 	$property_hingecolour = get_post_meta($product_id, 'property_hingecolour', true);
+	print_r($atributes[$property_hingecolour]);
+
 	$property_shuttercolour = get_post_meta($product_id, 'property_shuttercolour', true);
 	$property_blackoutblindcolour = get_post_meta($product_id, 'property_blackoutblindcolour', true);
 	$property_shuttercolour_other = get_post_meta($product_id, 'property_shuttercolour_other', true);
@@ -272,10 +276,14 @@ foreach ($order->get_items() as $prod => $item_data) {
 	$property_blackoutblindcolour = get_post_meta($product_id, 'property_blackoutblindcolour', true);
 	$property_solidpanelheight = get_post_meta($product_id, 'property_solidpanelheight', true);
 	$property_solidtype = get_post_meta($product_id, 'property_solidtype', true);
+	$property_motorized = get_post_meta($product_id, 'property_motorized', true);
+	$property_nrMotors = get_post_meta($product_id, 'property_nrMotors', true);
+	$property_nrRemotes = get_post_meta($product_id, 'property_nrRemotes', true);
 
 	$property_sparelouvres = get_post_meta($product_id, 'property_sparelouvres', true);
 	$property_ringpull = get_post_meta($product_id, 'property_ringpull', true);
 	$property_locks = get_post_meta($product_id, 'property_locks', true);
+	$property_central_lock = get_post_meta($product_id, 'property_central_lock', true);
 	$property_ringpull_volume = get_post_meta($product_id, 'property_ringpull_volume', true);
 	$property_locks_volume = get_post_meta($product_id, 'property_locks_volume', true);
 	$property_lock_position = get_post_meta($product_id, 'property_lock_position', true);
@@ -355,24 +363,27 @@ foreach ($order->get_items() as $prod => $item_data) {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td>' . $property_builtout . '</td>
                     <td>' . $atributes[$property_hingecolour] . '</td>
                     <td>' . $atributes[$property_shuttercolour] . '</td>
                     <td>' . $property_shuttercolour_other . '</td>
                     <td>' . $atributes[$property_blackoutblindcolour] . '</td>
-                    <td>' . $atributes[$property_controltype] . '</td>';
+                    <td>' . $atributes[$property_controltype] . '</td><td></td>';
 
 		if ($property_style == 37) {
 			if ($property_tracksnumber) {
 				$email_body .= ' <td>' . $property_tracksnumber . '</td>';
 			}
-
 		} else {
 			$email_body .= ' <td></td>';
 		}
+		$motorizedNR = $property_motorized == 'Yes' ? $property_nrMotors : ' ';
+		$remotesNR = $property_motorized == 'Yes' ? $property_nrRemotes : ' ';
 
 		$email_body .= '<td style="text-transform: uppercase;">' . strtoupper($property_layoutcode) . '</td>';
+		$email_body .= '<td style="text-transform: uppercase;">' . $property_motorized . '</td>';
+		$email_body .= '<td style="text-transform: uppercase;">' . $motorizedNR . '</td>';
+		$email_body .= '<td style="text-transform: uppercase;">' . $remotesNR . '</td>';
 		$email_body .= '<td>' . $property_opendoor . '</td>';
 		foreach ($nr_code_prod as $key => $val) {
 			for ($i = 1; $i < $val + 1; $i++) {
@@ -380,7 +391,6 @@ foreach ($order->get_items() as $prod => $item_data) {
 					if ($key == 'b') {
 						$email_body .= '<td>' . get_post_meta($product_id, 'property_bp' . $i, true) . '</td>';
 						$email_body .= '<td>' . get_post_meta($product_id, 'property_ba' . $i, true) . '</td>';
-
 					} elseif ($key == 'c') {
 						$email_body .= '<td>' . get_post_meta($product_id, 'property_c' . $i, true) . '</td>';
 					} elseif ($key == 't') {
@@ -400,7 +410,7 @@ foreach ($order->get_items() as $prod => $item_data) {
 		$email_body .= '<td>' . get_post_meta($product_id, 'property_t_buildout1', true) . '</td>';
 		$email_body .= '<td>' . $tposttype . '</td>';
 
-		$email_body .= '<td>sss';
+		$email_body .= '<td>';
 		if (!empty(get_post_meta($product_id, 'property_t1', true))) {
 			$email_body .= $atributes[$property_tposttype];
 		} else {
@@ -415,13 +425,15 @@ foreach ($order->get_items() as $prod => $item_data) {
 		} else {
 			$email_body .= '';
 		}
-		$email_body .= '</td>
-                        <td>' . $property_locks . '</td>';
-		if ($property_locks == "Yes") {
-			$email_body .= '<td>'.$property_locks_volume.'</td>';
-			$email_body .= '<td>'.$property_lock_position.'</td>';
-			$email_body .= '<td>'.$property_louver_lock.'</td>';
+		$email_body .= '</td>';
+		if ($property_locks == "Yes" || $property_central_lock == "Yes") {
+			$lock_position = ($property_locks == "Yes") ? "Top & Bottom Locks" : "Central Lock";
+			$email_body .= '<td>Yes</td>';
+			$email_body .= '<td>' . $property_locks_volume . '</td>';
+			$email_body .= '<td>' . $lock_position . '</td>';
+			$email_body .= '<td>' . $property_louver_lock . '</td>';
 		} else {
+			$email_body .= '<td></td>';
 			$email_body .= '<td></td>';
 			$email_body .= '<td></td>';
 			$email_body .= '<td></td>';
@@ -432,7 +444,6 @@ foreach ($order->get_items() as $prod => $item_data) {
 		}
 		$email_body .= $comments_customer . '</td>
             </tr>';
-
 	} else {
 
 		if (!empty($property_nr_sections)) {
@@ -507,6 +518,9 @@ foreach ($order->get_items() as $prod => $item_data) {
 				}
 
 				$email_body .= '<td style="text-transform: uppercase;">' . strtoupper(get_post_meta($product_id, 'property_layoutcode' . $sec, true)) . '</td>';
+				$email_body .= '<td style="text-transform: uppercase;">' . $property_motorized . '</td>';
+				$email_body .= '<td style="text-transform: uppercase;">' . $motorizedNR . '</td>';
+				$email_body .= '<td style="text-transform: uppercase;">' . $remotesNR . '</td>';
 				$email_body .= '<td>' . get_post_meta($product_id, 'property_opendoor' . $sec, true) . '</td>';
 				foreach ($nr_code_prod as $key => $val) {
 					for ($i = 1; $i < $val + 1; $i++) {
@@ -543,13 +557,15 @@ foreach ($order->get_items() as $prod => $item_data) {
 				} else {
 					$email_body .= '';
 				}
-				$email_body .= '</td>
-                                <td>' . $property_locks . '</td>';
-				if ($property_locks == "Yes") {
-					$email_body .= '<td>'.$property_locks_volume.'</td>';
-					$email_body .= '<td>'.$property_lock_position.'</td>';
-					$email_body .= '<td>'.$property_louver_lock.'</td>';
+				$email_body .= '</td>';
+				if ($property_locks == "Yes" || $property_central_lock == "Yes") {
+					$lock_position = ($property_locks == "Yes") ? "Top & Bottom Locks" : "Central Lock";
+					$email_body .= '<td>Yes</td>';
+					$email_body .= '<td>' . $property_locks_volume . '</td>';
+					$email_body .= '<td>' . $lock_position . '</td>';
+					$email_body .= '<td>' . $property_louver_lock . '</td>';
 				} else {
+					$email_body .= '<td></td>';
 					$email_body .= '<td></td>';
 					$email_body .= '<td></td>';
 					$email_body .= '<td></td>';
@@ -629,7 +645,13 @@ foreach ($order->get_items() as $prod => $item_data) {
 				$email_body .= ' <td></td>';
 			}
 
+			$motorizedNR = $property_motorized == 'Yes' ? $property_nrMotors : ' ';
+			$remotesNR = $property_motorized == 'Yes' ? $property_nrRemotes : ' ';
+
 			$email_body .= '<td style="text-transform: uppercase;">' . strtoupper($property_layoutcode) . '</td>';
+			$email_body .= '<td style="text-transform: uppercase;">' . $property_motorized . '</td>';
+			$email_body .= '<td style="text-transform: uppercase;">' . $motorizedNR . '</td>';
+			$email_body .= '<td style="text-transform: uppercase;">' . $remotesNR . '</td>';
 			$email_body .= '<td>' . $property_opendoor . '</td>';
 			foreach ($nr_code_prod as $key => $val) {
 				for ($i = 1; $i < $val + 1; $i++) {
@@ -666,13 +688,15 @@ foreach ($order->get_items() as $prod => $item_data) {
 			} else {
 				$email_body .= '';
 			}
-			$email_body .= '</td>
-                                <td>' . $property_locks . '</td>';
-			if ($property_locks == "Yes") {
-				$email_body .= '<td>'.$property_locks_volume.'</td>';
-				$email_body .= '<td>'.$property_lock_position.'</td>';
-				$email_body .= '<td>'.$property_louver_lock.'</td>';
+			$email_body .= '</td>';
+			if ($property_locks == "Yes" || $property_central_lock == "Yes") {
+				$lock_position = ($property_locks == "Yes") ? "Top & Bottom Locks" : "Central Lock";
+				$email_body .= '<td>Yes</td>';
+				$email_body .= '<td>' . $property_locks_volume . '</td>';
+				$email_body .= '<td>' . $lock_position . '</td>';
+				$email_body .= '<td>' . $property_louver_lock . '</td>';
 			} else {
+				$email_body .= '<td></td>';
 				$email_body .= '<td></td>';
 				$email_body .= '<td></td>';
 				$email_body .= '<td></td>';
@@ -771,6 +795,15 @@ $email_body .= '
               var name = jQuery('input[name="order_name"]').val();
               var items_buy = jQuery('#items-info').html();
 
+              var data = {
+                  table: content,
+                  id: id,
+                  id_ord_original: id_ord_original,
+                  name: name,
+                  items_table: items_buy
+              }
+              console.log('send mail: ', data);
+
               jQuery.ajax({
                   method: "POST",
                   url: "/wp-content/themes/storefront-child/csvs/create-csv-admin.php",
@@ -783,6 +816,7 @@ $email_body .= '
                   }
               })
                   .done(function (msg) {
+                      alert("mail send");
                       console.log("Data Saved: " + msg);
                   });
 
@@ -822,6 +856,7 @@ $email_body .= '
   </script>
 
   <input type="hidden" name="id_ord_original" value="<?php echo $order_id; ?>">
+  <input type="hidden" name="id_ord" value="<?php echo $order->get_order_number(); ?>">
 
   <textarea style="display: none;" name="table" id="tableToMakeMail" cols="30"
             rows="10"><?php echo $email_body; ?></textarea>

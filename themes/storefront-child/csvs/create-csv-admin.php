@@ -15,25 +15,31 @@ $mail_send = get_post_meta($order_id, 'mail_send', true);
 $customer_id = get_post_meta($order_id, '_customer_user', true);
 $favorite = get_user_meta($customer_id, 'favorite_user', true);
 
-if (empty($mail_send)) {
+$multiple_test_mails = array(
+	'teopro@gmail.com', 'marian93nes@gmail.com',
+);
 
-	update_post_meta($order_id, 'mail_send', 1);
+update_post_meta($order_id, 'mail_send', 1);
 
-	$billing_company = get_user_meta($customer_id, 'shipping_company', true);
+$billing_company = get_user_meta($customer_id, 'shipping_company', true);
 
-	$pos = $_POST['pos'];
-	$name = $_POST['name'];
-	//$vowels = array(" ", ".", "#");
-	$vowels = array(" ", ".", "#", "'", "\"", "`", "/", "\\", ":", ";", "|", "?", "*", "<", ">");
+$pos = $_POST['pos'];
+$name = $_POST['name'];
+//$vowels = array(" ", ".", "#");
+$vowels = array(" ", ".", "#", "'", "\"", "`", "/", "\\", ":", ";", "|", "?", "*", "<", ">");
+$rename = str_replace($vowels, "", $name);
+$rebilling_company = str_replace($vowels, "", $billing_company);
 
-	$rename = str_replace($vowels, "", $name);
-	$rebilling_company = str_replace($vowels, "", $billing_company);
+$html = str_get_html($_POST['table']);
 
-	$html = str_get_html($_POST['table']);
+// Check if HTML is successfully parsed
+if (!$html) {
+    die('Failed to load HTML content');
+}
 
-	$items_table = stripslashes($_POST['items_table']);
+$items_table = stripslashes($_POST['items_table']);
 
-	$pdf_content = '<html>
+$pdf_content = '<html>
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta charset="UTF-8"/>
@@ -57,7 +63,7 @@ if (empty($mail_send)) {
         </style>
         </head>
         ';
-	$pdf_content .= '<body>
+$pdf_content .= '<body>
                <table width="100%">
                     <tr>
                         <td width="50%"><p><strong>Lifetime Shutters</strong></p>
@@ -67,232 +73,168 @@ if (empty($mail_send)) {
                                         <p>VAT Registration No.: 986 2325 89</p>
                                         <p>Company Registration No. 07113670</p>
                         </td>
-                        <td width="50%" style="text-align: right;"><img class="logo-img site-logo-img" style="text-align: center; margin: 0 auto;" src="https://matrix.lifetimeshutters.com/wp-content/uploads/2019/11/lifetime-shutters-logo-e1575042323515.png" alt="Plantation Shutters &amp; Windows" title=""></td>
+                        <td width="50%" style="text-align: right;"><img class="logo-img site-logo-img" style="text-align: center; margin: 0 auto;" src="https://matrix.lifetimeshutters.com/wp-content/uploads/Logos/lifetime-shutters-logo.png" alt="Plantation Shutters &amp; Windows" title=""></td>
                     </tr>
                 </table>
-                <h3 style="text-align: center;"><strong>Order Summary</strong></h3>
-                <br>' . $items_table . '</body>';
-	$pdf_content .= '</html>';
+                 <h3 style="text-align: center;"><strong>Order Summary - Proforma Invoice</strong></h3>
+                 <br>' . $items_table . '</body>';
+$pdf_content .= '</html>';
 
-	// MAKE PDF ORDER
+//MAKE PDF ORDER
 
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/storefront-child/html2fpdf/html2fpdf.php');
-	// exit($content);
-
+//OLD VERSION
+require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/storefront-child/html2fpdf/html2fpdf.php');
+//        exit($content);
+//        $pdf = new HTML2FPDF('P', 'mm', 'Letter');
+//        $pdf->AddPage();
+//        $pdf->WriteHTML($html);
+//        $pdf->Output('LF0' .$_POST['id']. '.pdf', 'D');
 //
-	$fileName = 'Order-id-LF0' . $_POST['id'] . '-' . $rename . '-' . $rebilling_company . '.csv';
-	$pdfNmae = 'LF0' . $_POST['id'] . '.pdf';
+$pdfName = 'LF0' . $_POST['id'] . '.pdf';
+$fileName = 'Order-id-LF0' . $_POST['id'] . '-' . $rename . '-' . $rebilling_company . '.csv';
 
-	$fp = fopen(WP_CONTENT_DIR . '/uploads/csv-pdf/' . $fileName, "w");
+// END - MAKE PDF ORDER
 
-	foreach ($html->find('tr') as $element) {
-		$td = array();
-		foreach ($element->find('th') as $row) {
-			$td [] = $row->plaintext;
-		}
+// header('Content-type: application/ms-excel');
+// header("Content-Disposition: attachment; filename=$fileName");
 
-		foreach ($element->find('td') as $row) {
-			$td [] = $row->plaintext;
-		}
-		fputcsv($fp, $td);
+$fp = fopen(WP_CONTENT_DIR . '/uploads/csv-pdf/' . $fileName, "w");
+
+foreach ($html->find('tr') as $element) {
+	$td = array();
+	foreach ($element->find('th') as $row) {
+		$td [] = $row->plaintext;
 	}
 
-	fclose($fp);
+	foreach ($element->find('td') as $row) {
+		$td [] = $row->plaintext;
+	}
+	fputcsv($fp, $td);
+}
 
-	$user_id = get_current_user_id();
+fclose($fp);
 
-	$user_info = get_userdata($user_id);
-	$user_mail = $user_info->user_email;
+$user_id = get_current_user_id();
 
-	//  ----------------- GRABZIT -----------------
+$user_info = get_userdata($user_id);
+$user_mail = $user_info->user_email;
 
-//        $grabzIt = new \GrabzIt\GrabzItClient("ZGZiNjI2NzZlOGU3NGU3NmEzNjdmYzc3MDE1N2ZiY2U=", "IjpCPz99WD8/PT9HPxZwBX1xP0M/Pz93dGo/Cj8/Uz8=");
-//
-//        $options = new \GrabzIt\GrabzItPDFOptions();
-//        $options->setMarginTop(20);
-//        $options->setMarginBottom(20);
-//
-//        $grabzIt->HTMLToPDF($pdf_content, $options);
-//        $grabzIt->SaveTo(WP_CONTENT_DIR . '/uploads/csv-pdf/' .'grabzit-LF0' . $_POST['id'] . '.pdf');
+// ----------------- MDPF -----------------
 
-	// ----------------- MDPF -----------------
-
-	$mpdf = new \Mpdf\Mpdf();
-
-//        $mpdf->SetHTMLHeader('
-//                <table width="100%">
-//                    <tr>
-//                        <td width="33%">Lifetime Shutters & Windows Ltd
-//                                        7 Lichfield Terrace Sheen Road
-//                                        Richmond
-//                                        SR
-//                                        TW9 1AS
-//                                        02089401418
-//                                        office@lifetimeshutters.co.uk
-//                                        VAT Registration No.: 986 2325
-//                                        89
-//                                        Company Registration No.
-//                                        07113670
-//                        </td>
-//                        <td width="33%" align="center">
-//                           <img class="logo-img site-logo-img" src="https://dematrix.richmond-shutters.co.uk/wp-content/uploads/2019/11/lifetime-shutters-logo.png" alt="Plantation Shutters &amp; Windows" title="">
-//                        </td>
-//                        <td width="33%" style="text-align: right;">Tax Invoice</td>
-//                    </tr>
-//                </table>');
-	$mpdf->SetHTMLFooter('
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->SetHTMLFooter('
                 <table width="100%" style="vertical-align: bottom; font-family: serif;
                     font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
                     <tr>
                         <td width="33%">{DATE j-m-Y}</td>
-                        <td width="33%" align="center">www.lifetimeshutters.co.uk</td>
+                        <td width="33%" align="center">www.lifetimeshutters.com</td>
                         <td width="33%" style="text-align: right;">{PAGENO}/{nbpg}</td>
                     </tr>
                 </table>');
-	$mpdf->WriteHTML($pdf_content);
-	$mpdf->Output(WP_CONTENT_DIR . '/uploads/csv-pdf/' . 'MPDF-LF0' . $_POST['id'] . '.pdf');
+$mpdf->WriteHTML($pdf_content);
+$mpdf->Output(WP_CONTENT_DIR . '/uploads/csv-pdf/' . 'LF0' . $_POST['id'] . '.pdf');
 
-	if ($_POST['pos'] == 0) {
-		$attachment1 = WP_CONTENT_DIR . '/uploads/csv-pdf/' . $fileName;
+if ($_POST['pos'] == 0) {
+	$attachment1 = WP_CONTENT_DIR . '/uploads/csv-pdf/' . $fileName;
+}
+$attachment2 = WP_CONTENT_DIR . '/uploads/csv-pdf/' . $pdfName;
+//teo   $attachment2china = '';
+
+$attachments = array();
+$attachments_summary = array();
+$attachments[0] = '';
+$attachments[1] = $attachment2;
+$attachments_summary[] = $attachment2;
+
+$attachments_china = array();
+$attachments_china[0] = $attachment1;
+$attachments_china[1] = '';
+
+//get an instance of the WC_Order object
+$order = wc_get_order($order_id);
+
+$items = $order->get_items();
+$at = 2;
+foreach ($items as $item_id => $item_data) {
+
+	$product_id = $item_data['product_id'];
+	$attachment_img = get_post_meta($product_id, 'attachment', true);
+	$attachmentDraw = get_post_meta($product_id, 'attachmentDraw', true);
+
+	$img = $attachment_img;
+	$pieces = explode(get_home_url() . '/wp-content', $img);
+	$pieces[0];
+	$pieces[1];
+
+	$attachments[$at] = WP_CONTENT_DIR . $pieces[1];
+	$attachments_china[$at] = WP_CONTENT_DIR . $pieces[1];
+	if (!empty($attachmentDraw)) {
+		$piecesDraw = explode(get_home_url() . '/wp-content', $attachmentDraw);
+		$at++;
+		$attachments[$at] = WP_CONTENT_DIR . $piecesDraw[1];
+		$attachments_china[$at] = WP_CONTENT_DIR . $piecesDraw[1];
 	}
-	// $attachment2 = WP_CONTENT_DIR . '/uploads/csv-pdf/' . $pdfNmae;
-	$attachment2 = WP_CONTENT_DIR . '/uploads/csv-pdf/' . 'MPDF-LF0' . $_POST['id'] . '.pdf';
+	$at++;
+}
 
-	$attachments = array();
-	$attachments_summary = array();
-	$attachments[0] = $attachment1;
-	$attachments[1] = $attachment2;
-	$attachments_summary[] = $attachment2;
+if (!empty($_POST['china']) && $_POST['table']) {
 
-	$attachments_china = array();
-	$attachments_china[0] = $attachment1;
-	$attachments_china[1] = '';
-
-	//get an instance of the WC_Order object
-	$order = wc_get_order($order_id);
-
-	$items = $order->get_items();
-	$at = 2;
+	// $to = 'marian93nes@gmail.com';
+	$multiple_recipients = array(
+		'tudor@fiqs.ro', 'tudor@lifetimeshutters.com',
+	);
+	$subject = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Matrix Order Attached - Resent';
+	$body = 'Hi July, Kevin<br><br>New order. See Order Attached <br>';
 	foreach ($items as $item_id => $item_data) {
 
 		$product_id = $item_data['product_id'];
 		$attachment_img = get_post_meta($product_id, 'attachment', true);
-
-		$img = $attachment_img;
-		$pieces = explode(get_home_url() . '/wp-content', $img);
-		$pieces[0];
-		$pieces[1];
-
-		$attachments[$at] = WP_CONTENT_DIR . $pieces[1];
-		$attachments_china[$at] = WP_CONTENT_DIR . $pieces[1];
-		$at++;
-	}
-
-	if (!empty($_POST['china']) && $_POST['table']) {
-
-		// $to = 'marian93nes@gmail.com';
-		$multiple_recipients = array(
-			'tudor@fiqs.ro', 'tudor@lifetimeshutters.com', 'marian93nes@gmail.com', 'marian93nes@lifetimeshutters.com',
-		);
-		$subject = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Matrix Order Attached';
-		$body = 'Hi July, Kevin<br><br>New order.See Order Attached <br>';
-		foreach ($items as $item_id => $item_data) {
-
-			$product_id = $item_data['product_id'];
-			$attachment_img = get_post_meta($product_id, 'attachment', true);
-			if (!empty($attachment_img)) {
-				$body .= get_the_title($product_id) . ': <a href="' . $attachment_img . '">' . $attachment_img . '</a> <br>';
-			}
+		if (!empty($attachment_img)) {
+			$body .= get_the_title($product_id) . ': <a href="' . $attachment_img . '">' . $attachment_img . '</a> <br>';
 		}
-		$headers = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
+		$attachmentDraw = get_post_meta($product_id, 'attachmentDraw', true);
+		if (!empty($attachmentDraw)) {
+			$body .= get_the_title($product_id) . ': <a href="' . $attachmentDraw . '">' . $attachmentDraw . '</a> <br>';
+		}
+	}
+	$headers = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
 
 		wp_mail($multiple_recipients, $subject, $body, $headers, $attachments_china);
+//	wp_mail($multiple_test_mails, $subject, $body, $headers, $attachments_china);
+} else {
+
+	// $to = 'marian93nes@gmail.com';
+	// $multiple_recipients = array(
+	//     'order@lifetimeshutters.com'
+	// );
+	if ($favorite == 'yes') {
+		$multiple_recipients = array(
+			'order@lifetimeshutters.com', 'accounts@lifetimeshutters.com', 'caroline@anyhooshutter.com', 'july@anyhooshutter.com',
+		);
 	} else {
-
-		// $to = 'marian93nes@gmail.com';
-		// $multiple_recipients = array(
-		//     'order@lifetimeshutters.com'
-		// );
-		if ($favorite == 'yes') {
-			$multiple_recipients = array(
-				'tudor@lifetimeshutters.com', 'marian93nes@gmail.com',
-			);
-		} else {
-			$multiple_recipients = array(
-				'tudor@lifetimeshutters.com', 'marian93nes@gmail.com',
-			);
-		}
-		$subject = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Matrix Order Attached';
-		$body = 'See CSV Order Attached <br>';
-		foreach ($items as $item_id => $item_data) {
-
-			$product_id = $item_data['product_id'];
-			$attachment_img = get_post_meta($product_id, 'attachment', true);
-			if (!empty($attachment_img)) {
-				$body .= get_the_title($product_id) . ': <a href="' . $attachment_img . '">' . $attachment_img . '</a> <br>';
-			}
-		}
-		$headers = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
-
-		wp_mail($multiple_recipients, $subject, $body, $headers, $attachments);
-
-		wp_mail('marian93nes@gmail.com', $subject, $body, $headers, $attachment2);
+		$multiple_recipients = array(
+			'order@lifetimeshutters.com', 'accounts@lifetimeshutters.com',
+		);
 	}
 
-	$order_id = wc_sequential_order_numbers()->find_order_by_order_number($_POST['id']);
+	$subject = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Matrix Order Attached - Resent';
+	$body = 'Hi July, Kevin<br><br>New order. See Order Attached <br>';
+	foreach ($items as $item_id => $item_data) {
 
-	$mess = '
-        Dear ' . get_user_meta(get_current_user_id(), 'billing_company', true) . ', <br />
-        <br />
-        Thank you for your recent order with Matrix.<br />
-        <br />
-        Please quote the following details should you have any questions regarding this order at any stage.<br />
-        <br />
-        Lifetime Number: LF0' . $_POST['id'] . '<br />
-        Customer: ' . $name . ' <br />
-        <br />
-        You can find the Order Summary for order reference ' . get_post_meta($order_id, 'cart_name', true) . ' in the attachment or by following this link:<br />
-        <br />
-        <a href="https://matrix.lifetimeshutters.com/view-order/?id=' . $order_id * 1498765 * 33 . '">
-        https://matrix.lifetimeshutters.com/view-order/?id=' . $order_id * 1498765 * 33 . '</a><br />
-        <br />
-        Your order has been sent to our factory ready for manufacture. Once payment has been received manufacturing will commence.<br />
-        <br />
-        Payments can be made via international bank transfer to the following account:  <br />
-        <br />
-        Account Name: Lifetime Shutters<br />
-        Sort Code: 20-46-73<br />
-        Account Number: 13074145<br />
-        <br />
-        <strong style="color:green; font-size:1.2em;">Amount due: $' . wc_format_decimal($order->get_total(), 2) . '</strong><br />
-        <br />
-        We will contact you to advise of delivery arrangements in due course.<br />
-        <br />
-        Should you have any questions please contact us at order@lifetimeshutters.com <br />
-        <br />
-        Kind regards, <br />
-        <br />
-        Accounts Department <br />
-        <br />
-        ';
+		$product_id = $item_data['product_id'];
+		$attachment_img = get_post_meta($product_id, 'attachment', true);
+		if (!empty($attachment_img)) {
+			$body .= get_the_title($product_id) . ': <a href="' . $attachment_img . '">' . $attachment_img . '</a> <br>';
+		}
+		$attachmentDraw = get_post_meta($product_id, 'attachmentDraw', true);
+		if (!empty($attachmentDraw)) {
+			$body .= get_the_title($product_id) . ': <a href="' . $attachmentDraw . '">' . $attachmentDraw . '</a> <br>';
+		}
+	}
+	$headers = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
 
-	$user_id = get_current_user_id();
-
-	$user_info = get_userdata($user_id);
-	$user_mail = $user_info->user_email;
-
-	//print_r($user_mail);
-
-	$order_id = wc_sequential_order_numbers()->find_order_by_order_number($_POST['id']);
-	$name = get_post_meta($order_id, 'cart_name', true);
-
-	//$single_email = $user_mail;
-	$single_email = 'marian93nes@gmail.com';
-
-	$subject2 = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Order Summary';
-	$headers2 = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
-
-	// wp_mail( $single_email, $subject2, $mess, $headers2, $attachments ); //temporary disabled attachments by Teo
-
-	wp_mail($single_email, $subject2, $mess, $headers2, $attachments_summary);
+		wp_mail($multiple_recipients, $subject, $body, $headers, $attachments_china);
+//	wp_mail($multiple_test_mails, $subject, $body, $headers, $attachments_china);
+//		wp_mail('mike@lifetimeshutters.com', $subject, $body, $headers, $attachments);
 }
+

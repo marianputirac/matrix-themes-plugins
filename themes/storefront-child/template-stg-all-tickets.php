@@ -10,8 +10,11 @@
 use StgHelpdesk\Helpers;
 use StgHelpdesk\Ticket;
 
+get_header();
+
+$search_query = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+
 ?>
-<?php get_header(); ?>
 
   <div id="stg-all-tickets-block blablabla">
     <h2><?php _e('My tickets', STG_HELPDESK_TEXT_DOMAIN_NAME); ?></h2>
@@ -79,7 +82,7 @@ use StgHelpdesk\Ticket;
 					'post_status' => $status,
 					'order' => 'DESC',
 					'orderby' => 'date',
-					'posts_per_page' => 20,
+					'posts_per_page' => 100,
 					'no_found_rows' => false,
 					'cache_results' => false,
 					'paged' => $paged,
@@ -91,6 +94,7 @@ use StgHelpdesk\Ticket;
 							'value' => $user_id,
 						),
 					),
+					's' => $search_query, // Add the search parameter
 				);
 				$user_tickets = new WP_Query($args);
 
@@ -98,6 +102,17 @@ use StgHelpdesk\Ticket;
 
 //					if (get_current_user_id() == 18) {
 					echo '<h3><strong>' . get_user_meta($user_id, 'first_name', true) . ' ' . get_user_meta($user_id, 'last_name', true) . '</strong></h3>';
+
+					?>
+          <form method="GET" class="row" style="margin:0;">
+            <div class="col-sm-6 col-lg-3 form-group">
+            <input type="text" name="search" placeholder="Search by title" value="<?php echo isset($_GET['search']) ? esc_attr($_GET['search']) : ''; ?>" style="width: 100%">
+            </div>
+            <div class="col-sm-2 col-lg-1 form-group">
+            <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+          </form>
+					<?php
 //					}
 
 					$columns = Helpers\Stg_Helper_Template::getTicketsListColumns();
@@ -171,7 +186,8 @@ use StgHelpdesk\Ticket;
 							?>
               </tbody>
             </table>
-            <hr><br>
+            <hr>
+            <br>
           </div>
 
 					<?php

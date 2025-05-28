@@ -256,6 +256,7 @@
                     Stg_Helpdesk_Ticket::setInAnswered($parent_id);
 
                     stgh_add_event_ticket_to_reply($parent_id, array('post_status_override'), array('post_status_override' => 'stgh_answered'), $comment_id);
+                    update_post_meta($parent_id, 'post_status_override_history', 'stgh_answered');
 
                 }
                 

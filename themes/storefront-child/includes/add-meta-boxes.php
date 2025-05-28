@@ -433,7 +433,7 @@ function shipping_render_menu_meta_box($meta_id)
 					if ($shipclass == $shipping_class->slug) {
 						if ($shipping_class->slug == 'ship') {
 							$train_price = get_user_meta($user_id_customer, 'train_price', true);
-							if (empty($train_price) && !is_numeric($train_price)) {
+							if ($train_price === null || $train_price === '') {
 								$train_price = get_post_meta(1, 'train_price', true);
 							}
 							$train_exist = strpos($shipping_class->name, 'By Train');
@@ -738,20 +738,20 @@ function order_price_edit_render_menu_meta_box()
 
 function repair_oder_status_content()
 {
-	$order_status = array('pending' => 'Pending payment', 'on-hold' => 'On hold', 'processing' => 'Processing', 'completed' => 'Completed', 'cancelled' => 'Cancelled', 'refound' => 'Refunded', 'inproduction' => 'In Production', 'transit' => 'Order Shipped', 'waiting' => 'Waiting delivery', 'account-on-hold' => 'Account-on-hold');
-	$current_order_status = get_post_meta(get_the_ID(), 'order_status', true_)
+	$order_statuses = array('account-on-hold' => 'Account-on-hold', 'on-hold' => 'On hold', 'processing' => 'Processing', 'completed' => 'Completed', 'cancelled' => 'Cancelled', 'refound' => 'Refunded', 'inproduction' => 'In Production', 'transit' => 'Order Shipped', 'waiting' => 'Waiting delivery', 'pending' => 'Pending payment');
+	$current_order_status = get_post_meta(get_the_ID(), 'order_status', true);
+//	foreach ($order_statuses as $key => $val) {
+//		echo $key . '<br>';
+//	}
 	?>
   <p class="form-field form-field-wide wc-order-status">
     <label for="order_status">
       Status:
     </label>
     <select id="order_status"
-            name="order_status"
-            class="wc-enhanced-select select2-hidden-accessible enhanced"
-            tabindex="-1"
-            aria-hidden="true">
+            name="order_status">
 			<?php
-			foreach ($order_status as $key => $val) {
+			foreach ($order_statuses as $key => $val) {
 				if ($current_order_status == $key) {
 					echo '<option value="' . $key . '" selected>' . $val . '</option>';
 				} else {
@@ -792,16 +792,16 @@ function repair_oder_warranty_payment($meta_id)
 	}
 
 //	if ($no_warranty) {
-		$sqm = ($type_cost == 'sqm') ? 'checked' : '';
-		$fixed = ($type_cost == 'fixed') ? 'checked' : '';
-		$outline = '<label for="sqm" style="display: inline-block; float: left;margin: 0 10px;"><input type="radio" id="sqm" name="type_cost" value="sqm" ' . $sqm . '> /sqm</label> ';
-		$outline .= ' <label for="fixed" style="display: inline-block;margin: 0 10px;"><input type="radio" id="fixed" name="type_cost" value="fixed" ' . $fixed . '>
+	$sqm = ($type_cost == 'sqm') ? 'checked' : '';
+	$fixed = ($type_cost == 'fixed') ? 'checked' : '';
+	$outline = '<label for="sqm" style="display: inline-block; float: left;margin: 0 10px;"><input type="radio" id="sqm" name="type_cost" value="sqm" ' . $sqm . '> /sqm</label> ';
+	$outline .= ' <label for="fixed" style="display: inline-block;margin: 0 10px;"><input type="radio" id="fixed" name="type_cost" value="fixed" ' . $fixed . '>
                        fixed</label><br>';
-		$outline .= '<label for="title_field" style="width:150px; display:inline-block;">' . esc_html__('Set Cost Repair', 'text-domain') . '</label>';
-		$cost_field = get_post_meta($meta_id->ID, 'cost_repair', true);
-		$outline .= '<input type="text" name="cost_repair" id="title_field" class="title_field" value="' . esc_attr($cost_field) . '" style="width:auto;"/>';
+	$outline .= '<label for="title_field" style="width:150px; display:inline-block;">' . esc_html__('Set Cost Repair', 'text-domain') . '</label>';
+	$cost_field = get_post_meta($meta_id->ID, 'cost_repair', true);
+	$outline .= '<input type="text" name="cost_repair" id="title_field" class="title_field" value="' . esc_attr($cost_field) . '" style="width:auto;"/>';
 
-		echo $outline;
+	echo $outline;
 //	}
 }
 
@@ -845,6 +845,7 @@ function lf_list_container_meta_box($meta_id)
 {
 	include 'meta-boxes-content/container-lf-list.php';
 }
+
 
 function lf_list_container_status_meta_box($meta_id)
 {

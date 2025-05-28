@@ -189,7 +189,7 @@ function custom_orders_list_column_content_shutter($column, $post_id)
 				if ($ticket_id_for_order) {
 
 					echo '<span style="color: ' . $colors_ticket[$postStatus] . '">';
-					echo 'Query ';
+//					echo 'Query ';
 					echo (isset($statusArray[$postStatus])) ? $statusArray[$postStatus] : $postStatus;
 					echo '</span>';
 				} else {
@@ -403,7 +403,7 @@ function set_custom_edit_order_repair_columns($columns)
 		$reordered_columns[$key] = $column;
 		if ($key == 'title') {
 			// Inserting after "Status" column
-			$reordered_columns['original-order'] = __('Customer Order', 'theme_domain');
+			$reordered_columns['customer-order'] = __('Customer Order', 'theme_domain');
 			$reordered_columns['status-order'] = __('Status', 'theme_domain');
 			$reordered_columns['eta-order'] = __('ETA', 'theme_domain');
 			$reordered_columns['container-order'] = __('Container', 'theme_domain');
@@ -420,12 +420,12 @@ function set_custom_edit_order_repair_columns($columns)
 add_action('manage_order_repair_posts_custom_column', 'custom_order_repair_column', 10, 2);
 function custom_order_repair_column($column, $post_id)
 {
-	$order_id_scv = get_post_meta($post_id, 'order-id-scv', true);
-	$order_id_original = get_post_meta(get_the_ID(), 'order-id-original', true);
-	$order_status = get_post_meta($post_id, 'order_status', true_);
+//	$order_id_scv = get_post_meta($post_id, 'order-id-scv', true);
+//	$order_id_original = get_post_meta(get_the_ID(), 'order-id-original', true);
+	$order_status = get_post_meta($post_id, 'order_status', true);
 	$culori_status = array('pending' => '#ef8181', 'on-hold' => '#f8dda7', 'processing' => '#c6e1c6', 'completed' => '#c8d7e1', 'cancelled' => '#e5e5e5', 'refound' => '#5BC0DE', 'inproduction' => '#7878e2', 'transit' => '#85bb65', 'waiting' => '#3ba000', 'account-on-hold' => 'red');
 
-	if ($column == 'original-order') {
+	if ($column == 'customer-order') {
 		echo get_the_author();
 	}
 
@@ -552,3 +552,72 @@ function add_component_type_column_content($content, $column_name, $term_id)
 
 
 add_filter('manage_component_type_custom_column', 'add_component_type_column_content', 10, 3);
+
+
+
+function add_no_invoice_filter_to_subsubsub($views) {
+	global $wpdb;
+
+	// Count orders where QB_invoice meta key does not exist in post_meta
+	$no_invoice_count = $wpdb->get_var("
+    SELECT COUNT(*)
+    FROM {$wpdb->posts} p
+    WHERE p.post_type = 'shop_order'
+    AND NOT EXISTS (
+        SELECT 1
+        FROM {$wpdb->postmeta} pm
+        WHERE pm.post_id = p.ID
+        AND pm.meta_key = 'QB_invoice'
+    )
+    AND NOT EXISTS (
+        SELECT 1
+        FROM {$wpdb->postmeta} pm2
+        WHERE pm2.post_id = p.ID
+        AND pm2.meta_key = '_billing_company'
+        AND pm2.meta_value = 'Lifetime Shutters'
+    )
+");
+
+	// Generate the URL for the "No Invoice" filter
+	$no_invoice_url = admin_url('edit.php?post_type=shop_order&no_invoice=1');
+
+	// Check if the current filter is active
+	$current = isset($_GET['no_invoice']) && $_GET['no_invoice'] == '1' ? 'class="current"' : '';
+
+	// Add the "No Invoice" filter as a new `<li>` item
+	$views['no_invoice'] = sprintf(
+	  '<li><a href="%s" %s>%s <span class="count">(%d)</span></a></li>',
+	  esc_url($no_invoice_url),
+	  $current,
+	  __('No Invoice', 'woocommerce'),
+	  $no_invoice_count
+	);
+
+	return $views;
+}
+add_filter('views_edit-shop_order', 'add_no_invoice_filter_to_subsubsub');
+
+
+function filter_shop_order_query_for_no_invoice($query_vars) {
+	global $pagenow;
+
+	// Check if we're on the Orders page and the 'no_invoice' filter is active
+	if ($pagenow === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] === 'shop_order' && isset($_GET['no_invoice'])) {
+		// Add meta queries
+		$query_vars['meta_query'] = [
+		  'relation' => 'AND', // Combine multiple conditions
+		  [
+			'key' => 'QB_invoice',
+			'compare' => 'NOT EXISTS', // Exclude orders with QB_invoice meta key
+		  ],
+		  [
+			'key' => '_billing_company',
+			'value' => 'Lifetime Shutters',
+			'compare' => '!=', // Exclude orders with _billing_company set to 'Lifetime Shutters'
+		  ],
+		];
+	}
+
+	return $query_vars;
+}
+add_filter('request', 'filter_shop_order_query_for_no_invoice');

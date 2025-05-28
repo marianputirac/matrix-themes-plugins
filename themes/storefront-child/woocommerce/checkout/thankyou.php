@@ -22,6 +22,7 @@ if (!defined('ABSPATH')) {
 
 $post_order_no_csv = 0;
 $j = 0;
+$awning = false;
 ?>
 
 <div class="woocommerce-order">
@@ -297,9 +298,37 @@ $j = 0;
                         </tr>
                     </table>
 
-                    <?php
-                    echo do_shortcode('[table_items_shc order_id="' . $order_data['id'] . '" editable="false" admin="false" view_price="true" table_id="example" table_class="example-class table table-striped" ]');
-                    ?>
+	                <?php
+
+	                // Get order items
+	                $items = $order->get_items();
+
+	                // Make sure there is at least one item
+	                if (!empty($items)) {
+		                // Get the first order item
+		                $first_item = current($items);
+		                $product_id = $first_item->get_product_id();
+
+		                // Retrieve product categories (taxonomy 'product_cat')
+		                $terms = get_the_terms($product_id, 'product_cat');
+
+		                if ($terms && !is_wp_error($terms)) {
+			                // Get the first category (if more than one exists)
+			                $first_category = current($terms);
+
+			                if (strtolower($first_category->name) == 'awning') {
+				                echo do_shortcode('[awning_order_items order_id="' . $order->get_id() . '"]');
+			                }
+			                if (strtolower($first_category->name) == 'pos') {
+				                echo do_shortcode('[table_csv_shc order_id="' . get_the_id() . '" table_id="example" table_class="table table-striped shortcode" admin="true" editable="false" ]');
+			                }
+		                } else {
+//		                    echo '<p>No category found for the first product.</p>';
+			                echo do_shortcode('[table_items_shc order_id="' . $order_data['id'] . '" editable="false" admin="false" view_price="true" table_id="example" table_class="example-class table table-striped" ]');
+		                }
+	                }
+
+	                ?>
 
                 </div>
             </div>
@@ -307,7 +336,14 @@ $j = 0;
     </div>
 
     <?php
-    echo do_shortcode('[table_csv_shc order_id="' . $order->get_id() . '" table_id="example" table_class="table table-striped shortcode" admin="false" editable="false" ]');
+    if ($awning == true) {
+	    echo '<div style="display:none">';
+	    echo do_shortcode('[table_csv_awning order_id="' . $order->get_id() . '" table_id="example" table_class="table table-striped shortcode" admin="true" editable="false" ]');
+	    echo '</div>';
+    } else {
+	    echo do_shortcode('[table_csv_shc order_id="' . $order->get_id() . '" table_id="example" table_class="table table-striped shortcode" admin="false" editable="false" ]');
+    }
+
 
 
     $user_id = get_current_user_id();

@@ -186,11 +186,43 @@ $order_data = $order->get_data(); // The Order data
             </tbody>
           </table>
 
+
+          <h3 style="float: right; color: red">Love shutter promotion discount:  <strong><?php echo  $discount_custom = get_user_meta(get_current_user_id(), 'discount_custom',true); ?>%</strong></h3>
+
+
           <h3 class="pull-left">Products</h3>
 
-					<?php
-					echo do_shortcode('[table_items_shc order_id="' . $order->get_id() . '" editable="false" admin="false" table_id="example" table_class="table table-striped" ]');
-					?>
+	        <?php
+
+	        // Get order items
+	        $items = $order->get_items();
+
+	        // Make sure there is at least one item
+	        if (!empty($items)) {
+		        // Get the first order item
+		        $first_item = current($items);
+		        $product_id = $first_item->get_product_id();
+
+		        // Retrieve product categories (taxonomy 'product_cat')
+		        $terms = get_the_terms($product_id, 'product_cat');
+
+		        if ($terms && !is_wp_error($terms)) {
+			        // Get the first category (if more than one exists)
+			        $first_category = current($terms);
+			        echo '<br><br>';
+
+			        if (strtolower($first_category->name) == 'awning') {
+				        echo do_shortcode('[awning_order_items order_id="' . $order->get_id() . '"]');
+			        }
+			        if (strtolower($first_category->name) == 'pos') {
+				        echo do_shortcode('[table_items_shc order_id="' . $order->ID . '" editable="false" admin="false" table_id="example" table_class="table table-striped" ]');
+			        }
+		        } else {
+			        echo do_shortcode('[table_items_shc order_id="' . $order->get_id() . '" editable="false" admin="false" table_id="example" table_class="table table-striped" ]');
+		        }
+	        }
+	        ?>
+
 
           <br>
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package BurningMoth \ WooCommerce \ Multisession
  * @version 1.8.2
@@ -265,7 +266,6 @@ namespace BMC\WooCommerce\MultiSession {
             ) {
                 $values = $session;
             }
-
         }
 
         // null? return array of values ...
@@ -291,7 +291,6 @@ namespace BMC\WooCommerce\MultiSession {
             else {
                 return array_key_exists($action, $values) ? $values[$action] : null;
             }
-
         }
 
         // can't set the cookie ? return false
@@ -307,7 +306,6 @@ namespace BMC\WooCommerce\MultiSession {
 
             // delete session from transient ...
             if ($values['key']) delete_transient(namespace\session_key($values['key']));
-
         } // set expires to a year and save session ...
         else {
 
@@ -318,7 +316,6 @@ namespace BMC\WooCommerce\MultiSession {
             $expires = time() + YEAR_IN_SECONDS;
 
             namespace\set_session($values, $values['key'], $user_id);
-
         }
 
         // delete old cookie if one exists ...
@@ -329,7 +326,6 @@ namespace BMC\WooCommerce\MultiSession {
 
         // set session to cookie ...
         return setcookie($name, base64_encode(json_encode($values)), $expires, '/');
-
     }
 
 
@@ -360,7 +356,6 @@ namespace BMC\WooCommerce\MultiSession {
             }
 
             return get_user_meta($user_id, '_woocom_multisession', true);
-
         }
 
         // no key, return false ...
@@ -411,7 +406,6 @@ namespace BMC\WooCommerce\MultiSession {
             }
 
             return update_user_meta($user_id, '_woocom_multisession', $session);
-
         } // save session to transient ...
         elseif ($key) {
             return set_transient(namespace\session_key($key, $user_id), $session, YEAR_IN_SECONDS);
@@ -521,7 +515,6 @@ namespace BMC\WooCommerce\MultiSession {
 
                         // set customer id from new cart id ...
                         $customer_id = $new_cart_id;
-
                     } // just generate new customer id ...
                     else {
                         $customer_id = namespace\generate_customer_id();
@@ -532,12 +525,10 @@ namespace BMC\WooCommerce\MultiSession {
                 }
 
                 $customer_id = absint($customer_id);
-
             } // shouldn't be called if user isn't logged in, but if it is, return zero ...
             else {
                 $customer_id = 0;
             }
-
         }
 
         return $customer_id;
@@ -641,7 +632,6 @@ namespace BMC\WooCommerce\MultiSession {
         }
 
         return $carts;
-
     }
 
 
@@ -734,7 +724,6 @@ namespace BMC\WooCommerce\MultiSession {
                     add_user_meta($customer_id, $meta_key, maybe_unserialize(current($meta_value)), true);
                 }
             }
-
         } // no customer id ? simply delete associated data ...
         else {
 
@@ -743,7 +732,6 @@ namespace BMC\WooCommerce\MultiSession {
                 array('meta_key' => '_cart_id', 'meta_value' => $cart_id),
                 array('%s', '%d')
             );
-
         }
 
         // cart is bogus user, remove user meta, return true ...
@@ -853,7 +841,6 @@ namespace BMC\WooCommerce\MultiSession {
 
         // return a default value or null ...
         return array_key_exists($key, $defaults) ? $defaults[$key] : null;
-
     }
 
 
@@ -872,12 +859,12 @@ namespace BMC\WooCommerce\MultiSession {
     {
 
         switch ($key) {
-            // true if WooCommerce Multiple Addresses plugin is installed.
+                // true if WooCommerce Multiple Addresses plugin is installed.
             case 'woocom_multiaddr':
                 $value = class_exists('WC_Multiple_addresses');
                 break;
 
-            // get value from options ...
+                // get value from options ...
             default:
                 $value = get_option(namespace\option_name($key), namespace\option_default($key));
                 break;
@@ -937,7 +924,6 @@ namespace BMC\WooCommerce\MultiSession {
 
             // return value ...
             return $value;
-
         }, $trace);
 
         // return full stack (array) if no search is passed ...
@@ -946,7 +932,6 @@ namespace BMC\WooCommerce\MultiSession {
         // return number of matches ...
         $trace = preg_grep(sprintf('/%s/i', $regexp), $trace);
         return count($trace);
-
     }
 
 
@@ -986,9 +971,7 @@ namespace BMC\WooCommerce\MultiSession {
                 else {
                     $merged[$key] = $value;
                 }
-
             }
-
         }
 
         return $merged;
@@ -1027,7 +1010,7 @@ namespace BMC\WooCommerce\MultiSession {
     }
 
 
-### HOOKS ###
+    ### HOOKS ###
 
     /**
      * Cleanup upon uninstallation.
@@ -1080,9 +1063,7 @@ namespace BMC\WooCommerce\MultiSession {
             foreach ($keys as $key) {
                 delete_option(namespace\option_name($key));
             }
-
         }
-
     }
 
 
@@ -1143,7 +1124,6 @@ namespace BMC\WooCommerce\MultiSession {
 
         // add admin assets ...
         add_action('customize_controls_enqueue_scripts', __NAMESPACE__ . '\action_admin_assets');
-
     }
 
 
@@ -1206,7 +1186,7 @@ namespace BMC\WooCommerce\MultiSession {
 
         // display account features (orders) per cart (rather than per user) ...
         if (
-        !namespace\option('account_per_user')
+            !namespace\option('account_per_user')
         ) {
 
             // modifies the WP_Query values ...
@@ -1225,7 +1205,6 @@ namespace BMC\WooCommerce\MultiSession {
 
             // add cart switching control to order view ...
             add_action('woocommerce_view_order', __NAMESPACE__ . '\action_order_view', 11, 1);
-
         }
 
         // show adminbar for customers ?
@@ -1242,13 +1221,12 @@ namespace BMC\WooCommerce\MultiSession {
 
         // restrict account access ...
         if (
-        !namespace\option('account_access')
+            !namespace\option('account_access')
         ) {
             // call these filters late to catch what themes or other plugins might modify ...
             add_filter('wc_get_template', __NAMESPACE__ . '\filter_wc_template', 99, 3);
             add_filter('woocommerce_account_menu_items', __NAMESPACE__ . '\filter_account_menu_items', 99, 1);
         }
-
     }
 
 
@@ -1363,9 +1341,7 @@ namespace BMC\WooCommerce\MultiSession {
             else {
                 namespace\delete_cart($result->cart_id, false);
             }
-
         }
-
     }
 
 
@@ -1431,7 +1407,6 @@ namespace BMC\WooCommerce\MultiSession {
             'woocom_multiaddr' => namespace\option('woocom_multiaddr'),
 
         ));
-
     }
 
 
@@ -1447,7 +1422,6 @@ namespace BMC\WooCommerce\MultiSession {
 
         // load styles ...
         wp_enqueue_style('bmc-woocom-multisession-admin', plugins_url('bmc_woocom_multisession-admin.css', __FILE__), array(), namespace\VERSION);
-
     }
 
 
@@ -1490,7 +1464,6 @@ namespace BMC\WooCommerce\MultiSession {
                 'title' => __('My Account', 'woocommerce'),
                 'href' => get_permalink(get_option('woocommerce_myaccount_page_id'))
             ));
-
         }
 
         // add carts menu ...
@@ -1530,7 +1503,6 @@ namespace BMC\WooCommerce\MultiSession {
                         'title' => __('Cart Page', 'woocommerce')
                     )
                 ));
-
             } // set select cart top level option ...
             else {
 
@@ -1546,7 +1518,6 @@ namespace BMC\WooCommerce\MultiSession {
                         'title' => __('Select Cart', namespace\DOMAIN)
                     )
                 ));
-
             }
 
             // update / edit name option ...
@@ -1605,7 +1576,6 @@ namespace BMC\WooCommerce\MultiSession {
                         'title' => __('Create a new cart with the items and addresses of this cart.', namespace\DOMAIN)
                     )
                 ));
-
             }
 
             // set options for carts other than current ...
@@ -1637,7 +1607,6 @@ namespace BMC\WooCommerce\MultiSession {
                         'target' => $cart_id,
                     )
                 ));
-
             }
 
             // shopping cart items ...
@@ -1649,7 +1618,6 @@ namespace BMC\WooCommerce\MultiSession {
                     'class' => 'cart-items'
                 )
             ));
-
         }
 
         // allow up to 10 carts ...
@@ -1664,7 +1632,6 @@ namespace BMC\WooCommerce\MultiSession {
                     'onclick' => 'return BMCWcMs.command("insert", this);'
                 )
             ));
-
         }
 
         // not sync'd to user account ? permit manual sync'ing on key ...
@@ -1704,11 +1671,8 @@ namespace BMC\WooCommerce\MultiSession {
                         'onclick' => 'return BMCWcMs.command("unsync", this);'
                     )
                 ));
-
             }
-
         }
-
     }
 
 
@@ -1742,7 +1706,7 @@ namespace BMC\WooCommerce\MultiSession {
         // execute command ...
         switch ($_POST['command']) {
 
-            // new cart - selects new cart upon creation ...
+                // new cart - selects new cart upon creation ...
             case 'insert':
 
                 // sets post id to select to (below) - needs to be string for consistently ...
@@ -1751,7 +1715,7 @@ namespace BMC\WooCommerce\MultiSession {
                 // create new cart ...
                 $carts[$_POST['id']] = namespace\create_cart(array('name' => $_POST['name']));
 
-            // new cart - selects new cart upon creation ...
+                // new cart - selects new cart upon creation ...
             case 'insertpos':
 
                 // sets post id to select to (below) - needs to be string for consistently ...
@@ -1760,7 +1724,7 @@ namespace BMC\WooCommerce\MultiSession {
                 // create new cart ...
                 $carts[$_POST['id']] = namespace\create_cart(array('name' => $_POST['name'] . '-pos'));
 
-            // new cart - selects new cart upon creation ...
+                // new cart - selects new cart upon creation ...
             case 'insertcomponent':
 
                 // sets post id to select to (below) - needs to be string for consistently ...
@@ -1769,7 +1733,7 @@ namespace BMC\WooCommerce\MultiSession {
                 // create new cart ...
                 $carts[$_POST['id']] = namespace\create_cart(array('name' => $_POST['name'] . '-component'));
 
-            // pick cart ...
+                // pick cart ...
             case 'select':
 
                 // set up customer ids ...
@@ -1788,7 +1752,7 @@ namespace BMC\WooCommerce\MultiSession {
                 ));
                 break;
 
-            // edit cart ...
+                // edit cart ...
             case 'update':
                 // get cart ...
                 if ($cart = $carts[($data['cart_id'] = $_POST['id'])]) {
@@ -1801,11 +1765,10 @@ namespace BMC\WooCommerce\MultiSession {
 
                     // save the carts ...
                     namespace\cookie('carts', $carts);
-
                 }
                 break;
 
-            // remove cart ...
+                // remove cart ...
             case 'delete':
 
                 // pass through the cart id to delete from ui ...
@@ -1821,10 +1784,10 @@ namespace BMC\WooCommerce\MultiSession {
                 namespace\cookie('carts', $carts);
                 break;
 
-            /**
-             * copy cart ...
-             * @since 1.4
-             */
+                /**
+                 * copy cart ...
+                 * @since 1.4
+                 */
             case 'copy':
                 // get cart data ...
                 if ($items = namespace\get_cart($_POST['id'])) {
@@ -1840,19 +1803,18 @@ namespace BMC\WooCommerce\MultiSession {
                             $item['variation']
                         );
                     }
-
                 }
                 break;
 
-            /**
-             * sync session ...
-             * @since 1.6
-             *
-             * @var string $key
-             *    - session key to sync on.
-             * @var bool $confirmed
-             *    - whether or not the user has confirmed the decision to override current session wih saved one.
-             */
+                /**
+                 * sync session ...
+                 * @since 1.6
+                 *
+                 * @var string $key
+                 *    - session key to sync on.
+                 * @var bool $confirmed
+                 *    - whether or not the user has confirmed the decision to override current session wih saved one.
+                 */
             case 'sync':
 
                 // session key ...
@@ -1868,7 +1830,6 @@ namespace BMC\WooCommerce\MultiSession {
                      * @note By leaving the carts intact, the user can still affect the carts individually, meaning that deleting them from one session deletes them from all sessions.
                      */
                     namespace\cookie('key', '');
-
                 } // session exists on key ? confirm !
                 elseif ($session = namespace\get_session($key)) {
 
@@ -1893,7 +1854,6 @@ namespace BMC\WooCommerce\MultiSession {
                     else {
                         $data['confirm'] = true;
                     }
-
                 } // no session exists ? create it now by setting key ...
                 else {
                     namespace\cookie('key', $key);
@@ -1902,18 +1862,19 @@ namespace BMC\WooCommerce\MultiSession {
                 break;
 
 
-            /**
-             * Load cart items.
-             * @return array
-             *    - string $html Table markup.
-             * @var integer $id cart / customer id
-             *
-             * @since 1.6
-             *
-             */
+                /**
+                 * Load cart items.
+                 * @return array
+                 *    - string $html Table markup.
+                 * @var integer $id cart / customer id
+                 *
+                 * @since 1.6
+                 *
+                 */
             case 'load':
 
-                $html = sprintf('<table><thead><th colspan="2">%s</th><th>%s</th></thead><tbody>',
+                $html = sprintf(
+                    '<table><thead><th colspan="2">%s</th><th>%s</th></thead><tbody>',
                     __('Item Name', namespace\DOMAIN),
                     __('Qty', namespace\DOMAIN)
                 );
@@ -1925,14 +1886,13 @@ namespace BMC\WooCommerce\MultiSession {
                         // just get normal post data for the product - WooCom ends up doing this anyway, we just cut out the middleman ...
                         $product = get_post($item['product_id']);
 
-                        $html .= sprintf('<tr><td><a href="%s">%s</a></td><td></td><td>%d</td></tr>',
+                        $html .= sprintf(
+                            '<tr><td><a href="%s">%s</a></td><td></td><td>%d</td></tr>',
                             get_permalink($product->ID),
                             $product->post_title,
                             get_post_meta($product->ID, 'quantity', true)
                         );
-
                     }
-
                 } else {
 
                     // $html .= sprintf('<td colspan="3" align="center">%s</td>',
@@ -1947,10 +1907,10 @@ namespace BMC\WooCommerce\MultiSession {
                 break;
 
 
-            /**
-             * Return html for select list of carts to replace switch cart order action links with.
-             * @since 1.7
-             */
+                /**
+                 * Return html for select list of carts to replace switch cart order action links with.
+                 * @since 1.7
+                 */
             case 'order_cart_update_html':
 
                 $html = '';
@@ -1967,25 +1927,24 @@ namespace BMC\WooCommerce\MultiSession {
                     }
 
                     $html .= '</select>';
-
                 }
 
                 $data['html'] = $html;
                 break;
 
 
-            /**
-             * Update order with new cart id.
-             * @since 1.7
-             *
-             * @var integer $order_id
-             * @var integer $cart_id
-             */
+                /**
+                 * Update order with new cart id.
+                 * @since 1.7
+                 *
+                 * @var integer $order_id
+                 * @var integer $cart_id
+                 */
             case 'order_cart_update':
 
                 // update meta record ...
-                $order_id = (integer)$_POST['order_id'];
-                $cart_id = (integer)$_POST['cart_id'];
+                $order_id = (int)$_POST['order_id'];
+                $cart_id = (int)$_POST['cart_id'];
                 update_post_meta($order_id, '_cart_id', $cart_id);
 
                 // pass the account orders url to return to ...
@@ -1993,12 +1952,12 @@ namespace BMC\WooCommerce\MultiSession {
                 break;
 
 
-            /**
-             * Clone a cart.
-             * @since 1.7
-             *
-             * @var integer $cart_id
-             */
+                /**
+                 * Clone a cart.
+                 * @since 1.7
+                 *
+                 * @var integer $cart_id
+                 */
             case 'clone':
                 if ($cart = $carts[$cart_id = $_POST['cart_id']]) {
 
@@ -2027,17 +1986,16 @@ namespace BMC\WooCommerce\MultiSession {
                         'customer_id' => $clone_id,
                         'carts' => $carts
                     ));
-
                 }
                 break;
 
 
-            /**
-             * Switch cart mode.
-             * @since 1.8
-             *
-             * @var integer $cart_id
-             */
+                /**
+                 * Switch cart mode.
+                 * @since 1.8
+                 *
+                 * @var integer $cart_id
+                 */
             case 'mode':
 
                 // cart id ...
@@ -2061,7 +2019,6 @@ namespace BMC\WooCommerce\MultiSession {
                     namespace\action_save_bin();
                 }
                 break;
-
         }
 
         $data['success'] = true;
@@ -2091,11 +2048,9 @@ namespace BMC\WooCommerce\MultiSession {
                     __('View details')
                 )
             ));
-
         }
 
         return $links;
-
     }
 
 
@@ -2250,7 +2205,6 @@ namespace BMC\WooCommerce\MultiSession {
             // billing meta ...
             $meta = namespace\preg_grep_keys('/^billing_/', $wc_checkout->posted);
             foreach ($meta as $key => $value) update_user_meta(namespace\customer_id(), $key, $value);
-
         }
 
         // shipping meta ...
@@ -2264,7 +2218,6 @@ namespace BMC\WooCommerce\MultiSession {
 
             $meta = namespace\preg_grep_keys('/^shipping_/', $wc_checkout->posted);
             foreach ($meta as $key => $value) update_user_meta(namespace\customer_id(), $key, $value);
-
         }
 
         // update user account meta if sync'ing per user account ...
@@ -2312,7 +2265,6 @@ namespace BMC\WooCommerce\MultiSession {
             global $wpdb;
 
             $sql['where'] = $wpdb->prepare("AND ( {$wpdb->postmeta}.meta_key = '_cart_id' AND CAST({$wpdb->postmeta}.meta_value AS CHAR) IN (%s) )", namespace\customer_id());
-
         }
 
         return $sql;
@@ -2397,7 +2349,7 @@ namespace BMC\WooCommerce\MultiSession {
 
         switch ($template_name) {
 
-            // replace my templates only if generic is used (not themed) ...
+                // replace my templates only if generic is used (not themed) ...
             case 'myaccount/my-account.php':
                 // use woocom's template for 2.6+ ...
                 if (namespace\wc_version('2.6', '>=')) break;
@@ -2406,15 +2358,13 @@ namespace BMC\WooCommerce\MultiSession {
                 // generic woocommerce template NOT used ? don't override ...
                 if (!preg_match('#plugins/woocommerce/templates/#', str_replace('\\', '/', $template_path))) break;
 
-            // replace edit account form ...
+                // replace edit account form ...
             case 'myaccount/form-edit-account.php':
                 $template_path = plugin_dir_path(__FILE__) . 'woocommerce/' . $template_name;
                 break;
-
         }
 
         return $template_path;
-
     }
 
     /**
@@ -2509,7 +2459,6 @@ namespace BMC\WooCommerce\MultiSession {
 
                     // append to addresses ...
                     $addresses[] = $address;
-
                 }
 
                 // process shipping address ...
@@ -2529,9 +2478,7 @@ namespace BMC\WooCommerce\MultiSession {
 
                     // append to addresses ...
                     $addresses[] = $address;
-
                 }
-
             }
 
             // if single is true (and it will be in this case), nest results in another array so WP behaves properly ...
@@ -2540,7 +2487,6 @@ namespace BMC\WooCommerce\MultiSession {
             }
 
             return $addresses;
-
         }
 
         return $value;
@@ -2578,9 +2524,7 @@ namespace BMC\WooCommerce\MultiSession {
 
             // cart session key ...
             update_user_meta($user_id, '_cart_session_key', namespace\cookie('key'));
-
         }
-
     }
 
 
@@ -2635,7 +2579,6 @@ namespace BMC\WooCommerce\MultiSession {
 
         // backup items in storage bin meta ...
         update_user_meta(namespace\customer_id(), '_cart_bin', $items);
-
     }
 
 
@@ -2667,10 +2610,7 @@ namespace BMC\WooCommerce\MultiSession {
                 $item['variation']
             );
         }
-
     }
-
-
 }
 
 ### GLOBAL NAMESPACE ###
@@ -2724,7 +2664,6 @@ namespace {
                     'my-address.php',
                     'WC_Form_Handler::save_address',
                 )));
-
             }
 
             // stack trace ...
@@ -2751,12 +2690,9 @@ namespace {
                 }
 
                 return $bogus_user;
-
             }
 
             return $current_user;
         }
-
     }
-
 }

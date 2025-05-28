@@ -685,3 +685,65 @@ if (1 == get_current_user_id()) {
 //        }
 //    }
 }
+
+
+
+/**
+ * Fetch orders within the last year and get their IDs.
+ *
+ * @return array List of order IDs.
+ */
+function fetch_order_ids() {
+	return get_posts(array(
+		'post_type' => 'shop_order',
+		'posts_per_page' => -1,
+		'post_status' => array(
+			'wc-on-hold', 'wc-completed', 'wc-pending',
+			'wc-processing', 'wc-inproduction', 'wc-paid',
+			'wc-waiting', 'wc-revised', 'wc-inrevision'
+		),
+		'date_query' => array(
+			'after' => date('Y-m-d', mktime(0, 0, 0, 1, 1, date('Y') - 1)),
+		),
+		'fields' => 'ids'
+	));
+}
+
+/**
+ * Fetch custom order data from the database.
+ *
+ * @param array $order_ids List of order IDs.
+ * @return array Associative array of order data.
+ */
+function fetch_custom_order_data_gr($order_ids) {
+	global $wpdb;
+	$tablename = $wpdb->prefix . 'custom_orders';
+	$order_data = array();
+
+	$results = $wpdb->get_results(
+		"SELECT idOrder, sqm, usd_price FROM $tablename WHERE idOrder IN (" . implode(',', array_map('intval', $order_ids)) . ")",
+		ARRAY_A
+	);
+
+	foreach ($results as $line) {
+		$order_data[$line['idOrder']] = array(
+			'sqm' => (float)$line['sqm'],
+			'usd_price' => (float)$line['usd_price']
+		);
+	}
+
+	return $order_data;
+}
+
+/**
+ * Initialize data arrays for a given year.
+ *
+ * @param int $year Year to initialize data for.
+ */
+function initialize_yearly_data_gr(&$data_arrays, $year) {
+	$months_sum = array_fill_keys(range(1, 12), 0);
+
+	foreach ($data_arrays as &$array) {
+		$array[$year] = $months_sum;
+	}
+}

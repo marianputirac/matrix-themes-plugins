@@ -585,3 +585,42 @@ function container_list_status()
 {
 	include 'ajax/container-list-status.php';
 }
+
+
+
+add_action('wp_ajax_save_user_message', 'save_user_message_callback');
+
+function save_user_message_callback() {
+	$user_id = $_POST['user_id'];
+	$message = sanitize_text_field($_POST['message']);
+
+	// Get the current array of messages or initialize a new one
+	$messages = get_user_meta($user_id, 'user_messages', true);
+	if (empty($messages)) {
+		$messages = [];
+	}
+
+	// Append new message
+	$messages[] = date('Y-m-d H:i') . ' - ' .$message;
+
+	// Save the updated array back to user meta
+	update_user_meta($user_id, 'user_messages', $messages);
+
+	$data = array(
+		'user_id' => $user_id,
+		'message' => $message,
+		'date' => date('Y-m-d H:i:s')
+	);
+
+	wp_send_json_success($data);
+}
+
+add_action('wp_ajax_get_user_messages', 'get_user_messages_callback');
+
+function get_user_messages_callback() {
+	$user_id = intval($_POST['user_id']);
+	// Get messages from user meta or wherever they are stored
+	$messages = get_user_meta($user_id, 'user_messages', true) ?: [];
+
+	wp_send_json_success($messages);
+}

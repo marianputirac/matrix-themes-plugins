@@ -20,6 +20,10 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+$cart_id = BMC\WooCommerce\MultiSession\customer_id();
+$my_session = BMC\WooCommerce\MultiSession\get_session($cart_id, get_current_user_id());
+$cart_type = $my_session['carts'][$cart_id]['type'];
+
 //    if (!is_ajax()) {
 //        do_action('woocommerce_review_order_before_payment');
 //    }
@@ -29,7 +33,7 @@ if ($suspended != 'yes') {
 	?>
 
 
-  <div id="payment" class="woocommerce-checkout-payment">
+    <div id="payment" class="woocommerce-checkout-payment">
 	<?php if (WC()->cart->needs_payment()) :
 
 		$user_id = get_current_user_id();
@@ -49,8 +53,8 @@ if ($suspended != 'yes') {
 		$tax_office = get_user_meta($user_id, 'tax_office', true);
 		$vat_number = get_user_meta($user_id, 'vat_number_custom', true);
 		?>
-    <div class="show-shipping"></div>
-    <ul class="wc_payment_methods payment_methods methods">
+        <div class="show-shipping"></div>
+        <ul class="wc_payment_methods payment_methods methods">
 			<?php
 			if (!empty($available_gateways)) {
 				foreach ($available_gateways as $gateway) {
@@ -60,15 +64,15 @@ if ($suspended != 'yes') {
 				echo '<li class="woocommerce-notice woocommerce-notice--info woocommerce-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</li>'; // @codingStandardsIgnoreLine
 			}
 			?>
-    </ul>
+        </ul>
 
-    <div class="form-row place-order">
-      <noscript>
+        <div class="form-row place-order">
+            <noscript>
 				<?php esc_html_e('Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.', 'woocommerce'); ?>
-        <br/>
-        <button type="submit" class="button alt" name="woocommerce_checkout_update_totals"
-                value="<?php esc_attr_e('Update totals', 'woocommerce'); ?>"><?php esc_html_e('Update totals', 'woocommerce'); ?></button>
-      </noscript>
+                <br/>
+                <button type="submit" class="button alt" name="woocommerce_checkout_update_totals"
+                        value="<?php esc_attr_e('Update totals', 'woocommerce'); ?>"><?php esc_html_e('Update totals', 'woocommerce'); ?></button>
+            </noscript>
 
 			<?php wc_get_template('checkout/terms.php'); ?>
 
@@ -84,7 +88,15 @@ if ($suspended != 'yes') {
 			foreach ($items as $item => $value) {
 				// print_r($value['product_id']);
 				$prod_id = $value['product_id'];
-				$prod_qty = $value['quantity'];
+				$sqm_awning = floatval($value['awning_sqm']);
+
+				$prod_qty = 1;
+				$quantity_prod = get_post_meta($prod_id, 'quantity', true);
+				if (!empty($quantity_prod)) {
+					$prod_qty = $quantity_prod;
+				} else {
+					$prod_qty = isset($value['quantity']) ? intval($value['quantity']) : 0;
+				}
 
 				$property_total = get_post_meta($prod_id, 'property_total', true);
 //                if($prod_id == 337){
@@ -92,8 +104,14 @@ if ($suspended != 'yes') {
 //                    $total = $total + $property_total;
 //                }
 //                else{
-				$total = $total + (float)$property_total * $value['quantity'];
+
 				//  }
+				if ($cart_type == 'Awning') {
+					$total = $total + $sqm_awning * $prod_qty;
+
+				} else {
+					$total = $total + (float)$property_total * $prod_qty;
+				}
 
 				$_product = wc_get_product($prod_id);
 				$shipclass = $_product->get_shipping_class();
@@ -118,14 +136,14 @@ if ($suspended != 'yes') {
 			}
 
 			$train_price = get_user_meta(get_current_user_id(), 'train_price', true);
-			if (empty($train_price) && !is_numeric($train_price)) {
+			if ($train_price === null || $train_price === '') {
 				$train_price = get_post_meta(1, 'train_price', true);
 			}
 			?>
-      <div class="shipping-methods-select" style="<?php echo 'display:' . $comp_visible; ?>">
-        <div class="col-sm-12 col-md-12">
-          Select Delivery Method:
-          <select name="shipping-method" id="shipping-select">
+            <div class="shipping-methods-select" style="<?php echo 'display:' . $comp_visible; ?>">
+                <div class="col-sm-12 col-md-12">
+                    Select Delivery Method:
+                    <select name="shipping-method" id="shipping-select">
 						<?php
 
 						$shipping = new WC_Shipping();
@@ -157,133 +175,149 @@ if ($suspended != 'yes') {
 							echo '<option value="component" selected >Component Delivery</option>';
 						}
 						?>
-          </select>
-          <br>
-          <!--                    <button class="btn btn-primary recalculate-shipping">Recalculate</button>-->
-        </div>
-      </div>
+                    </select>
+                    <br>
+                    <!--                    <button class="btn btn-primary recalculate-shipping">Recalculate</button>-->
+                </div>
+            </div>
 
-      <div class="delivery-details sss" style="padding-bottom:30px;s<?php echo 'display:' . $comp_visible; ?>">
-        <div class="col-sm-12 col-md-12">
+            <div class="delivery-details sss" style="padding-bottom:30px;s<?php echo 'display:' . $comp_visible; ?>">
+                <div class="col-sm-12 col-md-12">
 					<?php if ($show_spec) { ?>
-            By Sea - Express Delivery Surcharge:
-            <strong>
+                        By Sea - Express Delivery Surcharge:
+                        <strong>
                             <span>
-                                £<?php echo $train_price;
-															?>
+                                £<?php echo $train_price; ?> per sq/m
                             </span>
-            </strong>
-            <br>
-            Total sq/m:
-            <strong><span id="totalSqm">
+                        </strong>
+                        <br>
+						<?php if ($cart_type == 'Awning') {
+							?>
+                            Total sq/m:
+                            <strong><span id="totalSqm">
                                 <strong>
                                     <span id="totalSqm">
                                         <?php echo number_format((float)$total, 2, '.', ''); ?>
                                     </span>
                                 </strong>
                             </span></strong>
-            <br>
-            Delivery address:
-            <strong>
+                            <br>
+							<?php
+						} else { ?>
+                            Total sq/m:
+                            <strong><span id="totalSqm">
+                                <strong>
+                                    <span id="totalSqm">
+                                        <?php echo number_format((float)$total, 2, '.', ''); ?>
+                                    </span>
+                                </strong>
+                            </span></strong>
+                            <br>
+						<?php } ?>
+                        Delivery address:
+                        <strong>
                             <span>
                                 <?php echo $shipping_address_1 . ', ' . $shipping_city . ', ' . $shipping_postcode; ?>
                             </span>
-            </strong>
+                        </strong>
+                        <br>
+                        Love shutter promotion discount: <strong><span
+                              id="totalShippingCost"><?php echo $discount_custom = get_user_meta($user_id, 'discount_custom', true); ?>%</span></strong>
 					<?php } ?>
-          <div style="padding: 15px 0;">
-            <input type="checkbox" value="true" name="accept_terms">&nbsp;&nbsp;I have read and
-            acccept
-            the
-            <a href="javascript:void()"
-               onclick="window.open('/wp-content/uploads/Specifications/Terms&Conditions.pdf','','height=800,width=900,resizable=yes')"
-               title="Terms &amp; Conditions">Lifetime Shutters Order Terms and Conditions</a>
-          </div>
+                    <div style="padding: 15px 0;">
+                        <input type="checkbox" value="true" name="accept_terms">&nbsp;&nbsp;I have read and
+                        acccept
+                        the
+                        <a href="javascript:void()"
+                           onclick="window.open('/wp-content/uploads/Specifications/Terms&Conditions.pdf','','height=800,width=900,resizable=yes')"
+                           title="Terms &amp; Conditions">Lifetime Shutters Order Terms and Conditions</a>
+                    </div>
 
-        </div>
+                </div>
 
-      </div>
-      <p></p>
-      <br><br>
+            </div>
+            <p></p>
+            <br><br>
 
-      <button class="button alt confirmation-order disabled">Place order</button>
+            <button class="button alt confirmation-order disabled">Place order</button>
 
-      <script>
+            <script>
 
-          jQuery('input[name="accept_terms"]').on('click', function (e) {
-              if (jQuery('input#my_field_name').val().length === 0) {
-                  alert('Cart Name is not set!');
-                  addCartName();
-              }
+                jQuery('input[name="accept_terms"]').on('click', function (e) {
+                    if (jQuery('input#my_field_name').val().length === 0) {
+                        alert('Cart Name is not set!');
+                        addCartName();
+                    }
 
-              if (jQuery(this).is(':checked')) {
-                  jQuery('.button.alt.confirmation-order').removeClass('disabled');
-              } else {
-                  jQuery('.button.alt.confirmation-order').addClass('disabled');
-              }
-          });
+                    if (jQuery(this).is(':checked')) {
+                        jQuery('.button.alt.confirmation-order').removeClass('disabled');
+                    } else {
+                        jQuery('.button.alt.confirmation-order').addClass('disabled');
+                    }
+                });
 
-          function addCartName() {
-              var cartName = prompt("Please enter your Cart Name:", "");
-              console.log(cartName);
-              if (cartName == null || cartName == "") {
-                  alert('Cart Name is not set!');
-              } else {
-                  jQuery('input#my_field_name').attr('value', cartName);
-              }
-          }
+                function addCartName() {
+                    var cartName = prompt("Please enter your Cart Name:", "");
+                    console.log(cartName);
+                    if (cartName == null || cartName == "") {
+                        alert('Cart Name is not set!');
+                    } else {
+                        jQuery('input#my_field_name').attr('value', cartName);
+                    }
+                }
 
-          jQuery('.button.alt.confirmation-order').on('click', function (e) {
-              e.preventDefault();
+                jQuery('.button.alt.confirmation-order').on('click', function (e) {
+                    e.preventDefault();
 
-              if (!jQuery(this).hasClass("disabled")) {
-                  var status = confirm("Please confirm Once you click Confirm, you will receive an invoice by email and your order will be prepared for manufacture. It is not possible to cancel your order after this stage. Please note, invoice must be settled within 24 hours or order will be changed to ‘Unsubmitted’ and you will need to repeat the process. Once invoice is settled job will begin manufacture immediately.");
-                  if (status == false) {
-                      jQuery('.alert.alert-danger.hide').removeClass('hide');
-                      jQuery('.alert.alert-danger.hide').show();
-                  } else {
-                      jQuery('.button.alt.hide').click();
-                  }
-              } else {
-                  var status = confirm("Please Accept Terms and Conditions.")
-              }
+                    if (!jQuery(this).hasClass("disabled")) {
+                        var status = confirm("Please confirm Once you click Confirm, you will receive an invoice by email and your order will be prepared for manufacture. It is not possible to cancel your order after this stage. Please note, invoice must be settled within 24 hours or order will be changed to ‘Unsubmitted’ and you will need to repeat the process. Once invoice is settled job will begin manufacture immediately.");
+                        if (status == false) {
+                            jQuery('.alert.alert-danger.hide').removeClass('hide');
+                            jQuery('.alert.alert-danger.hide').show();
+                        } else {
+                            jQuery('.button.alt.hide').click();
+                        }
+                    } else {
+                        var status = confirm("Please Accept Terms and Conditions.")
+                    }
 
-          });
+                });
 
 
-          // Marian Putirac - change shipping class for products
+                // Marian Putirac - change shipping class for products
 
-          jQuery('select#shipping-select').on('change', function (e) {
-              e.preventDefault();
+                jQuery('select#shipping-select').on('change', function (e) {
+                    e.preventDefault();
 
-              var prod_ids = new Array();
+                    var prod_ids = new Array();
 
-              jQuery("tr.prod-item").each(function () {
-                  console.log("id : " + jQuery(this).attr('data-pord-id'));
-                  prod_ids.push(jQuery(this).attr('data-pord-id'));
-              });
+                    jQuery("tr.prod-item").each(function () {
+                        console.log("id : " + jQuery(this).attr('data-pord-id'));
+                        prod_ids.push(jQuery(this).attr('data-pord-id'));
+                    });
 
-              var shipping_class = jQuery('select[name="shipping-method"]').val();
+                    var shipping_class = jQuery('select[name="shipping-method"]').val();
 
-              jQuery.ajax({
-                  method: "POST",
-                  url: "/wp-content/themes/storefront-child/ajax/shipping-change.php",
-                  data: {
-                      prod_ids: prod_ids,
-                      shipping_class: shipping_class
-                  }
-              })
-                  .done(function (data) {
-                      //alert( "Data Saved: " + msg );
-                      //jQuery('.show-shipping').html(data);
+                    jQuery.ajax({
+                        method: "POST",
+                        url: "/wp-content/themes/storefront-child/ajax/shipping-change.php",
+                        data: {
+                            prod_ids: prod_ids,
+                            shipping_class: shipping_class
+                        }
+                    })
+                        .done(function (data) {
+                            //alert( "Data Saved: " + msg );
+                            //jQuery('.show-shipping').html(data);
 
-                      setTimeout(function () {
-                          location.reload();
-                      }, 1000);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1000);
 
-                  });
-          });
+                        });
+                });
 
-      </script>
+            </script>
 
 			<?php echo apply_filters('woocommerce_order_button_html', '<button type="submit" class="button alt hide" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' . esc_html($order_button_text) . '</button>'); // @codingStandardsIgnoreLine
 			?>
@@ -292,8 +326,8 @@ if ($suspended != 'yes') {
 			?>
 
 			<?php wp_nonce_field('woocommerce-process_checkout'); ?>
-    </div>
-    </div>
+        </div>
+        </div>
 	<?php endif;
 }
 

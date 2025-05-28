@@ -27,7 +27,7 @@ $container_id = (isset($_GET['container_id'])) ? $_GET['container_id'] : '';
 								<?php
 								$rand_posts = get_posts(array(
 									'post_type' => 'container',
-									'posts_per_page' => 15,
+									'posts_per_page' => 25,
 								));
 
 								if ($rand_posts) {

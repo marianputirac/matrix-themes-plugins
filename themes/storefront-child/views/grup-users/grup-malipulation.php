@@ -51,6 +51,7 @@ if (isset($_POST['rename_group'])) {
     }
 }
 ?>
+
 <form action="" method="POST" class="">
     <div class="row">
         <div class="col-sm-12 col-lg-12 form-group">

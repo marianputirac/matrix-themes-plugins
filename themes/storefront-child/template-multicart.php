@@ -8,18 +8,18 @@
 
 get_header(); ?>
 
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
 
-      <!-- Multi Cart Template -->
+            <!-- Multi Cart Template -->
 			<?php if (is_active_sidebar('multicart_widgett')) : ?>
-        <!--                <div id="bmc-woocom-multisession-2" class="widget bmc-woocom-multisession-widget">-->
-        <!--                    --><?php ////dynamic_sidebar( 'multicart_widgett' ); ?>
-        <!--                </div>-->
-        <!-- #primary-sidebar -->
+                <!--                <div id="bmc-woocom-multisession-2" class="widget bmc-woocom-multisession-widget">-->
+                <!--                    --><?php ////dynamic_sidebar( 'multicart_widgett' ); ?>
+                <!--                </div>-->
+                <!-- #primary-sidebar -->
 			<?php endif;
 
-			if (is_user_logged_in()) {
+			if (is_user_logged_in() && !current_user_can('outsider')) {
 
 				$user_id = get_current_user_id();
 				$meta_key = 'wc_multiple_shipping_addresses';
@@ -34,56 +34,62 @@ get_header(); ?>
 				$addresses = $wpdb->get_results("SELECT meta_value FROM `wp_usermeta` WHERE user_id = $user_id AND meta_key = '_woocom_multisession'");
 
 				?>
-        <h2>My Orders</h2>
+                <h2>My Orders</h2>
 
-        <br>
+                <br>
 
-        <div class="alert alert-warning">
-					<?php echo get_post_meta(1, 'notification_users_message', true); ?>
-        </div>
+                <div class="alert alert-warning">
+					<?php
+					// Get the saved notification message
+					$notification_message = get_post_meta(1, 'notification_users_message', true);
+					echo wp_kses_post($notification_message); // Safely display the HTML content
+					?>
+                </div>
 
-        <br>
+                <br>
 				<?php
 
 				if ($suspended != 'yes') {
 					?>
 
-          <div class="show-table2"></div>
+                    <div class="show-table2"></div>
 
-          <a class="btn btn-primary" href="#new" onclick="return BMCWcMs.command('insert', this);">New
-            Order</a>
-          <a class="btn btn-primary" href="#newpos" onclick="return BMCWcMs.command('insertpos', this);">Order
-            Samples</a>
+                    <a class="btn btn-primary" href="#new" onclick="return BMCWcMs.command('insert', this);">New
+                        Order</a>
+                    <a class="btn btn-primary" href="#newpos" onclick="return BMCWcMs.command('insertpos', this);">Order
+                        Samples</a>
 
 					<?php
 					$user = wp_get_current_user();
 					$roles = $user->roles;
 					if (in_array('component_buyer', $roles) || in_array('administrator', $roles) || get_current_user_id() == 23 || get_current_user_id() == 207 || get_current_user_id() == 39) {
 						?>
-            <a class="btn btn-primary" href="#newcomponent" style="background-color: deeppink;"
-               onclick="return BMCWcMs.command('insertcomponent', this);">
-              Order Components
-            </a>
+                        <a class="btn btn-primary" href="#newcomponent" style="background-color: deeppink;"
+                           onclick="return BMCWcMs.command('insertcomponent', this);">
+                            Order Components
+                        </a>
 					<?php }
 					?>
 
-          <a href="/order-repairs" class="btn btn-danger">Order Repairs</a>
+                    <a href="/order-repairs" class="btn btn-danger">Order Repairs</a>
+                    <a class="btn btn-primary" href="#new" onclick="return BMCWcMs.command('insertAwning', this);">Order Awning</a>
 
 
-          <!--                    <button class="btn btn-primary" onclick="sendTestMail()">Send Test Mail</button>-->
-          <!-- <a class="btn btn-primary" href="/order-pos" >Order POS</a> -->
-          <p></p>
-          <table class="table home">
-            <thead style="background-color: #f2dede;">
-            <th></th>
-            <th>Unfinished Orders</th>
-            <th>Date Created</th>
-            <th>Is selected?</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            </thead>
-            <tbody>
+
+                    <!--                    <button class="btn btn-primary" onclick="sendTestMail()">Send Test Mail</button>-->
+                    <!-- <a class="btn btn-primary" href="/order-pos" >Order POS</a> -->
+                    <p></p>
+                    <table class="table home">
+                        <thead style="background-color: #f2dede;">
+                        <th></th>
+                        <th>Unfinished Orders</th>
+                        <th>Date Created</th>
+                        <th>Is selected?</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        </thead>
+                        <tbody>
 						<?php
 
 						$userialize_data = unserialize($addresses[0]->meta_value);
@@ -119,66 +125,66 @@ get_header(); ?>
 								unset($userialize_data['carts'][$key]);
 							} else {
 								?>
-                <tr class="<?php if ($userialize_data['customer_id'] == $key) {
+                                <tr class="<?php if ($userialize_data['customer_id'] == $key) {
 									echo " tr-selected ";
 								} ?>" position="<?php echo $i; ?>">
-                  <td>
+                                    <td>
 										<?php echo $total_elements - $i; //echo ' - '.$key;
 										?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 										<?php if ($userialize_data['customer_id'] == $key) { ?>
-                      <a href="/checkout/">
-                        <strong>
+                                            <a href="/checkout/">
+                                                <strong>
 													<?php echo $carts['name']; ?>
-                        </strong>
-                      </a>
+                                                </strong>
+                                            </a>
 										<?php } else {
 											echo $carts['name'];
 										} ?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 										<?php echo $newDate = date("d-m-Y", $carts['time']); ?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 										<?php if ($userialize_data['customer_id'] == $key) {
 											echo "Current Order";
 										} else {
 											echo "Not Selected";
 										} ?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 										<?php if ($userialize_data['customer_id'] != $key) { ?>
-                      <a class="btn btn-primary ab-item" aria-haspopup="true" href="#select"
-                         target="<?php echo $key; ?>"
-                         onclick="return BMCWcMs.command('select', this);"
-                         title="Select Cart">Select</a>
+                                            <a class="btn btn-primary ab-item" aria-haspopup="true" href="#select"
+                                               target="<?php echo $key; ?>"
+                                               onclick="return BMCWcMs.command('select', this);"
+                                               title="Select Cart">Select</a>
 
 										<?php } else {
 											echo "Selected";
 										} ?>
 										<?php if ($userialize_data['customer_id'] != $key) { ?>
-                      <a class="btn btn-primary" href="#edit" target="<?php echo $key; ?>"
-                         onclick="return BMCWcMs.command('update', this);">Edit Name</a>
+                                            <a class="btn btn-primary" href="#edit" target="<?php echo $key; ?>"
+                                               onclick="return BMCWcMs.command('update', this);">Edit Name</a>
 										<?php } ?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 
 										<?php if ($userialize_data['customer_id'] != $key) { ?>
-                      <!-- <a class="btn btn-primary" href="#clone" target="<?php echo $key; ?>" onclick="return BMCWcMs.command('clone', this);" title="Create a new cart with the items and addresses of this cart.">Clone Order</a> -->
+                                            <!-- <a class="btn btn-primary" href="#clone" target="<?php echo $key; ?>" onclick="return BMCWcMs.command('clone', this);" title="Create a new cart with the items and addresses of this cart.">Clone Order</a> -->
 										<?php } ?>
-                  </td>
-                  <td>
+                                    </td>
+                                    <td>
 										<?php //if($userialize_data['customer_id'] != $key){
 										?>
-                    <a class="btn btn-danger delete-btn" indice="<?php echo $i; ?>" href="#delete"
-                       target="<?php echo $key; ?>"
-                       onclick="return BMCWcMs.command('delete', this);">Delete
-                      Order</a>
+                                        <a class="btn btn-danger delete-btn" indice="<?php echo $i; ?>" href="#delete"
+                                           target="<?php echo $key; ?>"
+                                           onclick="return BMCWcMs.command('delete', this);">Delete
+                                            Order</a>
 										<?php //}
 										?>
-                  </td>
-                </tr>
+                                    </td>
+                                </tr>
 
 								<?php
 							}
@@ -192,9 +198,9 @@ get_header(); ?>
 						//                            echo '</pre>';
 						?>
 
-            </tbody>
+                        </tbody>
 
-          </table>
+                    </table>
 
 					<?php
 					// ksort($carts_sort);
@@ -205,30 +211,38 @@ get_header(); ?>
 //                }
 				} else {
 					?>
-          <a href="/order-repairs" class="btn btn-danger">Order Repairs</a>
+                    <a href="/order-repairs" class="btn btn-danger">Order Repairs</a>
 					<?php
 				}
 				?>
 
-        <br>
-        <br>
+                <br>
+                <br>
 
-				<?php if (!in_array('china_admin', $roles)) {
+				<?php
+				echo do_shortcode('[display_my_app_orders]');
+				?>
+
+                <br>
+                <br>
+
+				<?php if (!in_array('china_admin', $roles) || !in_array('outsider', $roles)) {
+
 					if ($suspended != 'yes') {
 						?>
 
-            <h2>My Placed Orders to Edit</h2>
+                        <h2>My Placed Orders to Edit</h2>
 
-            <p></p>
-            <table class="table home">
-              <thead style="background-color: #f2dede;">
-              <th></th>
-              <th>Editable Orders</th>
-              <th>Date Created</th>
-              <th></th>
-              <th></th>
-              </thead>
-              <tbody>
+                        <p></p>
+                        <table class="table home">
+                            <thead style="background-color: #f2dede;">
+                            <th></th>
+                            <th>Editable Orders</th>
+                            <th>Date Created</th>
+                            <th></th>
+                            <th></th>
+                            </thead>
+                            <tbody>
 							<?php
 							$i = 1;
 							$customer_id = get_current_user_id();
@@ -242,26 +256,26 @@ get_header(); ?>
 
 									$order_data = $order->get_data(); // The Order data
 									?>
-                  <tr>
-                    <td>
+                                    <tr>
+                                        <td>
 											<?php echo $i; //echo ' - '.$key;
 											?>
-                    </td>
-                    <td>
+                                        </td>
+                                        <td>
 											<?php echo 'LF0' . $order->get_order_number() . ' - <i>' . get_post_meta($order->get_id(), 'cart_name', true) . '</i>';
 											?>
-                    </td>
-                    <td>
+                                        </td>
+                                        <td>
 											<?php echo wc_format_datetime($order->get_date_created()); ?>
-                    </td>
-                    <td>
-                      <a href="/editable-order/?id=<?php
+                                        </td>
+                                        <td>
+                                            <a href="/editable-order/?id=<?php
 											echo $order->get_id() * 1498765 * 33;
 											?>" class="btn btn-primary">View Order and Edit</a>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
 
 									<?php
 									$i++;
@@ -269,45 +283,46 @@ get_header(); ?>
 							}
 							?>
 
-              </tbody>
+                            </tbody>
 
-            </table>
+                        </table>
 
 					<?php }
 
 					?>
 
-          <br>
-          <br>
+                    <br>
+                    <br>
 
-          <!-- Chart content -->
-          <h3 class="text-center">
-            <strong>m2 SALES PER MONTH</strong>
-          </h3>
-          <hr>
-          <div id="container"></div>
+                    <!-- Chart content -->
+                    <h3 class="text-center">
+                        <strong>m2 SALES PER MONTH</strong>
+                    </h3>
+                    <hr>
+                    <div id="container"></div>
 
-          <br>
-          <h2>My Transformed Orders</h2>
+                    <br>
+                    <h2>My Transformed Orders</h2>
 
-          <table class="table">
-            <thead style="background-color: #f2dede;">
-            <th></th>
-            <th>Order ID</th>
-            <th>SQM</th>
-            <th>Date</th>
-            <th><strong>Deliveries Status</strong></th>
-            <th>Total</th>
-            <th>Order Status</th>
-            <th>Added by</th>
-            <th>Last Update</th>
-            <th></th>
-            </thead>
-            <tbody>
+                    <table class="table">
+                        <thead style="background-color: #f2dede;">
+                        <th></th>
+                        <th>Order ID</th>
+                        <th>SQM</th>
+                        <th>Date</th>
+                        <th>Container</th>
+                        <th><strong>Deliveries Status</strong></th>
+                        <th>Total</th>
+                        <th>Order Status</th>
+                        <th>Added by</th>
+                        <th>Last Update</th>
+                        <th></th>
+                        </thead>
+                        <tbody>
 						<?php
 
 						if (get_current_user_id() == 1) {
-							$user_id = 18;
+//							$user_id = 18;
 						}
 
 						$favorite = get_user_meta($user_id, 'favorite_user', true);
@@ -376,10 +391,10 @@ get_header(); ?>
 						$j = ($current_page - 1) * $orders_per_page + 1;
 
 						$args = array(
-							'customer_id' => $users_orders,
-							'limit' => $orders_per_page,
-							'page' => $current_page,
-							'paginate' => true,
+						  'customer_id' => $users_orders,
+						  'limit' => $orders_per_page,
+						  'page' => $current_page,
+						  'paginate' => true,
 						);
 
 						//  $orders = wc_get_orders($args);
@@ -417,25 +432,35 @@ get_header(); ?>
 							$myOrder = $wpdb->get_row("SELECT sqm FROM $tablename WHERE idOrder = $order_id", ARRAY_A);
 
 							?>
-              <tr class=" ">
-                <td>
+                            <tr class=" ">
+                                <td>
 									<?php echo $j; ?>.
-                </td>
-                <td>
+                                </td>
+                                <td>
 									<?php echo 'LF0' . $order->get_order_number() . ' - <i>' . get_post_meta($order->get_id(), 'cart_name', true) . '</i>';
 									?>
-                </td>
-                <td>
+                                </td>
+                                <td>
 									<?php
 									echo number_format($myOrder['sqm'], 2);
 									?>
-                </td>
-                <td>
+                                </td>
+                                <td>
 									<?php
 									echo $order_data['date_created']->date('Y-m-d H:i:s');
 									?>
-                </td>
-                <td>
+                                </td>
+                                <td>
+									<?php
+									$container_id = get_post_meta($order->get_id(), 'container_id', true);
+									// show container name
+									if ($container_id != "") {
+										$container_name = get_the_title($container_id);
+										echo $container_name;
+									}
+									?>
+                                </td>
+                                <td>
 									<?php
 									$delivereis_start = get_post_meta($order->get_id(), 'delivereis_start', true);
 
@@ -469,14 +494,14 @@ get_header(); ?>
 										}
 									}
 									?>
-                </td>
-                <td>
+                                </td>
+                                <td>
 									<?php
 									if ($view_price) echo $order->get_total();
 									?>
-                </td>
-                <td>
-                  <p class="statusOrder" style="<?php
+                                </td>
+                                <td>
+                                    <p class="statusOrder" style="<?php
 									// foreach ($culori_status as $stat => $cul) {
 									if ($previous_status) {
 										if (array_key_exists($order_status, $culori_status)) {
@@ -493,28 +518,28 @@ get_header(); ?>
 										if ($order_status == 'pending') {
 											echo 'Pending Payment';
 										} //teo>
-                    elseif ($order_status == 'waiting') {
+                                        elseif ($order_status == 'waiting') {
 											echo 'Waiting Delivery';
 										} //teo<
 										else {
 											echo $status_name;
 										}
 										?>
-                  </p>
-                </td>
-                <td>
+                                    </p>
+                                </td>
+                                <td>
 									<?php
 									echo $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
 									?>
-                </td>
-                <td>
+                                </td>
+                                <td>
 									<?php echo $order_data['date_modified']->date('Y-m-d H:i:s'); ?>
-                </td>
-                <td>
-                  <a href="/view-order/?id=<?php echo $order->get_id() * 1498765 * 33 ?>"
-                     class="btn btn-primary">View</a>
-                </td>
-              </tr>
+                                </td>
+                                <td>
+                                    <a href="/view-order/?id=<?php echo $order->get_id() * 1498765 * 33 ?>"
+                                       class="btn btn-primary">View</a>
+                                </td>
+                            </tr>
 
 							<?php
 							$j++;
@@ -522,26 +547,28 @@ get_header(); ?>
 						// }
 						?>
 
-            </tbody>
+                        </tbody>
 
-          </table>
+                    </table>
 
 					<?php
 				}
+
+                $orders_sqm = array();
 
 				if ($orders) {
 					$total_pages = $customer_orders->max_num_pages;
 
 					if ($total_pages > 1) {
 						$pagination_links = paginate_links(array(
-							'base' => get_pagenum_link(1) . '%_%',
-							'format' => 'page/%#%',
-							'current' => $current_page,
-							'total' => $total_pages,
-							'prev_next' => true,
-							'prev_text' => __('&laquo; Previous'),
-							'next_text' => __('Next &raquo;'),
-							'type' => 'array',
+						  'base' => get_pagenum_link(1) . '%_%',
+						  'format' => 'page/%#%',
+						  'current' => $current_page,
+						  'total' => $total_pages,
+						  'prev_next' => true,
+						  'prev_text' => __('&laquo; Previous'),
+						  'next_text' => __('Next &raquo;'),
+						  'type' => 'array',
 						));
 
 						if ($pagination_links) {
@@ -577,7 +604,9 @@ get_header(); ?>
 							//echo '<br>';
 							if ($order_status != 'cancelled') {
 								$quantity = get_post_meta($prod_id, 'quantity', true);
+								$quantity = ($quantity == '') ? 1 : $quantity;
 								$property_total = get_post_meta($prod_id, 'property_total', true);
+								$orders_sqm[$order->get_id()][$prod_id] = $property_total;
 								if ($property_total) {
 									$total[$year][$month] = $total[$year][$month] + floatval($property_total) * floatval($quantity);
 									$total2[$year][$month] = $total2[$year][$month] + floatval($property_total) * floatval($quantity);
@@ -597,7 +626,9 @@ get_header(); ?>
 
 				//print_r($newlunian);
 				$current_year = date("y");
-				//print_r($total);
+//                if(current_user_can('administrator')){
+//				    print_r($orders_sqm);
+//                }
 
 				//for( $i=11; $i>=0; $i-- ){
 				foreach ($newlunian as $k => $anluna) {
@@ -649,76 +680,76 @@ get_header(); ?>
 
 			}
 			?>
-      <input type="hidden" name="totalcart" value="<?php print_r($total); ?>">
-    </main>
-    <!-- #main -->
-  </div>
-  <!-- #primary -->
+            <input type="hidden" name="totalcart" value="<?php print_r($total); ?>">
+        </main>
+        <!-- #main -->
+    </div>
+    <!-- #primary -->
 
-  <script>
-      jQuery(document).ready(function () {
+    <script>
+        jQuery(document).ready(function () {
 
-          var sqm = jQuery('input[name="totalcart"]').val();
-          var js_array = [<?php echo '"' . implode('","', $new) . '"' ?>];
-          // console.log(sqm);
-          // console.log(js_array);
-          var ints = js_array.map(parseFloat);
+            var sqm = jQuery('input[name="totalcart"]').val();
+            var js_array = [<?php echo '"' . implode('","', $new) . '"' ?>];
+            // console.log(sqm);
+            // console.log(js_array);
+            var ints = js_array.map(parseFloat);
 
-          Highcharts.chart('container', {
-              "chart": {
-                  "type": 'column'
-              },
-              "title": {
-                  "text": null
-              },
-              "legend": {
-                  "align": "right",
-                  "verticalAlign": "top",
-                  "y": 75,
-                  "x": -50,
-                  "layout": "vertical"
-              },
-              "xAxis": {
-                  "categories": ["<?php echo date('M y', mktime(0, 0, 0, date('m') - 11, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 10, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 9, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 8, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 7, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 6, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 5, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 4, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 3, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 2, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 1, 1, date('Y'))); ?>", "<?php echo date('M y'); ?>"]
-              },
-              "yAxis": [{
-                  "title": {
-                      "text": "m2",
-                      "margin": 70
-                  },
-                  "min": 0
-              }],
-              "tooltip": {
-                  "enabled": true,
-                  "valueDecimals": 0,
-                  "valueSuffix": " sqm"
-              },
+            Highcharts.chart('container', {
+                "chart": {
+                    "type": 'column'
+                },
+                "title": {
+                    "text": null
+                },
+                "legend": {
+                    "align": "right",
+                    "verticalAlign": "top",
+                    "y": 75,
+                    "x": -50,
+                    "layout": "vertical"
+                },
+                "xAxis": {
+                    "categories": ["<?php echo date('M y', mktime(0, 0, 0, date('m') - 11, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 10, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 9, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 8, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 7, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 6, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 5, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 4, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 3, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 2, 1, date('Y'))); ?>", "<?php echo date('M y', mktime(0, 0, 0, date('m') - 1, 1, date('Y'))); ?>", "<?php echo date('M y'); ?>"]
+                },
+                "yAxis": [{
+                    "title": {
+                        "text": "m2",
+                        "margin": 70
+                    },
+                    "min": 0
+                }],
+                "tooltip": {
+                    "enabled": true,
+                    "valueDecimals": 0,
+                    "valueSuffix": " sqm"
+                },
 
-              "plotOptions": {
-                  "column": {
-                      "dataLabels": {
-                          "enabled": true,
-                          "valueDecimals": 0
-                      },
-                      enableMouseTracking: true
-                  }
-              },
+                "plotOptions": {
+                    "column": {
+                        "dataLabels": {
+                            "enabled": true,
+                            "valueDecimals": 0
+                        },
+                        enableMouseTracking: true
+                    }
+                },
 
-              "credits": {
-                  "enabled": true
-              },
+                "credits": {
+                    "enabled": true
+                },
 
-              "subtitle": {},
-              "series": [{
-                  "name": "m2",
-                  "yAxis": 0,
-                  "data": ints
-              }]
+                "subtitle": {},
+                "series": [{
+                    "name": "m2",
+                    "yAxis": 0,
+                    "data": ints
+                }]
 
-          });
+            });
 
-      });
-  </script>
+        });
+    </script>
 
 
 <?php

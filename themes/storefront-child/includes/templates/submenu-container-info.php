@@ -49,7 +49,7 @@ $containers = get_posts($args);
 
 if (isset($_POST['container'])) {
     $container_id = $_POST['container'];
-    echo '<h5>Contsiner Selected: ' . get_the_title($container_id) . '</h5>';
+    echo '<h5>Selected Container: ' . get_the_title($container_id) . '</h5>';
 
     $container_orders = get_post_meta($container_id, 'container_orders', true);
 //print_r($container_orders);
@@ -146,14 +146,14 @@ if (isset($_POST['container'])) {
 
     ?>
 
-
+    <h4>Dealers Performance GBP</h4>
     <table>
         <thead>
         <tr>
             <th>Count Items</th>
-            <th>By train</th>
-            <th>By Delivery</th>
-            <th>No VAT Price</th>
+            <th>Sea/Train GBD</th>
+            <th>Local Delivery</th>
+            <th>Incasat No VAT</th>
         </tr>
         </thead>
         <tbody>
@@ -210,8 +210,8 @@ if (isset($_POST['container'])) {
         <?php
         echo '<tr>';
         echo '<td>' . $totals['nr_items'] . '</td>';
-        echo '<td>' . number_format($totals['train_total'], 2) . '</td>';
-        echo '<td>' . $totals['delivery_total'] . '</td>';
+        echo '<td>£' . number_format($totals['train_total'], 2) . '</td>';
+        echo '<td>£' . $totals['delivery_total'] . '</td>';
         echo '<td>£' . $totals['no_vat_total'] . '</td>';
         echo '</tr>';
         ?>
@@ -220,14 +220,14 @@ if (isset($_POST['container'])) {
 
 
     <br>
-    <h4>Repair Shutters</h4>
+    <h4>Shutters Repair GBP</h4>
     <table>
         <thead>
         <tr>
-            <th>Count Items Orders</th>
-            <th>By train Orders</th>
-            <th>By Delivery Orders</th>
-            <th>Cost Repairs</th>
+            <th>Count Items</th>
+            <th style="text-decoration: line-through;">By train Orders</th>
+            <th style="text-decoration: line-through;">By Delivery Orders</th>
+            <th>LFR UK</th>
         </tr>
         </thead>
         <tbody>
@@ -241,8 +241,8 @@ if (isset($_POST['container'])) {
         <?php
         echo '<tr>';
         echo '<td>' . $totals_repairs['nr_items'] . '</td>';
-        echo '<td>' . number_format($totals_repairs['train_total'], 2) . '</td>';
-        echo '<td>' . $totals_repairs['delivery_total'] . '</td>';
+        echo '<td style="text-decoration: line-through;">£' . number_format($totals_repairs['train_total'], 2) . '</td>';
+        echo '<td style="text-decoration: line-through;">£' . $totals_repairs['delivery_total'] . '</td>';
         echo '<td>£' . $totals_repairs['cost_total'] . '</td>';
         echo '</tr>';
         ?>
@@ -250,14 +250,14 @@ if (isset($_POST['container'])) {
     </table>
 
     <br>
-    <h4>Lifetime Shutters</h4>
+    <h4>Lifetime Shutters Performance GBP</h4>
     <table>
         <thead>
         <tr>
             <th>Count Items</th>
-            <th>By train</th>
-            <th>By Delivery</th>
-            <th>No VAT Price</th>
+            <th>Sea+train_LTS</th>
+            <th>Local Delivery LTS</th>
+            <th>Lifetime UK</th>
         </tr>
         </thead>
         <tbody>
@@ -271,8 +271,8 @@ if (isset($_POST['container'])) {
         <?php
         echo '<tr>';
         echo '<td>' . $totals_lifetime['nr_items'] . '</td>';
-        echo '<td>' . number_format($totals_lifetime['train_total'], 2) . '</td>';
-        echo '<td>' . $totals_lifetime['delivery_total'] . '</td>';
+        echo '<td>£' . number_format($totals_lifetime['train_total'], 2) . '</td>';
+        echo '<td>£' . $totals_lifetime['delivery_total'] . '</td>';
         echo '<td>£' . $totals_lifetime['no_vat_total'] . '</td>';
         echo '</tr>';
         ?>
@@ -340,13 +340,13 @@ if (isset($_POST['container'])) {
     }
 
     ?>
-    <h4>Invoice CSV</h4>
+    <h4>China Invoice USD</h4>
     <table>
         <thead>
         <tr>
-            <th>Total Customers</th>
-            <th>Total Lifetime</th>
-            <th>Total Repairs</th>
+            <th>Valoare USD</th>
+            <th>Lifetime CH</th>
+            <th>LFR China</th>
         </tr>
         </thead>
         <tbody>
@@ -374,9 +374,9 @@ if (isset($_POST['container'])) {
         <tfoot>
         <?php
         echo '<tr>';
-        echo '<td>' . number_format($total_customers, 2) . '</td>';
-        echo '<td>' . number_format($total_lifetime, 2) . '</td>';
-        echo '<td>' . number_format($total_repairs, 2) . '</td>';
+        echo '<td>$' . number_format($total_customers, 2) . '</td>';
+        echo '<td>$' . number_format($total_lifetime, 2) . '</td>';
+        echo '<td>$' . number_format($total_repairs, 2) . '</td>';
         echo '</tr>';
         ?>
         </tfoot>

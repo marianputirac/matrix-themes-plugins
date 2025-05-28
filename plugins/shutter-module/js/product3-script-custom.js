@@ -7,17 +7,55 @@ jQuery.noConflict();
         // ========== START - customize some properties by user =========
         var idCustomer = null;
         var idDealer = null;
-        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}";
+        var selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\",\"6\"]}";
+
 
         idCustomer = jQuery('input[name="customer_id"]').val();
         idDealer = jQuery('input[name="dealer_id"]').val();
 
         // "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
         if (idCustomer == 274 || idDealer == 274) {
-            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"137\"]}"
+            selectedPropertyValuesEcowood = "{\"property_field\":\"18\",\"property_value_ids\":[\"188\",\"6\"]}"
         }
         console.log('idCustomer ', idCustomer);
         console.log('selectedPropertyValuesEcowood ', selectedPropertyValuesEcowood);
+
+
+        var showBiowood = {};
+        console.log('Show Biowood:', my_showBiowood_object.showBiowood);
+        if (my_showBiowood_object.showBiowood === 'yes') {
+            showBiowood = {
+                "id": 6,
+                "property_id": 18,
+                "value": "Biowood",
+                "created_at": "2015-10-19T20:31:50.000+01:00",
+                "updated_at": "2015-11-08T19:36:15.000+00:00",
+                "code": "paulownia",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": true,
+                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 18,
+                    "name": "Material",
+                    "created_at": "2015-10-19T20:30:37.000+01:00",
+                    "updated_at": "2015-10-19T21:47:55.000+01:00",
+                    "code": "material",
+                    "sort": 0,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            };
+        }
+
         // ========== END - customize some properties by user =========
 
 
@@ -115,19 +153,19 @@ jQuery.noConflict();
         function getAllFieldData(property_id) {
             data = [];
             var idCustomer = $('input[name="customer_id"]').val();
-            if (idCustomer == 274 || idDealer == 274) {
-                for (var i = 0; i < property_values.length; i++) {
-                    if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
-                        data.push(property_values[i]);
-                    }
-                }
-            } else {
-                for (var i = 0; i < property_values.length; i++) {
-                    if (property_values[i].property_id == property_id) {
-                        data.push(property_values[i]);
-                    }
+            // if (idCustomer == 274 || idDealer == 274) {
+            //     for (var i = 0; i < property_values.length; i++) {
+            //         if (property_values[i].property_id == property_id && property_values[i].value !== 'Ecowood') {
+            //             data.push(property_values[i]);
+            //         }
+            //     }
+            // } else {
+            for (var i = 0; i < property_values.length; i++) {
+                if (property_values[i].property_id == property_id) {
+                    data.push(property_values[i]);
                 }
             }
+            // }
             return data;
         }
 
@@ -335,19 +373,36 @@ jQuery.noConflict();
          */
         function hideTpostBtFrameType() {
             let titleFrameType = $('input[name="property_frametype"]:checked').attr('data-title');
-            let result = titleFrameType.includes("P4");
+            // let result = titleFrameType.includes("P4");
             var cusid_ele = document.querySelectorAll('[name="property_tposttype"]');
-            for (var i = 0; i < cusid_ele.length; ++i) {
-                var item = cusid_ele[i];
-                var itemAttr = $(item).attr('data-title');
-                if (itemAttr.includes("P7") === true && titleFrameType.includes("P4") === true) {
-                    $(item).parent().css("display", "block");
-                } else if (itemAttr.includes("P7") === false && titleFrameType.includes("P4") === false) {
-                    $(item).parent().css("display", "block");
+
+            cusid_ele.forEach(function (element) {
+                if (element.offsetParent !== null) {
+                    // Element is visible on the page
+                    // console.log(element, 'is visible');
+
+                    for (var i = 0; i < cusid_ele.length; ++i) {
+                        var item = cusid_ele[i];
+                        var itemAttr = $(item).attr('data-title');
+                        // console.log("=== itemAttr ===", itemAttr);
+                        if (itemAttr.includes("P7") === true && titleFrameType.includes("P4") === true) {
+                            $(item).parent().css("display", "block");
+                        } else if (itemAttr.includes("P7") === false && titleFrameType.includes("P4") === false) {
+                            $(item).parent().css("display", "block");
+                        } else if (itemAttr.includes("7001") === true && titleFrameType.includes("P4") === true) {
+                            // exception for 7001 on biowood with frame with P4
+                            $(item).parent().css("display", "block");
+                        } else {
+                            $(item).parent().css("display", "none");
+                        }
+                    }
                 } else {
-                    $(item).parent().css("display", "none");
+                    // Element is hidden (display: none or not in the DOM tree)
+                    // console.log(element, 'is hidden');
+
+
                 }
-            }
+            });
         }
 
         $(".property-select").css('width', '100%');
@@ -1388,7 +1443,7 @@ jQuery.noConflict();
             "all_products": true,
             "selected_products": "{\"product_ids\":null}",
             "all_property_values": false,
-            "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\",\"139\",\"137\",\"187\"]}",
+            "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\",\"139\",\"137\",\"5\",\"187\"]}",
             "graphic": "none",
             "image_file_name": null,
             "image_content_type": null,
@@ -1478,7 +1533,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\",\"292\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\",\"292\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -1508,7 +1563,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\",\"292\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\",\"292\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2351,7 +2406,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2380,7 +2435,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2409,7 +2464,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2438,7 +2493,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2467,7 +2522,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2496,7 +2551,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2525,7 +2580,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"292\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"292\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2554,7 +2609,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"138\",\"139\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"138\",\"6\",\"139\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2601,36 +2656,37 @@ jQuery.noConflict();
                     "input_type": "select"
                 }
             },
-            // {
-            //     "id": 187,
-            //     "property_id": 18,
-            //     "value": "Earth",
-            //     "created_at": "2016-09-05T19:55:06.000+01:00",
-            //     "updated_at": "2016-09-05T19:55:06.000+01:00",
-            //     "code": "aluminum",
-            //     "uplift": "0.0",
-            //     "color": "",
-            //     "all_products": true,
-            //     "selected_products": "{\"product_ids\":null}",
-            //     "all_property_values": true,
-            //     "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
-            //     "graphic": "none",
-            //     "image_file_name": null,
-            //     "image_content_type": null,
-            //     "image_file_size": null,
-            //     "image_updated_at": null,
-            //     "is_active": true,
-            //     "property": {
-            //         "id": 18,
-            //         "name": "Material",
-            //         "created_at": "2015-10-19T20:30:37.000+01:00",
-            //         "updated_at": "2015-10-19T21:47:55.000+01:00",
-            //         "code": "material",
-            //         "sort": 0,
-            //         "help_text": "",
-            //         "input_type": "select"
-            //     }
-            // },
+            {
+                "id": 180,
+                "property_id": 15,
+                "value": "Security S/S Hinge (+10%)",
+                "created_at": "2015-09-07T23:02:36.000+01:00",
+                "updated_at": "2016-01-06T06:50:37.000+00:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": true,
+                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":[\"187\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 15,
+                    "name": "Hinge Color",
+                    "created_at": "2015-09-07T23:00:03.000+01:00",
+                    "updated_at": "2015-09-07T23:01:58.000+01:00",
+                    "code": "hingecolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+
             {
                 "id": 188,
                 "property_id": 18,
@@ -2650,6 +2706,57 @@ jQuery.noConflict();
                 "image_file_size": null,
                 "image_updated_at": null,
                 "is_active": true
+            },
+            {
+                "id": 5,
+                "property_id": 18,
+                "value": "Ecowood Plus",
+                "created_at": "2016-09-05T19:55:06.000+01:00",
+                "updated_at": "2016-09-05T19:55:06.000+01:00",
+                "code": "ecowoodPlus",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": true,
+                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true
+            },
+            showBiowood,
+            {
+                "id": 138,
+                "property_id": 18,
+                "value": "Biowood Plus",
+                "created_at": "2015-10-19T20:31:50.000+01:00",
+                "updated_at": "2015-11-08T19:36:15.000+00:00",
+                "code": "paulownia",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": true,
+                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 18,
+                    "name": "Material",
+                    "created_at": "2015-10-19T20:30:37.000+01:00",
+                    "updated_at": "2015-10-19T21:47:55.000+01:00",
+                    "code": "material",
+                    "sort": 0,
+                    "help_text": "",
+                    "input_type": "select"
+                }
             },
             {
                 "id": 139,
@@ -2680,66 +2787,70 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
-            }, {
-                "id": 138,
-                "property_id": 18,
-                "value": "Biowood",
-                "created_at": "2015-10-19T20:31:50.000+01:00",
-                "updated_at": "2015-11-08T19:36:15.000+00:00",
-                "code": "paulownia",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": true,
-                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 18,
-                    "name": "Material",
-                    "created_at": "2015-10-19T20:30:37.000+01:00",
-                    "updated_at": "2015-10-19T21:47:55.000+01:00",
-                    "code": "material",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
             },
+            // {
+            //     "id": 187,
+            //     "property_id": 18,
+            //     "value": "Earth",
+            //     "created_at": "2016-09-05T19:55:06.000+01:00",
+            //     "updated_at": "2016-09-05T19:55:06.000+01:00",
+            //     "code": "aluminum",
+            //     "uplift": "0.0",
+            //     "color": "",
+            //     "all_products": true,
+            //     "selected_products": "{\"product_ids\":null}",
+            //     "all_property_values": true,
+            //     "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
+            //     "graphic": "none",
+            //     "image_file_name": null,
+            //     "image_content_type": null,
+            //     "image_file_size": null,
+            //     "image_updated_at": null,
+            //     "is_active": true,
+            //     "property": {
+            //         "id": 18,
+            //         "name": "Material",
+            //         "created_at": "2015-10-19T20:30:37.000+01:00",
+            //         "updated_at": "2015-10-19T21:47:55.000+01:00",
+            //         "code": "material",
+            //         "sort": 0,
+            //         "help_text": "",
+            //         "input_type": "select"
+            //     }
+            // },
+
+
+            // {
+            //     "id": 137,
+            //     "property_id": 18,
+            //     "value": "Green",
+            //     "created_at": "2015-10-19T20:31:42.000+01:00",
+            //     "updated_at": "2015-10-19T20:31:42.000+01:00",
+            //     "code": "pvc",
+            //     "uplift": "0.0",
+            //     "color": "",
+            //     "all_products": true,
+            //     "selected_products": "{\"product_ids\":null}",
+            //     "all_property_values": true,
+            //     "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
+            //     "graphic": "none",
+            //     "image_file_name": null,
+            //     "image_content_type": null,
+            //     "image_file_size": null,
+            //     "image_updated_at": null,
+            //     "is_active": true,
+            //     "property": {
+            //         "id": 18,
+            //         "name": "Material",
+            //         "created_at": "2015-10-19T20:30:37.000+01:00",
+            //         "updated_at": "2015-10-19T21:47:55.000+01:00",
+            //         "code": "material",
+            //         "sort": 0,
+            //         "help_text": "",
+            //         "input_type": "select"
+            //     }
+            // },
             {
-                "id": 137,
-                "property_id": 18,
-                "value": "Green",
-                "created_at": "2015-10-19T20:31:42.000+01:00",
-                "updated_at": "2015-10-19T20:31:42.000+01:00",
-                "code": "pvc",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": true,
-                "selected_property_values": "{\"property_field\":null,\"property_value_ids\":null}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 18,
-                    "name": "Material",
-                    "created_at": "2015-10-19T20:30:37.000+01:00",
-                    "updated_at": "2015-10-19T21:47:55.000+01:00",
-                    "code": "material",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            },{
                 "id": 172,
                 "property_id": 15,
                 "value": "Sea Mist",
@@ -2751,7 +2862,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"187\",\"188\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\",\"139\",\"187\",\"188\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2781,7 +2892,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2810,7 +2921,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -2827,442 +2938,8 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "input"
                 }
-            }, {
-                "id": 24,
-                "property_id": 6,
-                "value": "Bathroom Downstairs",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 25,
-                "property_id": 6,
-                "value": "Bathroom Upstairs",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 17,
-                "property_id": 6,
-                "value": "Bed 1",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 18,
-                "property_id": 6,
-                "value": "Bed 2",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 19,
-                "property_id": 6,
-                "value": "Bed 3",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 20,
-                "property_id": 6,
-                "value": "Bed 4",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 21,
-                "property_id": 6,
-                "value": "Bed 5",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 15,
-                "property_id": 6,
-                "value": "Dining Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 14,
-                "property_id": 6,
-                "value": "Family Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 27,
-                "property_id": 6,
-                "value": "Games Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 22,
-                "property_id": 6,
-                "value": "Guest Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 28,
-                "property_id": 6,
-                "value": "Hallway",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 13,
-                "property_id": 6,
-                "value": "Kitchen",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 12,
-                "property_id": 6,
-                "value": "Living Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 10,
-                "property_id": 6,
-                "value": "Lounge",
-                "created_at": "2015-09-07T18:47:06.000+01:00",
-                "updated_at": "2015-09-07T18:47:06.000+01:00",
-                "code": "",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
+            },
+            {
                 "id": 94,
                 "property_id": 6,
                 "value": "Other",
@@ -3291,123 +2968,7 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
-            }, {
-                "id": 23,
-                "property_id": 6,
-                "value": "Spare Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 26,
-                "property_id": 6,
-                "value": "Study",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 11,
-                "property_id": 6,
-                "value": "TV Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
-                "id": 16,
-                "property_id": 6,
-                "value": "Utility Room",
-                "created_at": "2016-01-06T09:03:52.000+00:00",
-                "updated_at": "2016-01-06T09:03:52.000+00:00",
-                "code": null,
-                "uplift": "0.0",
-                "color": null,
-                "all_products": true,
-                "selected_products": null,
-                "all_property_values": true,
-                "selected_property_values": null,
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 6,
-                    "name": " Room",
-                    "created_at": "2015-09-07T18:46:17.000+01:00",
-                    "updated_at": "2015-09-22T11:55:40.000+01:00",
-                    "code": "room",
-                    "sort": 0,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }, {
+            },  {
                 "id": 145,
                 "property_id": 17,
                 "value": "Other",
@@ -3419,7 +2980,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3498,11 +3059,42 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
-            }
-            , {
+            },
+            {
                 "id": 413,
                 "property_id": 17,
                 "value": "Shell White",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": selectedPropertyValuesEcowood,
+                //"selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+            {
+                "id": 415,
+                "property_id": 17,
+                "value": "Vanilla",
                 "created_at": "2015-09-26T01:28:40.000+01:00",
                 "updated_at": "2015-09-26T01:28:40.000+01:00",
                 "code": "",
@@ -3543,7 +3135,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3572,7 +3164,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3601,7 +3193,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3630,7 +3222,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3659,7 +3251,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3688,7 +3280,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3717,7 +3309,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3746,7 +3338,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3775,7 +3367,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3804,7 +3396,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"139\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"139\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3833,7 +3425,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3862,7 +3454,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3891,7 +3483,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3920,7 +3512,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3949,7 +3541,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -3978,7 +3570,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -4007,7 +3599,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -4036,7 +3628,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -4065,7 +3657,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -4094,7 +3686,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5196,7 +4788,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5225,7 +4817,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5254,7 +4846,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5283,7 +4875,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5312,7 +4904,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5341,7 +4933,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5370,7 +4962,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\","188"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"6\",\"137\",\"5\","188"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5399,7 +4991,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5428,7 +5020,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"137\","188"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\",\"139\",\"138\",\"6\",\"137\",\"5\","188"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5457,7 +5049,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5515,7 +5107,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -5544,7 +5136,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Bay_Window.png",
                 "image_content_type": "image/png",
@@ -5573,7 +5165,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Individual_Frames.jpg",
                 "image_content_type": "image/jpeg",
@@ -5602,7 +5194,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "thumb_Bay_Window.png",
                 "image_content_type": "image/png",
@@ -5631,7 +5223,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Bay_Window_Cafe_Style_copy.jpg",
                 "image_content_type": "image/jpeg",
@@ -5689,7 +5281,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Solid_Panel_Tier_on_Tier_Flat_bcf18cd5d2.png",
                 "image_content_type": "image/png",
@@ -5718,7 +5310,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Solid-Panel-Raised-Cafe-Style-1.jpg",
                 "image_content_type": "image/jpeg",
@@ -5747,7 +5339,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Solid_Panel_Tier_on_Tier_Raised_6ced5183ab.png",
                 "image_content_type": "image/png",
@@ -5776,7 +5368,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "combi-panel.jpg",
                 "image_content_type": "image/jpg",
@@ -5805,7 +5397,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "combi-panel.jpg",
                 "image_content_type": "image/jpg",
@@ -5834,7 +5426,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "combi-panel.jpg",
                 "image_content_type": "image/jpg",
@@ -5863,7 +5455,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "combi-panel.jpg",
                 "image_content_type": "image/jpg",
@@ -5892,7 +5484,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "combi-panel.jpg",
                 "image_content_type": "image/jpg",
@@ -5922,7 +5514,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "image",
                 "image_file_name": "Tier-on-Tier.png",
                 "image_content_type": "image/png",
@@ -5939,7 +5531,68 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
-            }, {
+            },
+            {
+                "id": 289,
+                "property_id": 10,
+                "value": "P4023B",
+                "created_at": "2015-09-07T20:40:56.000+01:00",
+                "updated_at": "2018-02-03T01:34:49.000+00:00",
+                "code": "F50",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"6\",\"138\",\"188\",\"5\"]}",
+                "graphic": "image",
+                "image_file_name": "P4023B.png",
+                "image_content_type": "image/jpeg",
+                "image_file_size": 3286,
+                "image_updated_at": "2015-10-21T19:16:03.000+01:00",
+                "is_active": true,
+                "property": {
+                    "id": 10,
+                    "name": "Frame Type",
+                    "created_at": "2015-09-07T20:26:47.000+01:00",
+                    "updated_at": "2015-09-07T20:26:47.000+01:00",
+                    "code": "frametype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+            {
+                "id": 290,
+                "property_id": 10,
+                "value": "4011B",
+                "created_at": "2015-09-07T20:40:56.000+01:00",
+                "updated_at": "2018-02-03T01:34:49.000+00:00",
+                "code": "F50",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\"]}",
+                "graphic": "image",
+                "image_file_name": "4011B.png",
+                "image_content_type": "image/jpeg",
+                "image_file_size": 3286,
+                "image_updated_at": "2015-10-21T19:16:03.000+01:00",
+                "is_active": true,
+                "property": {
+                    "id": 10,
+                    "name": "Frame Type",
+                    "created_at": "2015-09-07T20:26:47.000+01:00",
+                    "updated_at": "2015-09-07T20:26:47.000+01:00",
+                    "code": "frametype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+            {
                 "id": 300,
                 "property_id": 10,
                 "value": "A4001A",
@@ -5998,38 +5651,7 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "select"
                 }
-            }
-            , {
-                "id": 302,
-                "property_id": 10,
-                "value": "A4027",
-                "created_at": "2015-09-07T20:35:24.000+01:00",
-                "updated_at": "2018-02-03T01:34:19.000+00:00",
-                "code": "Z50",
-                "uplift": "0.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\"]}",
-                "graphic": "image",
-                "image_file_name": "A4027.png",
-                "image_content_type": "image/jpeg",
-                "image_file_size": 3732,
-                "image_updated_at": "2015-10-21T19:07:32.000+01:00",
-                "is_active": true,
-                "property": {
-                    "id": 10,
-                    "name": "Frame Type",
-                    "created_at": "2015-09-07T20:26:47.000+01:00",
-                    "updated_at": "2015-09-07T20:26:47.000+01:00",
-                    "code": "frametype",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "select"
-                }
-            }
-            , {
+            }, {
                 "id": 305,
                 "property_id": 10,
                 "value": "4001A",
@@ -6447,7 +6069,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6476,7 +6098,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6505,7 +6127,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6534,7 +6156,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6563,7 +6185,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6592,7 +6214,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6621,7 +6243,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6650,7 +6272,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6679,7 +6301,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"139\",\"6\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6708,7 +6330,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6737,7 +6359,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6766,7 +6388,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6795,7 +6417,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6824,7 +6446,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6853,7 +6475,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6882,7 +6504,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\",\"138\",\"6\",\"139\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6911,7 +6533,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6940,7 +6562,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"188\",\"138\",\"139\",\"187\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"137\",\"5\",\"188\",\"138\",\"6\",\"139\",\"187\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6969,7 +6591,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -6998,7 +6620,97 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            },
+            {
+                "id": 405,
+                "property_id": 22,
+                "value": "101 - Snow White",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            },
+            {
+                "id": 175,
+                "property_id": 22,
+                "value": "N201 - Champagne",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            },
+            {
+                "id": 406,
+                "property_id": 22,
+                "value": "K077 - Creamy",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7016,66 +6728,6 @@ jQuery.noConflict();
                     "input_type": "input"
                 }
             }, {
-                "id": 405,
-                "property_id": 22,
-                "value": "101 - Snow White",
-                "created_at": null,
-                "updated_at": "2018-03-01T23:46:10.000+00:00",
-                "code": "",
-                "uplift": "20.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 22,
-                    "name": "Blackout Blind Colour",
-                    "created_at": "2015-10-01T18:09:08.000+01:00",
-                    "updated_at": "2015-10-01T18:09:08.000+01:00",
-                    "code": "blackoutblindcolour",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "input"
-                }
-            }
-            , {
-                "id": 406,
-                "property_id": 22,
-                "value": "K077 - Champagne",
-                "created_at": null,
-                "updated_at": "2018-03-01T23:46:10.000+00:00",
-                "code": "",
-                "uplift": "20.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 22,
-                    "name": "Blackout Blind Colour",
-                    "created_at": "2015-10-01T18:09:08.000+01:00",
-                    "updated_at": "2015-10-01T18:09:08.000+01:00",
-                    "code": "blackoutblindcolour",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "input"
-                }
-            }
-            , {
                 "id": 407,
                 "property_id": 22,
                 "value": "616 - Sand",
@@ -7087,37 +6739,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
-                "graphic": "none",
-                "image_file_name": null,
-                "image_content_type": null,
-                "image_file_size": null,
-                "image_updated_at": null,
-                "is_active": true,
-                "property": {
-                    "id": 22,
-                    "name": "Blackout Blind Colour",
-                    "created_at": "2015-10-01T18:09:08.000+01:00",
-                    "updated_at": "2015-10-01T18:09:08.000+01:00",
-                    "code": "blackoutblindcolour",
-                    "sort": null,
-                    "help_text": "",
-                    "input_type": "input"
-                }
-            }
-            , {
-                "id": 408,
-                "property_id": 22,
-                "value": "231 - Gold",
-                "created_at": null,
-                "updated_at": "2018-03-01T23:46:10.000+00:00",
-                "code": "",
-                "uplift": "20.0",
-                "color": "",
-                "all_products": true,
-                "selected_products": "{\"product_ids\":null}",
-                "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7147,7 +6769,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7164,7 +6786,68 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "input"
                 }
-            }, {
+            },
+            {
+                "id": 176,
+                "property_id": 22,
+                "value": "532 - Dusk",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            },
+            {
+                "id": 408,
+                "property_id": 22,
+                "value": "231 - Gold",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:46:10.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "Blackout Blind Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "blackoutblindcolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            }
+            , {
                 "id": 409,
                 "property_id": 22,
                 "value": "841 - Terracotta",
@@ -7176,7 +6859,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7205,7 +6888,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"187\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7222,7 +6905,38 @@ jQuery.noConflict();
                     "help_text": "",
                     "input_type": "input"
                 }
-            }, {
+            },
+            {
+                "id": 416,
+                "property_id": 22,
+                "value": "610 - BLACK",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"187\",\"188\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 16,
+                    "name": "Control Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "controltype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            },
+            {
                 "id": 437,
                 "property_id": 23,
                 "value": "P7032 - Standard T-Post",
@@ -7234,7 +6948,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7263,7 +6977,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7292,7 +7006,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7321,7 +7035,7 @@ jQuery.noConflict();
                 "all_products": true,
                 "selected_products": "{\"product_ids\":null}",
                 "all_property_values": false,
-                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"137\",\"188\"]}",
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"139\",\"138\",\"6\",\"137\",\"5\",\"188\"]}",
                 "graphic": "none",
                 "image_file_name": null,
                 "image_content_type": null,
@@ -7334,6 +7048,209 @@ jQuery.noConflict();
                     "created_at": "2015-09-26T01:25:55.000+01:00",
                     "updated_at": "2015-09-26T01:25:55.000+01:00",
                     "code": "tposttype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
+                "id": 444,
+                "property_id": 22,
+                "value": "P7030",
+                "created_at": "2015-09-26T01:28:40.000+01:00",
+                "updated_at": "2015-09-26T01:28:40.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\",\"137\",\"5\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 22,
+                    "name": "T Post Type",
+                    "created_at": "2015-09-26T01:25:55.000+01:00",
+                    "updated_at": "2015-09-26T01:25:55.000+01:00",
+                    "code": "tposttype",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
+                "id": 445,
+                "property_id": 19,
+                "value": "41mm T1002M(beaded butt)",
+                "created_at": "2016-01-06T07:05:36.000+00:00",
+                "updated_at": "2016-02-19T10:48:43.000+00:00",
+                "code": "RFS 50.8",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 19,
+                    "name": "Stile",
+                    "created_at": "2016-01-06T07:03:20.000+00:00",
+                    "updated_at": "2016-01-06T07:15:59.000+00:00",
+                    "code": "stile",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
+                "id": 446,
+                "property_id": 19,
+                "value": "41mm T1004M(beaded rebate)",
+                "created_at": "2016-01-06T07:05:36.000+00:00",
+                "updated_at": "2016-02-19T10:48:43.000+00:00",
+                "code": "RFS 50.8",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 19,
+                    "name": "Stile",
+                    "created_at": "2016-01-06T07:03:20.000+00:00",
+                    "updated_at": "2016-01-06T07:15:59.000+00:00",
+                    "code": "stile",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
+                "id": 447,
+                "property_id": 19,
+                "value": "41mm T1006M(beaded D-mould)",
+                "created_at": "2016-01-06T07:05:36.000+00:00",
+                "updated_at": "2016-02-19T10:48:43.000+00:00",
+                "code": "RFS 50.8",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"138\",\"6\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 19,
+                    "name": "Stile",
+                    "created_at": "2016-01-06T07:03:20.000+00:00",
+                    "updated_at": "2016-01-06T07:15:59.000+00:00",
+                    "code": "stile",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "select"
+                }
+            }, {
+                "id": 457,
+                "property_id": 17,
+                "value": "A400 (Surfmist)",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:44:57.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 17,
+                    "name": "Shutter Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "shuttercolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            }, {
+                "id": 456,
+                "property_id": 17,
+                "value": "A500 (Antracit)",
+                "created_at": null,
+                "updated_at": "2018-03-01T23:44:57.000+00:00",
+                "code": "",
+                "uplift": "20.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 17,
+                    "name": "Shutter Colour",
+                    "created_at": "2015-10-01T18:09:08.000+01:00",
+                    "updated_at": "2015-10-01T18:09:08.000+01:00",
+                    "code": "shuttercolour",
+                    "sort": null,
+                    "help_text": "",
+                    "input_type": "input"
+                }
+            }, {
+                "id": 458,
+                "property_id": 15,
+                "value": "Earth hinge",
+                "created_at": "2016-02-25T09:16:36.000+00:00",
+                "updated_at": "2016-04-01T23:26:38.000+01:00",
+                "code": "",
+                "uplift": "0.0",
+                "color": "",
+                "all_products": true,
+                "selected_products": "{\"product_ids\":null}",
+                "all_property_values": false,
+                "selected_property_values": "{\"property_field\":\"18\",\"property_value_ids\":[\"187\"]}",
+                "graphic": "none",
+                "image_file_name": null,
+                "image_content_type": null,
+                "image_file_size": null,
+                "image_updated_at": null,
+                "is_active": true,
+                "property": {
+                    "id": 15,
+                    "name": "Hinge Color",
+                    "created_at": "2015-09-07T23:00:03.000+01:00",
+                    "updated_at": "2015-09-07T23:01:58.000+01:00",
+                    "code": "hingecolour",
                     "sort": null,
                     "help_text": "",
                     "input_type": "select"
@@ -7549,13 +7466,13 @@ jQuery.noConflict();
 
         $("#property_width, #property_height").change(function () {
             // if height is more then 2000 then hide stile where data-title contain string '41mm'
-            hideStileByHeight(2000);
+            hideStileByHeight(1800);
             calculateTotal();
         });
 
         $("#property_totheight").change(function () {
             // if height is more then 2000 then hide stile where data-title contain string '41mm'
-            hideStileByHeight(2000);
+            hideStileByHeight(1800);
         });
 
         $('input[name="property_frametype"], .property-select').click(function () {
@@ -7705,6 +7622,13 @@ jQuery.noConflict();
                 product_title_check = $("#property_material").select2('data').value;
                 $("#locks").show();
                 $("#property_locks").val('No');
+                if (product_title_check.indexOf('Biowood') > -1) {
+                    // Top&Bottom Locks
+                    $("#locks span.lbl").text("Top & Bottom Locks");
+                }
+                if (product_title_check.indexOf('Biowood Plus') > -1) {
+                    $("#locks span.lbl").text("Top & Bottom Locks");
+                }
                 if (product_title_check.indexOf('Earth') > -1) {  //teo_02-Earth Hidden Only
                     showAluminumOptions(true);
                     $("#property_sparelouvres").val('No');
@@ -7871,7 +7795,7 @@ jQuery.noConflict();
 
 
                 setProductByMaterialAndStyle();
-                hideStileByHeight(2000);
+                hideStileByHeight(1800);
             }
         });
 
@@ -7885,8 +7809,7 @@ jQuery.noConflict();
                         $(this).parent().hide();
                     }
                 });
-            }
-            else if ($("#property_height").val() < minHeght &&  $("#property_totheight").val() == '') {
+            } else if ($("#property_height").val() < minHeght && $("#property_totheight").val() == '') {
                 console.log('cond 2');
                 $('input[name="property_stile"]').each(function () {
                     if ($(this).data('title').indexOf('41mm') > -1) {
@@ -7902,8 +7825,7 @@ jQuery.noConflict();
                         $(this).parent().hide();
                     }
                 });
-            }
-            else if ($("#property_height").val() > minHeght && ($("#property_totheight").val() < 2000 && $("#property_totheight").val() != '')) {
+            } else if ($("#property_height").val() > minHeght && ($("#property_totheight").val() < 2000 && $("#property_totheight").val() != '')) {
                 console.log('cond 4');
                 $('input[name="property_stile"]').each(function () {
                     if ($(this).data('title').indexOf('41mm') > -1) {
@@ -8085,6 +8007,7 @@ jQuery.noConflict();
         var lengKeyR = 0;
 
         $("#property_layoutcode").on('keypress', function (event) {
+            console.log('keypress');
             $('.pull-left.extra-column-buildout.property_b_buildout1').hide();
             var charCode = event.which;
             if (!charCode) { // <-- charCode === 0
@@ -8103,27 +8026,74 @@ jQuery.noConflict();
             //     }
             // });
 
+            // Convert the input value to uppercase
             var text = $(this).val().toUpperCase();
-            let letter = text.charAt(0);
-            console.log('letter ' + letter);
-            if (letter == 'R' && lengKeyR == 1 && "L" == character) { // <-- charCode === 0
-                console.log('letter r and lengkeyr1');
-                return false; // return false, optionally
-            }
-            if ($("#property_material").val() == '138' && letter == 'R' && (lengKeyR == 2 || lengKeyR == 3) && "L" == character) {
-                console.log('letter r and lengkeyr1');
-                return false; // return false, optionally
+
+            // Get the selected material value from the dropdown
+            let materialValue = $("#property_material").val();
+
+            // Definim caracterele separatoare între grupuri (T, C, G, B)
+            let separatorChars = ['T', 'C', 'G', 'B'];
+
+            // Initialize counts for L and R
+            let currentRCount = 0;
+            let currentLCount = 0;
+            let valid = true;  // Flag to track if the input is valid
+
+            // Iterate through each character in the input text
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+
+                // Reset the count when we hit a separator (T, C, G, B)
+                if (separatorChars.includes(char)) {
+                    currentRCount = 0;
+                    currentLCount = 0;
+                    continue;  // Continue to the next character
+                }
+
+                // Check if the current character is R or L
+                if (char === 'R') {
+                    currentRCount++;
+                    currentLCount = 0;  // Reset L count when encountering an R
+                } else if (char === 'L') {
+                    currentLCount++;
+                    currentRCount = 0;  // Reset R count when encountering an L
+                }
+
+                // Condition for Biowood Plus (138) — allow up to 3 R or L
+                if (materialValue == '138' || materialValue == '6') {
+                    if (currentRCount > 3 || currentLCount > 3) {
+                        console.log('Too many R or L characters for Biowood Plus.');
+                        valid = false;
+                        break;
+                    }
+                } else {  // Other materials — allow only up to 2 R or L
+                    if (currentRCount > 2 || currentLCount > 2) {
+                        console.log('Too many R or L characters for other materials.');
+                        valid = false;
+                        break;
+                    }
+                }
             }
 
-            if (letter == 'R') {
-                var str = text;
-                var stringsearch = "R"
-                for (var i = lengKeyR = 0; i < str.length; lengKeyR += +(stringsearch === str[i++])) ;
+            // Stop input if the input is invalid
+            if (!valid) {
+                return false;  // Prevent further input if invalid
             }
-
+            console.log('layout tbc before');
             if ("L" == character || "R" == character || event.keyCode == 8) {
                 return true;
             } else if ("T" == character || "B" == character || "C" == character) {
+                console.log('layout tbc ', $('#property_motorized').val());
+                $('#property_motorized').parent().show();
+                if ($('#property_motorized').val() == 'Yes') {
+                    $("span.error-text:contains('one motor for each section will be necessary')").remove();
+
+                    let error_text = 'one motor for each section will be necessary';
+                    addError("property_layoutcode", error_text);
+                }
+
+
                 var text = $("#property_layoutcode").val();
                 //console.log('in G press '+text.length);
                 if (text.charAt(text.length - 1).toUpperCase() == 'G') {
@@ -8153,7 +8123,7 @@ jQuery.noConflict();
         $("#property_hingecolour").change(function () {
             // if hinge color id is mot equal to 93 (Stainless Steel) and material is green then show alert-info about waterproof
             property_val = $('input[name="property_hingecolour"]').val();
-            if (product_title_check.indexOf('Green') > -1) {
+            if (product_title_check.indexOf('Green') > -1 || product_title_check.indexOf('EcowoodPlus') > -1) {
                 // console.log(property_val);
                 if (property_val !== '93') {
                     $('#step4-info .alert-info').show();
@@ -8389,7 +8359,10 @@ jQuery.noConflict();
                             jQuery('.tpost-img').hide();
                             jQuery('#stile-img-supreme').hide();
                             jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-biowoodPlus').hide();
                             jQuery('#stile-img-green').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
                             //tpost-type
                             jQuery('.type-img-earth').show();
                             jQuery('.type-img-earth').parent().show();
@@ -8403,7 +8376,9 @@ jQuery.noConflict();
                             jQuery('#stile-img-earth').hide();
                             jQuery('#stile-img-ecowood').hide();
                             jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-biowoodPlus').hide();
                             jQuery('#stile-img-green').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
                             //tpost-type
                             jQuery('.type-img-supreme').show();
                             jQuery('.type-img-supreme').parent().show();
@@ -8412,14 +8387,16 @@ jQuery.noConflict();
                         else if (material_id == 138) {
                             // console.log('show Biowood img');
                             jQuery('.tpost-img').hide();
-                            jQuery('#stile-img-biowood').show();
+                            jQuery('#stile-img-biowoodPlus').show();
+                            jQuery('#stile-img-biowood').hide();
                             jQuery('#stile-img-supreme').hide();
                             jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
                             jQuery('#stile-img-ecowood').hide();
                             jQuery('#stile-img-green').hide();
                             //tpost-type
-                            jQuery('.type-img-biowood').show();
-                            jQuery('.type-img-biowood').parent().show();
+                            jQuery('.type-img-biowoodPlus').show();
+                            jQuery('.type-img-biowoodPlus').parent().show();
                         }
                         // Green 137
                         else if (material_id == 137) {
@@ -8430,9 +8407,23 @@ jQuery.noConflict();
                             jQuery('#stile-img-biowood').hide();
                             jQuery('#stile-img-earth').hide();
                             jQuery('#stile-img-ecowood').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
                             //tpost-type
                             jQuery('.type-img-green').show();
                             jQuery('.type-img-green').parent().show();
+                        }
+                        else if (material_id == 5) {
+                            // console.log('show Green img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-ecowoodPlus').show();
+                            jQuery('#stile-img-green').hide();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            //tpost-type
+                            jQuery('.type-img-ecowoodPlus').show();
+                            jQuery('.type-img-ecowoodPlus').parent().show();
                         }
                         // ecowood 188
                         else if (material_id == 188) {
@@ -8441,11 +8432,28 @@ jQuery.noConflict();
                             jQuery('#stile-img-ecowood').show();
                             jQuery('#stile-img-supreme').hide();
                             jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-biowoodPlus').hide();
                             jQuery('#stile-img-earth').hide();
                             jQuery('#stile-img-green').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
                             //tpost-type
                             jQuery('.type-img-ecowood').show();
                             jQuery('.type-img-ecowood').parent().show();
+
+                        }
+                        else if (material_id == 6) {
+                            console.log('show biowoodPlus img');
+                            jQuery('.tpost-img').hide();
+                            jQuery('#stile-img-biowoodPlus').show();
+                            jQuery('#stile-img-biowood').hide();
+                            jQuery('#stile-img-supreme').hide();
+                            jQuery('#stile-img-earth').hide();
+                            jQuery('#stile-img-green').hide();
+                            jQuery('#stile-img-ecowoodPlus').hide();
+                            jQuery('#stile-img-ecowood').hide();
+                            //tpost-type
+                            jQuery('.type-img-biowoodPlus').show();
+                            jQuery('.type-img-biowoodPlus').parent().show();
 
                         }
 
@@ -8489,15 +8497,15 @@ jQuery.noConflict();
                     id2 = "property_bp" + layout_columns.b;
                     addField(label, id2, 1);
 
-                    if (property_material == 188) {
-                        labela = 'Bay Angle ' + layout_columns.b;
-                        id1a = "property_ba" + layout_columns.b;
-                        addFieldBuildAngleSelect(labela, id1a, 1);
-                    } else {
-                        label = 'Bay Angle ' + layout_columns.b;
-                        id1 = "property_ba" + layout_columns.b;
-                        addField(label, id1, 1);
-                    }
+                    // if (property_material == 188) {
+                    //     labela = 'Bay Angle ' + layout_columns.b;
+                    //     id1a = "property_ba" + layout_columns.b;
+                    //     addFieldBuildAngleSelect(labela, id1a, 1);
+                    // } else {
+                    label = 'Bay Angle ' + layout_columns.b;
+                    id1 = "property_ba" + layout_columns.b;
+                    addField(label, id1, 1);
+                    // }
 
                     if (bchar_nr < 2) {
                         label = 'B-Post Buildout ';
@@ -8983,6 +8991,16 @@ jQuery.noConflict();
         }
 
         function checkStyleTier() {
+            var inputValue = $('#property_controltype').val();
+            // Set a default value (assuming 'default_value' is the value you want to set)
+            $("#property_controltype").select2('val', inputValue);
+
+            // Remove the 'not-required' class and add 'required' class
+            $("#property_controltype").removeClass('not-required').addClass('required');
+
+            // Show the element
+            $("#property_controltype").closest('div').show().removeClass('solid-selected');
+
             if ($('input[name=property_style]:checked').length > 0) {
                 style_check = $('input[name=property_style]:checked').data('title');
             } else {
@@ -9010,11 +9028,23 @@ jQuery.noConflict();
 //teo
             if (style_check.indexOf('Special') > -1) {
                 $(".tot-height").fadeIn();
+                if ($("#property_material").select2('data')) {
+                    let product_title_check = $("#property_material").val();
+                    if (product_title_check.indexOf('Earth') == 187) {
+                        $("#property_horizontaltpost").prop('checked', true);
+                    }
+                }
                 $("#property_totheight").fadeIn();
                 $("#property_totheight").removeClass("required");
                 $("#property_totheight").addClass("not-required");
             } else if (style_check.indexOf('Tier') > -1 && style_check.indexOf('Solid') == -1) {
                 $(".tot-height").fadeIn();
+                if ($("#property_material").select2('data')) {
+                    let product_title_check = $("#property_material").val();
+                    if (product_title_check.indexOf('Earth') == 187) {
+                        $("#property_horizontaltpost").prop('checked', true);
+                    }
+                }
                 $("#property_totheight").fadeIn();
                 $("#property_totheight").addClass("required");
                 $("#property_midrailheight").removeClass("required");
@@ -9032,6 +9062,16 @@ jQuery.noConflict();
                 $("#midrail-divider2").hide();
                 $("#midrail-height input").val('');
                 $("#solidtype").show();
+                if (style_check.indexOf('Shaped') > -1) {
+                    $('#solidtype #property_solidtype_flat').css("display", "none");
+                } else {
+                    // if form has attribute edit yes then remove attr checked
+                    if ($('form').attr('edit') === 'yes') {
+                        $('#solidtype input[value="raised"]').removeAttr("checked");
+                    }
+
+                    $('#solidtype #property_solidtype_flat').removeAttr("style");
+                }
                 // $("#midrail-height2").hide();
                 // $("#midrail-height2 input").val('');
                 $("#property_bladesize").closest('div').hide();
@@ -9045,7 +9085,7 @@ jQuery.noConflict();
                 $("#ring-pull").show();
                 $("#property_controltype").select2('val', '');
                 $("#property_controltype").addClass('not-required');
-                $("#property_controltype").closest('div').hide();
+                $("#property_controltype").closest('div').hide().addClass('solid-selected');
                 $("#control-split-height").hide();
 
                 if ($('form').attr('edit') === 'no') {
@@ -9059,6 +9099,12 @@ jQuery.noConflict();
 
                 if (style_check.indexOf('Tier') > -1) {
                     $(".tot-height").fadeIn();
+                    if ($("#property_material").select2('data')) {
+                        let product_title_check = $("#property_material").val();
+                        if (product_title_check.indexOf('Earth') == 187) {
+                            $("#property_horizontaltpost").prop('checked', true);
+                        }
+                    }
                     $("#property_totheight").fadeIn();
                     $("#property_totheight").addClass("required");
                     $("#midrail-height").hide();
@@ -9075,9 +9121,9 @@ jQuery.noConflict();
             } else if (style_check.indexOf('Combi') > -1) {
                 $("#spare-louvres").hide();
 
-                $("#midrail-height").hide();
+                $("#midrail-height").show();
                 $("#midrail-height2").hide();
-                $("#midrail-divider").hide();
+                $("#midrail-divider").show();
                 $("#midrail-divider2").hide();
                 $("#midrail-height input").val('');
                 // $("#midrail-height2").hide();
@@ -9105,6 +9151,12 @@ jQuery.noConflict();
 
                 if (style_check.indexOf('Tier') > -1) {
                     $(".tot-height").fadeIn();
+                    if ($("#property_material").select2('data')) {
+                        let product_title_check = $("#property_material").val();
+                        if (product_title_check.indexOf('Earth') == 187) {
+                            $("#property_horizontaltpost").prop('checked', true);
+                        }
+                    }
                     $("#property_totheight").fadeIn();
                     $("#property_totheight").addClass("required");
                 } else {
@@ -9145,17 +9197,18 @@ jQuery.noConflict();
                 //$("#property_sparelouvres").prop('checked', false);
                 $("#spare-louvres").show();
                 $("#spare-louvres").closest("div.row").show();
-                $("#property_controltype").closest('div').show();
+                $("#property_controltype").closest('div').show().removeClass('solid-selected');
                 $("#control-split-height").show();
             }
             if (style_check.indexOf('Solid') == -1 && style_check.indexOf('Combi') < -1) {
                 $("#midrail-height").show();
+                $("#midrail-divider").show();
                 $("#property_bladesize").closest('div').show();
                 $("#property_bladesize").removeClass('not-required');
 
                 $("#spare-louvres").show();
                 $("#spare-louvres").closest("div.row").show();
-                $("#property_controltype").closest('div').show();
+                $("#property_controltype").closest('div').show().removeClass('solid-selected');
 
                 //$("#property_framebottom, #property_frametop,
                 // #property_frameright,#property_frameleft").prop('readonly',false);
@@ -9170,11 +9223,14 @@ jQuery.noConflict();
                 $("#midrail-height").hide();
                 $("#midrail-height2").hide();
             } else if (style_check.indexOf('Solid Combi Panel Bay Window') > -1) {
-                console.log('Solid Combi Panel Bay Window');
+                // console.log('Solid Combi Panel Bay Window');
                 $("#solid-panel-height").show();
                 $("#property_bladesize").closest('div').show();
-                $("#midrail-height").hide();
+                $("#midrail-height").show();
                 $("#midrail-height2").hide();
+                $("#midrail-divider").show();
+
+                $("#property_controltype").closest('div').show().removeClass('solid-selected');
             }
             // else{
             //     $("#solid-panel-height").hide();
@@ -9482,13 +9538,18 @@ jQuery.noConflict();
 
             //calculate width   biowood-138  supreme-139  green-137   earth-187
             panel1_width = (id_material == 137 ? 890 : 890);
+            panel1_width = (id_material == 5 ? 890 : 890);
             panel2_width = (id_material == 137 ? 550 : 550);
+            panel2_width = (id_material == 5 ? 550 : 550);
             panel2_width = (id_material == 138 ? 625 : 625);
+            panel2_width = (id_material == 6 ? 625 : 625);
             panel3_width = (id_material == 138 ? 550 : 550);
+            panel3_width = (id_material == 6 ? 550 : 550);
             panel2_width = (id_material == 188 ? 625 : 625);
             panel3_width = (id_material == 188 ? 550 : 550);
             panel3_width = (id_material == 137 ? 550 : 550);
 
+            // green
             if (check_louvresize == 53 && id_material == 137) {
                 panel1_width = (id_material == 137 ? 750 : 750);
             }
@@ -9501,8 +9562,22 @@ jQuery.noConflict();
             if (check_louvresize == 165 && id_material == 137) {
                 panel1_width = (id_material == 137 ? 890 : 890);
             }
+            // ecowoodPlus
+            if (check_louvresize == 53 && id_material == 5) {
+                panel1_width = (id_material == 137 ? 750 : 750);
+            }
+            if (check_louvresize == 54 && id_material == 5) {
+                panel1_width = (id_material == 137 ? 890 : 890);
+            }
+            if (check_louvresize == 55 && id_material == 5) {
+                panel1_width = (id_material == 137 ? 890 : 890);
+            }
+            if (check_louvresize == 165 && id_material == 5) {
+                panel1_width = (id_material == 137 ? 890 : 890);
+            }
 
-            if (id_material == 138 || id_material == 188) {
+            let error_text;
+            if (id_material == 138 || id_material == 6 || id_material == 188) {
 
 
                 for (var i = 0; i < layout_code.length; i++) {
@@ -9531,15 +9606,15 @@ jQuery.noConflict();
                                 error_text = '<br/>Max width for single panel too high.';
                                 errors++;
                                 addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+                                // modalShowError(error_text);
                                 alert('1');
                             }
                             if (panel1_width < 200) {
                                 console.log('counter litere: ' + counter);
                                 error_text = '<br/>Min width for single panel too low.';
                                 errors++;
-                                addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+                                // addError("property_layoutcode", error_text);
+                                // modalShowError(error_text);
                                 alert('2');
                             }
                         } else if (counter == 2) {
@@ -9548,16 +9623,16 @@ jQuery.noConflict();
                                 console.log('counter litere: ' + counter);
                                 error_text = '<br/>Max width for multiple panel too high.';
                                 errors++;
-                                addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+                                // addError("property_layoutcode", error_text);
+                                // modalShowError(error_text);
                                 alert('3');
                             }
                             if (panel2_width < 200) {
                                 console.log('counter litere: ' + counter);
                                 error_text = '<br/>Min width for multiple panel too low.';
                                 errors++;
-                                addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+                                // addError("property_layoutcode", error_text);
+                                // modalShowError(error_text);
                                 alert('4');
                             }
                         } else if (counter == 3) {
@@ -9566,16 +9641,15 @@ jQuery.noConflict();
                                 console.log('counter litere: ' + counter);
                                 error_text = '<br/>Max width for multiple panel too high.';
                                 errors++;
-                                addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+                                // addError("property_layoutcode", error_text);
+                                // modalShowError(error_text);
                                 alert('5');
                             }
                             if (panel3_width < 200) {
                                 console.log('counter litere: ' + counter);
                                 error_text = '<br/>Min width for multiple panel too low.';
                                 errors++;
-                                addError("property_layoutcode", error_text);
-                                modalShowError(error_text);
+
                                 alert('6');
                             }
                         } else { //counter > 3 means that we have LLLL OR RRRR. More than 3 same panels allowed only for tracked.
@@ -9587,12 +9661,19 @@ jQuery.noConflict();
                                 width_and_height_errors = width_and_height_errors + error_text;
                                 console.log('counter litere: ' + counter);
 
-                                addError("property_layoutcode", error_text);
+                                // addError("property_layoutcode", error_text);
                                 modalShowError(error_text);
                             }
                         }
                         max_width = max_width + current_max_width;
+                        if (max_width > 1400) {
+                            error_text = error_text + '<br/>Maximum single BoB width is 1400mm';
+                        }
+                        alert(error_text);
+                        addError("property_layoutcode", error_text);
+                        modalShowError(error_text);
                     }
+
                     console.log('counter litere 2: ' + counter);
 
                     last_char = layout_code.charAt(i);
@@ -14193,6 +14274,34 @@ jQuery.noConflict();
                 return 110;
             }
         }
+
+        // function if #property_motorized is clicked and change to Yes then shop #property_nrMotors and #property_nrRemotes
+        $('#property_motorized').click(function () {
+            console.log('motorized clicked');
+            if ($('#property_motorized').val() == 'Yes') {
+                $('#property_nrMotors').parent().show();
+                $('#property_nrRemotes').parent().show();
+            }
+            // if property_layoutcode contain C, B, T then show error message
+            const value = $('#property_layoutcode').val().toUpperCase();
+            const containsChar = ['B', 'C', 'T'].some(char => value.includes(char));
+            console.log('containsChar ', containsChar);
+
+            if (containsChar) {
+                $("span.error-text:contains('one motor for each section will be necessary')").remove();
+
+                console.log('show warrning motor');
+                let error_text = 'one motor for each section will be necessary';
+
+                addError("property_layoutcode", error_text);
+
+            }
+            if ($('#property_motorized').val() == 'No') {
+                $("span.error-text:contains('one motor for each section will be necessary')").remove();
+                $('#property_nrMotors').parent().hide();
+                $('#property_nrRemotes').parent().hide();
+            }
+        });
 
     });
 })(jQuery);

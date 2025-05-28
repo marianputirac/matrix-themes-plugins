@@ -27,6 +27,7 @@ function theme_enqueue_styles()
 
 	// datatable
 	wp_enqueue_style('datatable-style_custom', get_stylesheet_directory_uri() . '/css/jquery.dataTables.min.css');
+	wp_enqueue_script('script-sweetalert', get_stylesheet_directory_uri() . '/js/sweetalert.min.js', array(), '1.1.1', false);
 	wp_enqueue_script('script-jquery1', get_stylesheet_directory_uri() . '/js/jquery-3.3.1.min.js', array(), '1.10.19', false);
 	wp_enqueue_script('script-datatable', get_stylesheet_directory_uri() . '/js/jquery.dataTables.min.js', array(), '1.10.19', true);
 	wp_enqueue_script('script-datatable1', get_stylesheet_directory_uri() . '/js/datatable/dataTables.buttons.min.js', array(), '1.10.19', true);
@@ -53,19 +54,19 @@ function custom_matrix_scripts_admin($hook)
 	wp_enqueue_style('bootstrap5-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css');
 
 	wp_enqueue_script(
-		'wptuts53021_script', //unique handle
-		get_stylesheet_directory_uri() . '/js/jspdf.min.js'
+	  'wptuts53021_script', //unique handle
+	  get_stylesheet_directory_uri() . '/js/jspdf.min.js'
 	);
 	wp_enqueue_script(
-		'wptuts53087654_script', //unique handle
-		get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
+	  'wptuts53087654_script', //unique handle
+	  get_stylesheet_directory_uri() . '/js/html2canvas.min.js'
 	);
 	wp_enqueue_script(
-		'custom_scripts_admin', //unique handle
-		get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
-		array(),
-		'1.0',
-		true
+	  'custom_scripts_admin', //unique handle
+	  get_stylesheet_directory_uri() . '/js/custom_scripts_admin.js',
+	  array(),
+	  '1.0',
+	  true
 	);
 
 	//teo for ticketing module edit ticket page
@@ -75,6 +76,18 @@ function custom_matrix_scripts_admin($hook)
 	wp_enqueue_script('jquery-ui-datepicker');
 
 	wp_enqueue_script('bootstrap5-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js');
+
+	// Only enqueue on the 'order_repair' post type admin page
+	global $typenow;
+	if ($typenow == 'order_repair') {
+		$screen = get_current_screen();
+
+		// Check if the current screen is the list table for the custom post type
+		if ($screen && $screen->base == 'edit') {
+			wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+			wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0-rc.0', true);
+		}
+	}
 }
 
 
@@ -86,6 +99,7 @@ include_once(get_stylesheet_directory() . '/includes/woocommerce-functions.php')
 include_once(get_stylesheet_directory() . '/includes/login_redirects.php');
 include_once(get_stylesheet_directory() . '/includes/add-meta-boxes.php');
 include_once(get_stylesheet_directory() . '/includes/user-functions.php');
+include_once(get_stylesheet_directory() . '/includes/awning-functions.php');
 
 include_once(get_stylesheet_directory() . '/includes/dashboard_footer.php');
 include_once(get_stylesheet_directory() . '/includes/class_quickbooks.php');
@@ -95,6 +109,10 @@ include_once(get_stylesheet_directory() . '/includes/ajax.php');
  * Mail custom settings
  */
 include_once(get_stylesheet_directory() . '/includes/mail-settings.php');
+/**
+ * Grup functions
+ */
+include_once(get_stylesheet_directory() . '/includes/grup-functions.php');
 /**
  * Shortcodes
  */
@@ -111,8 +129,8 @@ if (!function_exists('sendLogMatrixMail')) {
 	{
 		//Something to write to txt log
 		$log = "Subject: " . $subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
-			$description . " " . date("F j, Y, g:i a") . PHP_EOL .
-			"-------------------------" . PHP_EOL;
+		  $description . " " . date("F j, Y, g:i a") . PHP_EOL .
+		  "-------------------------" . PHP_EOL;
 
 		$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
 		if (!file_exists($log_filename)) {
@@ -193,12 +211,12 @@ function repairedOldOrders($views)
 function multicart_widget_custom()
 {
 	register_sidebar(array(
-		'name' => 'MultiCartWidget',
-		'id' => 'multicart_widgett',
-		'before_widget' => '<div>',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="rounded">',
-		'after_title' => '</h2>',
+	  'name' => 'MultiCartWidget',
+	  'id' => 'multicart_widgett',
+	  'before_widget' => '<div>',
+	  'after_widget' => '</div>',
+	  'before_title' => '<h2 class="rounded">',
+	  'after_title' => '</h2>',
 	));
 }
 
@@ -303,7 +321,7 @@ function save_order_post($post_id)
 
 			// $single_email = 'marian93nes@gmail.com';
 			$multiple_recipients = array(
-				'caroline@anyhooshutter.com', 'july@anyhooshutter.com', 'tudor@lifetimeshutters.com',
+			  'caroline@anyhooshutter.com', 'july@anyhooshutter.com', 'tudor@lifetimeshutters.com',
 			);
 
 			$subject = 'ON-HOLD Order LF0' . $order->get_order_number() . ' - ' . $name . ' - for REVISION';
@@ -342,8 +360,8 @@ function wisdom_filter_tracked_plugins($post_type)
 		if (isset($_GET['cart_name'])) {
 			$current_search = $_GET['cart_name']; // Check if option has been selected
 		} ?>
-    <input type="text" name="cart_name" id="cart_name"
-           value="<?php echo esc_attr($current_search); ?>" placeholder="Order Ref">
+        <input type="text" name="cart_name" id="cart_name"
+               value="<?php echo esc_attr($current_search); ?>" placeholder="Order Ref">
 	<?php }
 }
 
@@ -802,7 +820,7 @@ function order_repair_save_meta($post_id)
 			$user_mail = $order_data['billing']['email'];
 
 			$multiple_recipients = array(
-				'order@lifetimeshutters.com', 'tudor@lifetimeshutters.com', $user_mail,
+			  'order@lifetimeshutters.com', 'tudor@lifetimeshutters.com', $user_mail,
 			);
 //$multiple_recipients = 'marian93nes@gmail.com, tudor@fiqs.ro';
 			$subject = get_the_title($post_id) . ' - Not Under Warranty - Repair Order';
@@ -857,8 +875,8 @@ function ticket_cron_mail()
 {
 	// Query unanswered tickets
 	$loop = new WP_Query(array(
-		'post_type' => 'stgh_ticket',
-		'post_status' => array('stgh_answered', 'stgh_new'),
+	  'post_type' => 'stgh_ticket',
+	  'post_status' => array('stgh_answered', 'stgh_new'),
 	));
 
 	// Loop through the tickets
@@ -947,133 +965,353 @@ function delete_custom_order($post_id)
 //    return $fields;
 //}
 
-/*
- * Recalculate on each update for any order in dashboard all items quantity and total ( ATENTION!!!! somethimes need to do two updates to show gross total correctly )
- * Update custom table wp_custom_orders with new USD and GBP price from recalculation
+/**
+ * Hook principal declanșat la salvarea unei comenzi ('shop_order').
+ * Gestionează recalcularea custom a totalurilor comenzii și actualizarea tabelei `wp_custom_orders`.
+ *
+ * @param int $order_id ID-ul comenzii salvate.
  */
-function recalculate_and_update_custom_shop_order_save_post($post_id)
+function matrix_trigger_order_recalculation_on_save($order_id)
 {
-	// Update a custom post meta
-	update_post_meta($post_id, 'custom_meta_save_post', 'meta_save');
+	/*
+	 * Verificări de securitate și validare inițială.
+	 */
 
-	// If the post type is not 'shop_order', then return early
-	if (!isset($_POST['post_type']) || 'shop_order' != $_POST['post_type']) {
+	// Verifică dacă postul salvat este într-adevăr o comandă (verificare suplimentară)
+	if (get_post_type($order_id) !== 'shop_order') {
 		return;
-	}
+	} elseif (get_post_type($order_id) === 'shop_order') {
 
-	// Get the order object
-	$order = wc_get_order($post_id);
-
-	// Get order related data
-	$user_id_customer = get_post_meta($post_id, '_customer_user', true);
-	$items = $order->get_items();
-	$country_code = WC()->countries->countries[$order->get_shipping_country()];
-
-	// Initialize some variables
-	$total_dolar = 0;
-	$sum_total_dolar = 0;
-	$totaly_sqm = 0;
-	$new_total = 0;
-	$order_train = 0;
-
-	// Determine tax rate based on country
-	$tax_rate = ($country_code == 'United Kingdom (UK)' || $country_code == 'Ireland') ? 20 : 0;
-
-	// Variable to track if certain product categories are in the order
-	$has_specified_categories = false;
-
-	// Traverse all items in the order
-	foreach ($items as $item_id => $item_data) {
-		// Update $has_specified_categories if product with certain categories is found
-		if (has_term([20, 34, 26], 'product_cat', $item_data['product_id'])) {
-			$has_specified_categories = true;
-			continue;
-		}
-
-		// Continue calculations and updates only for products that do not belong to the specified categories
-		// Code is largely similar to original, but with some simplifications and enhancements
-
-		// Get necessary product data
-		$quantity = get_post_meta($item_data['product_id'], 'quantity', true) ?: 1;
-		$price = get_post_meta($item_data['product_id'], '_price', true);
-		$sqm = get_post_meta($item_data['product_id'], 'property_total', true);
-		$train_price = get_user_meta($user_id_customer, 'train_price', true);
-		if (empty($train_price) && !is_numeric($train_price)) {
-			$train_price = get_post_meta(1, 'train_price', true);
-		}
-
-		// Calculate total, tax and new price
-		$total = $price * $quantity;
-		if ($sqm > 0) {
-			$new_price = floatval($sqm * $quantity) * floatval($train_price);
-		} else {
-			$new_price = 0;
-		}
-		$total += $new_price;
-		$tax = ($tax_rate * $total) / 100;
-
-		// Update line item meta
-		wc_update_order_item_meta($item_id, '_qty', $quantity);
-		wc_update_order_item_meta($item_id, '_line_tax', $tax);
-		wc_update_order_item_meta($item_id, '_line_subtotal_tax', $tax);
-		wc_update_order_item_meta($item_id, '_line_subtotal', $total);
-		wc_update_order_item_meta($item_id, '_line_total', $total);
-		wc_update_order_item_meta($item_id, '_line_tax_data', ['total' => [1 => $tax], 'subtotal' => [1 => $tax]]);
-
-		// Calculate USD price, total square meters, and new total
-		$prod_qty = get_post_meta($item_data['product_id'], 'quantity', true);
-		$dolar_price = get_post_meta($item_data['product_id'], 'dolar_price', true);
-		$sum_total_dolar += $dolar_price * $prod_qty;
-		$totaly_sqm += $sqm * $prod_qty;
-		$new_total += $total + $tax;
-	}
-
-// Update the order train meta data if it's greater than zero
-	if ($order_train > 0) {
-		update_post_meta($post_id, 'order_train', $order_train);
-	}
-
-// Only proceed if no product from specified categories were found in the order
-	if (!$has_specified_categories) {
-		$tax_shipping_total = array_reduce($order->get_items('tax'), function ($carry, $item_tax) {
-			return $carry + $item_tax->get_shipping_tax_total();
-		}, 0);
-
-		// Calculate the total price and update it in the post meta
-		$total_price = $new_total + $order->get_shipping_total() + $tax_shipping_total;
-		update_post_meta($post_id, '_order_total', $total_price);
-
-		// Update or insert into custom orders table
-		global $wpdb;
-		$idOrder = $post_id;
-		$orderExist = $wpdb->get_var("SELECT COUNT(*) FROM `wp_custom_orders` WHERE `idOrder` = $idOrder");
-		$data = [
-			'usd_price' => $sum_total_dolar,
-			'gbp_price' => $order->get_total(),
-			'subtotal_price' => $order->get_subtotal(),
-			'sqm' => $totaly_sqm,
-			'shipping_cost' => $order->get_shipping_total(),
-		];
-
-		if ($orderExist != 0) {
-			// Update the existing record
-			$wpdb->update($wpdb->prefix . 'custom_orders', $data, ['idOrder' => $post_id]);
-		} else {
-			// Insert a new record
-			$data += [
-				'idOrder' => $post_id,
-				'reference' => 'LF0' . $order->get_order_number() . ' - ' . get_post_meta($post_id, 'cart_name', true),
-				'delivery' => wc_get_product($item_data['product_id'])->get_shipping_class(),
-				'status' => $order->get_status(),
-				'createTime' => $order->get_date_created()->date('Y-m-d H:i:s'),
-			];
-			$wpdb->insert($wpdb->prefix . 'custom_orders', $data);
-		}
+		// Rulează funcția principală de recalculare
+		matrix_recalculate_order_totals_and_update_custom_table($order_id);
 	}
 }
 
 
-add_action('save_post', 'recalculate_and_update_custom_shop_order_save_post');
+// Înlocuiește hook-ul vechi cu cel specific pentru comenzi
+add_action('save_post', 'matrix_trigger_order_recalculation_on_save', 100, 1);
+
+/**
+ * Funcția principală pentru recalcularea totalurilor comenzii și actualizarea tabelei custom.
+ * ATENȚIE: Această funcție suprascrie calculele standard WooCommerce cu o logică custom.
+ *
+ * @param int $order_id ID-ul comenzii.
+ */
+function matrix_recalculate_order_totals_and_update_custom_table($order_id)
+{
+	error_log("--- Starting Custom Order Recalculation for Order ID: {$order_id} ---");
+
+	$order = wc_get_order($order_id);
+	if (!$order) {
+		error_log("Recalculation Error: Could not get order object for ID: {$order_id}");
+		return;
+	}
+
+	// Obține datele necesare comenzii
+	$user_id_customer = $order->get_customer_id(); // Folosim ID-ul clientului comenzii
+	$items = $order->get_items(); // Obține itemii 'line_item'
+	$shipping_country = $order->get_shipping_country();
+
+	// Inițializează totalurile calculate
+	$calculated_items_subtotal_gbp = 0; // Suma (Preț item * Cantitate + Preț tren) pentru itemii procesați
+	$calculated_items_tax_gbp = 0;      // Suma taxelor pentru itemii procesați
+	$calculated_total_usd = 0;          // Suma (Preț USD * Cantitate) pentru itemii procesați
+	$calculated_total_sqm = 0;          // Suma (SQM * Cantitate) pentru itemii procesați
+	$calculated_order_train_price = 0;  // Suma totală a prețului de transport 'tren'
+
+	$order_contains_pos = false; // Flag pentru a detecta produse din categorii speciale (POS)
+
+	// Determină rata de taxare (Logica originală specifică UK/IE)
+	// @TODO: Ar trebui ideal să folosească sistemul de taxe WC bazat pe clasele de taxe ale produselor/transportului.
+	$tax_rate_percent = 0;
+	if (in_array($shipping_country, ['GB', 'IE'])) {
+		$tax_rate_percent = 20;
+	}
+	error_log("Order {$order_id}: Shipping Country={$shipping_country}, Custom Tax Rate Used={$tax_rate_percent}%");
+
+	// --- Iterează prin itemii comenzii ---
+	foreach ($items as $item_id => $item_data) {
+		$product_id = $item_data->get_product_id();
+		$product = $item_data->get_product(); // Obține obiectul produs asociat itemului
+
+		if (!$product) {
+			error_log("Recalculation Warning for Order {$order_id}: Could not get product object for Product ID: {$product_id}, Item ID: {$item_id}");
+			continue; // Treci la următorul item dacă produsul nu poate fi încărcat
+		}
+
+		// Verifică dacă produsul aparține categoriilor POS definite
+		if (has_term([20, 34, 26], 'product_cat', $product_id)) {
+			$order_contains_pos = true;
+			error_log("Order {$order_id}: Item ID {$item_id} (Product ID {$product_id}) is POS category. Skipping custom calculation.");
+			// Logica originală oprea complet actualizarea finală dacă existau itemi POS.
+			// Păstrăm acest comportament. Alternativ, am putea aduna totalurile existente ale acestor itemi.
+			continue; // Treci la următorul item
+		}
+
+		// Inițializează variabilele pentru linia curentă
+		$line_subtotal_gbp = 0;
+		$line_tax_gbp = 0;
+		$line_total_usd = 0;
+		$line_total_sqm = 0;
+		$item_train_price_total = 0;
+		$item_quantity = $item_data->get_quantity(); // Folosim cantitatea din comandă
+		$item_quantity = (empty($item_quantity) || $item_quantity == 0) ? 1 : $item_quantity;
+
+		// --- Logică specifică pentru categoria 'awning' ---
+		if (has_term('awning', 'product_cat', $product_id)) {
+			error_log("Order {$order_id}, Item ID {$item_id}: Detected 'awning' category.");
+
+			// Prețul GBP este citit din meta itemului 'final_price_uk'
+			$base_price_gbp = floatval($item_data->get_meta('final_price_uk', true));
+			// SQM este citit din meta itemului 'awning_sqm'
+			$sqm = floatval($item_data->get_meta('awning_sqm', true));
+			// Prețul USD este citit din meta itemului 'final_price_china'
+			$price_usd = floatval($item_data->get_meta('final_price_china', true));
+
+			// Calculează prețul 'tren'
+			if ($sqm > 0) {
+				// Folosim ID-ul clientului comenzii pentru a căuta prețul tren specific lui
+				$train_price_per_sqm = matrix_get_train_price_for_customer($user_id_customer);
+				if ($train_price_per_sqm > 0) {
+					$item_train_price_total = $sqm * $item_quantity * $train_price_per_sqm;
+				}
+			}
+
+			// Calculează valorile liniei pentru awning
+			$line_subtotal_gbp = ($base_price_gbp * $item_quantity) + $item_train_price_total;
+			$line_tax_gbp = ($line_subtotal_gbp * $tax_rate_percent) / 100;
+			$line_total_usd = $price_usd * $item_quantity;
+			$line_total_sqm = $sqm * $item_quantity;
+
+			// Log specific pentru awning
+			error_log("Order {$order_id}, Awning Item {$item_id}: Qty={$item_quantity}, BaseGBP={$base_price_gbp}, SQM={$sqm}, TrainPriceTotal={$item_train_price_total}, USDPrice={$price_usd}");
+		} // --- Logică pentru itemii standard (nu sunt POS și nu sunt awning) ---
+		else {
+			error_log("Order {$order_id}, Item ID {$item_id}: Processing as standard item.");
+
+			// Prețul GBP este prețul standard al produsului
+			$base_price_gbp = floatval($product->get_price());
+			// SQM este citit din meta produsului 'property_total'
+			$sqm = floatval($product->get_meta('property_total', true));
+			// Prețul USD este citit din meta produsului 'dolar_price'
+			$price_usd = floatval($product->get_meta('dolar_price', true));
+
+			// Calculează prețul 'tren'
+			if ($sqm > 0) {
+				$train_price_per_sqm = matrix_get_train_price_for_customer($user_id_customer);
+				if ($train_price_per_sqm > 0) {
+					$item_train_price_total = $sqm * $item_quantity * $train_price_per_sqm;
+					// Actualizăm meta produsului (ca în logica originală - deși poate nu e ideal)
+					// @TODO: Revizuiește dacă actualizarea meta *produsului* e necesară aici.
+					update_post_meta($product_id, 'train_delivery', $item_train_price_total);
+				}
+			}
+
+			// Calculează valorile liniei pentru item standard
+			$line_subtotal_gbp = ($base_price_gbp * $item_quantity) + $item_train_price_total;
+			$line_tax_gbp = ($line_subtotal_gbp * $tax_rate_percent) / 100;
+			$line_total_usd = $price_usd * $item_quantity;
+			$line_total_sqm = $sqm * $item_quantity;
+
+			// Log specific pentru standard
+			error_log("Order {$order_id}, Standard Item {$item_id}: Qty={$item_quantity}, BaseGBP={$base_price_gbp}, SQM={$sqm}, TrainPriceTotal={$item_train_price_total}, USDPrice={$price_usd}");
+		}
+
+		// --- Actualizează meta itemului în comandă (comun pentru awning și standard) ---
+		// Asigură că actualizăm cantitatea corectă (cea din comandă)
+		wc_update_order_item_meta($item_id, '_qty', $item_quantity);
+		// Actualizează subtotalul și taxa calculate
+		wc_update_order_item_meta($item_id, '_line_subtotal', $line_subtotal_gbp);
+		wc_update_order_item_meta($item_id, '_line_tax', $line_tax_gbp);
+		// Actualizează totalul liniei (WC îl calculează de obicei, dar îl setăm explicit pentru consistență cu calculul nostru)
+		// Total linie = Subtotal linie (înainte de taxe)
+		wc_update_order_item_meta($item_id, '_line_total', $line_subtotal_gbp);
+		wc_update_order_item_meta($item_id, '_line_subtotal_tax', $line_tax_gbp);
+		// Setează datele taxei (presupunând ID rată taxă = 1, ca în original)
+		// @TODO: Folosește un ID de taxă real sau lasă WC să calculeze dacă e posibil.
+		$line_tax_data_array = ($line_tax_gbp > 0) ? ['total' => [1 => $line_tax_gbp], 'subtotal' => [1 => $line_tax_gbp]] : [];
+		wc_update_order_item_meta($item_id, '_line_tax_data', $line_tax_data_array);
+
+		// --- Adaugă la totalurile calculate ale comenzii ---
+		$calculated_items_subtotal_gbp += $line_subtotal_gbp;
+		$calculated_items_tax_gbp += $line_tax_gbp;
+		$calculated_total_usd += $line_total_usd;
+		$calculated_total_sqm += $line_total_sqm;
+		// Corectăm calculul pentru prețul total de tren al comenzii
+		$calculated_order_train_price += $item_train_price_total;
+
+		error_log("Order {$order_id}, Item ID {$item_id} Processed: SubtotalGBP={$line_subtotal_gbp}, TaxGBP={$line_tax_gbp}, TotalUSD={$line_total_usd}, TotalSQM={$line_total_sqm}");
+	} // Sfârșit foreach items
+
+	// --- Actualizează meta și totalurile comenzii (doar dacă nu conține POS) ---
+	if ($order_contains_pos) {
+		error_log("Order {$order_id} contains POS items. Skipping final order total update and custom table update.");
+		return; // Oprește execuția conform logicii originale
+	}
+
+	// Salvează prețul total 'tren' pe meta comenzii dacă e mai mare ca zero
+	if ($calculated_order_train_price > 0) {
+		update_post_meta($order_id, 'order_train', number_format($calculated_order_train_price, 2, '.', ''));
+		error_log("Order {$order_id}: Updated 'order_train' meta: " . number_format($calculated_order_train_price, 2, '.', ''));
+	} else {
+		// Șterge meta dacă totalul tren este zero (opțional, pentru curățenie)
+		delete_post_meta($order_id, 'order_train');
+	}
+
+	// Obține costul de transport și taxa pe transport direct din obiectul comenzii
+	$order_shipping_total = $order->get_shipping_total();
+	$order_shipping_tax = $order->get_shipping_tax();
+
+	// Calculează totalul final GBP al comenzii
+	// Total = Subtotal Itemi + Taxa Itemi + Total Transport + Taxa Transport
+	$final_order_total_gbp = $calculated_items_subtotal_gbp + $calculated_items_tax_gbp + $order_shipping_total + $order_shipping_tax;
+	$final_total_tax_gbp = $calculated_items_tax_gbp + $order_shipping_tax;
+
+	error_log("Order {$order_id}: Calculated Finals: SubtotalItemsGBP={$calculated_items_subtotal_gbp}, TaxItemsGBP={$calculated_items_tax_gbp}, ShippingGBP={$order_shipping_total}, ShippingTaxGBP={$order_shipping_tax}, FinalTotalGBP={$final_order_total_gbp}");
+
+	// Actualizează totalurile comenzii folosind metodele WC
+
+	$order->set_props([
+	  'total' => $final_order_total_gbp,       // Totalul general
+	  'total_tax' => $final_total_tax_gbp,       // Taxa totală (itemi + transport)
+	  'cart_tax' => $calculated_items_tax_gbp,  // Taxa doar pe itemi
+		// Nota: Setarea subtotalului aici poate fi problematică. WC calculează subtotalul
+		// ca suma prețurilor itemilor *înainte* de discounturi. Calculul nostru custom
+		// ($calculated_items_subtotal_gbp) include prețul tren. Lăsăm WC să-l calculeze.
+		// 'subtotal' => wc_format_decimal($calculated_items_subtotal_gbp),
+	]);
+	$save_result = $order->save(); // Salvează modificările în obiect și, teoretic, în DB/meta
+
+	if ($save_result === false || $save_result === 0 || is_wp_error($save_result)) {
+		$error_message = is_wp_error($save_result) ? $save_result->get_error_message() : 'Save returned false/0.';
+		error_log("Order {$order_id}: ERROR - Order save via object FAILED! Reason: " . $error_message);
+		// Chiar dacă save() eșuează, putem forța update-ul meta mai jos
+	} else {
+		error_log("Order {$order_id}: Order save via object SUCCEEDED.");
+	}
+
+	// 2. Forțează actualizarea directă a câmpurilor postmeta (pentru compatibilitate cu versiuni vechi)
+	// Folosim valorile calculate, formatate corespunzător.
+	error_log("Order {$order_id}: Forcing update of legacy postmeta totals...");
+
+	update_post_meta($order_id, '_order_total', wc_format_decimal($final_order_total_gbp));
+	update_post_meta($order_id, '_order_tax', wc_format_decimal($final_total_tax_gbp));
+	update_post_meta($order_id, '_cart_tax', wc_format_decimal($calculated_items_tax_gbp));
+	update_post_meta($order_id, '_order_shipping_tax', wc_format_decimal($order_shipping_tax));
+	// Poți actualiza și alte meta-uri dacă este necesar (ex: _order_shipping)
+	// update_post_meta($order_id, '_order_shipping', wc_format_decimal($order_shipping_total));
+
+	error_log("Order {$order_id}: Legacy postmeta totals updated via update_post_meta.");
+
+	// După salvare, putem apela funcția de update a tabelei custom
+	matrix_update_custom_orders_table(
+	  $order, // Trimitem obiectul order actualizat
+	  $calculated_total_usd,
+	  $calculated_total_sqm,
+	  $calculated_items_subtotal_gbp // Trimitem subtotalul calculat custom
+	);
+
+	error_log("--- Finished Custom Order Recalculation for Order ID: {$order_id} ---");
+}
+
+
+/**
+ * Funcție helper pentru a obține prețul 'train' pentru un client.
+ * Caută în user meta, apoi recurge la un default global.
+ *
+ * @param int|null $customer_id ID-ul clientului (poate fi 0 pentru guest).
+ * @return float Prețul tren per SQM.
+ */
+function matrix_get_train_price_for_customer($customer_id)
+{
+	$train_price = null;
+
+	// Obține prețul specific clientului dacă există și clientul e valid
+	if ($customer_id > 0) {
+
+		$train_price = get_user_meta($customer_id, 'train_price', true);
+		if ($train_price === null || $train_price === '') {
+			$train_price = get_post_meta(1, 'train_price', true);
+		}
+	}
+
+	// Asigurăm că nu e negativ
+	return max(0, $train_price);
+}
+
+
+/**
+ * Actualizează sau inserează date într-o tabelă custom `wp_custom_orders`.
+ *
+ * @param WC_Order $order Obiectul comenzii WooCommerce actualizat.
+ * @param float $calculated_total_usd Totalul calculat în USD.
+ * @param float $calculated_total_sqm Totalul calculat în SQM.
+ * @param float $calculated_subtotal_gbp Subtotalul GBP calculat custom (itemi + tren).
+ */
+function matrix_update_custom_orders_table($order, $calculated_total_usd, $calculated_total_sqm, $calculated_subtotal_gbp)
+{
+	if (!$order instanceof WC_Order) {
+		return;
+	}
+
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'custom_orders'; // Asigură prefix corect
+	$order_id = $order->get_id();
+
+	error_log("Order {$order_id}: Updating/Inserting into custom table `{$table_name}`.");
+
+	// Obține date actualizate din obiectul order *după* ce a fost salvat
+	$total_gbp_final = $order->get_total(); // Totalul final GBP din comanda salvată
+	$shipping_total = $order->get_shipping_total();
+	$order_status = $order->get_status();
+	$date_created = $order->get_date_created() ? $order->get_date_created()->date('Y-m-d H:i:s') : current_time('mysql', 1);
+	// Obține metoda de livrare principală (poate fi mai complex dacă sunt multiple)
+	$shipping_methods = $order->get_shipping_methods();
+	$shipping_delivery = !empty($shipping_methods) ? current($shipping_methods)->get_method_title() : ''; // Ia titlul primei metode
+
+	// Date comune pentru insert/update
+	$custom_data = [
+	  'usd_price' => number_format($calculated_total_usd, 2, '.', ''),
+	  'gbp_price' => number_format($total_gbp_final, 2, '.', ''), // Folosim totalul final salvat
+	  'subtotal_price' => number_format($calculated_subtotal_gbp, 2, '.', ''), // Folosim subtotalul custom calculat
+	  'sqm' => number_format($calculated_total_sqm, 2, '.', ''),
+	  'shipping_cost' => number_format($shipping_total, 2, '.', ''),
+	  'delivery' => $shipping_delivery, // Folosim metoda de livrare
+	  'status' => $order_status,
+		// 'reference' și 'createTime' sunt gestionate mai jos
+	];
+
+	// Verifică existența înregistrării
+	$order_exists_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `{$table_name}` WHERE `idOrder` = %d", $order_id));
+
+	if ($order_exists_count > 0) {
+		// Update
+		$where = ['idOrder' => $order_id];
+		$updated = $wpdb->update($table_name, $custom_data, $where);
+
+		if ($updated !== false) {
+			error_log("Order {$order_id}: Updated record successfully in `{$table_name}`.");
+		} else {
+			error_log("Order {$order_id}: Failed to update record in `{$table_name}`. WPDB Error: " . $wpdb->last_error);
+		}
+	} else {
+		// Insert
+		$custom_data['idOrder'] = $order_id;
+		// Construiește referința folosind cart_name din meta (dacă există)
+		$cart_name = $order->get_meta('cart_name', true); // Obține meta direct din obiectul order
+		$custom_data['reference'] = 'LF0' . $order->get_order_number() . ($cart_name ? ' - ' . $cart_name : '');
+		$custom_data['createTime'] = $date_created;
+
+		$inserted = $wpdb->insert($table_name, $custom_data);
+
+		if ($inserted) {
+			error_log("Order {$order_id}: Inserted new record successfully into `{$table_name}`.");
+		} else {
+			error_log("Order {$order_id}: Failed to insert record into `{$table_name}`. WPDB Error: " . $wpdb->last_error);
+		}
+	}
+}
+
 
 /*
  * POS - add to cart redirect to checkout
@@ -1102,28 +1340,28 @@ function create_component_type_taxonomy()
 //first do the translations part for GUI
 
 	$labels = array(
-		'name' => _x('Component Type', 'taxonomy general name'),
-		'singular_name' => _x('Component Type', 'taxonomy singular name'),
-		'search_items' => __('Search Component Type'),
-		'all_items' => __('All Component Types'),
-		'parent_item' => __('Parent Component Type'),
-		'parent_item_colon' => __('Parent Component Type:'),
-		'edit_item' => __('Edit Component Type'),
-		'update_item' => __('Update Component Type'),
-		'add_new_item' => __('Add New Component Type'),
-		'new_item_name' => __('New Topic Component Type'),
-		'menu_name' => __('Component Types'),
+	  'name' => _x('Component Type', 'taxonomy general name'),
+	  'singular_name' => _x('Component Type', 'taxonomy singular name'),
+	  'search_items' => __('Search Component Type'),
+	  'all_items' => __('All Component Types'),
+	  'parent_item' => __('Parent Component Type'),
+	  'parent_item_colon' => __('Parent Component Type:'),
+	  'edit_item' => __('Edit Component Type'),
+	  'update_item' => __('Update Component Type'),
+	  'add_new_item' => __('Add New Component Type'),
+	  'new_item_name' => __('New Topic Component Type'),
+	  'menu_name' => __('Component Types'),
 	);
 
 // Now register the taxonomy
 
 	register_taxonomy('component_type', array('product'), array(
-		'hierarchical' => true,
-		'labels' => $labels,
-		'show_ui' => true,
-		'show_admin_column' => true,
-		'query_var' => true,
-		'rewrite' => array('slug' => 'component_type'),
+	  'hierarchical' => true,
+	  'labels' => $labels,
+	  'show_ui' => true,
+	  'show_admin_column' => true,
+	  'query_var' => true,
+	  'rewrite' => array('slug' => 'component_type'),
 	));
 }
 
@@ -1136,10 +1374,10 @@ function component_type_add_position($term)
 {
 
 	?>
-  <div class="form-field">
-    <label for="position">Position</label>
-    <input type="text" name="position" id="position" value="">
-  </div>
+    <div class="form-field">
+        <label for="position">Position</label>
+        <input type="text" name="position" id="position" value="">
+    </div>
 	<?php
 }
 
@@ -1158,14 +1396,14 @@ function component_type_edit_position($term)
 
 	$position = get_term_meta($t_id, 'position', true);
 	?>
-  <tr class="form-field">
-    <th><label for="position">Position</label></th>
+    <tr class="form-field">
+        <th><label for="position">Position</label></th>
 
-    <td>
-      <input type="text" name="position" id="position"
-             value="<?php echo esc_attr($position) ? esc_attr($position) : ''; ?>">
-    </td>
-  </tr>
+        <td>
+            <input type="text" name="position" id="position"
+                   value="<?php echo esc_attr($position) ? esc_attr($position) : ''; ?>">
+        </td>
+    </tr>
 	<?php
 }
 
@@ -1219,4 +1457,191 @@ function custom_override_default_address_fields($address_fields)
 {
 	$address_fields['postcode']['required'] = false;
 	return $address_fields;
+}
+
+
+//
+add_action('wp_ajax_addToCartAppOrder', 'add_to_cart_app_order_handler');
+add_action('wp_ajax_nopriv_addToCartAppOrder', 'add_to_cart_app_order_handler');
+
+function add_to_cart_app_order_handler()
+{
+	if (!isset($_POST['product_ids']) || empty($_POST['product_ids'])) {
+		wp_send_json_error(['message' => 'Missing required parameters.']);
+		wp_die();
+	}
+
+	$cart_id = $_POST['cartID'];
+
+	// Retrieve and process product IDs
+	$product_ids_string = sanitize_text_field($_POST['product_ids']);
+	// Check if the string contains a comma
+	if (strpos($product_ids_string, ',') === false) {
+		$product_ids = array(intval($product_ids_string));
+	} else {
+		$product_ids = array_map('intval', explode(',', $product_ids_string));
+	}
+	$quantity = 1;
+
+	if (empty($product_ids)) {
+		wp_send_json_error(['message' => 'The list of IDs is empty.']);
+		wp_die();
+	}
+
+	// Add each product to cart
+	foreach ($product_ids as $product_id) {
+		WC()->cart->add_to_cart($product_id, $quantity);
+	}
+
+	// Set a flag in the cart session indicating that this cart was created from a mobile app
+	WC()->session->set('app_order', true);
+
+	WC()->session->set_customer_session_cookie(true);
+
+	// Optionally update cart totals and refresh session cookie
+	WC()->cart->calculate_totals();
+
+	$post = array('ID' => $cart_id, 'post_status' => 'draft');
+	wp_update_post($post);
+
+	wp_send_json_success(['message' => 'Products have been added to the cart.']);
+	wp_die();
+}
+
+
+/* Afisare dealeri pe harta cu Google Maps >>>*/
+
+function get_user_addresses()
+{
+	global $wpdb;
+	$users = get_users();
+	$addresses = [];
+
+	foreach ($users as $user) {
+		$postcode = get_user_meta($user->ID, 'billing_postcode', true);
+		$phone = get_user_meta($user->ID, 'billing_phone', true);
+		$fname = get_user_meta($user->ID, 'first_name', true);
+		$lname = get_user_meta($user->ID, 'last_name', true);
+		$webst = get_the_author_meta('user_url', $user->ID);
+		$group = get_user_meta($user->ID, 'current_selected_group', true);
+
+		if (!empty($postcode)) {
+			$coordinates = get_lat_long($postcode);
+
+			if ($coordinates) {
+				$addresses[] = [
+				  'name' => $user->billing_company,
+				  'lat' => $coordinates['lat'],
+				  'lng' => $coordinates['lng'],
+				  'phone' => $phone ?: 'unknown',
+				  'fname' => $fname ?: 'unknown',
+				  'lname' => $lname ?: 'unknown',
+				  'webst' => $webst ?: 'unknown',
+				  'group' => $group ?: 'unknown',
+				];
+			}
+		}
+	}
+//var_dump($group);
+	wp_send_json($addresses);
+}
+
+
+add_action('wp_ajax_get_user_addresses', 'get_user_addresses');
+add_action('wp_ajax_nopriv_get_user_addresses', 'get_user_addresses');
+
+function get_lat_long($postcode)
+{
+	$api_key = 'AIzaSyBPPeizcEJ5ZmoW9l6bS08xjme6BdJXGtw';
+	$postcode = urlencode($postcode);
+	$url = "https://maps.googleapis.com/maps/api/geocode/json?address={$postcode}&key={$api_key}";
+
+	$response = wp_remote_get($url);
+	$body = wp_remote_retrieve_body($response);
+	$json = json_decode($body, true);
+
+	if ($json['status'] == 'OK') {
+		return $json['results'][0]['geometry']['location'];
+	}
+	return null;
+}
+
+
+function load_google_maps_script()
+{
+	?>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPPeizcEJ5ZmoW9l6bS08xjme6BdJXGtw&libraries=marker"></script>
+    <script>
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    </script>
+    <script src="<?php echo get_template_directory_uri(); ?>-child/js/th_map.js"></script>
+	<?php
+}
+
+
+add_action('wp_footer', 'load_google_maps_script');
+
+function dealers_on_map_page()
+{
+	$ze_map_page = home_url('/show-dealers-on-map/');
+
+	add_menu_page(
+	  'Dealers On Map',
+	  'Dealers On Map',
+	  'edit_posts', // Change capability here if needed.
+	  'dealers-on-map',
+	  '',
+	  'dashicons-location-alt',
+	  69
+	);
+
+	// Adăugăm JavaScript pentru a forța deschiderea într-un tab nou
+	add_action('admin_footer', function () use ($ze_map_page) {
+		?>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                let link = document.querySelector('a.toplevel_page_dealers-on-map');
+                if (link) {
+                    link.setAttribute("href", "<?php echo esc_url($ze_map_page); ?>");
+                    link.setAttribute("target", "_blank"); // Deschide într-un tab nou
+                }
+            });
+        </script>
+		<?php
+	});
+}
+
+
+add_action('admin_menu', 'dealers_on_map_page');
+
+function restrict_dealers_on_map_page()
+{
+	// Verifică dacă utilizatorul este autentificat și are rolul de administrator sau employee
+	if (is_page('show-dealers-on-map') && !current_user_can('administrator') && !current_user_can('emplimited')) {
+		// Redirecționează utilizatorii neautorizați către o altă pagină sau afișează un mesaj de eroare
+		wp_redirect(home_url()); // Redirecționează către pagina principală
+		exit;
+	}
+}
+
+
+add_action('template_redirect', 'restrict_dealers_on_map_page');
+/* <<< Afisare dealeri pe harta cu Google Maps*/
+
+add_action('woocommerce_checkout_create_order', 'add_type_order_meta_to_awning_order', 20, 2);
+function add_type_order_meta_to_awning_order($order, $data)
+{
+	// Parcurge fiecare item din comandă
+	foreach ($order->get_items() as $item) {
+		// Obține produsul (dacă există)
+		$product = $item->get_product();
+		$product_name = $product ? $product->get_name() : $item->get_name();
+
+		// Verifică dacă numele produsului conține "awning product"
+		if (stripos($product_name, 'awning product') !== false) {
+			// Adaugă meta-ul la comandă
+			$order->update_meta_data('type_order', 'awning');
+			break; // Nu mai este nevoie să verificăm alte item-uri
+		}
+	}
 }

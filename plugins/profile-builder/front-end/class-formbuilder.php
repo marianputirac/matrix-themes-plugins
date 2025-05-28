@@ -62,7 +62,7 @@ class Profile_Builder_Form_Creator{
      * @param $form_type the form type of the form: register, edit_profile
      * @return null
      */
-    static function wppb_get_form_id_from_form_name( $form_name, $form_type ){
+    static function wppb_get_form_id_from_form_name( $form_name, $form_type ) {
         global $wpdb;
 
         if( $form_type == 'edit_profile' ){
@@ -702,23 +702,7 @@ class Profile_Builder_Form_Creator{
             wp_enqueue_style( 'wppb_select2_css', WPPB_PLUGIN_URL .'assets/css/select2/select2.min.css', array(), PROFILE_BUILDER_VERSION );
             wp_add_inline_script( 'wppb_select2_js', 'jQuery("#wppb-user-to-edit").change(function () {window.location.href = jQuery(this).val(); });jQuery(function(){jQuery(".wppb-user-to-edit").select2(); })' );
             ?>
-            <form method="GET" action="" id="select_user_to_edit_form">
-                <p class="wppb-form-field">
-                    <label for="edit_user"><?php _e('User to edit:', 'profile-builder') ?></label>
-                    <select id="wppb-user-to-edit" class="wppb-user-to-edit" name="edit_user">
-                        <option value=""><?php echo __( 'Select User', 'profile-builder' ); ?></option>
-                        <?php
-						foreach( $users as $user ){
-							?>
-							<option value="<?php echo  esc_url_raw( add_query_arg( array( 'edit_user' => $user->ID ) ) ); ?>" <?php selected( $selected, $user->ID ); ?>>
-								<?php echo apply_filters( 'wppb_edit_other_users_display_name', $user->display_name, $user ); ?>
-							</option>
-							<?php
-						}
-                        ?>
-                    </select>
-                </p>
-            </form>
+
         <?php
         }
         else{

@@ -69,7 +69,7 @@ if (empty($mail_send)) {
                         <td width="50%" style="text-align: right;"><img class="logo-img site-logo-img" style="text-align: center; margin: 0 auto;" src="https://matrix.lifetimeshutters.com/wp-content/uploads/Logos/lifetime-shutters-logo.png" alt="Plantation Shutters &amp; Windows" title=""></td>
                     </tr>
                 </table>
-                 <h3 style="text-align: center;"><strong>Order Summary</strong></h3>
+                 <h3 style="text-align: center;"><strong>Order Summary - Proforma Invoice</strong></h3>
                  <br>' . $items_table . '</body>';
 	$pdf_content .= '</html>';
 
@@ -242,7 +242,7 @@ if (empty($mail_send)) {
         Lifetime Number: LF0' . $_POST['id'] . '<br />
         Customer: ' . $name . ' <br />
         <br />
-        You can find the Order Summary for order reference ' . get_post_meta($order_id, 'cart_name', true) . ' in the attachment or by following this link:<br />
+        You can find the Order Summary - Proforma Invoice for order reference ' . get_post_meta($order_id, 'cart_name', true) . ' in the attachment or by following this link:<br />
         <br />
         <a href="https://matrix.lifetimeshutters.com/view-order/?id=' . $order_id * 1498765 * 33 . '">
         https://matrix.lifetimeshutters.com/view-order/?id=' . $order_id * 1498765 * 33 . '</a><br />
@@ -295,7 +295,7 @@ if (empty($mail_send)) {
 	$name = get_post_meta($order_id, 'cart_name', true);
 
 	$single_email = $user_mail;
-	$subject2 = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Order Summary';
+	$subject2 = 'LF0' . $_POST['id'] . ' - ' . $name . ' - Order Summary - Proforma Invoice';
 	$headers2 = array('Content-Type: text/html; charset=UTF-8', 'From: Matrix-LifetimeShutters <order@lifetimeshutters.com>');
 
 	// wp_mail( $single_email, $subject2, $mess, $headers2, $attachments ); //temporary disabled attachments by Teo

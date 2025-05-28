@@ -27,7 +27,7 @@
     
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 </head>
 
 <body <?php body_class(); ?>>
@@ -69,7 +69,7 @@
     
     
     <?php
-        if (current_user_can('administrator') || current_user_can('china_admin') || current_user_can('shop_manager') || current_user_can('employe') || current_user_can('emplimited')) { ?>
+        if (current_user_can('administrator') || current_user_can('china_admin') || current_user_can('shop_manager') || current_user_can('employe') || current_user_can('emplimited') || current_user_can('outsider')) { ?>
             <style>
                 .navbar.navbar-default.navbar-top-blue-bkg.navbar-fixed-top {
                     margin-top: 32px;

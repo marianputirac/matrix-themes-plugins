@@ -12,34 +12,37 @@ get_header(); ?>
         <main id="main" class="site-main" role="main">
 
             <!-- Multi Cart Template -->
-            <?php if (is_active_sidebar('multicart_widgett')) : ?>
+			<?php if (is_active_sidebar('multicart_widgett')) : ?>
                 <div id="bmc-woocom-multisession-2" class="widget bmc-woocom-multisession-widget">
-                    <?php //dynamic_sidebar( 'multicart_widgett' ); ?>
+					<?php //dynamic_sidebar( 'multicart_widgett' ); ?>
                 </div>
                 <!-- #primary-sidebar -->
-            <?php endif; ?>
+			<?php endif; ?>
 
-            <?php
-            if (is_user_logged_in()) {
+			<?php
+			if (is_user_logged_in()) {
 
-                $user_id = get_current_user_id();
-                $meta_key = 'wc_multiple_shipping_addresses';
+				$user_id = get_current_user_id();
+				$meta_key = 'wc_multiple_shipping_addresses';
 
-                global $wpdb;
-                if ($addresses = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = %d AND meta_key = %s", $user_id, $meta_key))) {
-                    $addresses = maybe_unserialize($addresses);
-                }
+				global $wpdb;
+				if ($addresses = $wpdb->get_var($wpdb->prepare("SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = %d AND meta_key = %s", $user_id, $meta_key))) {
+					$addresses = maybe_unserialize($addresses);
+				}
 
-                $addresses = $wpdb->get_results("SELECT meta_value FROM `wp_usermeta` WHERE user_id = $user_id AND meta_key = '_woocom_multisession'");
+				$addresses = $wpdb->get_results("SELECT meta_value FROM `wp_usermeta` WHERE user_id = $user_id AND meta_key = '_woocom_multisession'");
 
-
-                ?>
+				?>
                 <h2>Reports</h2>
 
                 <br>
 
                 <div class="alert alert-warning">
-                    <?php echo get_post_meta(1, 'notification_users_message', true); ?>
+					<?php
+					// Get the saved notification message
+					$notification_message = get_post_meta(1, 'notification_users_message', true);
+					echo wp_kses_post($notification_message); // Safely display the HTML content
+					?>
                 </div>
 
 
@@ -56,198 +59,198 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <?php
+				<?php
 
-                $user_info = get_userdata(get_current_user_id());
-                //$users = get_users( array( 'fields' => array( 'ID' ) ) );
-                $total = array();
-                $total_gbp = array();
-                $totaly = array();
-                $sum_total = array();
-                $sum_totaly = array();
-                $order_shipping_total = array();
-                $total_order_shipping = array();
-                $total2_order_shipping = array();
-                $totaly_order_shipping = array();
-                $years_orders = array();
+				$user_info = get_userdata(get_current_user_id());
+				//$users = get_users( array( 'fields' => array( 'ID' ) ) );
+				$total = array();
+				$total_gbp = array();
+				$totaly = array();
+				$sum_total = array();
+				$sum_totaly = array();
+				$order_shipping_total = array();
+				$total_order_shipping = array();
+				$total2_order_shipping = array();
+				$totaly_order_shipping = array();
+				$years_orders = array();
 
-                $i = 1;
+				$i = 1;
 
-                //print_r($users);
-                //foreach( $users as $user ){
+				//print_r($users);
+				//foreach( $users as $user ){
 
-                //print_r('User foreach id: '.$user->ID);
-                $user = $user_info;
+				//print_r('User foreach id: '.$user->ID);
+				$user = $user_info;
 
-                if (in_array('salesman', $user->roles) || in_array('subscriber', $user->roles) || in_array('emplimited', $user->roles) && !in_array('dealer', $user->roles)) {
-                    // echo 'dealer simplu';
-                    $users_orders = array($user_id);
-                }
-                if (in_array('employe', $user->roles) || in_array('senior_salesman', $user->roles)) {
-                    // get user company_parent id from meta
-                    $deler_id = get_user_meta($user_id, 'company_parent', true);
-                    // initiate users_orders array with logged user id
-                    //$users_orders = array($user_id);
+				if (in_array('salesman', $user->roles) || in_array('subscriber', $user->roles) || in_array('emplimited', $user->roles) && !in_array('dealer', $user->roles)) {
+					// echo 'dealer simplu';
+					$users_orders = array($user_id);
+				}
+				if (in_array('employe', $user->roles) || in_array('senior_salesman', $user->roles)) {
+					// get user company_parent id from meta
+					$deler_id = get_user_meta($user_id, 'company_parent', true);
+					// initiate users_orders array with logged user id
+					//$users_orders = array($user_id);
 
-                    if (!empty($deler_id)) {
-                        $users_orders = array();
-                        $users_orders = get_user_meta($deler_id, 'employees', true);
-                        $users_orders[] = $deler_id;
-                        $users_orders = array_reverse($users_orders);
-                    }
-                }
-                if (in_array('dealer', $user->roles)) {
-                    // echo 'dealer master';
-                    $users_orders = get_user_meta($user_id, 'employees', true);
-                    $users_orders[] = $user_id;
-                    $users_orders = array_reverse($users_orders);
+					if (!empty($deler_id)) {
+						$users_orders = array();
+						$users_orders = get_user_meta($deler_id, 'employees', true);
+						$users_orders[] = $deler_id;
+						$users_orders = array_reverse($users_orders);
+					}
+				}
+				if (in_array('dealer', $user->roles)) {
+					// echo 'dealer master';
+					$users_orders = get_user_meta($user_id, 'employees', true);
+					$users_orders[] = $user_id;
+					$users_orders = array_reverse($users_orders);
+				}
 
-                }
+				$args = array(
+				  'customer_id' => $users_orders,
+				  'post_status' => array('wc-on-hold', 'wc-completed', 'wc-pending', 'wc-processing', 'wc-inproduction', 'wc-paid', 'wc-waiting', 'wc-revised', 'wc-inrevision'),
+				  'date_query' => array(
+					'after' => date('Y-m-d', mktime(0, 0, 0, 1, 1, date('Y') - 1)),
+				  ),
+				);
 
-                $args = array(
-                    'customer_id' => $users_orders,
-                    'post_status' => array('wc-on-hold', 'wc-completed', 'wc-pending', 'wc-processing', 'wc-inproduction', 'wc-paid', 'wc-waiting', 'wc-revised', 'wc-inrevision'),
-                    'date_query' => array(
-                        'after' => date('Y-m-d', mktime(0, 0, 0, 1, 1, date('Y') - 1)),
-                    )
-                );
+				$orders = wc_get_orders($args);
 
-                $orders = wc_get_orders($args);
+				$months_sum = array('01' => 0, '02' => 0, '03' => 0, '04' => 0, '05' => 0, '06' => 0, '07' => 0, '08' => 0, '09' => 0, '10' => 0, '11' => 0, '12' => 0);
 
-                $months_sum = array('01' => 0, '02' => 0, '03' => 0, '04' => 0, '05' => 0, '06' => 0, '07' => 0, '08' => 0, '09' => 0, '10' => 0, '11' => 0, '12' => 0);
-
-
-                global $wpdb;
-                $tablename = $wpdb->prefix . 'custom_orders';
+				global $wpdb;
+				$tablename = $wpdb->prefix . 'custom_orders';
 //$sum_total[date('Y')] = $months_sum;
-                $myOrders = array();
-                $myResult = $wpdb->get_results("SELECT idOrder, sqm, usd_price FROM $tablename WHERE idOrder IN (" .
-                    implode(',', array_map('intval', $orders)) . ")", ARRAY_A);
-                foreach ($myResult as $line) {
-                    $myOrders[$line['idOrder']] = array('sqm' => $line['sqm'], 'usd_price' => $line['usd_price']);
-                }
+				$myOrders = array();
+				if (!empty($orders)) {
+					$ids = implode(',', array_map('intval', $orders));
+					$myResult = $wpdb->get_results(
+					  "SELECT idOrder, sqm, usd_price FROM {$wpdb->prefix}custom_orders WHERE idOrder IN ($ids)",
+					  ARRAY_A
+					);
+					foreach ($myResult as $line) {
+						$myOrders[$line['idOrder']] = [
+						  'sqm' => $line['sqm'],
+						  'usd_price' => $line['usd_price'],
+						];
+					}
+				} else {
+					// Handle the case where there are no orders
+					$myResult = [];
+				}
 
+				foreach ($orders as $order) {
 
-                foreach ($orders as $order) {
+					$id_order = $order->get_id();
 
-                    $id_order = $order->get_id();
+					global $wpdb;
+					$tablename = $wpdb->prefix . 'custom_orders';
+					$myOrder = $wpdb->get_row("SELECT sqm, usd_price, gbp_price, subtotal_price, shipping_cost, createTime FROM $tablename WHERE idOrder = $id_order", ARRAY_A);
 
-                    global $wpdb;
-                    $tablename = $wpdb->prefix . 'custom_orders';
-                    $myOrder = $wpdb->get_row("SELECT sqm, usd_price, gbp_price, subtotal_price, shipping_cost, createTime FROM $tablename WHERE idOrder = $id_order", ARRAY_A);
+					$text = $myOrder['createTime'];
+					$texty = $myOrder['createTime'];
+					preg_match('/-(.*?)-/', $text, $match);
+					preg_match('/(.*?)-/', $text, $match_year);
+					$month = $match[1];
+					$year = $match_year[1];
 
+					preg_match('/(.*?)-/', $texty, $match2);
+					$pieces = explode("-", $match2[0]);
+					$pieces[0]; // piece1
+					$year2 = $pieces[0];
 
-                    $text = $myOrder['createTime'];
-                    $texty = $myOrder['createTime'];
-                    preg_match('/-(.*?)-/', $text, $match);
-                    preg_match('/(.*?)-/', $text, $match_year);
-                    $month = $match[1];
-                    $year = $match_year[1];
+					if (empty($years_orders)) {
+						$years_orders[] = $year;
+					} elseif (!in_array($year, $years_orders)) {
+						$years_orders[] = $year;
+					}
 
-                    preg_match('/(.*?)-/', $texty, $match2);
-                    $pieces = explode("-", $match2[0]);
-                    $pieces[0]; // piece1
-                    $year2 = $pieces[0];
+					// $suma = $myOrder['gbp_price'];
+					$suma = floatval($order->get_total());
+					$sum_total[$year][$month] = $sum_total[$year][$month] + $suma;
+					$sum_totaly[$year2][$month] = $sum_totaly[$year2][$month] + $suma;
 
-                    if (empty($years_orders)) {
-                        $years_orders[] = $year;
-                    } elseif (!in_array($year, $years_orders)) {
-                        $years_orders[] = $year;
-                    }
+					// GBP price
+					$property_total_gbp = floatval($myOrder['subtotal_price']);
+					$total_gbp[$year][$month] = $total_gbp[$year][$month] + $property_total_gbp;
 
-                    // $suma = $myOrder['gbp_price'];
-                    $suma = floatval($order->get_total());
-                    $sum_total[$year][$month] = $sum_total[$year][$month] + $suma;
-                    $sum_totaly[$year2][$month] = $sum_totaly[$year2][$month] + $suma;
+					// SQM
+					$property_total = floatval($myOrder['sqm']);
+					$total[$year][$month] = $total[$year][$month] + $property_total;
 
-                    // GBP price
-                    $property_total_gbp = floatval($myOrder['subtotal_price']);
-                    $total_gbp[$year][$month] = $total_gbp[$year][$month] + $property_total_gbp;
+					?>
 
-                    // SQM
-                    $property_total = floatval($myOrder['sqm']);
-                    $total[$year][$month] = $total[$year][$month] + $property_total;
+					<?php
+					$i++;
+				}
 
-                    ?>
+				//$new = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+				$luni = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+				$newlunian = array();
+				$new2 = array();
+				$news2 = array();
 
-                    <?php
-                    $i++;
-                }
-
-
-                //$new = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-                $luni = array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-                $newlunian = array();
-                $new2 = array();
-                $news2 = array();
-
-                for ($i = 11; $i >= 0; $i--) {
+				for ($i = 11; $i >= 0; $i--) {
 //teo				$newlunian[] = date('Y-m', strtotime('-'.$i.' months'));
-                    $newlunian[] = date('Y-m', mktime(0, 0, 0, date('m') - $i, 1, date('Y')));
-                }
+					$newlunian[] = date('Y-m', mktime(0, 0, 0, date('m') - $i, 1, date('Y')));
+				}
 
-                //print_r($newlunian);
-                $current_year = date("y");
+				//print_r($newlunian);
+				$current_year = date("y");
 
-                foreach ($newlunian as $k => $anluna) {
-                    $pieces = explode("-", $anluna);
-                    $an = $pieces[0]; // piece1
-                    $luna = $pieces[1]; // piece2
-                    foreach ($total as $key => $value) {
-                        if ($key == $an) {
-                            foreach ($total[$key] as $m => $t) {
-                                if ($luna == $m) {
-                                    $new2[$luna] = round($t, 0);
-                                    //print_r($t);
-                                } else {
-                                    if ($new2[$luna] != 0) {
+				foreach ($newlunian as $k => $anluna) {
+					$pieces = explode("-", $anluna);
+					$an = $pieces[0]; // piece1
+					$luna = $pieces[1]; // piece2
+					foreach ($total as $key => $value) {
+						if ($key == $an) {
+							foreach ($total[$key] as $m => $t) {
+								if ($luna == $m) {
+									$new2[$luna] = round($t, 0);
+									//print_r($t);
+								} else {
+									if ($new2[$luna] != 0) {
 
-                                    } else {
-                                        $new2[$luna] = 0;
-                                        //print_r($new[$luna]);
-                                    }
+									} else {
+										$new2[$luna] = 0;
+										//print_r($new[$luna]);
+									}
+								}
+							}
+						} else {
+							if (empty($new2[$luna])) {
+								$new2[$luna] = 0;
+							} else {
+							}
+						}
+					}
 
-                                }
-                            }
-                        } else {
-                            if (empty($new2[$luna])) {
-                                $new2[$luna] = 0;
-                            } else {
-                            }
-                        }
+					foreach ($total_gbp as $key => $value) {
+						if ($key == $an) {
 
-                    }
+							foreach ($total_gbp[$key] as $m => $t) {
+								if ($luna == $m) {
+									$news2[$luna] = round($t, 0);
+									//print_r($t);
+								} else {
+									if ($news2[$luna] != 0) {
 
-                    foreach ($total_gbp as $key => $value) {
-                        if ($key == $an) {
-
-                            foreach ($total_gbp[$key] as $m => $t) {
-                                if ($luna == $m) {
-                                    $news2[$luna] = round($t, 0);
-                                    //print_r($t);
-                                } else {
-                                    if ($news2[$luna] != 0) {
-
-                                    } else {
-                                        $news2[$luna] = 0;
-                                        //print_r($new[$luna]);
-                                    }
-
-                                }
-                            }
-
-                        } else {
-                            if (empty($news2[$luna])) {
-                                $news2[$luna] = 0;
-                            } else {
-                            }
-                        }
-                    }
-                }
-
-
-            }
-            ?>
+									} else {
+										$news2[$luna] = 0;
+										//print_r($new[$luna]);
+									}
+								}
+							}
+						} else {
+							if (empty($news2[$luna])) {
+								$news2[$luna] = 0;
+							} else {
+							}
+						}
+					}
+				}
+			}
+			?>
 
 
             <br>
@@ -262,40 +265,40 @@ get_header(); ?>
                             <th style="text-align:right">m2</th>
                             <th style="text-align:right">Amount</th>
                         </tr>
-                        <?php
-                        $current_year = date("Y");
-                        $yearss = array($current_year, ($current_year - 1));
-                        $months = array('01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.');
-                        //print_r($yearss);
-                        $sum_tot_sqm = 0;
-                        $sum_tot_dolar = 0;
-                        $sum_tot_gbp = 0;
-                        $sum_tot_prices = 0;
-                        $sum_shipping = 0;
-                        // foreach ($yearss as $year) {
-                        foreach ($sum_total as $year => $sum_ty) {
-                            foreach ($luni as $luna) {
-                                if ($sum_ty[$luna] || array_key_exists()) {
-                                    echo '<tr>
+						<?php
+						$current_year = date("Y");
+						$yearss = array($current_year, ($current_year - 1));
+						$months = array('01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.');
+						//print_r($yearss);
+						$sum_tot_sqm = 0;
+						$sum_tot_dolar = 0;
+						$sum_tot_gbp = 0;
+						$sum_tot_prices = 0;
+						$sum_shipping = 0;
+						// foreach ($yearss as $year) {
+						foreach ($sum_total as $year => $sum_ty) {
+							foreach ($luni as $luna) {
+								if ($sum_ty[$luna]) {
+									echo '<tr>
                             <th>' . $year . '</th>
                             <th>' . $months[$luna] . '</th>
                             <th style="text-align:right">' . number_format($total[$year][$luna], 2) . '</th>
                             <th style="text-align:right">' . number_format($total_gbp[$year][$luna], 2) . '</th>
                         </tr>';
-                                    $sum_tot_sqm = $sum_tot_sqm + $total[$year][$luna];
-                                    $sum_tot_gbp = $sum_tot_gbp + $total_gbp[$year][$luna];
-                                    $sum_tot_prices = $sum_tot_prices + $sum_ty[$luna];
-                                } else {
-                                    echo '<tr>
+									$sum_tot_sqm = $sum_tot_sqm + $total[$year][$luna];
+									$sum_tot_gbp = $sum_tot_gbp + $total_gbp[$year][$luna];
+									$sum_tot_prices = $sum_tot_prices + $sum_ty[$luna];
+								} else {
+									echo '<tr>
                             <th>' . $year . '</th>
                             <th>' . $months[$luna] . '</th>
                             <th style="text-align:right"></th>
                             <th style="text-align:right"></th>
                         </tr>';
-                                }
-                            }
-                        }
-                        ?>
+								}
+							}
+						}
+						?>
 
                         <tr>
                             <td colspan="2" style="text-align:right"><strong>Totals</strong></td>

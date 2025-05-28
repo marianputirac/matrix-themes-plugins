@@ -20,9 +20,13 @@ get_header(); ?>
 
                     <div class="row">
                         <div class="col-xs-12">
-                        <div class="alert alert-warning">
-                        <?php echo get_post_meta( 1,'notification_users_message',true); ?>
-                        </div>
+                            <div class="alert alert-warning">
+		                        <?php
+		                        // Get the saved notification message
+		                        $notification_message = get_post_meta(1, 'notification_users_message', true);
+		                        echo wp_kses_post($notification_message); // Safely display the HTML content
+		                        ?>
+                            </div>
 
 
                             <div class="products-list-simple">

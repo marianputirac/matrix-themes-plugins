@@ -58,7 +58,6 @@ BMCWcMs.reload = function () {
  * @return bool
  */
 BMCWcMs.command = function (command, element) {
-
     var id = element.target;
 
     switch (command) {
@@ -100,6 +99,7 @@ BMCWcMs.command = function (command, element) {
             break;
 
 
+
         // add new cart ...
         case 'insert':
             if (name = prompt(this.localize.insert_prompt, this.localize.insert_prompt_value)) {
@@ -112,10 +112,92 @@ BMCWcMs.command = function (command, element) {
                     setTimeout(function () {
                         //window.location.reload();
                         window.location.replace("/checkout");
-                    }, 1300);
+                    }, 500);
                 });
 
             }
+            break;
+
+
+
+        // add new cart ...
+        case 'insertAwning':
+            if (name = prompt(this.localize.insert_prompt, this.localize.insert_prompt_value)) {
+
+                this.ajax({
+                    'name': 'Awning-'+name,
+                    'command': command,
+                    'type': 'Awning',
+                }, function (data) {
+                    // BMCWcMs.reload();
+                    setTimeout(function () {
+                        //window.location.reload();
+                        window.location.replace("/checkout");
+                    }, 500);
+                });
+
+            }
+            break;
+
+
+
+        // add new cart ...
+        case 'insertAppOrder':
+
+            // Afișează datele din buton
+            console.log('Element:', element);
+
+            // Exemplu: Extrage alte informații din element
+            console.log('Class:', element.className); // Afișează clasele butonului
+            console.log('Inner Text:', element.innerText); // Afișează textul butonului
+
+            console.log('Post ID:', element.dataset.postId); // Accesează atributul data-post-id
+            console.log('Post Title:', element.dataset.title); // Accesează atributul data-post-id
+            console.log('Post prods:', element.dataset.prods); // Accesează atributul data-post-id
+            var prods = element.dataset.prods;
+            var cartID = element.dataset.postId;
+
+            // if (name = prompt(this.localize.insert_prompt, this.localize.insert_prompt_value)) {
+                name = element.dataset.title;
+                console.log('insertAppOrder', this);
+
+                this.ajax({
+                    'name': 'App-'+name,
+                    'type': 'AppOrder',
+                    'command': 'insertAppOrder'
+                }, function (data) {
+
+                    console.log(BMCWcMs.ajaxurl);
+                    jQuery.ajax({
+                        url: BMCWcMs.ajaxurl,
+                        type: 'POST',
+                        data: {
+                            action: 'addToCartAppOrder',
+                            product_ids: prods, // String-ul de ID-uri separate prin virgulă
+                            cartID: cartID, // String-ul de ID-uri separate prin virgulă
+                            quantity: 1 // Cantitatea pentru fiecare produs
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                console.log('Produsele au fost adăugate în coș:', response.message);
+                            } else {
+                                console.error('Eroare:', response.data.message);
+                            }
+
+                            // BMCWcMs.reload();
+                            setTimeout(function () {
+                                window.location.reload();
+                                // window.location.replace("/checkout");
+                            }, 500);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Eroare AJAX:', error);
+                        }
+                    });
+
+                });
+
+            // }
             break;
 
         // add new cart ...
@@ -131,7 +213,7 @@ BMCWcMs.command = function (command, element) {
                     setTimeout(function () {
                         //window.location.reload();
                         window.location.replace("/order-pos");
-                    }, 1300);
+                    }, 500);
                 });
 
             }

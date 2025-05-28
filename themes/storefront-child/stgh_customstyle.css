@@ -26,5 +26,5 @@ body.post-type-stgh_ticket .wrap h1.wp-heading-inline {
 
 /*teo No ticket reply input from admin */
 #stgh-comments-form-in {
-    /*display: none;*/
+    display: none !important;
 }

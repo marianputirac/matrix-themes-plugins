@@ -21,7 +21,7 @@ if (isset($_POST['an_select'])) {
 function order_items_materials_sqm_perfect($order_id)
 {
 	// Define materials
-	$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
+	$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'BiowoodPlus', 6 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood', 5 => 'EcowoodPlus');
 	$order_material_sqm = array();
 
 	// Get order details
@@ -41,16 +41,10 @@ function order_items_materials_sqm_perfect($order_id)
 		// Get material name
 		$material = $materials[$material_id];
 
-		// Handle Biowood specific cases
-		if ($material_id == 138) {
-			$key = starts_with($attributes_array[$property_frametype], "P") ? 'BiowoodP' : 'BiowoodNonP';
-			$order_material_sqm[$key] = ($order_material_sqm[$key] ?? 0) + $sqm;
-		}
-
 		// Handle Green specific cases
 		if ($material_id == 137) {
 			// Define the key based on the shuttercolour
-			$key = in_array($shuttercolour, [411, 412, 413]) ? 'GreenF' : 'GreenP';
+			$key = in_array($shuttercolour, [411, 412, 413]) ? 'EcowoodPlusF' : 'EcowoodPlusP';
 			$order_material_sqm[$key] = ($order_material_sqm[$key] ?? 0) + $sqm;
 		}
 
@@ -70,10 +64,10 @@ $user_query = new WP_User_Query(array(
 	'meta_value' => 274,
 ));
 
+$user_ids = array(274);
 // Check if we have users
 if (!empty($user_query->get_results())) {
 // We have users, let's get their IDs
-	$user_ids = array(274);
 	foreach ($user_query->get_results() as $user) {
 		$user_ids[] = $user->ID;
 	}
@@ -81,7 +75,6 @@ if (!empty($user_query->get_results())) {
 
 //print_r($user_ids);
 
-$orders = array();
 // foreach ($group as $key => $user_id) {
 $args = array(
 	'customer_id' => $user_ids,
@@ -109,7 +102,7 @@ $totaly = array();
 $users_sqm = array();
 
 foreach ($orders as $id_order) {
-	$materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'Supreme' => 0, 'Ecowood' => 0);
+	$materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'BiowoodPlus' => 0, 'Supreme' => 0, 'Ecowood' => 0, 'EcowoodPlus' => 0);
 
 	$order = wc_get_order($id_order);
 	$order_data = $order->get_data();
@@ -154,23 +147,23 @@ $months = array('01' => 'January', '02' => 'February', '03' => 'March', '04' => 
         <tr>
           <th>Nr.</th>
           <th>User</th>
-          <th>Toal SQM / <?php echo $months[$selected_month]; ?></th>
+          <th>Total SQM / <?php echo $months[$selected_month]; ?></th>
           <th style="text-align:right">Earth</th>
           <th style="text-align:right">Ecowood</th>
-          <th style="text-align:right">Green</th>
-          <th style="text-align:right">GREEN frozen</th>
-          <th style="text-align:right">GREEN paint</th>
+          <th style="text-align:right">EcowoodPlus</th>
+          <th style="text-align:right">EcowoodPlus frozen</th>
+          <th style="text-align:right">EcowoodPlus paint</th>
           <th style="text-align:right">Biowood</th>
-          <th style="text-align:right">Biowood+P</th>
-          <th style="text-align:right">Biowood-P</th>
+          <th style="text-align:right">BiowoodPlus</th>
           <th style="text-align:right">Supreme</th>
         </tr>
         </thead>
         <tbody>
 				<?php
-				$i = 1;
+				$i = 0;
 				$total_sqm = 0;
 				foreach ($users_sqm as $user => $val) {
+					$i++;
 					$user_info = get_userdata($user);
 					$total_sqm = $total_sqm + $users_sqm[$user]['sqm'];
 					?>
@@ -182,23 +175,19 @@ $months = array('01' => 'January', '02' => 'February', '03' => 'March', '04' => 
             </td>
             <td style="text-align:right"><?php echo number_format($users_sqm[$user]['Earth'], 2); ?></td>
             <td style="text-align:right"><?php echo number_format($users_sqm[$user]['Ecowood'], 2); ?></td>
-            <td style="text-align:right"><?php echo number_format($users_sqm[$user]['Green'], 2); ?></td>
-            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['GreenF'], 2); ?></td>
-            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['GreenP'], 2); ?></td>
+            <td style="text-align:right"><?php echo number_format($users_sqm[$user]['EcowoodPlus'], 2); ?></td>
+            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['EcowoodPlusF'], 2); ?></td>
+            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['EcowoodPlusP'], 2); ?></td>
             <td style="text-align:right"><?php echo number_format($users_sqm[$user]['Biowood'], 2); ?></td>
-            <td style="text-align:right"><?php echo number_format($users_sqm[$user]['BiowoodP'], 2); ?></td>
-            <td style="text-align:right"><?php echo number_format($users_sqm[$user]['BiowoodNonP'], 2); ?></td>
+            <td style="text-align:right"><?php echo number_format($users_sqm[$user]['BiowoodPlus'], 2); ?></td>
             <td style="text-align:right"><?php echo number_format($users_sqm[$user]['Supreme'], 2); ?></td>
           </tr>
-					<?php $i++;
-				}
-				?>
+				<?php } ?>
         </tbody>
         <tfoot>
         <td></td>
-        <td></td>
-        <td>Toal SQM <?php echo number_format($total_sqm, 2); ?></td>
-        <td style="text-align:right"></td>
+        <td>Total SQM </td>
+        <td><?php echo number_format($total_sqm, 2); ?></td>
         <td style="text-align:right"></td>
         <td style="text-align:right"></td>
         <td style="text-align:right"></td>

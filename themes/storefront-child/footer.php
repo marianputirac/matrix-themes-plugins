@@ -325,8 +325,10 @@
     //    foreach ( $orders as $order_id ){
     //        update_post_meta($order_id, 'QB_invoice', true);
     //    }
+
     
-    wp_footer(); ?>
+    wp_footer();
+    ?>
 
 </body>
 </html>

@@ -22,6 +22,18 @@ if (!defined('ABSPATH')) {
 
 wc_print_notices();
 
+
+$cart_id = BMC\WooCommerce\MultiSession\customer_id();
+//print_r($cart_id);
+
+$my_session = BMC\WooCommerce\MultiSession\get_session($cart_id, get_current_user_id());
+
+//echo '<pre>';
+//print_r($my_session['carts'][$cart_id]);
+//echo '</pre>';
+
+$cart_type = $my_session['carts'][$cart_id]['type'];
+
 /**
  * @hooked wc_empty_cart_message - 10
  */
@@ -114,7 +126,78 @@ if (strpos($mystring, $findmePos) !== false) { ?>
 
 
         <?php }
+        elseif ($cart_type == 'Awning') {
+	        ?>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="/prod-awning/" class="btn btn-primary blue"> + Add New Awning</a>
+                </div>
+            </div>
+
+            <br><br>
+
+	        <?php
+        }
         else {
+
+        if (get_current_user_id() === 1) {
+	        // Retrieve the current post title
+	        $title = get_the_title();
+
+// Remove the prefix 'Order - App-' from the title
+	        $title = str_replace('Order - App-', '', $title);
+	        print_r($title); // For debugging purposes
+
+// Retrieve the custom post of type 'appcart' by title
+	        $appcart = get_page_by_title($title, OBJECT, 'appcart');
+
+// Check if the appcart post exists
+	        if ( ! $appcart ) {
+		        echo 'No appcart found with the title: ' . esc_html($title);
+		        return;
+	        }
+
+// Get the meta field 'attached_product_ids' from the appcart post
+	        $product_ids_meta = get_post_meta($appcart->ID, 'attached_product_ids', true);
+
+// Check if the meta field is not empty
+	        if ( empty( $product_ids_meta ) ) {
+		        return;
+	        }
+
+// If the meta value is not already an array, treat it as a comma-separated string
+	        if ( ! is_array( $product_ids_meta ) ) {
+		        // Check if the string contains a comma
+		        if ( strpos( $product_ids_meta, ',' ) === false ) {
+			        // Single ID, convert to integer and put into array
+			        $product_ids = array( intval( $product_ids_meta ) );
+		        } else {
+			        // Comma-separated IDs: explode into an array and convert each to an integer
+			        $product_ids = array_map( 'intval', explode( ',', $product_ids_meta ) );
+		        }
+	        } else {
+		        // Already an array; make sure each element is an integer
+		        $product_ids = array_map( 'intval', $product_ids_meta );
+	        }
+
+// Set default quantity for each product
+	        $quantity = 1;
+
+// Loop through each product ID and add it to the WooCommerce cart
+	        foreach ( $product_ids as $product_id ) {
+		        $added = WC()->cart->add_to_cart( $product_id, $quantity );
+		        if ( ! $added ) {
+			        error_log( "Product ID {$product_id} could not be added to the cart." );
+		        }
+	        }
+
+// Optional: Recalculate cart totals and refresh the customer session cookie
+	        WC()->cart->calculate_totals();
+	        WC()->session->set_customer_session_cookie(true);
+
+	        wp_redirect( home_url('/checkout') );
+        }
             ?>
 
             <a href="/prod1-all/" class="btn btn-primary blue"> + Add New Shutter</a>

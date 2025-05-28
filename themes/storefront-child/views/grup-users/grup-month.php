@@ -1,27 +1,6 @@
-<!-- *********************************************************************************************
-           Start Total user sqm
-       *********************************************************************************************	-->
-
 <?php
-
-if (isset($_POST['group_name'])) {
-	if ($_POST['group_name'] === 'all_users') {
-		$users = get_users(array('fields' => array('ID')));
-		$group = array();
-		foreach ($users as $user) {
-			$group[] = $user->ID;
-		}
-	} else {
-		$group = get_post_meta(1, $_POST['group_name'], true);
-	}
-} else {
-	$groups_created = get_post_meta(1, 'groups_created', true);
-	$group = array();
-	for ($i = 0; $i < count($groups_created); $i++) {
-		$group_single = get_post_meta(1, $groups_created[$i], true);
-		$group = array_merge($group, $group_single);
-	}
-}
+$path = preg_replace('/wp-content(?!.*wp-content).*/', '', __DIR__);
+include($path . 'wp-load.php');
 
 $i = 1;
 // luna selectata
@@ -30,44 +9,22 @@ if (isset($_POST['luna_select'])) {
 } else {
 	$selected_month = date("m");
 }
-// an selectat
-if (isset($_POST['an_select'])) {
-	$selected_year = $_POST['an_select'];
-} else {
-	$selected_year = date("Y");
-}
 
-// print_r($group);
+// Get user group
+$group = get_user_group();
 
-$orders = array();
-// foreach ($group as $key => $user_id) {
-$args = array(
-	'customer_id' => $group,
-	'limit' => -1,
-	'type' => 'shop_order',
-	'status' => array('wc-on-hold', 'wc-completed', 'wc-pending', 'wc-processing', 'wc-inproduction', 'wc-paid', 'wc-waiting', 'wc-revised', 'wc-inrevision'),
-	'orderby' => 'date',
-	'date_query' => array(
-		'after' => date('Y-m-d', mktime(0, 0, 0, $selected_month, 0, $selected_year)),
-//        'before' => date('Y-m-t', mktime(0, 0, 0, $selected_month, 1, $selected_year)),
-		'before' => date('Y-m-d', strtotime('+1 month', strtotime($selected_year . '-' . $selected_month . '-1'))),
-	),
-	'return' => 'ids',
-);
+// Get selected year
+$selected_year = isset($_POST['an_select']) ? $_POST['an_select'] : date("Y");
 
-//echo ' after: ' . date('Y-m-d', mktime(0, 0, 0, $selected_month, 0, $selected_year));
-//echo ' before: ' . date('Y-m-d', strtotime('+1 month', strtotime($selected_year . '-' . $selected_month . '-1')));
-
-$orders = wc_get_orders($args);
-// $orders = array_merge($orders, $orders_user);
-// }
+// Fetch orders
+$orders = fetch_orders($group, $selected_year);
 
 $total = array();
 $totaly = array();
 $users_sqm = array();
 
 foreach ($orders as $id_order) {
-	$materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'Supreme' => 0, 'Ecowood' => 0);
+	$materials = array('Earth' => 0, 'Green' => 0, 'Biowood' => 0, 'BiowoodPlus' => 0, 'Supreme' => 0, 'Ecowood' => 0, 'EcowoodPlus' => 0);
 
 	$order = wc_get_order($id_order);
 	$order_data = $order->get_data();
@@ -112,55 +69,60 @@ $months = array('01' => 'January', '02' => 'February', '03' => 'March', '04' => 
         <tr>
           <th>Nr.</th>
           <th>User</th>
-          <th>Toal SQM / <?php echo $months[$selected_month]; ?></th>
+          <th>Total SQM / <?php echo $months[$selected_month]; ?></th>
           <th style="text-align:right">Earth</th>
           <th style="text-align:right">Ecowood</th>
-          <th style="text-align:right">Green</th>
+          <th style="text-align:right">EcowoodPlus</th>
           <th style="text-align:right">Biowood</th>
-          <th style="text-align:right">Biowood+P</th>
-          <th style="text-align:right">Biowood-P</th>
+          <th style="text-align:right">BiowoodPlus</th>
           <th style="text-align:right">Supreme</th>
         </tr>
         </thead>
         <tbody>
 				<?php
-				$i = 1;
+				$i = 0;
 				$total_sqm = 0;
+				$total_sqm_earth = 0;
+				$total_sqm_ecowood = 0;
+				$total_sqm_ecowoodPlus = 0;
+				$total_sqm_biowood = 0;
+				$total_sqm_biowoodPlus = 0;
+				$total_sqm_supreme = 0;
+
 				foreach ($users_sqm as $user => $val) {
-					print_r($user);
+					$i++;
 					$user_info = get_userdata($user);
 					$total_sqm = $total_sqm + $users_sqm[$user]['sqm'];
+					$total_sqm_earth = $total_sqm_earth + $users_sqm[$user]['Earth'];
+					$total_sqm_ecowood = $total_sqm_ecowood + $users_sqm[$user]['Ecowood'];
+					$total_sqm_ecowoodPlus = $total_sqm_ecowoodPlus + $users_sqm[$user]['EcowoodPlus'];
+					$total_sqm_biowood = $total_sqm_biowood + $users_sqm[$user]['Biowood'];
+					$total_sqm_biowoodPlus = $total_sqm_biowoodPlus + $users_sqm[$user]['BiowoodPlus'];
+					$total_sqm_supreme = $total_sqm_supreme + $users_sqm[$user]['Supreme'];
 					?>
           <tr>
             <td><?php echo $i; ?></td>
             <td><?php echo $user_info->display_name . " - " . $user_info->first_name . " " . $user_info->last_name; ?></td>
-            <td>
-							<?php echo number_format($users_sqm[$user]['sqm'], 2); ?> SQM
-            </td>
+            <td><?php echo number_format($users_sqm[$user]['sqm'], 2); ?> SQM</td>
             <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Earth'], 2); ?></td>
             <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Ecowood'], 2); ?></td>
-            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Green'], 2); ?></td>
+            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['EcowoodPlus'], 2); ?></td>
             <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Biowood'], 2); ?></td>
-            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['BiowoodP'], 2); ?></td>
-            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['BiowoodNonP'], 2); ?></td>
+            <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['BiowoodPlus'], 2); ?></td>
             <td style="text-align:right">  <?php echo number_format($users_sqm[$user]['Supreme'], 2); ?></td>
           </tr>
-					<?php $i++;
-				}
-				?>
+				<?php } ?>
         </tbody>
         <tfoot>
         <td></td>
-        <td></td>
-        <td>Toal SQM <?php echo number_format($total_sqm, 2); ?></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
-        <td style="text-align:right"></td>
+        <td>Total SQM</td>
+        <td><?php echo number_format($total_sqm, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_earth, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_ecowood, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_ecowoodPlus, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_biowood, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_biowoodPlus, 2); ?></td>
+        <td style="text-align:right">  <?php echo number_format($total_sqm_supreme, 2); ?></td>
         </tfoot>
       </table>
     </div>

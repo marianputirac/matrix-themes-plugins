@@ -26,7 +26,7 @@ $container_id = (isset($_GET['container_id'])) ? $_GET['container_id'] : '';
                             <?php
                             $rand_posts = get_posts(array(
                                 'post_type' => 'container',
-                                'posts_per_page' => 15,
+                                'posts_per_page' => 25,
                             ));
 
                             if ($rand_posts) {
@@ -290,12 +290,12 @@ $container_id = (isset($_GET['container_id'])) ? $_GET['container_id'] : '';
 
                                                           if (get_post_type($repair_id) == 'order_repair') {
                                                                 $sqm_total = $csv_orders_array_repair_sqm[$order_id];
-                                                                echo number_format($sqm_total, 2);
+                                                                echo number_format((float)$sqm_total, 2);
                                                             } else {
-                                                                echo number_format($sqm_total, 2);
+                                                                echo number_format((float)$sqm_total, 2);
                                                             }
 
-                                                            $total_sqm = $total_sqm + number_format($sqm_total, 2);
+                                                            $total_sqm = $total_sqm + number_format(floatval($sqm_total), 2);
                                                 ?></span>
                                                 </td>
                                                 <td>

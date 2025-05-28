@@ -17,6 +17,8 @@ global $post;
 
 $term_slug = "";
 $i = 0;
+$total_prods_delivery = 0;
+$total_sqm = 0;
 $atributes = get_post_meta(1, 'attributes_array', true);
 $edit_placed_order_param = '';
 $edit_placed_order = '';
@@ -62,6 +64,33 @@ foreach ($items as $item_id => $item_data) {
 	$i++;
 	// $product = $item_data->get_product();
 	$product_id = $item_data['product_id'];
+	$property_delivery_price = get_post_meta($product_id, 'train_delivery', true);
+
+// Get the delivery price and convert to a float
+	$property_delivery_price = floatval($property_delivery_price);
+
+	$quantity = get_post_meta($product_id, 'quantity', true);
+	$price = get_post_meta($product_id, '_price', true);
+	$total = $price * $quantity;
+	$sqm = get_post_meta($product_id, 'property_total', true);
+	if ($sqm > 0) {
+		$train_price = get_user_meta($user_id, 'train_price', true);
+		if ($train_price === null || $train_price === '') {
+			$train_price = get_post_meta(1, 'train_price', true);
+		}
+		$new_price_train = floatval($sqm * $quantity) * floatval($train_price);
+		update_post_meta($product_id, 'train_delivery', $new_price_train);
+		// $new_price = 0;
+	} else {
+		$new_price_train = 0;
+	}
+
+
+
+// Now, perform the addition
+	$total_prods_delivery = $total_prods_delivery + $new_price_train;
+	$property_total_sqm = get_post_meta($product_id, 'property_total', true);
+	$total_sqm = $total_sqm + $property_total_sqm;
 	if ($i == 1) {
 		$term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 		$fob_components = false;
@@ -117,23 +146,23 @@ foreach ($items as $item_id => $item_data) {
 <table id="<?php
 echo $table_id; ?>" style="width:100%" class="table-bordered <?php
 echo $table_class; ?>">
-  <thead>
-  <tr>
-    <th>Nr.</th>
-    <th>Item</th>
-    <th></th>
-    <th></th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Total</th>
+    <thead>
+    <tr>
+        <th>Nr.</th>
+        <th>Item</th>
+        <th></th>
+        <th></th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
 		<?php
 		if ($edit === 'true' || $admin == 'true') { ?>
-      <th></th>
+            <th></th>
 			<?php
 		} ?>
-  </tr>
-  </thead>
-  <tbody>
+    </tr>
+    </thead>
+    <tbody>
 	<?php
 	$array_att = array();
 	$j = 0;
@@ -199,12 +228,16 @@ echo $table_class; ?>">
 		$property_sparelouvres = get_post_meta($product_id, 'property_sparelouvres', true);
 		$property_ringpull = get_post_meta($product_id, 'property_ringpull', true);
 		$property_locks = get_post_meta($product_id, 'property_locks', true);
+		$property_central_lock = get_post_meta($product_id, 'property_central_lock', true);
 		$property_ringpull_volume = get_post_meta($product_id, 'property_ringpull_volume', true);
 		$property_locks_volume = get_post_meta($product_id, 'property_locks_volume', true);
 		$property_lock_position = get_post_meta($product_id, 'property_lock_position', true);
 		$property_louver_lock = get_post_meta($product_id, 'property_louver_lock', true);
 		$property_nowarranty = get_post_meta($product_id, 'property_nowarranty', true);
 		$comments_customer = get_post_meta($product_id, 'comments_customer', true);
+		$property_motorized = get_post_meta($product_id, 'property_motorized', true);
+		$property_nrMotors = get_post_meta($product_id, 'property_nrMotors', true);
+		$property_nrRemotes = get_post_meta($product_id, 'property_nrRemotes', true);
 //Returns All Term Items for "product_cat"
 		$term_list = wp_get_post_terms($product_id, 'product_cat', array("fields" => "all"));
 		$attribute_pa_colors = wc_get_order_item_meta($item_id, 'pa_colors', true);
@@ -227,152 +260,160 @@ echo $table_class; ?>">
 		// print_r($term_list->slug);
 		// echo '</pre>';
 		if ($product_id == 337 || $product_id == 72951) { ?>
-      <tr class="prod-item" data-pord-id="<?php
+            <tr class="prod-item" data-pord-id="<?php
 			echo $product_id; ?>">
-        <td>
+                <td>
 					<?php echo $j; ?>
-        </td>
-        <td colspan="3">
+                </td>
+                <td colspan="3">
 					<?php
 					echo get_the_title($product_id); ?>
-        </td>
-        <td>£
+                </td>
+                <td>£
 					<?php
 					echo number_format($price, 2); ?>
-        </td>
-        <td></td>
-        <td>£
+                </td>
+                <td></td>
+                <td>£
 					<?php
 					echo number_format($price, 2); ?>
-        </td>
+                </td>
 				<?php
 				if ($edit === 'true') { ?>
-          <td>
-          </td>
+                    <td>
+                    </td>
 					<?php
 				} ?>
 				<?php
 				if ($admin === 'true') { ?>
-          <td>
-          </td>
+                    <td>
+                    </td>
 					<?php
 				} ?>
-      </tr>
+            </tr>
 			<?php
 		} elseif ($term_slug == 'pos' || $term_slug == 'components' || $term_slug == 'components-fob') {
 			?>
-      <tr class="prod-item" data-pord-id="<?php
+            <tr class="prod-item" data-pord-id="<?php
 			echo $product_id; ?>">
-        <td>
+                <td>
 					<?php echo $j; ?>
-        </td>
-        <td>
-          <strong><?php
+                </td>
+                <td>
+                    <strong><?php
 						echo get_the_title($product_id); ?></strong>
-        </td>
-        <td colspan="2"><?php
+                </td>
+                <td colspan="2"><?php
 					if (!empty($attribute_pa_colors)) echo '<strong>Color:</strong> ' . $attribute_pa_colors . '<br>';
 					if (!empty($attribute_pa_covered)) echo '<strong>Covered:</strong> ' . $attribute_pa_covered . '<br>';
 					if (!empty($comp_note)) echo '<strong>Your Note:</strong> ' . $comp_note;
 					?>
-        </td>
-        <td><?php
+                </td>
+                <td><?php
 					echo $fob_components ? '$' : '£'; ?>
 					<?php
 					echo number_format($price, 2); ?>
-        </td>
-        <td><?php
-					echo $item_data['quantity']; ?></td>
-        <td><?php
+                </td>
+                <td><?php
+					$quantity = 1;
+					$quantity_prod = get_post_meta($product_id, 'quantity', true);
+					if (!empty($quantity_prod)) {
+						$quantity = $quantity_prod;
+					} else {
+						$quantity = isset($item_data['quantity']) ? intval($item_data['quantity']) : 0;
+					}
+					echo $quantity; ?></td>
+                <td><?php
 					echo $fob_components ? '$' : '£'; ?>
 					<?php
-					$total = $price * $item_data['quantity'];  // Perform multiplication first
+					$total = $price * $quantity;  // Perform multiplication first
 
 					$formatted_total = number_format($total, 2);  // Then format the result
 					echo $formatted_total;
 					?>
-        </td>
+                </td>
 				<?php
 				if ($edit === 'true') { ?>
-          <td>
+                    <td>
 						<?php
 						echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-							'<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
-							esc_url(wc_get_cart_remove_url($item_id)),
-							__('Remove this item', 'woocommerce'),
-							esc_attr($product_id),
-							esc_attr($_product->get_sku())
+						  '<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
+						  esc_url(wc_get_cart_remove_url($item_id)),
+						  __('Remove this item', 'woocommerce'),
+						  esc_attr($product_id),
+						  esc_attr($_product->get_sku())
 						));
 						?>
-          </td>
+                    </td>
 					<?php
 				} ?>
 				<?php
 				if ($admin === 'true') { ?>
-          <td>
-          </td>
+                    <td>
+                    </td>
 					<?php
 				} ?>
-      </tr>
+            </tr>
 			<?php
 		} elseif ($property_category === 'Batten') { ?>
-      <tr class="prod-item" data-pord-id="<?php
+            <tr class="prod-item" data-pord-id="<?php
 			echo $product_id; ?>">
-        <td>
+                <td>
 					<?php echo $j; ?>
-        </td>
-        <td>
+                </td>
+                <td>
 					<?php
 					echo $property_category; ?>
-          <br> Room:
-          <strong>
+                    <br> Room:
+                    <strong>
 						<?php
 						echo $property_room_other; ?></strong>
-          <br> Material:
-          <strong>
+                    <br> Material:
+                    <strong>
 						<?php
 						echo $atributes[$property_material]; ?></strong>
-        </td>
-        <td>
-        </td>
-        <td>
-          Image:
+                </td>
+                <td>
+                </td>
+                <td>
+                    Image:
 					<?php
 					if (!empty($attachment)) { ?>
-            <a href="<?php
+                        <a href="<?php
 						echo get_post_meta($product_id, 'attachment', true); ?>" target="_blank">
-              <img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">
-            </a>
+                            <img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">
+                        </a>
 						<?php
 					} else {
 						echo '<strong>no</strong>';
 					}
 					?>
-          Draw Image:
+                    <br>
+                    Draw Image:
 					<?php
 					if (!empty($attachmentDraw)) { ?>
-            <a href="<?php
+                        <a href="<?php
 						echo get_post_meta($product_id, 'attachment_draw', true); ?>" target="_blank">
-              <img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">
-            </a>
+                            <img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">
+                        </a>
 						<?php
 					} else {
 						echo '<strong>no</strong>';
 					}
 					?>
-          <br>
-          <br>Shutter Colour:<strong>
+                    <br>
+                    <br>Shutter Colour:<strong>
 						<?php
 						echo $atributes[$property_shuttercolour]; ?></strong>
-          <br>
-          Notes:<strong>
+                    <br>
+                    Notes:<strong>
 						<?php
 						if ($property_nowarranty == "Yes") {
 							echo 'OUT OF WARRANTY ACCEPTED <br>';
 						}
 						echo $comments_customer; ?></strong>
-        </td>
-        <td><!-- $ 5000 -->
+                </td>
+                <td><!-- $ 5000 -->
 					<?php
 					if ($view_price || current_user_can('administrator')) {
 						$batten_type = get_post_meta($product_id, 'batten_type', true);
@@ -391,146 +432,153 @@ echo $table_class; ?>">
 						}
 					}
 					?>
-        </td>
-        <td>
-          <strong>
+                </td>
+                <td>
+                    <strong>
 						<?php
 						echo number_format((double)$property_volume, 5); ?> sq/m </strong>
-          <br>
+                    <br>
 					<?php
-					echo 'Qty:  <strong>' . $item_data['quantity'] . '</strong>'; ?>
-          <br> Width:<strong>
+					$quantity = 1;
+					$quantity_prod = get_post_meta($product_id, 'quantity', true);
+					if (!empty($quantity_prod)) {
+						$quantity = $quantity_prod;
+					} else {
+						$quantity = isset($item_data['quantity']) ? intval($item_data['quantity']) : 0;
+					}
+					echo 'Qty:  <strong>' . $quantity . '</strong>'; ?>
+                    <br> Width:<strong>
 						<?php
 						echo $property_width; ?></strong>
-          <br> Height:<strong>
+                    <br> Height:<strong>
 						<?php
 						echo $property_height; ?></strong>
-          <br> Depth :<strong>
+                    <br> Depth :<strong>
 						<?php
 						echo $property_depth; ?></strong>
-          <br>
-        </td>
-        <td class="price-batten">
+                    <br>
+                </td>
+                <td class="price-batten">
 					<?php
 					if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-						$total = $price * $item_data['quantity'];  // Perform multiplication first
+						$total = $price * $quantity;  // Perform multiplication first
 
 						$formatted_total = number_format($total, 2);  // Then format the result
 						echo '£ ' . $formatted_total;
 					}
 					?>
-        </td>
+                </td>
 				<?php
 				//                        if (current_user_can('china_admin')) {
 				//                            echo '<td></td>';
 				//                        } else {
 
 				if ($edit == 'true' && $admin == 'false') { ?>
-          <td>
+                    <td>
 						<?php
 						$pieces = explode("-", $title);
 						if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter') || ($property_category === 'prod1') || ($pieces[0] == 'prod1')) {
 							?>
-            <a class="btn btn-primary transparent"
-               href="/prod1-all/?id=<?php
-							 echo $product_id * 1498765 * 33;
-							 echo $edit_placed_order; ?>">Edit</a><?php
+                        <a class="btn btn-primary transparent"
+                           href="/prod1-all/?id=<?php
+						   echo $product_id * 1498765 * 33;
+						   echo $edit_placed_order; ?>">Edit</a><?php
 						} elseif (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')) {
 							?>
-            <a class="btn btn-primary transparent"
-               href="/prod2-all/?id=<?php
-							 echo $product_id * 1498765 * 33;
-							 echo $edit_placed_order; ?>">Edit</a><?php
+                        <a class="btn btn-primary transparent"
+                           href="/prod2-all/?id=<?php
+						   echo $product_id * 1498765 * 33;
+						   echo $edit_placed_order; ?>">Edit</a><?php
 						} elseif ($property_category === 'Batten') {
 							?>
-            <a class="btn btn-primary transparent"
-               href="/product5-edit/?id=<?php
-							 echo $product_id * 1498765 * 33;
-							 echo $edit_placed_order; ?>">Edit</a><?php
+                        <a class="btn btn-primary transparent"
+                           href="/product5-edit/?id=<?php
+						   echo $product_id * 1498765 * 33;
+						   echo $edit_placed_order; ?>">Edit</a><?php
 						}
 						if (get_page_template_slug($post->ID) != 'template-orderedit.php') {
 
 //   if (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')
 							$clone_categories = array(
-								'Shutter' => '/prod1-all/',
-								'Shutter & Blackout Blind' => '/prod2-all/',
-								'Batten' => '/product5-edit/',
+							  'Shutter' => '/prod1-all/',
+							  'Shutter & Blackout Blind' => '/prod2-all/',
+							  'Batten' => '/product5-edit/',
 							);
 							$prodId_encode = base64_encode($product_id);
 							?>
-              <br>
-              <a
-                class="btn btn-primary clone-item"
-                item-id="<?php echo $item_id; ?>"
-                href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
-              >
-                Clone
-              </a>
-              <br>
+                            <br>
+                            <a
+                              class="btn btn-primary clone-item"
+                              item-id="<?php echo $item_id; ?>"
+                              href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
+                            >
+                                Clone
+                            </a>
+                            <br>
 							<?php
 							echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-								'<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
-								esc_url(wc_get_cart_remove_url($item_id)),
-								__('Remove this item', 'woocommerce'),
-								esc_attr($product_id),
-								esc_attr($_product->get_sku())
+							  '<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
+							  esc_url(wc_get_cart_remove_url($item_id)),
+							  __('Remove this item', 'woocommerce'),
+							  esc_attr($product_id),
+							  esc_attr($_product->get_sku())
 							));
 						} elseif (get_page_template_slug($post->ID) == 'template-orderedit.php') {
 							?>
-              <br>
-              <buttton
-                class="btn btn-danger delete-item"
-                item-id="<?php
-								echo $item_id; ?>">
-                Delete
-              </buttton>
+                            <br>
+                            <buttton
+                              class="btn btn-danger delete-item"
+                              item-id="<?php
+							  echo $item_id; ?>">
+                                Delete
+                            </buttton>
 							<?php
 						}
 						?>
-          </td>
+                    </td>
 					<?php
 				} ?>
 				<?php
 				if ($admin == 'true') { ?>
-          <td>
+                    <td>
 						<?php
 						$pieces = explode("-", $title);
 						$property_category;
 						if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter')) {
 							?>
-            <a class="btn btn-primary transparent" target="_blank"
-               href="/prod1-all/?order_id=<?php
-							 echo $order_id * 1498765 * 33; ?>&id=<?php
-							 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-							 echo $user_id_customer; ?>&item_id=<?php
-							 echo $item_id; ?>">
-                Edit</a><?php
+                        <a class="btn btn-primary transparent" target="_blank"
+                           href="/prod1-all/?order_id=<?php
+						   echo $order_id * 1498765 * 33; ?>&id=<?php
+						   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+						   echo $user_id_customer; ?>&item_id=<?php
+						   echo $item_id; ?>">
+                                Edit</a><?php
 						} elseif ($property_category === 'Shutter & Blackout Blind' || ($pieces[0] == 'Shutter & Blackout Blind')) {
 							?>
-            <a class="btn btn-primary transparent" target="_blank"
-               href="/prod2-all/?order_id=<?php
-							 echo $order_id * 1498765 * 33; ?>&id=<?php
-							 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-							 echo $user_id_customer; ?>&item_id=<?php
-							 echo $item_id; ?>">
-                Edit</a><?php
+                        <a class="btn btn-primary transparent" target="_blank"
+                           href="/prod2-all/?order_id=<?php
+						   echo $order_id * 1498765 * 33; ?>&id=<?php
+						   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+						   echo $user_id_customer; ?>&item_id=<?php
+						   echo $item_id; ?>">
+                                Edit</a><?php
 						} elseif ($property_category === 'Batten') {
 							?>
-            <a class="btn btn-primary transparent" target="_blank"
-               href="/product5-admin/?order_id=<?php
-							 echo $order_id * 1498765 * 33; ?>&id=<?php
-							 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-							 echo $user_id_customer; ?>&item_id=<?php
-							 echo $item_id; ?>">
-                Edit</a><?php
+                        <a class="btn btn-primary transparent" target="_blank"
+                           href="/product5-admin/?order_id=<?php
+						   echo $order_id * 1498765 * 33; ?>&id=<?php
+						   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+						   echo $user_id_customer; ?>&item_id=<?php
+						   echo $item_id; ?>">
+                                Edit</a><?php
 						}
 						?>
-          </td>
+                    </td>
 					<?php
 				}
 				//   }
 				?>
-      </tr>
+            </tr>
 			<?php
 		} else {
 
@@ -538,24 +586,24 @@ echo $table_class; ?>">
 				for ($sec = 1; $sec <= $property_nr_sections; $sec++) {
 
 					?>
-          <tr class="prod-item" data-pord-id="<?php
+                    <tr class="prod-item" data-pord-id="<?php
 					echo $product_id; ?>">
-            <td>
+                        <td>
 							<?php echo $j; ?>
-            </td>
-            <!-- <td><?php
+                        </td>
+                        <!-- <td><?php
 						// echo $j;
 						?></td> -->
-            <td>
-              <strong>
+                        <td>
+                            <strong>
 								<?php
 								echo $atributes[$property_material]; ?>
-              </strong>
-              <br> Room:
-              <strong>
+                            </strong>
+                            <br> Room:
+                            <strong>
 								<?php
 								echo $property_room_other . ' - Section' . $sec; ?></strong>
-              <br> Installation style:<strong>
+                            <br> Installation style:<strong>
 								<?php
 								echo 'Individual Bay Window - ' . $atributes[$property_style];
 								if ($property_style == 36) {
@@ -577,7 +625,7 @@ echo $table_class; ?>">
 									echo ' (+' . $shaped_procent . '%)';
 								}
 								?></strong>
-              <br> Has drawing image:
+                            <br> Has drawing image:
 							<?php
 							if (!empty($attachment)) {
 								echo '<img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">';
@@ -585,7 +633,7 @@ echo $table_class; ?>">
 								echo '<strong>no</strong>';
 							}
 							?>
-              <br> Has drawing:
+                            <br> Has drawing:
 							<?php
 							if (!empty($attachmentDraw)) {
 								echo '<img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">';
@@ -593,10 +641,10 @@ echo $table_class; ?>">
 								echo '<strong>no</strong>';
 							}
 							?>
-              <br> Midrail Height:<strong>
+                            <br> Midrail Height:<strong>
 								<?php
 								echo $property_midrailheight; ?></strong>
-              <br>
+                            <br>
 							<?php
 							if (!empty($property_midrailheight2)) {
 								echo 'Midrail Height 2: <strong>' . $property_midrailheight2 . '</strong><br>';
@@ -621,7 +669,7 @@ echo $table_class; ?>">
 								?> Position is Critical:<strong>
 									<?php
 									echo $atributes[$property_midrailpositioncritical] ?></strong>
-                <br>
+                                <br>
 								<?php
 							}
 							if (!empty($property_totheight)) {
@@ -636,7 +684,7 @@ echo $table_class; ?>">
 								?> Louvre size:<strong>
 									<?php
 									echo $atributes[$property_bladesize]; ?></strong>
-                <br>
+                                <br>
 								<?php
 							}
 							if (!empty($property_doubleClosingLouvres)) {
@@ -662,26 +710,26 @@ echo $table_class; ?>">
 								}
 							}
 							?>
-            </td>
-            <td>Frame type:<strong>
+                        </td>
+                        <td>Frame type:<strong>
 								<?php
 								echo $atributes[$property_frametype]; ?></strong>
-              <br> Stile type:<strong>
+                            <br> Stile type:<strong>
 								<?php
 								echo $atributes[$property_stile]; ?></strong>
-              <br> Frame Left:<strong>
+                            <br> Frame Left:<strong>
 								<?php
 								echo $atributes[$property_frameleft]; ?></strong>
-              <br> Frame Right:<strong>
+                            <br> Frame Right:<strong>
 								<?php
 								echo $atributes[$property_frameright]; ?></strong>
-              <br> Frame Top:<strong>
+                            <br> Frame Top:<strong>
 								<?php
 								echo $atributes[$property_frametop]; ?></strong>
-              <br> Frame Bottom:<strong>
+                            <br> Frame Bottom:<strong>
 								<?php
 								echo $atributes[$property_framebottom]; ?></strong>
-              <br>
+                            <br>
 							<?php
 							if (!empty($property_builtout)) {
 								$user_buildout = get_user_meta($user_id, 'Buildout', true);
@@ -693,14 +741,14 @@ echo $table_class; ?>">
 								}
 							}
 							?>
-            </td>
-            <td>Hinge Colour:<strong>
+                        </td>
+                        <td>Hinge Colour:<strong>
 								<?php
 								echo $atributes[$property_hingecolour]; ?></strong>
-              <br> Shutter Colour:<strong>
+                            <br> Shutter Colour:<strong>
 								<?php
 								echo $atributes[$property_shuttercolour]; ?></strong>
-              <br>
+                            <br>
 							<?php
 							$pieces = explode("-", $title);
 							if (!empty($property_shuttercolour_other)) {
@@ -708,15 +756,15 @@ echo $table_class; ?>">
 							}
 							if (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')) {
 								?>
-                Blackout Blind Colour:
-                <strong>
+                                Blackout Blind Colour:
+                                <strong>
 									<?php
 									echo $atributes[$property_blackoutblindcolour]; ?></strong>
-                <br>
+                                <br>
 								<?php
 							}
 							?>
-              Control Type:<strong>
+                            Control Type:<strong>
 								<?php
 								echo $atributes[$property_controltype]; ?><?php
 								if ($atributes[$property_controltype] == 'Clearview' || $property_controltype == 403) {
@@ -729,28 +777,28 @@ echo $table_class; ?>">
 									}
 								}
 								?>
-              </strong>
+                            </strong>
 							<?php
 							if (!empty($atributes[$property_controlsplitheight])) { ?>
-                <br> Control Split Height:
-                <strong>
+                                <br> Control Split Height:
+                                <strong>
 								<?php
 								echo $atributes[$property_controlsplitheight]; ?></strong><?php
 							} ?>
-              <br> Layout code:<strong style="text-transform:uppercase;">
+                            <br> Layout code:<strong style="text-transform:uppercase;">
 								<?php
 								echo get_post_meta($product_id, 'property_layoutcode' . $sec, true);
 								?></strong>
-              <br>
+                            <br>
 							<?php
 							$property_opendoor = get_post_meta($product_id, 'property_opendoor' . $sec, true);
 							if ($property_opendoor) {
 								?>
-                Open first:<strong>
+                                Open first:<strong>
 									<?php
 									echo $property_opendoor; ?>
-                </strong>
-                <br>
+                                </strong>
+                                <br>
 								<?php
 							} ?>
 							<?php
@@ -823,71 +871,91 @@ echo $table_class; ?>">
 							<?php
 							if (!empty(get_post_meta($product_id, 'property_t1_' . $sec, true))) {
 								if ($property_tposttype) { ?> T-Post Type:
-                  <strong>
+                                    <strong>
 										<?php
 										echo $atributes[$property_tposttype]; ?></strong>
-                  <br>
+                                    <br>
 									<?php
 								}
 							} ?>
 							<?php
 							if ($property_sparelouvres == 'Yes') { ?> Include 2 x Spare Louvre:
-                <strong>
+                                <strong>
 									<?php
 									echo $property_sparelouvres; ?></strong> (+6£)
-                <br>
+                                <br>
 								<?php
 							} ?>
 							<?php
 							if ($property_ringpull == 'Yes') { ?> Ring Pull:
-                <strong>
+                                <strong>
 									<?php
 									echo $property_ringpull; ?></strong> (+35£)
-                <br>
-                How many rings?:
-                <strong>
+                                <br>
+                                How many rings?:
+                                <strong>
 									<?php
 									echo $property_ringpull_volume; ?></strong>
-                <br>
+                                <br>
 								<?php
 							} ?>
 							<?php
-							if ($property_locks == 'Yes') { ?> Locks:
-                <strong>
-									<?php
-									echo $property_locks; ?></strong>
+							if ($property_locks == 'Yes' || $property_central_lock == "Yes") { ?> Locks:
+                                <strong>Yes</strong>
 								<?php
 								if (!empty(get_user_meta($user_id_customer, 'Lock', true)) || (get_user_meta($user_id_customer, 'Lock', true) > 0)) {
 									echo '(+' . get_user_meta($user_id_customer, 'Lock', true) . '£)';
 								} else {
 									echo '(+' . get_post_meta(1, 'Lock', true) . '£)';
 								} ?>
-                <br>
-                How many locks?:
-                <strong>
+                                <br>
+                                <!--                How many locks?:-->
+                                <!--                <strong>-->
+                                <!--									--><?php
+								//									echo $property_locks_volume; ?><!-- set(s)</strong>-->
+                                <!--                <br>-->
+                                Lock Position:
+                                <strong>
 									<?php
-									echo $property_locks_volume; ?> set(s)</strong>
-                <br>
-                Lock Position:
-                <strong>
-									<?php
-									echo $property_lock_position; ?></strong>
-                <br>
-                Louver Lock:
-                <strong>
-									<?php
-									echo $property_louver_lock; ?></strong>
-                <br>
+									$lock_position = ($property_locks == "Yes") ? "Top & Bottom Locks" : "Central Lock";
+									echo $lock_position; ?></strong>
+                                <br>
+                                <!--                Louver Lock:-->
+                                <!--                <strong>-->
+                                <!--									--><?php
+//									echo $property_louver_lock; ?><!--</strong>-->
+                                <!--                <br>-->
 								<?php
 							} ?>
-              Notes:<strong>
+                            Notes:<strong>
 								<?php
 								if ($property_nowarranty == "Yes") {
 									echo 'OUT OF WARRANTY ACCEPTED <br>';
 								}
 								echo $comments_customer; ?></strong>
-            </td>
-            <td>
+
+							<?php
+							$pictures = get_post_meta($product_id, 'pictures', true);
+							if (!empty($pictures)) {
+								echo '<br><span>Images:</span>';
+								// Wrapper-ul de imagini va sta pe același rând cu span-ul
+								echo '<div style="display: inline-block; margin-left: 10px;">';
+
+								$img_index = 1;
+								foreach ($pictures as $imageUrl) {
+									// Fiecare 'imagine' e afișată într-un container cu display:inline-block;
+									echo '<div style="display: inline-block; margin-right: 15px;">';
+									echo '<a href="' . esc_url($imageUrl) . '" target="_blank">';
+									echo 'Image-' . $img_index;
+									echo '</a>';
+									echo '</div>';
+									$img_index++;
+								}
+								echo '</div>';
+							}
+							?>
+                        </td>
+                        <td>
 							<?php
 							//                            print_r($property_material);
 							//                            echo ' -- ';
@@ -897,7 +965,7 @@ echo $table_class; ?>">
 							//                            echo ' -- ';
 
 							if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-								$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
+								$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'BiowoodPlus', 6 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood', 5 => 'EcowoodPlus');
 								$price_for_update = get_post_meta($order_id, 'price_for_update', true);
 								foreach ($materials as $key => $material) {
 									if ($property_material == $key) {
@@ -911,6 +979,7 @@ echo $table_class; ?>">
 												$material_price = get_post_meta(1, $material, true);
 											}
 										}
+										$material_price = get_post_meta($product_id, 'price_item_' . $material, true);
 									}
 //                                else {
 //                                    if (!empty(get_user_meta($user_id, $atributes[$property_material], true)) || (get_user_meta($user_id, $atributes[$property_material], true) > 0)) {
@@ -929,26 +998,33 @@ echo $table_class; ?>">
 								}
 							}
 							?>
-            </td>
-            <td>
-              <strong>
+                        </td>
+                        <td>
+                            <strong>
 								<?php
 								$property_total_section = get_post_meta($product_id, 'property_total_section' . $sec, true);
 								// if($sec == 1) echo number_format((double)$property_total, 2).' sq/m ';
 								echo number_format($property_total_section, 2) . ' sq/m ';
 								?> </strong>
-              <br>
+                            <br>
 							<?php
-							echo 'Qty:  <strong>' . $item_data['quantity'] . '</strong>'; ?>
-              <br> Width:<strong>
+							$quantity = 1;
+							$quantity_prod = get_post_meta($product_id, 'quantity', true);
+							if (!empty($quantity_prod)) {
+								$quantity = $quantity_prod;
+							} else {
+								$quantity = isset($item_data['quantity']) ? intval($item_data['quantity']) : 0;
+							}
+							echo 'Qty:  <strong>' . $quantity . '</strong>'; ?>
+                            <br> Width:<strong>
 								<?php
 								echo get_post_meta($product_id, 'property_width' . $sec, true); ?></strong>
-              <br> Height:<strong>
+                            <br> Height:<strong>
 								<?php
 								echo $property_height; ?></strong>
-              <br>
-            </td>
-            <td>
+                            <br>
+                        </td>
+                        <td>
 							<?php
 							if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
 								$sum = number_format($sections_price[$sec], 2);
@@ -956,142 +1032,144 @@ echo $table_class; ?>">
 								// echo '<br>' . $product->get_price();
 							}
 							?>
-            </td>
+                        </td>
 						<?php
 						if ($edit == 'true' && $admin == 'false' && $sec == 1) { ?>
-              <td>
+                            <td>
 								<?php
 								$pieces = explode("-", $title);
 								if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter') || ($property_category === 'prod1') || ($pieces[0] == 'prod1')) {
 									?>
-                <a class="btn btn-primary transparent"
-                   href="/prod1-all/?id=<?php
-									 echo $product_id * 1498765 * 33;
-									 echo $edit_placed_order; ?>">Edit</a><?php
+                                <a class="btn btn-primary transparent"
+                                   href="/prod1-all/?id=<?php
+								   echo $product_id * 1498765 * 33;
+								   echo $edit_placed_order; ?>">Edit</a><?php
 								} elseif (($pieces[1] == 'individual')) {
 									?>
-                <a class="btn btn-primary transparent"
-                   href="/prod-individual/?id=<?php
-									 echo $product_id * 1498765 * 33;
-									 echo $edit_placed_order; ?>">Edit</a><?php
+                                <a class="btn btn-primary transparent"
+                                   href="/prod-individual/?id=<?php
+								   echo $product_id * 1498765 * 33;
+								   echo $edit_placed_order; ?>">Edit</a><?php
 								} elseif (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')) {
 									?>
-                <a class="btn btn-primary transparent"
-                   href="/prod2-all/?id=<?php
-									 echo $product_id * 1498765 * 33;
-									 echo $edit_placed_order; ?>">Edit</a><?php
+                                <a class="btn btn-primary transparent"
+                                   href="/prod2-all/?id=<?php
+								   echo $product_id * 1498765 * 33;
+								   echo $edit_placed_order; ?>">Edit</a><?php
 								} elseif ($property_category === 'Batten') {
 									?>
-                <a class="btn btn-primary transparent"
-                   href="/product5-edit/?id=<?php
-									 echo $product_id * 1498765 * 33;
-									 echo $edit_placed_order; ?>">Edit</a><?php
+                                <a class="btn btn-primary transparent"
+                                   href="/product5-edit/?id=<?php
+								   echo $product_id * 1498765 * 33;
+								   echo $edit_placed_order; ?>">Edit</a><?php
 								}
 								if (get_page_template_slug($post->ID) != 'template-orderedit.php') {
 
 //   if (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')
 									$clone_categories = array(
-										'Shutter' => '/prod1-all/',
-										'Shutter & Blackout Blind' => '/prod2-all/',
-										'Batten' => '/product5-edit/',
+									  'Shutter' => '/prod1-all/',
+									  'Shutter & Blackout Blind' => '/prod2-all/',
+									  'Batten' => '/product5-edit/',
 									);
 									$prodId_encode = base64_encode($product_id);
 									?>
-                  <br>
-                  <a
-                    class="btn btn-primary clone-item"
-                    item-id="<?php echo $item_id; ?>"
-                    href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
-                  >
-                    Clone
-                  </a>
-                  <br>
+                                    <br>
+                                    <a
+                                      class="btn btn-primary clone-item"
+                                      item-id="<?php echo $item_id; ?>"
+                                      href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
+                                    >
+                                        Clone
+                                    </a>
+                                    <br>
 									<?php
 									echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-										'<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
-										esc_url(wc_get_cart_remove_url($item_id)),
-										__('Remove this item', 'woocommerce'),
-										esc_attr($product_id),
-										esc_attr($_product->get_sku())
+									  '<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
+									  esc_url(wc_get_cart_remove_url($item_id)),
+									  __('Remove this item', 'woocommerce'),
+									  esc_attr($product_id),
+									  esc_attr($_product->get_sku())
 									));
 								} elseif (get_page_template_slug($post->ID) == 'template-orderedit.php') {
 									?>
-                  <br>
-                <buttton class="btn btn-danger delete-item"
-                         item-id="<?php
-												 echo $item_id; ?>">
-                    Delete
-                  </buttton><?php
+                                    <br>
+                                <buttton class="btn btn-danger delete-item"
+                                         item-id="<?php
+								         echo $item_id; ?>">
+                                        Delete
+                                    </buttton><?php
 								}
 								?>
-              </td>
+                            </td>
 							<?php
 						} ?>
 						<?php
 						if ($admin == 'true' && $sec == 1) { ?>
-              <td>
+                            <td>
 								<?php
 								$pieces = explode("-", $title);
 								$property_category;
 								if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter')) {
 									?>
-                <a class="btn btn-primary transparent" target="_blank"
-                   href="/prod1-all/?id=<?php
-									 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-									 echo $user_id_customer; ?>&item_id=<?php
-									 echo $item_id; ?>">
-                    Edit</a><?php
+                                <a class="btn btn-primary transparent" target="_blank"
+                                   href="/prod1-all/?id=<?php
+								   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+								   echo $user_id_customer; ?>&item_id=<?php
+								   echo $item_id; ?>">
+                                        Edit</a><?php
 								} elseif (($pieces[1] == 'individual')) {
 									?>
-                <a class="btn btn-primary transparent" target="_blank"
-                   href="/prod-individual/?id=<?php
-									 echo $product_id * 1498765 * 33;
-									 echo $edit_placed_order; ?>">Edit</a><?php
+                                <a class="btn btn-primary transparent" target="_blank"
+                                   href="/prod-individual/?order_id=<?php
+								   echo $order_id * 1498765 * 33; ?>&id=<?php
+								   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+								   echo $user_id_customer; ?>&item_id=<?php
+								   echo $item_id; ?>">Edit</a><?php
 								} elseif ($property_category === 'Shutter & Blackout Blind' || ($pieces[0] == 'Shutter & Blackout Blind')) {
 									?>
-                <a class="btn btn-primary transparent" target="_blank"
-                   href="/prod2-all/?id=<?php
-									 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-									 echo $user_id_customer; ?>&item_id=<?php
-									 echo $item_id; ?>">
-                    Edit</a><?php
+                                <a class="btn btn-primary transparent" target="_blank"
+                                   href="/prod2-all/?id=<?php
+								   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+								   echo $user_id_customer; ?>&item_id=<?php
+								   echo $item_id; ?>">
+                                        Edit</a><?php
 								} elseif ($property_category === 'Batten') {
 									?>
-                <a class="btn btn-primary transparent" target="_blank"
-                   href="/product5-admin/?id=<?php
-									 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-									 echo $user_id_customer; ?>&item_id=<?php
-									 echo $item_id; ?>">
-                    Edit</a><?php
+                                <a class="btn btn-primary transparent" target="_blank"
+                                   href="/product5-admin/?id=<?php
+								   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+								   echo $user_id_customer; ?>&item_id=<?php
+								   echo $item_id; ?>">
+                                        Edit</a><?php
 								}
 
 								?>
-              </td>
+                            </td>
 							<?php
 						}
 						// }
 						?>
-          </tr>
+                    </tr>
 					<?php
 				}
 			} else {
 
 				?>
-        <tr class="prod-item" data-pord-id="<?php
+                <tr class="prod-item" data-pord-id="<?php
 				echo $product_id; ?>">
-          <td>
+                    <td>
 						<?php echo $j; ?>
-          </td>
-          <td>
-            <strong>
+                    </td>
+                    <td>
+                        <strong>
 							<?php
 							echo $atributes[$property_material]; ?>
-            </strong>
-            <br> Room:
-            <strong>
+                        </strong>
+                        <br> Room:
+                        <strong>
 							<?php
 							echo $property_room_other; ?></strong>
-            <br> Installation style:<strong>
+                        <br> Installation style:<strong>
 							<?php
 							echo $atributes[$property_style];
 							if ($property_style == 36) {
@@ -1113,7 +1191,7 @@ echo $table_class; ?>">
 								echo ' (+' . $shaped_procent . '%)';
 							}
 							?></strong>
-            <br> Has drawing image:
+                        <br> Has drawing image:
 						<?php
 						if (!empty($attachment)) {
 							echo '<img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">';
@@ -1121,7 +1199,7 @@ echo $table_class; ?>">
 							echo '<strong>no</strong>';
 						}
 						?>
-            <br> Has drawing:
+                        <br> Has drawing:
 						<?php
 						if (!empty($attachmentDraw)) {
 							echo '<img src="/wp-content/uploads/2018/06/icons8-checkmark-26-1.png" alt="yes">';
@@ -1129,10 +1207,10 @@ echo $table_class; ?>">
 							echo '<strong>no</strong>';
 						}
 						?>
-            <br> Midrail Height:<strong>
+                        <br> Midrail Height:<strong>
 							<?php
 							echo $property_midrailheight; ?></strong>
-            <br>
+                        <br>
 						<?php
 						if (!empty($property_midrailheight2)) {
 							echo 'Midrail Height 2: <strong>' . $property_midrailheight2 . '</strong><br>';
@@ -1157,7 +1235,7 @@ echo $table_class; ?>">
 							?> Position is Critical:<strong>
 								<?php
 								echo $atributes[$property_midrailpositioncritical] ?></strong>
-              <br>
+                            <br>
 							<?php
 						}
 						if (!empty($property_totheight)) {
@@ -1172,7 +1250,7 @@ echo $table_class; ?>">
 							?> Louvre size:<strong>
 								<?php
 								echo $atributes[$property_bladesize]; ?></strong>
-              <br>
+                            <br>
 							<?php
 						}
 						if (!empty($property_doubleClosingLouvres)) {
@@ -1200,26 +1278,26 @@ echo $table_class; ?>">
 							}
 						}
 						?>
-          </td>
-          <td>Frame type:<strong>
+                    </td>
+                    <td>Frame type:<strong>
 							<?php
 							echo $atributes[$property_frametype]; ?></strong>
-            <br> Stile type:<strong>
+                        <br> Stile type:<strong>
 							<?php
 							echo $atributes[$property_stile]; ?></strong>
-            <br> Frame Left:<strong>
+                        <br> Frame Left:<strong>
 							<?php
 							echo $atributes[$property_frameleft]; ?></strong>
-            <br> Frame Right:<strong>
+                        <br> Frame Right:<strong>
 							<?php
 							echo $atributes[$property_frameright]; ?></strong>
-            <br> Frame Top:<strong>
+                        <br> Frame Top:<strong>
 							<?php
 							echo $atributes[$property_frametop]; ?></strong>
-            <br> Frame Bottom:<strong>
+                        <br> Frame Bottom:<strong>
 							<?php
 							echo $atributes[$property_framebottom]; ?></strong>
-            <br>
+                        <br>
 						<?php
 						if (!empty($property_builtout)) {
 							$user_buildout = get_user_meta($user_id, 'Buildout', true);
@@ -1231,14 +1309,14 @@ echo $table_class; ?>">
 							}
 						}
 						?>
-          </td>
-          <td>Hinge Colour:<strong>
+                    </td>
+                    <td>Hinge Colour:<strong>
 							<?php
 							echo $atributes[$property_hingecolour]; ?></strong>
-            <br> Shutter Colour:<strong>
+                        <br> Shutter Colour:<strong>
 							<?php
 							echo $atributes[$property_shuttercolour]; ?></strong>
-            <br>
+                        <br>
 						<?php
 						$pieces = explode("-", $title);
 						if (!empty($property_shuttercolour_other)) {
@@ -1246,15 +1324,15 @@ echo $table_class; ?>">
 						}
 						if (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')) {
 							?>
-              Blackout Blind Colour:
-              <strong>
+                            Blackout Blind Colour:
+                            <strong>
 								<?php
 								echo $atributes[$property_blackoutblindcolour]; ?></strong>
-              <br>
+                            <br>
 							<?php
 						}
 						?>
-            Control Type:<strong>
+                        Control Type:<strong>
 							<?php
 							echo $atributes[$property_controltype]; ?><?php
 							if ($atributes[$property_controltype] == 'Clearview' || $property_controltype == 403) {
@@ -1267,32 +1345,48 @@ echo $table_class; ?>">
 								}
 							}
 							?>
-            </strong>
+                        </strong>
 						<?php
 						if (!empty($atributes[$property_controlsplitheight])) { ?>
-              <br> Control Split Height:
-              <strong>
+                            <br> Control Split Height:
+                            <strong>
 							<?php
 							echo $atributes[$property_controlsplitheight]; ?></strong><?php
 						} ?>
-            <br> Layout code:<strong style="text-transform:uppercase;">
+                        <br> Layout code:<strong style="text-transform:uppercase;">
 							<?php
 							if ($property_layoutcode) {
 								echo $property_layoutcode;
 							} else {
 								echo $property_layoutcode_tracked;
 							}
-							?></strong>
-            <br>
-						<?php
+							?></strong> <br>
+						<?php if ($property_category === 'Shutter & Blackout Blind') { ?>
+                            Motorised:<strong style="text-transform:uppercase;">
+								<?php
+								$property_motorized = get_post_meta($product_id, 'property_motorized', true);
+								echo $property_motorized;
+								?></strong> <br>
+							<?php if ($property_motorized == 'Yes') { ?>
+                                Number of motors:<strong style="text-transform:uppercase;">
+									<?php
+									echo get_post_meta($product_id, 'property_nrMotors', true);
+									?></strong>
+                                <br> Number of remotes:<strong style="text-transform:uppercase;">
+									<?php
+									echo get_post_meta($product_id, 'property_nrRemotes', true);
+									?></strong><br>
+							<?php }
+						}
+
 						$property_opendoor = get_post_meta($product_id, 'property_opendoor', true);
 						if ($property_opendoor) {
 							?>
-              Open first:<strong>
+                            Open first:<strong>
 								<?php
 								echo $property_opendoor; ?>
-              </strong>
-              <br>
+                            </strong>
+                            <br>
 							<?php
 						} ?>
 						<?php
@@ -1318,9 +1412,10 @@ echo $table_class; ?>">
 										if ((get_post_meta($product_id, 'property_ba' . $i, true) == 90) || (get_post_meta($product_id, 'property_ba' . $i, true) == 135)) {
 											echo '<br>';
 											if (!empty(get_post_meta($product_id, 'property_b_buildout' . $i, true))) {
-												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong><br>';
+												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong>';
 												$bbuilout++;
-												if ($bbuilout == 1) {
+												if ($bbuilout == 1 && strtolower(
+													get_post_meta($product_id, 'property_b_buildout' . $i, true)) == "yes") {
 													$user_b_build = get_user_meta($user_id, 'B_Buildout', true);
 													$module_b_build = get_post_meta(1, 'B_Buildout', true);
 													if ($user_b_build) {
@@ -1329,6 +1424,7 @@ echo $table_class; ?>">
 														echo ' (+' . $module_b_build . '%)';
 													}
 												}
+												echo '<br>';
 											}
 										} else {
 											$unghi++;
@@ -1343,7 +1439,7 @@ echo $table_class; ?>">
 											}
 											echo '<br>';
 											if (!empty(get_post_meta($product_id, 'property_b_buildout' . $i, true))) {
-												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong>';
+												echo 'BPosts Buildout' . $i . ': <strong>' . get_post_meta($product_id, 'property_b_buildout' . $i, true) . '</strong><br>';
 											}
 										}
 									}
@@ -1432,74 +1528,94 @@ echo $table_class; ?>">
 						<?php
 						if (!empty(get_post_meta($product_id, 'property_t1', true))) {
 							if ($property_tposttype) { ?> T-Post Type:
-                <strong>
+                                <strong>
 									<?php
 									echo $atributes[$property_tposttype]; ?></strong>
-                <br>
+                                <br>
 								<?php
 							}
 						} ?>
 						<?php
 						if ($property_sparelouvres == 'Yes') { ?> Include 2 x Spare Louvre:
-              <strong>
+                            <strong>
 								<?php
 								echo $property_sparelouvres; ?></strong> (+6£)
-              <br>
+                            <br>
 							<?php
 						} ?>
 						<?php
 						if ($property_ringpull == 'Yes') { ?> Ring Pull:
-              <strong>
+                            <strong>
 								<?php
 								echo $property_ringpull; ?></strong> (+35£)
-              <br>
-              How many rings?:
-              <strong>
+                            <br>
+                            How many rings?:
+                            <strong>
 								<?php
 								echo $property_ringpull_volume; ?></strong>
-              <br>
+                            <br>
 							<?php
 						} ?>
 						<?php
-						if ($property_locks == 'Yes') { ?> Locks:
-              <strong>
-								<?php
-								echo $property_locks; ?></strong>
+						if ($property_locks == 'Yes' || $property_central_lock == "Yes") { ?> Locks:
+                            <strong>Yes</strong>
 							<?php
 							if (!empty(get_user_meta($user_id_customer, 'Lock', true)) || (get_user_meta($user_id_customer, 'Lock', true) > 0)) {
 								echo '(+' . get_user_meta($user_id_customer, 'Lock', true) . '£)';
 							} else {
 								echo '(+' . get_post_meta(1, 'Lock', true) . '£)';
 							} ?>
-              <br>
-              How many locks?:
-              <strong>
+                            <br>
+                            <!--              How many locks?:-->
+                            <!--              <strong>-->
+                            <!--								--><?php
+							//								echo $property_locks_volume; ?><!-- set(s)</strong>-->
+                            <!--              <br>-->
+                            Lock Position:
+                            <strong>
 								<?php
-								echo $property_locks_volume; ?> set(s)</strong>
-              <br>
-              Lock Position:
-              <strong>
-								<?php
-								echo $property_lock_position; ?></strong>
-              <br>
-              Louver Lock:
-              <strong>
-								<?php
-								echo $property_louver_lock; ?></strong>
-              <br>
+								$lock_position = ($property_locks == "Yes") ? "Top & Bottom Locks" : "Central Lock";
+								echo $lock_position; ?></strong>
+                            <br>
+                            <!--              Louver Lock:-->
+                            <!--              <strong>-->
+                            <!--								--><?php
+//								echo $property_louver_lock; ?><!--</strong>-->
+                            <!--              <br>-->
 							<?php
 						} ?>
-            Notes:<strong>
+                        Notes:<strong>
 							<?php
 							if ($property_nowarranty == "Yes") {
 								echo 'OUT OF WARRANTY ACCEPTED <br>';
 							}
 							echo $comments_customer; ?></strong>
-          </td>
-          <td>
+
+						<?php
+						$pictures = get_post_meta($product_id, 'pictures', true);
+						if (!empty($pictures)) {
+							echo '<br><span>Images:</span>';
+							// Wrapper-ul de imagini va sta pe același rând cu span-ul
+							echo '<div style="display: inline-block; margin-left: 10px;">';
+
+							$img_index = 1;
+							foreach ($pictures as $imageUrl) {
+								// Fiecare 'imagine' e afișată într-un container cu display:inline-block;
+								echo '<div style="display: inline-block; margin-right: 15px;">';
+								echo '<a href="' . esc_url($imageUrl) . '" target="_blank">';
+								echo 'Image-' . $img_index;
+								echo '</a>';
+								echo '</div>';
+								$img_index++;
+							}
+							echo '</div>';
+						}
+						?>
+                    </td>
+                    <td>
 						<?php
 						if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-							$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
+							$materials = array(187 => 'Earth', 137 => 'Green', 138 => 'BiowoodPlus', 6 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood', 5 => 'EcowoodPlus');
 							$price_for_update = get_post_meta($order_id, 'price_for_update', true);
 							foreach ($materials as $key => $material) {
 								if ($property_material == $key) {
@@ -1513,6 +1629,7 @@ echo $table_class; ?>">
 											$material_price = get_post_meta(1, $material, true);
 										}
 									}
+									$material_price = get_post_meta($product_id, 'price_item_' . $material, true);
 								}
 //                                else {
 //                                    if (!empty(get_user_meta($user_id, $atributes[$property_material], true)) || (get_user_meta($user_id, $atributes[$property_material], true) > 0)) {
@@ -1530,144 +1647,162 @@ echo $table_class; ?>">
 							}
 						}
 						?>
-          </td>
-          <td>
-            <strong>
+                    </td>
+                    <td>
+                        <strong>
 							<?php
 							echo number_format((double)$property_total, 2); ?> sq/m </strong>
-            <br>
+                        <br>
 						<?php
-						echo 'Qty:  <strong>' . $item_data['quantity'] . '</strong>'; ?>
-            <br> Width:<strong>
+						$quantity = 1;
+						$quantity_prod = get_post_meta($product_id, 'quantity', true);
+						if (!empty($quantity_prod)) {
+							$quantity = $quantity_prod;
+						} else {
+							$quantity = isset($item_data['quantity']) ? intval($item_data['quantity']) : 0;
+						}
+						echo 'Qty:  <strong>' . $quantity . '</strong>'; ?>
+                        <br> Width:<strong>
 							<?php
 							echo $property_width; ?></strong>
-            <br> Height:<strong>
+                        <br> Height:<strong>
 							<?php
 							echo $property_height; ?></strong>
-            <br>
-          </td>
-          <td>
+                        <br>
+                    </td>
+                    <td>
 						<?php
 
 						if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-							$total = $price * $item_data['quantity'];  // Perform multiplication first
+							// Convert $price to a float and ensure quantity is an integer.
+							$price = floatval($price);
+							$quantity = 1;
+							$quantity_prod = get_post_meta($product_id, 'quantity', true);
+							if (!empty($quantity_prod)) {
+								$quantity = $quantity_prod;
+							} else {
+								$quantity = isset($item_data['quantity']) ? intval($item_data['quantity']) : 0;
+							}
+
+// Now perform the multiplication
+							$total = $price * $quantity;
 
 							$formatted_total = number_format($total, 2);  // Then format the result
 							echo '£' . $formatted_total;
 						}
 						// echo '<br>' . $product->get_price();
 						?>
-          </td>
+                    </td>
 					<?php
 					//                        if (current_user_can('china_admin')) {
 					//                            echo '<td></td>';
 					//                        } else {
 					//
 					if ($edit == 'true' && $admin == 'false') { ?>
-            <td>
+                        <td>
 							<?php
 							$pieces = explode("-", $title);
 							if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter') || ($property_category === 'prod1') || ($pieces[0] == 'prod1')) {
 								?>
-              <a class="btn btn-primary transparent"
-                 href="/prod1-all/?id=<?php
-								 echo $product_id * 1498765 * 33;
-								 echo $edit_placed_order; ?>">Edit</a><?php
+                            <a class="btn btn-primary transparent"
+                               href="/prod1-all/?id=<?php
+							   echo $product_id * 1498765 * 33;
+							   echo $edit_placed_order; ?>">Edit</a><?php
 							} elseif (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')) {
 								?>
-              <a class="btn btn-primary transparent"
-                 href="/prod2-all/?id=<?php
-								 echo $product_id * 1498765 * 33;
-								 echo $edit_placed_order; ?>">Edit</a><?php
+                            <a class="btn btn-primary transparent"
+                               href="/prod2-all/?id=<?php
+							   echo $product_id * 1498765 * 33;
+							   echo $edit_placed_order; ?>">Edit</a><?php
 							} elseif ($property_category === 'Batten') {
 								?>
-              <a class="btn btn-primary transparent"
-                 href="/product5-edit/?id=<?php
-								 echo $product_id * 1498765 * 33;
-								 echo $edit_placed_order; ?>">Edit</a><?php
+                            <a class="btn btn-primary transparent"
+                               href="/product5-edit/?id=<?php
+							   echo $product_id * 1498765 * 33;
+							   echo $edit_placed_order; ?>">Edit</a><?php
 							}
 							if (get_page_template_slug($post->ID) != 'template-orderedit.php') {
 
 //   if (($property_category === 'Shutter & Blackout Blind') || ($pieces[0] == 'Shutter & Blackout Blind') || ($property_category === 'prod2') || ($pieces[0] == 'prod2')
 								$clone_categories = array(
-									'Shutter' => '/prod1-all/',
-									'Shutter & Blackout Blind' => '/prod2-all/',
-									'Batten' => '/product5-edit/',
+								  'Shutter' => '/prod1-all/',
+								  'Shutter & Blackout Blind' => '/prod2-all/',
+								  'Batten' => '/product5-edit/',
 								);
 								$prodId_encode = base64_encode($product_id);
 								?>
-                <br>
-                <a
-                  class="btn btn-primary clone-item"
-                  item-id="<?php echo $item_id; ?>"
-                  href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
-                >
-                  Clone
-                </a>
-                <br>
+                                <br>
+                                <a
+                                  class="btn btn-primary clone-item"
+                                  item-id="<?php echo $item_id; ?>"
+                                  href="<?php echo $clone_categories[$property_category] . '?clone=' . $prodId_encode; ?>"
+                                >
+                                    Clone
+                                </a>
+                                <br>
 								<?php
 								echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-									'<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
-									esc_url(wc_get_cart_remove_url($item_id)),
-									__('Remove this item', 'woocommerce'),
-									esc_attr($product_id),
-									esc_attr($_product->get_sku())
+								  '<a href="%s" class=" btn btn-danger" aria-label="%s" data-product_id="%s" data-product_sku="%s">Delete</a>',
+								  esc_url(wc_get_cart_remove_url($item_id)),
+								  __('Remove this item', 'woocommerce'),
+								  esc_attr($product_id),
+								  esc_attr($_product->get_sku())
 								));
 							} elseif (get_page_template_slug($post->ID) == 'template-orderedit.php') {
 								?>
-                <br>
-              <buttton class="btn btn-danger delete-item"
-                       item-id="<?php
-											 echo $item_id; ?>">
-                  Delete
-                </buttton><?php
+                                <br>
+                            <buttton class="btn btn-danger delete-item"
+                                     item-id="<?php
+							         echo $item_id; ?>">
+                                    Delete
+                                </buttton><?php
 							}
 							?>
-            </td>
+                        </td>
 						<?php
 					} ?>
 					<?php
 					if ($admin == 'true') { ?>
-            <td>
+                        <td>
 							<?php
 							$pieces = explode("-", $title);
 							$property_category;
 							if (($property_category === 'Shutter') || ($pieces[0] == 'Shutter')) {
 								?>
-              <a class="btn btn-primary transparent" target="_blank"
-                 href="/prod1-all/?order_id=<?php
-								 echo $order_id * 1498765 * 33; ?>&id=<?php
-								 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-								 echo $user_id_customer; ?>&item_id=<?php
-								 echo $item_id; ?>">
-                  Edit</a><?php
+                            <a class="btn btn-primary transparent" target="_blank"
+                               href="/prod1-all/?order_id=<?php
+							   echo $order_id * 1498765 * 33; ?>&id=<?php
+							   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+							   echo $user_id_customer; ?>&item_id=<?php
+							   echo $item_id; ?>">
+                                    Edit</a><?php
 							} elseif ($property_category === 'Shutter & Blackout Blind' || ($pieces[0] == 'Shutter & Blackout Blind')) {
 								?>
-              <a class="btn btn-primary transparent" target="_blank"
-                 href="/prod2-all/?order_id=<?php
-								 echo $order_id * 1498765 * 33; ?>&id=<?php
-								 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-								 echo $user_id_customer; ?>&item_id=<?php
-								 echo $item_id; ?>">
-                  Edit</a><?php
+                            <a class="btn btn-primary transparent" target="_blank"
+                               href="/prod2-all/?order_id=<?php
+							   echo $order_id * 1498765 * 33; ?>&id=<?php
+							   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+							   echo $user_id_customer; ?>&item_id=<?php
+							   echo $item_id; ?>">
+                                    Edit</a><?php
 							} elseif ($property_category === 'Batten') {
 								?>
-              <a class="btn btn-primary transparent" target="_blank"
-                 href="/product5-admin/?order_id=<?php
-								 echo $order_id * 1498765 * 33; ?>&id=<?php
-								 echo $product_id * 1498765 * 33; ?>&cust_id=<?php
-								 echo $user_id_customer; ?>&item_id=<?php
-								 echo $item_id; ?>">
-                  Edit</a><?php
+                            <a class="btn btn-primary transparent" target="_blank"
+                               href="/product5-admin/?order_id=<?php
+							   echo $order_id * 1498765 * 33; ?>&id=<?php
+							   echo $product_id * 1498765 * 33; ?>&cust_id=<?php
+							   echo $user_id_customer; ?>&item_id=<?php
+							   echo $item_id; ?>">
+                                    Edit</a><?php
 							}
 
 							?>
-            </td>
+                        </td>
 						<?php
 					}
 					// }
 					?>
-        </tr>
+                </tr>
 				<?php
 			}
 		}
@@ -1679,73 +1814,89 @@ echo $table_class; ?>">
 		$excl_vat = 'FOB China';
 	}
 	if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
-		if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) { ?>
-      <tr class="table-totals">
-        <td colspan="4" style="text-align:right">Products Total (<?php
-					echo $excl_vat; ?>):
-        </td>
-        <td></td>
-        <td class="quantity"></td>
-        <td id="total_box" class="amount">
-          <strong><?php
-						echo $fob_components ? '$' : '£'; ?>
-						<?php
-						echo number_format((double)$order->get_subtotal(), 2); ?></strong>
-        </td>
+		if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) {
+			$train_price = get_user_meta($user_id_customer, 'train_price', true);
+			if ($train_price === null || $train_price === '') {
+				$train_price = get_post_meta(1, 'train_price', true);
+			}
+			?>
+            <tr class="table-totals-delivery">
+                <td colspan="4" style="text-align:right">Sea freight:</td>
+                <td>£<?php echo number_format((double)$train_price, 1); ?> sq/m</td>
+                <td class="quantity"><?php echo number_format($total_sqm, 2); ?> sq/m</td>
+                <td id="total_box" class="amount">
+					<?php echo $fob_components ? '$' . number_format($total_prods_delivery, 2) : '£', number_format($total_prods_delivery, 2); ?>
+                </td>
 				<?php
 				if ($admin == 'true' || $template_order_edit_customer) {
 					echo '<td></td>';
 				} ?>
-      </tr>
+            </tr>
+            <tr class="table-totals">
+                <td colspan="4" style="text-align:right">Products Total (<?php
+					echo $excl_vat; ?>):
+                </td>
+                <td></td>
+                <td class="quantity"></td>
+                <td id="total_box" class="amount">
+					<?php
+					echo $fob_components ? '$' . number_format((double)$order->get_subtotal(), 2) : '£' . number_format((double)$order->get_subtotal(), 2);
+					?>
+                </td>
+				<?php
+				if ($admin == 'true' || $template_order_edit_customer) {
+					echo '<td></td>';
+				} ?>
+            </tr>
 			<?php
 			if ($term_slug != 'components-fob' && (!current_user_can('china_admin') && $view_price || current_user_can('administrator'))) {
 				?>
-        <tr class="table-totals">
-          <td colspan="4" style="text-align:right">Shipping :</td>
-          <td></td>
-          <td class="quantity"></td>
-          <!--                <td class="amount">$-->
+                <tr class="table-totals">
+                    <td colspan="4" style="text-align:right">Local delivery :</td>
+                    <td></td>
+                    <td class="quantity"></td>
+                    <!--                <td class="amount">$-->
 					<?php
 					//echo $order_data['shipping_total'] + $tax_shipping_total; ?><!--</td>-->
-          <td class="amount">£<?php
+                    <td class="amount">£<?php
 						echo number_format($order_data['shipping_total'], 2) ?></td>
 					<?php
 					if ($admin == 'true') {
 						echo '<td></td>';
 					} ?>
-        </tr>
-        <tr class="table-totals">
-          <td colspan="4" style="text-align:right">VAT:</td>
-          <td></td>
-          <td class="quantity"></td>
-          <td class="amount">£<?php
+                </tr>
+                <tr class="table-totals">
+                    <td colspan="4" style="text-align:right">VAT:</td>
+                    <td></td>
+                    <td class="quantity"></td>
+                    <td class="amount">£<?php
 						echo number_format($order_data['total_tax'], 2); ?></td>
 					<?php
 					if ($admin == 'true' || $template_order_edit_customer) {
 						echo '<td></td>';
 					} ?>
-        </tr>
-        <tr class="table-totals">
-          <td colspan="4" style="text-align:right">Gross Total:</td>
-          <td></td>
-          <td class="quantity"></td>
-          <td class="amount">
-            <strong>£<?php
+                </tr>
+                <tr class="table-totals">
+                    <td colspan="4" style="text-align:right"><strong>Gross Total:</strong></td>
+                    <td></td>
+                    <td class="quantity"></td>
+                    <td class="amount">
+                        <strong>£<?php
 							echo number_format((double)$order->get_total(), 2); ?>
-            </strong>
-          </td>
+                        </strong>
+                    </td>
 					<?php
 					if ($admin == 'true' || $template_order_edit_customer) {
 						echo '<td></td>';
 					} ?>
-        </tr>
+                </tr>
 				<?php
 			}
 			?>
 			<?php
 		}
 	} ?>
-  </tbody>
+    </tbody>
 </table>
 <style>
     .table-bordered th, .table-bordered tr td {
@@ -1791,7 +1942,7 @@ echo $table_class; ?>">
 <?php
 //function priceItemMaterialCustom($property_material, $user_id, $post_id)
 //{
-//    $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood');
+//    $materials = array(187 => 'Earth', 137 => 'Green', 138 => 'BiowoodPlus', 6 => 'Biowood', 139 => 'Supreme', 188 => 'Ecowood', 5 => 'EcowoodPlus');
 //
 //    foreach ($materials as $key => $material) {
 //        if ($property_material == $key) {

@@ -22,7 +22,11 @@ get_header(); ?>
                             </div>
 
                             <div class="alert alert-warning">
-                                <?php echo get_post_meta(1, 'notification_users_message', true); ?>
+		                        <?php
+		                        // Get the saved notification message
+		                        $notification_message = get_post_meta(1, 'notification_users_message', true);
+		                        echo wp_kses_post($notification_message); // Safely display the HTML content
+		                        ?>
                             </div>
 
 

@@ -211,10 +211,10 @@ $vat_number = get_user_meta($user_id, 'vat_number_custom',true);
             </div>
             </form>
 
-            <div class="col-md-5">
-            <h3>Reset Password</h3>
-                        <?php echo do_shortcode('[wppb-edit-profile] '); ?>
-            </div>
+<!--            <div class="col-md-5">-->
+<!--            <h3>Reset Password</h3>-->
+<!--                        --><?php //echo do_shortcode('[wppb-edit-profile] '); ?>
+<!--            </div>-->
 
 
         </main>

@@ -19,15 +19,19 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
+
+$cart_id = BMC\WooCommerce\MultiSession\customer_id();
+$my_session = BMC\WooCommerce\MultiSession\get_session($cart_id, get_current_user_id());
+$cart_type = $my_session['carts'][$cart_id]['type'];
 ?>
 <table class="shop_table woocommerce-checkout-review-order-table">
-  <thead>
-  <tr>
-    <th class="product-name"><?php _e('Product', 'woocommerce'); ?></th>
-    <th class="product-total"><?php _e('Total', 'woocommerce'); ?></th>
-  </tr>
-  </thead>
-  <tbody>
+    <thead>
+    <tr>
+        <th class="product-name"><?php _e('Product', 'woocommerce'); ?></th>
+        <th class="product-total"><?php _e('Total', 'woocommerce'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
 	<?php
 	do_action('woocommerce_review_order_before_cart_contents');
 
@@ -36,30 +40,31 @@ if (!defined('ABSPATH')) {
 
 		if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
 			?>
-      <tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
-        <td class="product-name">
+            <tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
+                <td class="product-name">
 					<?php echo apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key) . '&nbsp;'; ?>
 					<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times; %s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key); ?>
 					<?php echo wc_get_formatted_cart_item_data($cart_item); ?>
-        </td>
-        <td class="product-total">
+                </td>
+                <td class="product-total">
 					<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
-        </td>
-      </tr>
+                </td>
+            </tr>
 			<?php
 		}
 	}
 
 	do_action('woocommerce_review_order_after_cart_contents');
 	?>
-  </tbody>
-  <tfoot>
+    </tbody>
+    <tfoot>
 
 	<?php
 
 	global $woocommerce;
 	$items = $woocommerce->cart->get_cart();
 	$total = 0;
+	$total_prods_delivery = 0;
 	$other_color = 0;
 
 	$products_cart = array();
@@ -70,7 +75,38 @@ if (!defined('ABSPATH')) {
 		$fob_components = false;
 		$prod_id = $value['product_id'];
 		$products_cart[] = $prod_id;
+
+// Preluăm meta valorile
 		$property_total = get_post_meta($prod_id, 'property_total', true);
+		$property_delivery_price = get_post_meta($prod_id, 'train_delivery', true);
+
+// Convertim la float pentru a evita "non-numeric value"
+		$property_delivery_price = floatval($property_delivery_price);
+
+// Adunăm
+		if ($cart_type == 'Awning') {
+			$sqm = floatval($value['awning_sqm']);
+
+			// Inițializăm prețul suplimentar cu 0
+			$sqm_price = 0;
+
+			// Dacă e definită o suprafață > 0, calculăm prețul pe baza tren_price
+			if ($sqm > 0) {
+				$train_price = get_user_meta(get_current_user_id(), 'train_price', true);
+
+				// Dacă train_price nu este setat la utilizator, îl preluăm din meta (ID = 1)
+				if (empty($train_price)) {
+					$train_price = (float)get_post_meta(1, 'train_price', true);
+				}
+
+				// Stocăm datele pentru prețul “pe tren” și totalul pe tren
+				$value['price_train'] = (float)$train_price;
+				$sqm_price = $sqm * (float)$train_price;
+			}
+			$total_prods_delivery += $sqm_price;
+		} else {
+			$total_prods_delivery += $property_delivery_price;
+		}
 		$total += (float)$property_total;
 
 		$material = get_post_meta($prod_id, 'property_material', true);
@@ -144,48 +180,56 @@ if (!defined('ABSPATH')) {
 	if (!$no_view_price) {
 		?>
 
-    <tr style="<?php echo 'display:' . $comp_visible; ?>">
-      <th>Total:</th>
-      <td>
-        <strong><span id="totalSqm"><?php echo $fob_components ? '$' : '£'; ?><?php echo $amount; ?></span></strong>
-      </td>
-    </tr>
 
-    <tr style="<?php echo 'display:' . $comp_visible; ?>">
-      <th>Delivery cost:</th>
-      <td>
-        <strong><span id="totalShippingCost"><?php echo $fob_components ? '$' : '£'; ?><?php echo $shipping_total_without_tax; ?></span></strong>
-      </td>
-    </tr>
+        <tr style="<?php echo 'display:' . $comp_visible; ?>">
+            <th>Sea freight :</th>
+            <td>
+                <strong><span id="totalSqm"><?php echo $fob_components ? '$' : '£'; ?><?php echo $total_prods_delivery; ?></span></strong>
+            </td>
+        </tr>
+
+        <tr style="<?php echo 'display:' . $comp_visible; ?>">
+            <th>Total:</th>
+            <td>
+                <strong><span id="totalSqm"><?php echo $fob_components ? '$' : '£'; ?><?php echo $amount; ?></span></strong>
+            </td>
+        </tr>
+
+        <tr style="<?php echo 'display:' . $comp_visible; ?>">
+            <th>Delivery cost:</th>
+            <td>
+                <strong><span id="totalShippingCost"><?php echo $fob_components ? '$' : '£'; ?><?php echo $shipping_total_without_tax; ?></span></strong>
+            </td>
+        </tr>
 
 		<?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
-      <tr class="cart-discount coupon-<?php echo esc_attr(sanitize_title($code)); ?>">
-        <th><?php wc_cart_totals_coupon_label($coupon); ?></th>
-        <td><?php wc_cart_totals_coupon_html($coupon); ?></td>
-      </tr>
+            <tr class="cart-discount coupon-<?php echo esc_attr(sanitize_title($code)); ?>">
+                <th><?php wc_cart_totals_coupon_label($coupon); ?></th>
+                <td><?php wc_cart_totals_coupon_html($coupon); ?></td>
+            </tr>
 		<?php endforeach; ?>
 
 
 		<?php foreach (WC()->cart->get_fees() as $fee) : ?>
-      <tr class="fee" style="<?php echo 'display:' . $comp_visible; ?>">
-        <th><?php echo esc_html($fee->name); ?></th>
-        <td><?php wc_cart_totals_fee_html($fee); ?></td>
-      </tr>
+            <tr class="fee" style="<?php echo 'display:' . $comp_visible; ?>">
+                <th><?php echo esc_html($fee->name); ?></th>
+                <td><?php wc_cart_totals_fee_html($fee); ?></td>
+            </tr>
 		<?php endforeach; ?>
 
 		<?php if (wc_tax_enabled() && !WC()->cart->display_prices_including_tax()) : ?>
 			<?php if ('itemized' === get_option('woocommerce_tax_total_display')) : ?>
 				<?php foreach (WC()->cart->get_tax_totals() as $code => $tax) : ?>
-          <tr class="tax-rate tax-rate-<?php echo sanitize_title($code); ?>" style="<?php echo 'display:' . $comp_visible; ?>"
-          <th><?php echo esc_html($tax->label); ?></th>
-          <td><?php echo wp_kses_post($tax->formatted_amount); ?></td>
-          </tr>
+                    <tr class="tax-rate tax-rate-<?php echo sanitize_title($code); ?>" style="<?php echo 'display:' . $comp_visible; ?>"
+                    <th><?php echo esc_html($tax->label); ?></th>
+                    <td><?php echo wp_kses_post($tax->formatted_amount); ?></td>
+                    </tr>
 				<?php endforeach; ?>
 			<?php else : ?>
-        <tr class="tax-total" style="<?php echo 'display:' . $comp_visible; ?>">
-          <th><?php echo esc_html(WC()->countries->tax_or_vat()); ?></th>
-          <td>
-            <strong><?php
+                <tr class="tax-total" style="<?php echo 'display:' . $comp_visible; ?>">
+                    <th><?php echo esc_html(WC()->countries->tax_or_vat()); ?></th>
+                    <td>
+                        <strong><?php
 
 							$tva_shipping = (WC()->cart->shipping_total * 20) / 100;
 							wc_cart_totals_taxes_total_html();
@@ -193,27 +237,27 @@ if (!defined('ABSPATH')) {
 							//echo $tva_shipping + WC()->cart->get_taxes_total( true, true );
 							//wc_cart_totals_taxes_total_html_custom();
 							?></strong>
-          </td>
-        </tr>
+                    </td>
+                </tr>
 			<?php endif; ?>
 		<?php endif; ?>
 
 		<?php do_action('woocommerce_review_order_before_order_total'); ?>
 
-    <tr class="order-total">
-      <th><?php _e('Gross Total', 'woocommerce'); ?></th>
-      <td>
-        <strong><?php
+        <tr class="order-total">
+            <th><?php _e('Gross Total', 'woocommerce'); ?></th>
+            <td>
+                <strong><?php
 					// wc_cart_totals_order_total_html();
 					echo WC()->cart->get_total()
 					// wc_cart_totals_order_total_html_custom();
 					?></strong>
-      </td>
-    </tr>
+            </td>
+        </tr>
 
 	<?php } ?>
 
-  </tfoot>
+    </tfoot>
 </table>
 
 <?php

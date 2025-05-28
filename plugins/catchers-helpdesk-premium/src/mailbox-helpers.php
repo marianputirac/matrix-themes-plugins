@@ -208,7 +208,7 @@ if (!function_exists('stgh_letter_check_ticket_by_subject')) {
 			$subject = $data;
 		}
 
-		sendLogMatrixMail($subject, "In stgh_letter_check_ticket_by_subject -  if (false != letter) { condition", "MailSend");
+		sendLogMatrixMail($subject, "Step 1 -  stgh_letter_check_ticket_by_subject", "MailSend");
 
 		$subject = trim(preg_replace("/Re\:|re\:|RE\:|REPLY\:|Reply\:|reply\:|Forward\:|FORWARD\:|forward\:|Fwd\:|fwd\:|FWD\:/i", '', $subject));
 		$user = get_user_by('email', $address);
@@ -245,19 +245,22 @@ if (!function_exists('stgh_letter_check_ticket_by_subject')) {
 		$customer_order = $pieces[0];
 
 		//Something to write to txt log
-		$log = "Subject: " . $subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
-			"In function stgh_letter_check_ticket_by_subject " . PHP_EOL .
-			"-------------------------" . PHP_EOL;
+//		$log = "Subject: " . $subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
+//			"step 2 " . PHP_EOL .
+//			"-------------------------" . PHP_EOL;
+//
+//		$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
+//		if (!file_exists($log_filename)) {
+//			// create directory/folder uploads.
+//			if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
+//				throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
+//			}
+//		}
+//		$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
+//		file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
 
-		$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
-		if (!file_exists($log_filename)) {
-			// create directory/folder uploads.
-			if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
-				throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
-			}
-		}
-		$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
-		file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
+		$subjectLog = "Subject: " . $subject . ' - ' . date("F j, Y, g:i a");
+		sendLogMatrixMail($subjectLog, "Step 2 -  stgh_letter_check_ticket_by_subject customerOrder: " . $customer_order, "MailSend");
 
 		global $wpdb;
 		$results = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE meta_key = '_order_number' AND meta_value = $customer_order", ARRAY_A);
@@ -664,6 +667,9 @@ if (!function_exists('stgh_letter_save')) {
 	 */
 	function stgh_letter_save($letterId)
 	{
+
+		$subjectLog = "Subject: In stgh_letter_save() " . $letterId . ' - ' . date("F j, Y, g:i a");
+		sendLogMatrixMail($subjectLog, "Step 2.5 -  In stgh_letter_save() letterId " . $letterId, "MailSend");
 		// Letter
 		$letter = stgh_letter_get($letterId, false);
 
@@ -761,19 +767,22 @@ if (!function_exists('stgh_letter_save')) {
 			$customer_order = $pieces[0];
 
 			//Something to write to txt log
-			$log = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
-				"In if (type == ticket)  " . PHP_EOL .
-				"-------------------------" . PHP_EOL;
+//			$log = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
+//				"In if (type == ticket)  " . PHP_EOL .
+//				"-------------------------" . PHP_EOL;
+//
+//			$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
+//			if (!file_exists($log_filename)) {
+//				// create directory/folder uploads.
+//				if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
+//					throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
+//				}
+//			}
+//			$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
+//			file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
 
-			$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
-			if (!file_exists($log_filename)) {
-				// create directory/folder uploads.
-				if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
-					throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
-				}
-			}
-			$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
-			file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
+			$subjectLog = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a");
+			sendLogMatrixMail($subjectLog, "Step 3 -  In if (type == ticket)  customerOrder: " . $customer_order, "MailSend");
 
 			global $wpdb;
 			$results = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE `meta_key` = '_order_number' AND `meta_value` = $customer_order", ARRAY_A);
@@ -847,19 +856,41 @@ if (!function_exists('stgh_letter_save')) {
 				$comment_id = Stg_Helpdesk_TicketComments::addToPost($data, $post_id, $data['post_author']);
 
 				// Marian Putirac answered
-				$userId = get_current_user_id();
-				// if current user have company parent is employee
-				$deler_id = get_user_meta($userId, 'company_parent', true);
+				// Get the current user ID
+				$user_id = get_current_user_id();
 
+// Retrieve the list of employees and dealer ID for the current user
+				$users_employee = get_user_meta($user_id, 'employees', true);
+				$deler_id = get_user_meta($user_id, 'company_parent', true);
+
+// Initialize users_orders with the current user, to be used for checking ticket authorship
+				$users_orders = array($user_id);
+
+// Adjust the users_orders based on user roles and relationships
+				$user = get_userdata($user_id);
+				if (!empty($users_employee)) {
+					$users_orders = array_merge($users_orders, $users_employee);
+				}
+				if (!empty($deler_id) && (in_array('employe', $user->roles) || in_array('senior_salesman', $user->roles))) {
+					$dealer_employees = get_user_meta($deler_id, 'employees', true);
+					$users_orders = array_merge($users_orders, $dealer_employees, array($deler_id));
+				}
+
+// Ensure unique and reverse the array to prioritize the current user
+				$users_orders = array_unique($users_orders);
+				$users_orders = array_reverse($users_orders);
+
+// Determine if the current user is the ticket author
 				$ticket_author = Stg_Helpdesk_Ticket::getAuthor($post_id);
-				if ($ticket_author && ($userId == $ticket_author->ID || $deler_id == $ticket_author->ID)) {
+				if ($ticket_author && in_array($ticket_author->ID, $users_orders)) {
+					// Current user is the ticket author or related, set ticket as not answered
 					Stg_Helpdesk_Ticket::setInNotAnswered($post_id);
-
 					stgh_add_event_ticket_to_reply($post_id, array('post_status_override'), array('post_status_override' => 'stgh_notanswered'), $comment_id);
 				} else {
+					// Current user is not the ticket author or related, set ticket as answered
 					Stg_Helpdesk_Ticket::setInAnswered($post_id);
-
 					stgh_add_event_ticket_to_reply($post_id, array('post_status_override'), array('post_status_override' => 'stgh_answered'), $comment_id);
+					update_post_meta($post_id, 'post_status_override_history', 'stgh_answered');
 				}
 
 				add_post_meta($comment_id, '_stgh_type_color', 'agent', true);
@@ -900,22 +931,28 @@ if (!function_exists('stgh_letter_save')) {
 				$customer_order = $pieces[0];
 
 				//Something to write to txt log
-				$log = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
-					"In else  ticket not exists " . PHP_EOL .
-					"-------------------------" . PHP_EOL;
+//				$log = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a") . PHP_EOL .
+//					"In else  ticket not exists " . PHP_EOL .
+//					"-------------------------" . PHP_EOL;
+//
+//				$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
+//				if (!file_exists($log_filename)) {
+//					// create directory/folder uploads.
+//					if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
+//						throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
+//					}
+//				}
+//				$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
+//				file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
 
-				$log_filename = $_SERVER['DOCUMENT_ROOT'] . "/logs_tickets_mail";
-				if (!file_exists($log_filename)) {
-					// create directory/folder uploads.
-					if (!mkdir($log_filename, 0777, true) && !is_dir($log_filename)) {
-						throw new \RuntimeException(sprintf('Directory "%s" was not created', $log_filename));
-					}
-				}
-				$log_file_data = $log_filename . '/log_LFr' . $customer_order . '' . date('d-M-Y') . '.log';
-				file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
+				$subjectLog = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a");
+				sendLogMatrixMail($subjectLog, "Step 4 -  In else - ticket not exists customerOrder: " . $customer_order, "MailSend");
 
 				if (!empty($customer_order)) {
 //                    echo '123';
+
+					$subjectLog = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a");
+					sendLogMatrixMail($subjectLog, "Step 5 -  empty customer_order: " . $customer_order, "MailSend");
 
 					$articles = get_posts(
 						array(
@@ -1027,6 +1064,9 @@ if (!function_exists('stgh_letter_save')) {
 				} else {
 
 					echo 'Nothing Happend';
+
+					$subjectLog = "Subject: " . $letter->subject . ' - ' . date("F j, Y, g:i a");
+					sendLogMatrixMail($subjectLog, "Step 6 -  nothing happen: ", "MailSend");
 
 					$permalink = get_site_url() . '/factory-queries/';
 					$multiple_recipients = array(

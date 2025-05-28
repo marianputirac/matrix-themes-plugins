@@ -97,7 +97,7 @@ $months = array('01' => 'January', '02' => 'February', '03' => 'March', '04' => 
                 <tr>
                     <th>Nr.</th>
                     <th>User</th>
-                    <th>Toal SQM / <?php echo $months[$selected_month]; ?></th>
+                    <th>Total SQM / <?php echo $months[$selected_month]; ?></th>
                 </tr>
                 </thead>
                 <tbody>

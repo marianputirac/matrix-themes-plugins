@@ -877,6 +877,10 @@ div.product.type-product ul.tabs.wc-tabs {
     display: none;
 }
 
+.row.extra-columns-buildout-row {
+    margin-top: 10px;
+}
+
 div.product.type-product .summary.entry-summary {
     padding-top: 11px;
 }

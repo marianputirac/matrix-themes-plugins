@@ -358,7 +358,7 @@ get_header(); ?>
                             $order = wc_get_order($order_id);
                             $order_data = $order->get_data();
                             $delivereis_start = get_post_meta(get_the_ID(), 'delivereis_start', true);
-                            $order_status = get_post_meta(get_the_ID(), 'order_status', true_);
+                            $order_status = get_post_meta(get_the_ID(), 'order_status', true);
                             $warranty = get_post_meta(get_the_ID(), 'warranty', true);
                             $culori_status = array('pending' => '#ef8181', 'on-hold' => '#f8dda7', 'processing' => '#c6e1c6', 'completed' => '#c8d7e1', 'cancelled' => '#e5e5e5', 'refound' => '#5BC0DE', 'inproduction' => '#7878e2', 'transit' => '#85bb65', 'waiting' => '#3ba000', 'account-on-hold' => 'red');
 
