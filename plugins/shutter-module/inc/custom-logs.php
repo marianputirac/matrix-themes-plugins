@@ -73,7 +73,8 @@ function my_custom_log_viewer()
 		echo '<form method="post">';
 		echo '<input type="submit" name="clear_logs" class="button button-primary" value="Clear Logs">';
 		echo '</form>';
-		echo '<pre style="background: #f9f9f9; padding: 15px; border: 1px solid #ddd; overflow: auto; margin-top: 20px;">' . esc_html($log_content) . '</pre>';
+		echo '<pre style="background: #f9f9f9; padding: 15px; border: 1px solid #ddd; overflow: auto; margin-top: 20px; max-width: 80vw; white-space: pre-wrap; word-wrap: break-word;">
+' . esc_html($log_content) . '</pre>';
 		echo do_shortcode('[file_upload_form]');
 	} else {
 		// Display a message if no logs are found

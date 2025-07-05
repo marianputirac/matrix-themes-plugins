@@ -1461,7 +1461,7 @@ function matrix_handle_product_insert(WP_REST_Request $request)
 				// to_document echo 'SUM 8: ' . $sum . ' ..... ';
 			}
 			$nrPanels = nrPanelsCountApi($products['property_layoutcode']);
-
+			
 			if (!empty($products['property_sparelouvres'] && $products['property_sparelouvres'] == 'Yes')) {
 				$val = dolarSumApi('Spare_Louvres-dolar', $user_id);
 				$sum = $sum + ($nrPanels * $val);

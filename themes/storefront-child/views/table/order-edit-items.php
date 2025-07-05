@@ -1794,10 +1794,31 @@ echo $table_class; ?>">
 	}
 	if (!current_user_can('china_admin') && $view_price || current_user_can('administrator')) {
 		if ($edit === 'false' || $admin === 'true' || $template_order_edit_customer) {
-			$train_price = get_user_meta($user_id_customer, 'train_price', true);
-			if ($train_price === null || $train_price === '') {
-				$train_price = get_post_meta(1, 'train_price', true);
+			// Determină prețul de tren corect
+			$train_price = null;
+
+// Dacă există comandă, încearcă să găsești prețul din primul produs cu price_item_train
+			if (!empty($order_id) && $order) {
+				foreach ($items as $item_id => $item_data) {
+					$product_id = $item_data['product_id'];
+					$train_price = get_post_meta($product_id, 'price_item_train', true);
+					if ($train_price > 0) {
+						break; // Folosește primul preț găsit
+					}
+				}
 			}
+
+// Dacă nu s-a găsit preț salvat, folosește prețul default
+			if ($train_price === null) {
+				$train_price = get_user_meta($user_id, 'train_price', true);
+				if (empty($train_price)) {
+					$train_price = get_post_meta(1, 'train_price', true);
+				}
+			}
+
+// Asigură-te că train_price este un număr valid
+			$train_price = floatval($train_price);
+
 			?>
             <tr class="table-totals-delivery">
                 <td colspan="4" style="text-align:right">Sea freight:</td>

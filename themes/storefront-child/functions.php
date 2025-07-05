@@ -120,9 +120,72 @@ include_once(get_stylesheet_directory() . '/includes/shortcodes.php');
 // my orders page shortcodes
 include_once(get_stylesheet_directory() . '/includes/shortcodes-my-orders.php');
 
-$customOrder = new OrdersCustom();
+// În functions.php, adaugi linia:
+include_once(get_stylesheet_directory() . '/includes/custom-orders-functions.php');
 
+
+$customOrder = new OrdersCustom();
 // add_action('init', $customOrder->orderTablesCreate());
+// add_action('init', $customOrder->populateUserIds());
+
+
+function update_idOrder_from_reference() {
+	global $wpdb;
+
+	$table_name = 'wp_custom_orders'; // Asigură-te că numele este corect
+
+	// Verifică dacă tabelul există
+	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
+		return '<strong>Eroare:</strong> Tabelul `wp_custom_orders` nu a fost găsit.';
+	}
+
+	// 1. Selectăm rândurile care trebuie procesate
+	$results = $wpdb->get_results( "SELECT id, reference FROM `{$table_name}` WHERE reference LIKE 'LF0%'" );
+
+	if ( empty( $results ) ) {
+		return 'Nu au fost găsite înregistrări de procesat cu formatul așteptat.';
+	}
+
+	$updated_count = 0;
+
+	// 2. Parcurgem fiecare rând
+	foreach ( $results as $row ) {
+		$reference_string = $row->reference;
+		$primary_key = $row->id; // Cheia primară a tabelului wp_custom_orders
+		$order_number = null;
+
+		// 3. Extragem numărul comenzii din 'reference'
+		if ( preg_match( '/^LF0(\d+)/', $reference_string, $matches ) ) {
+			$order_number = $matches[1];
+		}
+
+		if ( $order_number ) {
+			// 4. Căutăm ID-ul comenzii (post_id) în wp_postmeta folosind numărul extras
+			$post_id = $wpdb->get_var( $wpdb->prepare(
+			  "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_order_number' AND meta_value = %s",
+			  $order_number
+			) );
+
+			// 5. Dacă am găsit un ID valid, actualizăm rândul
+			if ( $post_id ) {
+				$update_result = $wpdb->update(
+				  $table_name,
+				  ['idOrder' => $post_id],
+				  ['id' => $primary_key],
+				  ['%d'],
+				  ['%d']
+				);
+
+				if ($update_result !== false) {
+					$updated_count++;
+				}
+			}
+		}
+	}
+}
+
+//add_action('init', 'update_idOrder_from_reference'); // rulează la încărcarea WordPress
+
 
 if (!function_exists('sendLogMatrixMail')) {
 	function sendLogMatrixMail($subject, $description, $logName)
@@ -991,15 +1054,9 @@ function matrix_trigger_order_recalculation_on_save($order_id)
 // Înlocuiește hook-ul vechi cu cel specific pentru comenzi
 add_action('save_post', 'matrix_trigger_order_recalculation_on_save', 100, 1);
 
-/**
- * Funcția principală pentru recalcularea totalurilor comenzii și actualizarea tabelei custom.
- * ATENȚIE: Această funcție suprascrie calculele standard WooCommerce cu o logică custom.
- *
- * @param int $order_id ID-ul comenzii.
- */
 function matrix_recalculate_order_totals_and_update_custom_table($order_id)
 {
-	error_log("--- Starting Custom Order Recalculation for Order ID: {$order_id} ---");
+	error_log("--- Starting Order Recalculation for Order ID: {$order_id} ---");
 
 	$order = wc_get_order($order_id);
 	if (!$order) {
@@ -1007,211 +1064,299 @@ function matrix_recalculate_order_totals_and_update_custom_table($order_id)
 		return;
 	}
 
-	// Obține datele necesare comenzii
-	$user_id_customer = $order->get_customer_id(); // Folosim ID-ul clientului comenzii
-	$items = $order->get_items(); // Obține itemii 'line_item'
-	$shipping_country = $order->get_shipping_country();
+	$user_id_customer = $order->get_customer_id(); // Metodă mai sigură decât get_post_meta
+	$items = $order->get_items(); // Obține doar itemii de tip 'line_item'
 
 	// Inițializează totalurile calculate
-	$calculated_items_subtotal_gbp = 0; // Suma (Preț item * Cantitate + Preț tren) pentru itemii procesați
-	$calculated_items_tax_gbp = 0;      // Suma taxelor pentru itemii procesați
-	$calculated_total_usd = 0;          // Suma (Preț USD * Cantitate) pentru itemii procesați
-	$calculated_total_sqm = 0;          // Suma (SQM * Cantitate) pentru itemii procesați
-	$calculated_order_train_price = 0;  // Suma totală a prețului de transport 'tren'
+	$calculated_subtotal_gbp = 0; // Suma totalurilor liniilor (preț * cantitate + preț tren)
+	$calculated_total_tax_gbp = 0; // Suma taxelor liniilor
+	$calculated_total_usd = 0;     // Suma prețurilor în USD * cantitate
+	$calculated_total_sqm = 0;     // Suma totală SQM * cantitate
+	$calculated_order_train_price = 0; // Suma totală a prețului de transport 'tren'
 
-	$order_contains_pos = false; // Flag pentru a detecta produse din categorii speciale (POS)
+	$order_contains_pos = false; // Flag pentru a detecta produse POS
 
-	// Determină rata de taxare (Logica originală specifică UK/IE)
-	// @TODO: Ar trebui ideal să folosească sistemul de taxe WC bazat pe clasele de taxe ale produselor/transportului.
+	// Determină rata de taxare (Logica originală pare specifică UK/Irlanda)
+	// @TODO: Această logică ar trebui ideal să folosească clasele de taxe WC.
+	$shipping_country = $order->get_shipping_country();
 	$tax_rate_percent = 0;
 	if (in_array($shipping_country, ['GB', 'IE'])) {
 		$tax_rate_percent = 20;
 	}
-	error_log("Order {$order_id}: Shipping Country={$shipping_country}, Custom Tax Rate Used={$tax_rate_percent}%");
+	error_log("Order {$order_id}: Shipping Country={$shipping_country}, Determined Tax Rate={$tax_rate_percent}%");
 
 	// --- Iterează prin itemii comenzii ---
 	foreach ($items as $item_id => $item_data) {
-		$product_id = $item_data->get_product_id();
-		$product = $item_data->get_product(); // Obține obiectul produs asociat itemului
+		$product_id = $item_data['product_id'];
+		$_product = $item_data->get_product(); // Obține obiectul produs
 
-		if (!$product) {
+		if (!$_product) {
 			error_log("Recalculation Warning for Order {$order_id}: Could not get product object for Product ID: {$product_id}, Item ID: {$item_id}");
-			continue; // Treci la următorul item dacă produsul nu poate fi încărcat
+			continue;
 		}
 
-		// Verifică dacă produsul aparține categoriilor POS definite
+		// Verifică dacă produsul aparține categoriilor POS (20, 34, 26)
+		// @TODO: ID-urile categoriilor (20, 34, 26) ar trebui stocate în opțiuni/constante, nu hardcodate.
 		if (has_term([20, 34, 26], 'product_cat', $product_id)) {
 			$order_contains_pos = true;
-			error_log("Order {$order_id}: Item ID {$item_id} (Product ID {$product_id}) is POS category. Skipping custom calculation.");
-			// Logica originală oprea complet actualizarea finală dacă existau itemi POS.
-			// Păstrăm acest comportament. Alternativ, am putea aduna totalurile existente ale acestor itemi.
+			error_log("Order {$order_id}: Item ID {$item_id} (Product ID {$product_id}) is a POS item. Skipping custom calculation for this item.");
+			// Poate ar trebui să adunăm totalurile existente ale acestor itemi la totalul final?
+			// Deocamdată, îi ignorăm complet în calculul custom, conform logicii originale.
 			continue; // Treci la următorul item
 		}
 
-		// Inițializează variabilele pentru linia curentă
-		$line_subtotal_gbp = 0;
-		$line_tax_gbp = 0;
-		$line_total_usd = 0;
-		$line_total_sqm = 0;
+		// --- Obține datele necesare din meta produs ---
+		// Folosim $item_data->get_quantity() în loc de meta, e mai sigur.
+		// $quantity_meta = get_post_meta($product_id, 'quantity', true); // Logica originală citea meta 'quantity' a produsului! NU a itemului comenzii. Folosim cantitatea itemului.
+		$item_quantity = $item_data->get_quantity();
+
+		// Prețul de bază al produsului
+		// Folosim prețul produsului direct, nu meta. Poate fi preț normal sau de vânzare.
+		// $price_meta = get_post_meta($product_id, '_price', true); // Logica originală citea meta '_price'. Folosim prețul curent.
+		$base_price = floatval($_product->get_price());
+
+		// Metraj pătrat (SQM)
+		$sqm = floatval(get_post_meta($product_id, 'property_total', true));
+
+		// Preț transport 'tren'
+		$train_price_per_sqm = 0;
 		$item_train_price_total = 0;
-		$item_quantity = $item_data->get_quantity(); // Folosim cantitatea din comandă
-		$item_quantity = (empty($item_quantity) || $item_quantity == 0) ? 1 : $item_quantity;
+		if ($sqm > 0 && $user_id_customer > 0) { // Prețul tren se aplică doar dacă avem SQM și client logat?
 
-		// --- Logică specifică pentru categoria 'awning' ---
-		if (has_term('awning', 'product_cat', $product_id)) {
-			error_log("Order {$order_id}, Item ID {$item_id}: Detected 'awning' category.");
+			// MODIFICARE: Verifică mai întâi dacă există preț train original salvat în primul produs
+			$original_train_price = null;
+			$first_item_processed = false;
 
-			// Prețul GBP este citit din meta itemului 'final_price_uk'
-			$base_price_gbp = floatval($item_data->get_meta('final_price_uk', true));
-			// SQM este citit din meta itemului 'awning_sqm'
-			$sqm = floatval($item_data->get_meta('awning_sqm', true));
-			// Prețul USD este citit din meta itemului 'final_price_china'
-			$price_usd = floatval($item_data->get_meta('final_price_china', true));
+			// Caută în primul item al comenzii dacă există price_item_train
+			if (!$first_item_processed) {
+				$original_train_price = get_post_meta($product_id, 'price_item_train', true);
+				$first_item_processed = true;
 
-			// Calculează prețul 'tren'
-			if ($sqm > 0) {
-				// Folosim ID-ul clientului comenzii pentru a căuta prețul tren specific lui
-				$train_price_per_sqm = matrix_get_train_price_for_customer($user_id_customer);
-				if ($train_price_per_sqm > 0) {
-					$item_train_price_total = $sqm * $item_quantity * $train_price_per_sqm;
+				if (!empty($original_train_price) && is_numeric($original_train_price)) {
+					error_log("Order {$order_id}: Found original train price in first item meta: {$original_train_price}");
 				}
 			}
 
-			// Calculează valorile liniei pentru awning
-			$line_subtotal_gbp = ($base_price_gbp * $item_quantity) + $item_train_price_total;
-			$line_tax_gbp = ($line_subtotal_gbp * $tax_rate_percent) / 100;
-			$line_total_usd = $price_usd * $item_quantity;
-			$line_total_sqm = $sqm * $item_quantity;
+			// Folosește prețul original dacă există, altfel folosește logica actuală
+			if ($original_train_price !== null || $original_train_price !== '') {
+				$train_price_per_sqm = floatval($original_train_price);
+				error_log("Order {$order_id}: Using original train price from item meta: {$train_price_per_sqm}");
+			} else {
+				// Logica originală - folosește prețul curent din user_meta sau global
+				$train_price_user = get_user_meta($user_id_customer, 'train_price', true);
+				$train_price_per_sqm = ($train_price_user !== null && $train_price_user !== '')
+				  ? floatval($train_price_user)
+				  : floatval(get_post_meta(1, 'train_price', true)); // Default global
 
-			// Log specific pentru awning
-			error_log("Order {$order_id}, Awning Item {$item_id}: Qty={$item_quantity}, BaseGBP={$base_price_gbp}, SQM={$sqm}, TrainPriceTotal={$item_train_price_total}, USDPrice={$price_usd}");
-		} // --- Logică pentru itemii standard (nu sunt POS și nu sunt awning) ---
-		else {
-			error_log("Order {$order_id}, Item ID {$item_id}: Processing as standard item.");
-
-			// Prețul GBP este prețul standard al produsului
-			$base_price_gbp = floatval($product->get_price());
-			// SQM este citit din meta produsului 'property_total'
-			$sqm = floatval($product->get_meta('property_total', true));
-			// Prețul USD este citit din meta produsului 'dolar_price'
-			$price_usd = floatval($product->get_meta('dolar_price', true));
-
-			// Calculează prețul 'tren'
-			if ($sqm > 0) {
-				$train_price_per_sqm = matrix_get_train_price_for_customer($user_id_customer);
-				if ($train_price_per_sqm > 0) {
-					$item_train_price_total = $sqm * $item_quantity * $train_price_per_sqm;
-					// Actualizăm meta produsului (ca în logica originală - deși poate nu e ideal)
-					// @TODO: Revizuiește dacă actualizarea meta *produsului* e necesară aici.
-					update_post_meta($product_id, 'train_delivery', $item_train_price_total);
-				}
+				error_log("Order {$order_id}: No original train price found, using current price: {$train_price_per_sqm}");
 			}
 
-			// Calculează valorile liniei pentru item standard
-			$line_subtotal_gbp = ($base_price_gbp * $item_quantity) + $item_train_price_total;
-			$line_tax_gbp = ($line_subtotal_gbp * $tax_rate_percent) / 100;
-			$line_total_usd = $price_usd * $item_quantity;
-			$line_total_sqm = $sqm * $item_quantity;
-
-			// Log specific pentru standard
-			error_log("Order {$order_id}, Standard Item {$item_id}: Qty={$item_quantity}, BaseGBP={$base_price_gbp}, SQM={$sqm}, TrainPriceTotal={$item_train_price_total}, USDPrice={$price_usd}");
+			if ($train_price_per_sqm > 0) {
+				$item_train_price_total = $sqm * $item_quantity * $train_price_per_sqm;
+				// Salvează prețul tren calculat pe meta produs (Logica originală făcea asta)
+				update_post_meta($product_id, 'train_delivery', $item_train_price_total);
+				$calculated_order_train_price += $item_train_price_total;
+			}
 		}
 
-		// --- Actualizează meta itemului în comandă (comun pentru awning și standard) ---
-		// Asigură că actualizăm cantitatea corectă (cea din comandă)
-		wc_update_order_item_meta($item_id, '_qty', $item_quantity);
-		// Actualizează subtotalul și taxa calculate
-		wc_update_order_item_meta($item_id, '_line_subtotal', $line_subtotal_gbp);
-		wc_update_order_item_meta($item_id, '_line_tax', $line_tax_gbp);
-		// Actualizează totalul liniei (WC îl calculează de obicei, dar îl setăm explicit pentru consistență cu calculul nostru)
-		// Total linie = Subtotal linie (înainte de taxe)
-		wc_update_order_item_meta($item_id, '_line_total', $line_subtotal_gbp);
-		wc_update_order_item_meta($item_id, '_line_subtotal_tax', $line_tax_gbp);
-		// Setează datele taxei (presupunând ID rată taxă = 1, ca în original)
-		// @TODO: Folosește un ID de taxă real sau lasă WC să calculeze dacă e posibil.
-		$line_tax_data_array = ($line_tax_gbp > 0) ? ['total' => [1 => $line_tax_gbp], 'subtotal' => [1 => $line_tax_gbp]] : [];
-		wc_update_order_item_meta($item_id, '_line_tax_data', $line_tax_data_array);
+		// Preț în USD (din meta produs)
+		$dolar_price = floatval(get_post_meta($product_id, 'dolar_price', true));
+
+		// --- Calculează valorile pentru linia curentă ---
+		$line_subtotal_gbp = ($base_price * $item_quantity) + $item_train_price_total;
+		$line_tax_gbp = ($line_subtotal_gbp * $tax_rate_percent) / 100;
+		$line_total_usd = $dolar_price * $item_quantity;
+		$line_total_sqm = $sqm * $item_quantity;
+
+		// --- Actualizează meta itemului în comandă ---
+		// Formatăm valorile numerice folosind funcțiile WC
+		$line_tax_data_array = ['total' => [], 'subtotal' => []];
+		if ($line_tax_gbp > 0) {
+			// Presupunem că ID-ul ratei de taxare este 1 (hardcodat în logica originală)
+			// @TODO: ID-ul taxei (1) ar trebui determinat dinamic sau configurat.
+			$tax_rate_id_hardcoded = 1;
+			$line_tax_data_array = [
+			  'total' => [$tax_rate_id_hardcoded => wc_format_decimal($line_tax_gbp)],
+			  'subtotal' => [$tax_rate_id_hardcoded => wc_format_decimal($line_tax_gbp)],
+			];
+		}
+
+		wc_update_order_item_meta($item_id, '_qty', $item_quantity); // Cantitatea e deja corectă, dar o rescriem pentru consistență.
+		wc_update_order_item_meta($item_id, '_line_subtotal', wc_format_decimal($line_subtotal_gbp));
+		wc_update_order_item_meta($item_id, '_line_tax', wc_format_decimal($line_tax_gbp));
+		wc_update_order_item_meta($item_id, '_line_total', wc_format_decimal($line_subtotal_gbp)); // WC calculează total = subtotal + tax, deci suprascriem subtotalul aici.
+		wc_update_order_item_meta($item_id, '_line_subtotal_tax', wc_format_decimal($line_tax_gbp));
+		wc_update_order_item_meta($item_id, '_line_tax_data', $line_tax_data_array); // Salvează array-ul cu ID-ul ratei de taxare
+
+		error_log("Order {$order_id}, Item ID {$item_id}: Qty={$item_quantity}, BasePrice={$base_price}, TrainPrice={$item_train_price_total}, SubtotalGBP={$line_subtotal_gbp}, TaxGBP={$line_tax_gbp}, TotalUSD={$line_total_usd}, TotalSQM={$line_total_sqm}");
 
 		// --- Adaugă la totalurile calculate ale comenzii ---
-		$calculated_items_subtotal_gbp += $line_subtotal_gbp;
-		$calculated_items_tax_gbp += $line_tax_gbp;
+		$calculated_subtotal_gbp += $line_subtotal_gbp;
+		$calculated_total_tax_gbp += $line_tax_gbp;
 		$calculated_total_usd += $line_total_usd;
 		$calculated_total_sqm += $line_total_sqm;
-		// Corectăm calculul pentru prețul total de tren al comenzii
-		$calculated_order_train_price += $item_train_price_total;
-
-		error_log("Order {$order_id}, Item ID {$item_id} Processed: SubtotalGBP={$line_subtotal_gbp}, TaxGBP={$line_tax_gbp}, TotalUSD={$line_total_usd}, TotalSQM={$line_total_sqm}");
 	} // Sfârșit foreach items
 
 	// --- Actualizează meta și totalurile comenzii (doar dacă nu conține POS) ---
-	if ($order_contains_pos) {
-		error_log("Order {$order_id} contains POS items. Skipping final order total update and custom table update.");
-		return; // Oprește execuția conform logicii originale
-	}
+	if ($order_contains_pos === false) {
+		error_log("Order {$order_id} does not contain POS items. Proceeding with final total updates.");
 
-	// Salvează prețul total 'tren' pe meta comenzii dacă e mai mare ca zero
-	if ($calculated_order_train_price > 0) {
-		update_post_meta($order_id, 'order_train', number_format($calculated_order_train_price, 2, '.', ''));
-		error_log("Order {$order_id}: Updated 'order_train' meta: " . number_format($calculated_order_train_price, 2, '.', ''));
+		// Salvează prețul total 'tren' pe meta comenzii
+		if ($calculated_order_train_price > 0) {
+			update_post_meta($order_id, 'order_train', number_format($calculated_order_train_price, 2, '.', ''));
+			error_log("Order {$order_id}: Updated 'order_train' meta: " . number_format($calculated_order_train_price, 2, '.', ''));
+		}
+
+		// Obține costul de transport și taxa pe transport din comandă
+		$order_shipping_total = $order->get_shipping_total();
+		if ($order_shipping_total === null || $order_shipping_total === '') {
+			$shipping_cost = '0.00';
+		}
+
+		$order_shipping_tax = $order->get_shipping_tax(); // Obține taxa totală pe transport
+
+		// Calculează totalul final GBP al comenzii
+		$final_order_total_gbp = $calculated_subtotal_gbp + $calculated_total_tax_gbp + $order_shipping_total + $order_shipping_tax;
+
+		// Actualizează totalurile principale ale comenzii folosind metodele WC
+		try {
+			$order->set_props([
+			  'total' => wc_format_decimal($final_order_total_gbp),
+			  'total_tax' => wc_format_decimal($calculated_total_tax_gbp + $order_shipping_tax), // Taxa totală = taxa pe itemi + taxa pe transport
+			  'cart_tax' => wc_format_decimal($calculated_total_tax_gbp), // Taxa doar pe itemi
+				// Nota: WC calculează subtotalul înainte de discounturi. Setarea manuală aici poate fi imprecisă.
+				// Setăm subtotalul calculat pentru consistență cu logica originală, dar e posibil să nu reflecte subtotalul real WC.
+				// 'subtotal' => wc_format_decimal($calculated_subtotal_gbp), // Comentat - lăsăm WC să gestioneze subtotalul pe cât posibil
+			]);
+			$order->save();
+			error_log("Order {$order_id}: Final totals updated. TotalGBP={$final_order_total_gbp}, TotalTaxGBP=" . wc_format_decimal($calculated_total_tax_gbp + $order_shipping_tax));
+		} catch (Exception $e) {
+			error_log("Order {$order_id}: Error saving final order totals: " . $e->getMessage());
+		}
+
+		// --- Actualizează tabela custom `wp_custom_orders` ---
+		// @TODO: Numele tabelei ar trebui prefixat corect și verificat.
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'custom_orders'; // Asigură prefix corect
+
+		$idOrder = $order_id;
+		// Folosește prepare pentru siguranță
+		$order_exists_count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `{$table_name}` WHERE `idOrder` = %d", $idOrder));
+
+		// Date comune pentru insert/update
+		$custom_data = [
+		  'usd_price' => number_format($calculated_total_usd, 2, '.', ''),
+		  'gbp_price' => number_format($final_order_total_gbp, 2, '.', ''), // Folosim totalul final calculat
+		  'subtotal_price' => number_format($calculated_subtotal_gbp, 2, '.', ''), // Folosim subtotalul calculat (itemi + tren)
+		  'sqm' => number_format($calculated_total_sqm, 2, '.', ''),
+		  'shipping_cost' => number_format($order_shipping_total, 2, '.', ''),
+			// 'delivery' și 'status' par să lipsească din calculul curent, le preluăm din comandă
+		  'delivery' => $order->get_shipping_method(), // Sau $order->get_shipping_methods()[0]->get_method_id() ? Depinde ce vrei să stochezi.
+		  'status' => $order->get_status(),
+			// 'reference' și 'createTime' sunt doar pentru insert
+		];
+
+		if ($order_exists_count > 0) {
+			// Update
+			$where = ['idOrder' => $idOrder];
+			$updated = $wpdb->update($table_name, $custom_data, $where);
+
+			if ($updated !== false) {
+				error_log("Order {$order_id}: Updated record in `{$table_name}`.");
+			} else {
+				error_log("Order {$order_id}: Failed to update record in `{$table_name}`. WPDB Error: " . $wpdb->last_error);
+			}
+		} else {
+			// Insert
+			// Adaugă câmpurile specifice pentru insert
+			$custom_data['idOrder'] = $idOrder;
+			$custom_data['reference'] = 'LF0' . $order->get_order_number() . ' - ' . get_post_meta($idOrder, 'cart_name', true); // Folosește cart_name actualizat
+			$custom_data['createTime'] = $order->get_date_created() ? $order->get_date_created()->date('Y-m-d H:i:s') : current_time('mysql', 1); // Data creării comenzii
+
+			$inserted = $wpdb->insert($table_name, $custom_data);
+
+			if ($inserted) {
+				error_log("Order {$order_id}: Inserted new record into `{$table_name}`.");
+			} else {
+				error_log("Order {$order_id}: Failed to insert record into `{$table_name}`. WPDB Error: " . $wpdb->last_error);
+			}
+		}
 	} else {
-		// Șterge meta dacă totalul tren este zero (opțional, pentru curățenie)
-		delete_post_meta($order_id, 'order_train');
+		error_log("Order {$order_id} contains POS items. Skipping final total update and custom table update.");
 	}
+	error_log("--- Finished Order Recalculation for Order ID: {$order_id} ---");
+}
 
-	// Obține costul de transport și taxa pe transport direct din obiectul comenzii
-	$order_shipping_total = $order->get_shipping_total();
-	$order_shipping_tax = $order->get_shipping_tax();
 
-	// Calculează totalul final GBP al comenzii
-	// Total = Subtotal Itemi + Taxa Itemi + Total Transport + Taxa Transport
-	$final_order_total_gbp = $calculated_items_subtotal_gbp + $calculated_items_tax_gbp + $order_shipping_total + $order_shipping_tax;
-	$final_total_tax_gbp = $calculated_items_tax_gbp + $order_shipping_tax;
+/**
+ * Găsește prețul original de tren din primul item care îl are salvat
+ */
+function find_original_train_price($items, $product_categories)
+{
+	foreach ($items as $item_id => $item_data) {
 
-	error_log("Order {$order_id}: Calculated Finals: SubtotalItemsGBP={$calculated_items_subtotal_gbp}, TaxItemsGBP={$calculated_items_tax_gbp}, ShippingGBP={$order_shipping_total}, ShippingTaxGBP={$order_shipping_tax}, FinalTotalGBP={$final_order_total_gbp}");
+		$product_id = $item_data->get_product_id();
+		$saved_train_price = get_post_meta($product_id, 'price_item_train', true);
+		$product = $item_data->get_product();
+		if (!$product) continue;
 
-	// Actualizează totalurile comenzii folosind metodele WC
+		$sqm = 0;
+		if ($product_categories[$product_id]['is_awning']) {
+			$sqm = floatval($item_data->get_meta('awning_sqm', true));
+		} else {
+			$sqm = floatval(get_post_meta($product_id, 'property_total', true));
+		}
 
-	$order->set_props([
-	  'total' => $final_order_total_gbp,       // Totalul general
-	  'total_tax' => $final_total_tax_gbp,       // Taxa totală (itemi + transport)
-	  'cart_tax' => $calculated_items_tax_gbp,  // Taxa doar pe itemi
-		// Nota: Setarea subtotalului aici poate fi problematică. WC calculează subtotalul
-		// ca suma prețurilor itemilor *înainte* de discounturi. Calculul nostru custom
-		// ($calculated_items_subtotal_gbp) include prețul tren. Lăsăm WC să-l calculeze.
-		// 'subtotal' => wc_format_decimal($calculated_items_subtotal_gbp),
-	]);
-	$save_result = $order->save(); // Salvează modificările în obiect și, teoretic, în DB/meta
+		if ($sqm > 0) {
+			$item_quantity = max(1, get_post_meta($product_id, 'quantity', true));
+			return $saved_train_price / ($sqm * $item_quantity);
+		}
+	}
+	return null;
+}
 
-	if ($save_result === false || $save_result === 0 || is_wp_error($save_result)) {
-		$error_message = is_wp_error($save_result) ? $save_result->get_error_message() : 'Save returned false/0.';
-		error_log("Order {$order_id}: ERROR - Order save via object FAILED! Reason: " . $error_message);
-		// Chiar dacă save() eșuează, putem forța update-ul meta mai jos
+
+/**
+ * Calculează valorile pentru un item specific
+ */
+function calculate_item_values($item_data, $product, $quantity, $is_awning, $train_price_per_sqm, $tax_rate_percent)
+{
+	if ($is_awning) {
+		$base_price_gbp = floatval($item_data->get_meta('final_price_uk', true));
+		$sqm = floatval($item_data->get_meta('awning_sqm', true));
+		$price_usd = floatval($item_data->get_meta('final_price_china', true));
 	} else {
-		error_log("Order {$order_id}: Order save via object SUCCEEDED.");
+		$base_price_gbp = floatval($product->get_price());
+		$sqm = floatval($product->get_meta('property_total', true));
+		$price_usd = floatval($product->get_meta('dolar_price', true));
 	}
 
-	// 2. Forțează actualizarea directă a câmpurilor postmeta (pentru compatibilitate cu versiuni vechi)
-	// Folosim valorile calculate, formatate corespunzător.
-	error_log("Order {$order_id}: Forcing update of legacy postmeta totals...");
+	$train_price_total = ($sqm > 0 && $train_price_per_sqm > 0) ?
+	  $sqm * $quantity * $train_price_per_sqm : 0;
 
-	update_post_meta($order_id, '_order_total', wc_format_decimal($final_order_total_gbp));
-	update_post_meta($order_id, '_order_tax', wc_format_decimal($final_total_tax_gbp));
-	update_post_meta($order_id, '_cart_tax', wc_format_decimal($calculated_items_tax_gbp));
-	update_post_meta($order_id, '_order_shipping_tax', wc_format_decimal($order_shipping_tax));
-	// Poți actualiza și alte meta-uri dacă este necesar (ex: _order_shipping)
-	// update_post_meta($order_id, '_order_shipping', wc_format_decimal($order_shipping_total));
+	$subtotal_gbp = ($base_price_gbp * $quantity) + $train_price_total;
+	$tax_gbp = ($subtotal_gbp * $tax_rate_percent) / 100;
 
-	error_log("Order {$order_id}: Legacy postmeta totals updated via update_post_meta.");
+	return [
+	  'subtotal_gbp' => $subtotal_gbp,
+	  'tax_gbp' => $tax_gbp,
+	  'total_usd' => $price_usd * $quantity,
+	  'total_sqm' => $sqm * $quantity,
+	  'train_price' => $train_price_total,
+	];
+}
 
-	// După salvare, putem apela funcția de update a tabelei custom
-	matrix_update_custom_orders_table(
-	  $order, // Trimitem obiectul order actualizat
-	  $calculated_total_usd,
-	  $calculated_total_sqm,
-	  $calculated_items_subtotal_gbp // Trimitem subtotalul calculat custom
-	);
 
-	error_log("--- Finished Custom Order Recalculation for Order ID: {$order_id} ---");
+/**
+ * Actualizează meta-urile itemilor în batch
+ */
+function batch_update_item_meta($item_meta_updates)
+{
+	foreach ($item_meta_updates as $item_id => $meta_data) {
+		foreach ($meta_data as $meta_key => $meta_value) {
+			wc_update_order_item_meta($item_id, $meta_key, $meta_value);
+		}
+	}
 }
 
 
